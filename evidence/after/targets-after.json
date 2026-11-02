@@ -1,0 +1,25 @@
+[ {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/78C28F9AA618B71EC2AB6386005CE247",
+   "id": "78C28F9AA618B71EC2AB6386005CE247",
+   "title": "V视听 · VCP 视频协同工坊",
+   "type": "page",
+   "url": "file:///app/VCPChat/VStudioModules/vstudio.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/78C28F9AA618B71EC2AB6386005CE247"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/5852D62A099F2E7A59A634953319AAA7",
+   "id": "5852D62A099F2E7A59A634953319AAA7",
+   "title": "VCPChat",
+   "type": "page",
+   "url": "file:///app/VCPChat/main.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/5852D62A099F2E7A59A634953319AAA7"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/C48FC8977ED6A1EB320C1AAF7020D456",
+   "id": "C48FC8977ED6A1EB320C1AAF7020D456",
+   "title": "VChat 划词助手",
+   "type": "page",
+   "url": "file:///app/VCPChat/rust_assistant_engine/ui/assistant-bar.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/C48FC8977ED6A1EB320C1AAF7020D456"
+} ]

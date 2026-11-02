@@ -1,0 +1,25 @@
+[ {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/E7CF1EB0F47350AFE969B800B40B6746",
+   "id": "E7CF1EB0F47350AFE969B800B40B6746",
+   "title": "ProjectForge 施工图",
+   "type": "page",
+   "url": "file:///app/VCPChat/ProjectForgemodules/projectforge.html?uiMode=classic&vcpEmbedded=1",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/E7CF1EB0F47350AFE969B800B40B6746"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/C82BAA7050B28842DBD5271C05B7FC4F",
+   "id": "C82BAA7050B28842DBD5271C05B7FC4F",
+   "title": "VCPChat",
+   "type": "page",
+   "url": "file:///app/VCPChat/main.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/C82BAA7050B28842DBD5271C05B7FC4F"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:9222/devtools/page/F92833D9715897BC88F7985650686398",
+   "id": "F92833D9715897BC88F7985650686398",
+   "title": "VChat 划词助手",
+   "type": "page",
+   "url": "file:///app/VCPChat/rust_assistant_engine/ui/assistant-bar.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/F92833D9715897BC88F7985650686398"
+} ]
