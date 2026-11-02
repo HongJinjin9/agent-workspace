@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 1,
+  "id": "proj_mvz5fnozzwxuh",
+  "name": "V视听演示 · AI 协同剪辑",
+  "createdAt": "2026-11-02T11:01:47.316Z",
+  "updatedAt": "2026-11-02T11:03:39.433Z",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "duration": 43,
+  "scenes": [
+    {
+      "id": "scene_mvz5foqwd3fv9",
+      "order": 0,
+      "type": "image",
+      "src": "assets/titlecard.png",
+      "title": "",
+      "subtitle": "",
+      "color": "#070a12",
+      "duration": 3,
+      "transition": {
+        "type": "cut",
+        "duration": 0,
+        "effectiveDuration": 0
+      },
+      "motion": {
+        "type": "zoom_in",
+        "zoomFrom": 1,
+        "zoomTo": 1.06,
+        "panFrom": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "panTo": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "overlay": [
+        {
+          "text": "AI 协同剪辑",
+          "position": {
+            "x": 0.5,
+            "y": 0.38,
+            "an": 5
+          },
+          "style": {
+            "fontSize": 88,
+            "color": "#E9ECEF",
+            "bold": true,
+            "outline": 0
+          }
+        },
+        {
+          "text": "VCP 视频协同工坊 · V视听演示片",
+          "position": {
+            "x": 0.5,
+            "y": 0.58,
+            "an": 5
+          },
+          "style": {
+            "fontSize": 28,
+            "color": "#A8C0DE",
+            "outline": 0
+          }
+        },
+        {
+          "text": "画面：MotionGit Kinetic Tech 模板渲染 ｜ 工程与出片：VStudio",
+          "position": {
+            "x": 0.5,
+            "y": 0.73,
+            "an": 5
+          },
+          "style": {
+            "fontSize": 16,
+            "color": "#6C87A8",
+            "outline": 0
+          }
+        }
+      ],
+      "startOverride": null,
+      "start": 0
+    },
+    {
+      "id": "scene_mvz5fos5tf9dg",
+      "order": 1,
+      "type": "video",
+      "src": "assets/seg1-b1.mp4",
+      "title": "",
+      "subtitle": "",
+      "color": "#0b1020",
+      "duration": 11,
+      "transition": {
+        "type": "cut",
+        "duration": 0,
+        "effectiveDuration": 0
+      },
+      "motion": {
+        "type": "none",
+        "zoomFrom": 1,
+        "zoomTo": 1,
+        "panFrom": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "panTo": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "overlay": {
+        "text": "",
+        "position": "bottom",
+        "style": {}
+      },
+      "startOverride": 3,
+      "start": 3
+    },
+    {
+      "id": "scene_mvz5fotgiglke",
+      "order": 2,
+      "type": "video",
+      "src": "assets/seg2-b2.mp4",
+      "title": "",
+      "subtitle": "",
+      "color": "#0b1020",
+      "duration": 10,
+      "transition": {
+        "type": "cut",
+        "duration": 0,
+        "effectiveDuration": 0
+      },
+      "motion": {
+        "type": "none",
+        "zoomFrom": 1,
+        "zoomTo": 1,
+        "panFrom": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "panTo": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "overlay": {
+        "text": "",
+        "position": "bottom",
+        "style": {}
+      },
+      "startOverride": 14,
+      "start": 14
+    },
+    {
+      "id": "scene_mvz5fourkx14c",
+      "order": 3,
+      "type": "video",
+      "src": "assets/seg3-b3.mp4",
+      "title": "",
+      "subtitle": "",
+      "color": "#0b1020",
+      "duration": 10,
+      "transition": {
+        "type": "cut",
+        "duration": 0,
+        "effectiveDuration": 0
+      },
+      "motion": {
+        "type": "none",
+        "zoomFrom": 1,
+        "zoomTo": 1,
+        "panFrom": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "panTo": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "overlay": {
+        "text": "",
+        "position": "bottom",
+        "style": {}
+      },
+      "startOverride": 24,
+      "start": 24
+    },
+    {
+      "id": "scene_mvz5fow4c7qbt",
+      "order": 4,
+      "type": "video",
+      "src": "assets/seg4-b4.mp4",
+      "title": "",
+      "subtitle": "",
+      "color": "#0b1020",
+      "duration": 9,
+      "transition": {
+        "type": "cut",
+        "duration": 0,
+        "effectiveDuration": 0
+      },
+      "motion": {
+        "type": "none",
+        "zoomFrom": 1,
+        "zoomTo": 1,
+        "panFrom": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "panTo": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "overlay": {
+        "text": "",
+        "position": "bottom",
+        "style": {}
+      },
+      "startOverride": 34,
+      "start": 34
+    }
+  ],
+  "audio": {
+    "tracks": [
+      {
+        "id": "track_mvz5foxh41xyp",
+        "name": "旁白 · 人给内容",
+        "kind": "voice",
+        "src": "assets/narr-01.mp3",
+        "start": 3.3,
+        "duration": 10.13,
+        "volume": 1,
+        "fadeIn": 0.2,
+        "fadeOut": 0.3
+      },
+      {
+        "id": "track_mvz5foyr1qehq",
+        "name": "旁白 · AI 剪辑流程",
+        "kind": "voice",
+        "src": "assets/narr-02.mp3",
+        "start": 14.2,
+        "duration": 7.42,
+        "volume": 1,
+        "fadeIn": 0.15,
+        "fadeOut": 0.25
+      },
+      {
+        "id": "track_mvz5fp088v569",
+        "name": "旁白 · 协同与效率",
+        "kind": "voice",
+        "src": "assets/narr-03.mp3",
+        "start": 24.2,
+        "duration": 8.09,
+        "volume": 1,
+        "fadeIn": 0.15,
+        "fadeOut": 0.25
+      },
+      {
+        "id": "track_mvz5fp1i9123d",
+        "name": "旁白 · 收尾",
+        "kind": "voice",
+        "src": "assets/narr-04.mp3",
+        "start": 34.3,
+        "duration": 4.34,
+        "volume": 1,
+        "fadeIn": 0.15,
+        "fadeOut": 0.4
+      },
+      {
+        "id": "track_mvz5fp2s30xhz",
+        "name": "BGM · 氛围垫乐",
+        "kind": "bgm",
+        "src": "assets/bgm-45s.wav",
+        "start": 0,
+        "duration": 43,
+        "volume": 0.22,
+        "fadeIn": 2,
+        "fadeOut": 4
+      },
+      {
+        "id": "track_mvz5fp44lg5e5",
+        "name": "SFX · 模板原生动作音效",
+        "kind": "sfx",
+        "src": "assets/native-sfx.wav",
+        "start": 3,
+        "duration": 40,
+        "volume": 0.8,
+        "fadeIn": 0.5,
+        "fadeOut": 1
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "id": "ann_mvz5fp5ejez4f",
+      "frame": 45,
+      "time": 1.5,
+      "region": {
+        "x": 0.3,
+        "y": 0.34,
+        "w": 0.4,
+        "h": 0.3
+      },
+      "target": "element",
+      "text": "标题卡不错；副标题补上「V视听演示片」，标题整体上移 6% 更稳。",
+      "author": "human",
+      "status": "resolved",
+      "createdAt": "2026-11-02T11:01:49.202Z",
+      "resolvedAt": "2026-11-02T11:02:56.399Z",
+      "reply": "已把标题卡标题上移 6%（y 0.44 → 0.38）、副标题补充「V视听演示片」，并用 ASS 重新渲染标题场景，已重新出片。"
+    },
+    {
+      "id": "ann_mvz5fp6n81owy",
+      "frame": 830,
+      "time": 27.67,
+      "region": {
+        "x": 0.18,
+        "y": 0.4,
+        "w": 0.64,
+        "h": 0.42
+      },
+      "target": "layout",
+      "text": "左右对比卡间距偏窄，拉开到 40px；结论行整体下移，避免压到卡片。",
+      "author": "human",
+      "status": "in_progress",
+      "createdAt": "2026-11-02T11:01:49.247Z",
+      "resolvedAt": null,
+      "reply": "已在 MotionGit 模板 B3 单元调整版式并重新渲染，替换工程中的场景素材。"
+    },
+    {
+      "id": "ann_mvz5fp7xqvpbc",
+      "frame": 1220,
+      "time": 40.67,
+      "region": {
+        "x": 0.26,
+        "y": 0.52,
+        "w": 0.48,
+        "h": 0.18
+      },
+      "target": "frame",
+      "text": "结尾节奏偏快，最后一帧多停留 0.5 秒，配乐淡出再慢一点。",
+      "author": "human",
+      "status": "open",
+      "createdAt": "2026-11-02T11:01:49.293Z",
+      "resolvedAt": null,
+      "reply": ""
+    }
+  ],
+  "rendered": {
+    "path": "renders/final.mp4",
+    "posterPath": "renders/poster.jpg",
+    "status": "ready",
+    "progress": 100,
+    "at": "2026-11-02T11:03:39.433Z",
+    "error": null,
+    "duration": 43,
+    "absolutePath": "/app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/final.mp4",
+    "posterAbsolutePath": "/app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/poster.jpg",
+    "videoUrl": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/review-v1.mp4",
+    "posterUrl": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/poster.jpg"
+  },
+  "status": "ready"
+}

@@ -1,0 +1,3578 @@
+From fee71876d4036eef8b4770cbb68d16dac08f3b9b Mon Sep 17 00:00:00 2001
+From: hbyx2014-agent <351403084+hbyx2014-agent@users.noreply.github.com>
+Date: Mon, 2 Nov 2026 10:56:27 +0000
+Subject: [PATCH] =?UTF-8?q?feat(vstudio):=20V=E3=80=8C=E8=A7=86=E5=90=AC?=
+ =?UTF-8?q?=E3=80=8D=E8=A7=86=E9=A2=91=E5=B7=A5=E7=A8=8B=E5=90=8E=E7=AB=AF?=
+ =?UTF-8?q?=E6=8F=92=E4=BB=B6=EF=BC=88=E5=85=B1=E4=BA=AB=E6=A0=B8=E5=BF=83?=
+ =?UTF-8?q?=20+=20VCP=20=E5=90=8C=E6=AD=A5=E6=8F=92=E4=BB=B6=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- VStudioCore.js：纯 Node 零依赖的视频工程核心 —— 工程/场景/多轨音轨/帧级批注/
+  素材导入/edge-tts 配音/ffmpeg 渲染（Ken Burns、xfade 转场、画中画、ASS 中文字幕、
+  amix 多轨混音、H.264+AAC 成片 + 封面）/渲染锁/原子写/进度写回。
+- VStudio.js + plugin-manifest.json：synchronous/stdio 插件，22 个 invocationCommands，
+  让 AI agent 可读写视频工程并触发渲染。
+- README.md / config.env.example / test/smoke.mjs / test/robustness.mjs。
+- 兼容本机无 drawtext（走 libass/ASS）与无 ffprobe（ffmpeg -i 解析）环境。
+
+VCPToolBox 侧仅新增 Plugin/VStudio/，未修改任何其它插件与源码。
+---
+ Plugin/VStudio/README.md            |  330 ++++
+ Plugin/VStudio/VStudio.js           |  360 +++++
+ Plugin/VStudio/VStudioCore.js       | 2146 +++++++++++++++++++++++++++
+ Plugin/VStudio/config.env.example   |   28 +
+ Plugin/VStudio/plugin-manifest.json |  158 ++
+ Plugin/VStudio/test/robustness.mjs  |  221 +++
+ Plugin/VStudio/test/smoke.mjs       |  253 ++++
+ 7 files changed, 3496 insertions(+)
+ create mode 100644 Plugin/VStudio/README.md
+ create mode 100644 Plugin/VStudio/VStudio.js
+ create mode 100644 Plugin/VStudio/VStudioCore.js
+ create mode 100644 Plugin/VStudio/config.env.example
+ create mode 100644 Plugin/VStudio/plugin-manifest.json
+ create mode 100644 Plugin/VStudio/test/robustness.mjs
+ create mode 100644 Plugin/VStudio/test/smoke.mjs
+
+diff --git a/Plugin/VStudio/README.md b/Plugin/VStudio/README.md
+new file mode 100644
+index 00000000..0dbe3c8f
+--- /dev/null
++++ b/Plugin/VStudio/README.md
+@@ -0,0 +1,330 @@
++# VStudio —— VCP「V视听」视频工程后端（共享核心 + 同步插件）
++
++「V视听」是 VCPChat 的人机协同视频剪辑工作区：人在时间线上看画面、打批注，AI agent
++通过工具读写同一个视频工程。本目录是它的**后端数据与渲染核心**，被两处复用：
++
++1. **VCPToolBox 同步插件**（本目录 `VStudio.js` + `plugin-manifest.json`）——给 AI agent 用；
++2. **VCPChat Electron 主进程**——直接 `require('VStudioCore.js')`，经 IPC 给渲染进程用。
++
++渲染全部由 ffmpeg 完成：图片 Ken Burns、转场、画中画、ASS 中文字幕、多轨混音、H.264 成片 + 封面。
++
++---
++
++## 1. 目录结构
++
++```
++Plugin/VStudio/
++├── VStudioCore.js        # 共享核心（纯 Node，零第三方依赖；CRUD + 渲染管线）
++├── VStudio.js            # VCP 同步插件入口（stdio：stdin 一行 JSON → stdout 一行 JSON）
++├── plugin-manifest.json  # VCP 插件清单（synchronous / stdio，22 个 invocationCommand）
++├── config.env.example    # 配置模板（复制为 config.env 生效）
++├── README.md             # 本文件
++└── test/
++    ├── smoke.mjs         # 端到端冒烟测试（<5s，含渲染与插件协议）
++    └── robustness.mjs    # 异常/边界/安全测试（渲染锁、越界、损坏工程、中断状态修复等）
++```
++
++运行时数据目录（`VSTUDIO_HOME`，默认 `/app/VCPChat/AppData/VStudio`）：
++
++```
++projects/<projectId>/
++├── project.json      # 工程（schemaVersion=1）
++├── assets/           # importAsset / ttsVoiceover 拷贝进来的素材
++├── renders/          # final.mp4 + poster.jpg
++├── work/             # 渲染中间产物（成功后自动清理）
++└── .render.lock      # 文件级渲染锁（防同工程并发渲染）
++```
++
++---
++
++## 2. 快速开始
++
++```bash
++# 1) 冒烟测试（约 2-3 秒，产出 320x180 H.264 小样 + 封面）
++cd /app/VCPToolBox/Plugin/VStudio
++node test/smoke.mjs
++
++# 2) 健壮性测试
++node test/robustness.mjs
++
++# 3) 插件 CLI 调试（等价于 VCP 主服务的 stdin 调用）
++echo '{"command":"list_projects"}' | node VStudio.js
++node VStudio.js --call '{"command":"get_plugin_info"}'
++
++# 4) 主进程直接 require
++node -e "const c=require('/app/VCPToolBox/Plugin/VStudio/VStudioCore.js');
++         console.log(c.createProject({name:'demo',width:640,height:360}).id)"
++```
++
++依赖：本机 ffmpeg（默认 `/home/admin/.local/bin/ffmpeg`）与 CJK 字体目录
++`/home/admin/.fonts`（`Noto Sans CJK SC`）。`edge-tts` 仅 `ttsVoiceover` 需要，且要联网。
++
++> ⚠️ 本机 ffmpeg 是 **7.0.2 静态构建：没有 `drawtext`**，但 **libass（`ass`/`subtitles`）可用**。
++> 因此 VStudio 所有文字都通过 **ASS 字幕 + libass** 渲染，支持中文/多行/描边/半透明底框。
++> 另外本机 **没有真正的 ffprobe**（`/home/admin/.local/bin/ffprobe` 是指向 ffmpeg 的软链），
++> 核心内部统一用 `ffmpeg -i <file>` 解析 stderr 探测时长/分辨率，不依赖 ffprobe。
++
++---
++
++## 3. 主进程 / 前端调用契约（VStudioCore.js）
++
++所有函数**同步**返回（`render` 返回 Promise），失败抛带中文 message 的 `Error`。
++
++| 函数 | 说明 | 返回 |
++|------|------|------|
++| `listProjects()` | 工程摘要列表（按 updatedAt 倒序） | `Array<ProjectSummary>` |
++| `getProject(id)` | 读取完整工程 | `Project` |
++| `createProject(payload)` | 新建工程（name/width/height/fps/scenes/audio/annotations） | `Project` |
++| `saveProject(project)` | 整工程覆盖保存（自动重算时间线） | `Project` |
++| `updateProject(id, patch)` | 局部更新工程 | `Project` |
++| `addScene(id, scene)` | 追加/按 order 插入场景 | `Project` |
++| `updateScene(id, sceneId, patch)` | 修改场景（含 `start` 覆盖起点） | `Project` |
++| `removeScene(id, sceneId)` | 删除场景 | `Project` |
++| `reorderScenes(id, order)` | 按场景 ID 数组重排 | `Project` |
++| `addAudioTrack(id, track)` | 加音轨 | `Project` |
++| `updateAudioTrack(id, trackId, patch)` | 改音轨 | `Project` |
++| `removeAudioTrack(id, trackId)` | 删音轨 | `Project` |
++| `importAsset(id, payload)` | 导入素材（sourcePath/url/dataUrl/base64/content） | `Asset` |
++| `listAssets(id)` | 素材列表 | `Array<Asset>` |
++| `addAnnotation(id, ann)` | 加批注 | `Project` |
++| `updateAnnotation(id, annId, patch)` | 改批注（`status:'resolved'` 自动写 resolvedAt） | `Project` |
++| `removeAnnotation(id, annId)` | 删批注 | `Project` |
++| `ttsVoiceover(id, {text,voice,trackName,sceneId,start,...})` | edge-tts 中文配音并加 voice 轨 | `{project, track}` |
++| `render(id, options)` | 渲染成片（Promise） | `RenderResult` |
++| `renderStatus(id)` | 渲染状态（自动修复中断的 rendering 状态） | `RenderStatus` |
++| `resolveMediaPath(id, relPath)` | 工程内相对路径 → 绝对路径（防穿越） | `string` |
++| 辅助 | `deleteProject(id)`、`probeMedia(file)`、`getConfig()`、`homeDir()`、`getProjectDir(id)`、`getAssetsDir(id)`、`getRendersDir(id)` | — |
++
++**返回对象补充说明（与前端 `VStudioModules/*` 对齐的向后兼容扩展字段）：**
++
++- `Project.rendered` 除契约字段外附加：
++  `absolutePath`、`posterAbsolutePath`、`videoUrl`（`file://` URL）、`posterUrl` —— 渲染进程可直接
++  给 `<video>/<img>` 用；`path`/`posterPath` 仍是工程内相对路径（`renders/final.mp4`）。
++- `Asset` 除 `name/file/src/type/size/...` 外附加 `path`（= `src`，前端把它直接当 `scene.src` 用）、
++  `absolutePath`。
++- `RenderResult`：`{ id, path, absolutePath, videoUrl, posterPath, posterAbsolutePath, posterUrl,
++  duration, width, height, fps, sceneCount, trackCount, warnings }`。
++- `RenderStatus`：`{ id, status, progress, path, posterPath, at, error, duration, running, statusLabel }`。
++- 场景扩展字段（向后兼容）：`scene.startOverride`（显式起点；`null` 表示按 order 自动累计）、
++  `scene.transition.effectiveDuration`（实际生效转场时长，受两侧场景时长约束）。
++
++**时间线规则**：`order` 升序；非 cut 转场会让相邻场景重叠 `effectiveDuration` 秒；
++`scene.start` 是每次归一化时自动计算并写回的产物。需要用显式起点覆盖时传 `start`
++（`addScene`/`updateScene`）或 `startOverride`；**`saveProject` 整工程保存时忽略回传的 `start`**，
++只认 `startOverride`——这样前端拖动重排 `order` 后时间线会自动重算，不会被旧 `start` 钉死。
++
++---
++
++## 4. project.json schema（schemaVersion = 1）
++
++```jsonc
++{
++  "schemaVersion": 1,
++  "id": "proj_xxx",
++  "name": "工程名",
++  "createdAt": "ISO", "updatedAt": "ISO",
++  "width": 1920, "height": 1080, "fps": 30,
++  "duration": 12.5,                       // 场景时间线总时长（秒，自动计算）
++  "scenes": [{
++    "id": "scene_xxx", "order": 0, "start": 0, "duration": 4,
++    "type": "image|video|title|color",
++    "src": "assets/clip.mp4",             // image/video 必填（importAsset 的 src/path）
++    "title": "主标题", "subtitle": "副标题", // 文字走 ASS 渲染，支持中文/多行
++    "color": "#0b1020",                   // 或 ["#0b1020","#1e3a8a"] 渐变，或 {"type":"gradient","colors":[...],"angle":0}
++    "transition": { "type": "cut|fade|slide", "duration": 0.5, "effectiveDuration": 0.5 },
++    "motion": { "type": "none|zoom_in|zoom_out|pan_left|pan_right|pan_up|pan_down|custom",
++                "zoomFrom": 1, "zoomTo": 1.15,
++                "panFrom": {"x":0.5,"y":0.5}, "panTo": {"x":0.5,"y":0.5} },
++    "layout": { "x": 0, "y": 0, "w": 1, "h": 1 },   // 归一化画中画矩形（PiP 时 <1）
++    "overlay": { "text": "叠加文字", "position": "top|center|bottom|top-left|top-right|bottom-left|bottom-right|{x,y}",
++                 "style": { "fontSize": 22, "color": "#FFFFFF", "box": true,
++                            "backgroundColor": "#000000", "borderColor": "#000000",
++                            "outline": 2, "bold": false, "fontFamily": "Noto Sans CJK SC" } },
++    "startOverride": null                // 扩展：显式起点覆盖
++  }],
++  "audio": { "tracks": [{
++    "id": "track_xxx", "name": "BGM", "kind": "voice|bgm|sfx",
++    "src": "assets/bgm.mp3", "start": 0, "duration": 12,
++    "volume": 1, "fadeIn": 0.3, "fadeOut": 0.5
++  }]},
++  "annotations": [{
++    "id": "ann_xxx", "frame": null, "time": 1.2,
++    "region": {"x":0.1,"y":0.1,"w":0.3,"h":0.2},
++    "target": "frame|element|layout", "text": "批注内容",
++    "author": "human|agent", "status": "open|in_progress|resolved",
++    "createdAt": "ISO", "resolvedAt": null, "reply": ""
++  }],
++  "rendered": {
++    "path": "renders/final.mp4", "posterPath": "renders/poster.jpg",
++    "status": "idle|rendering|ready|error", "progress": 0,
++    "at": null, "error": null, "duration": 0,
++    "absolutePath": null, "posterAbsolutePath": null, "videoUrl": "", "posterUrl": "" // 扩展
++  },
++  "status": "draft|ready"
++}
++```
++
++说明：
++- `overlay` 也接受**数组**（多段叠加文字），向后兼容地扩展了契约里的对象形态。
++- `start` 永久存在且为计算结果；`startOverride` 才是手动覆盖开关。
++- 渲染期间 `project.json` 会持续原子写回 `rendered.status='rendering'` + `progress`（0→100）。
++
++---
++
++## 5. VCP 插件（AI agent 工具）协议
++
++`plugin-manifest.json`：`pluginType: synchronous`，`entryPoint.command: node VStudio.js`，
++`communication.protocol: stdio`，超时 900s。VCP 主服务把 `tool_name` 对应的参数以**一行 JSON**
++写到 stdin（`{command:'xxx', ...扁平参数}`），插件把**一行 JSON** 写到 stdout：
++
++```json
++{"status":"success","result":{"content":[{"type":"text","text":"..."}],"details":{...}},"messageForAI":"..."}
++```
++
++错误：`{"status":"error","error":"中文错误信息","messageForAI":"..."}`（详细堆栈写 stderr）。
++
++### 动作（command）一览
++
++| command | 参数 | 说明 |
++|---|---|---|
++| `list_projects` | — | 工程列表 |
++| `get_project` | `id` | 读工程 |
++| `create_project` | `name,width,height,fps,scenes` | 新建 |
++| `save_project` | `project` | 整工程覆盖保存 |
++| `update_project` | `id, patch` | 局部更新 |
++| `add_scene` | `id` + 场景字段 | 加场景 |
++| `update_scene` | `id, sceneId, patch` | 改场景 |
++| `remove_scene` | `id, sceneId` | 删场景 |
++| `reorder_scenes` | `id, order[]` | 重排 |
++| `add_audio_track` | `id` + 音轨字段 | 加音轨 |
++| `update_audio_track` | `id, trackId, patch` | 改音轨 |
++| `remove_audio_track` | `id, trackId` | 删音轨 |
++| `import_asset` | `id, sourcePath/url/dataUrl/base64/content, name` | 导入素材 |
++| `list_assets` | `id` | 素材列表 |
++| `add_annotation` | `id` + 批注字段 | 加批注 |
++| `update_annotation` | `id, annotationId, patch` | 改批注 |
++| `remove_annotation` | `id, annotationId` | 删批注 |
++| `tts_voiceover` | `id, text, voice, trackName, sceneId, start` | 中文配音 |
++| `render` | `id, crf, preset, posterTime, outputName` | 渲染（阻塞到完成） |
++| `render_status` | `id` | 轮询渲染状态 |
++| `probe_media` | `file` | 探测媒体（扩展） |
++| `get_plugin_info` | — | 版本/配置（扩展） |
++
++VCP 工具调用示例：
++
++```
++tool_name:「始」VStudio「末」,
++command:「始」add_scene「末」,
++id:「始」proj_xxx「末」,
++type:「始」title「末」,
++title:「始」AI 协同剪辑「末」,
++subtitle:「始」从一句批注开始「末」,
++duration:「始」3「末」
++```
++
++---
++
++## 6. 渲染管线实现
++
++每个场景先渲染成**统一分辨率 / fps / 编码参数**的片段（`work/scene-XXX.mp4`）：
++
++- **文字**：为每个场景生成 `.ass`（PlayRes = 工程分辨率，字体 `Noto Sans CJK SC`，`fontsdir`
++  = `/home/admin/.fonts`），用 `ass=filename=...:fontsdir=...` 叠加；标题/副标题/overlay 全部
++  走 ASS（本机 ffmpeg 无 drawtext）。
++- **image**：`scale=cover → crop → zoompan`（`z/x/y` 表达式由 motion 计算，支持缩放进/出、
++  上下左右平移；默认无动效）。
++- **video**：`-stream_loop -1` 循环补时 + `scale/crop/fps/trim`，按 layout 裁剪。
++- **title/color**：`color=` 或 `gradients=` lavfi 源作底色（支持渐变）。
++- **layout**：归一化矩形 → 像素；非全屏时 `[bg][content]overlay` 合成画中画。
++- **转场**：按 cut 边界分组。组内用 **单次 xfade**（fade→`fade`，slide→`slideleft`）链式拼接；
++  跨组用 concat demuxer `-c copy` 拼接（不重复重编码）。时间线显式起点产生的**空隙**会插入
++  黑场片段补位。
++- **音频**：每条音轨 `atrim → asetpts → aresample 48k → 立体声 → volume → afade in/out →
++  adelay(start)`，再 `amix=normalize=0 → apad → alimiter`；无音轨时用 `anullsrc` 静音轨。
++- **封装**：`-c:v copy -c:a aac 192k -movflags +faststart -t <时长>` 输出 `renders/final.mp4`；
++  `-ss <posterTime> -frames:v 1` 输出 `renders/poster.jpg`。
++- **防御性校验**：封装后探测成片时长，偏差 >0.5s 自动重试一次，仍异常则报 `渲染失败：成片时长异常`。
++- **音轨素材防御**：混音前逐条探测素材是否真的含音频流；把图片/视频误加为音轨只会产生
++  warning 并跳过（同时用静音轨补齐），不会让整次渲染失败。
++- **进度/状态**：`rendered.status/progress` 在 1/2/…/64/82/93/100 等里程碑原子写回
++  （节流 350ms），结束时写 `ready`/`error` + `duration`。
++- **并发**：同一工程用 `.render.lock`（pid + 时间戳 + 存活检测）拒绝并发渲染；不同工程最多
++  `VSTUDIO_FFMPEG_CONCURRENCY`（默认 2）个 ffmpeg 进程并行（内部信号量）。
++
++### 已知限制
++
++- 文字样式走 ASS：`style` 里的字体名需系统/libass 可解析（默认 Noto Sans CJK SC）。
++- `edge-tts` 需要网络；失败抛中文错误，不影响工程其它数据。
++- 渲染期间若前端又改了工程，最终以磁盘上的最新工程为准写回 `rendered` 字段（不会覆盖场景修改）。
++- 未实现逐帧级音频波形/关键帧动画；`motion` 仅预设 + zoom/pan 数值。
++
++---
++
++## 7. 配置（config.env / 环境变量）
++
++复制 `config.env.example` 为 `config.env`；环境变量优先。VCP 插件启动时会自动加载 config.env。
++
++| 变量 | 默认 | 说明 |
++|---|---|---|
++| `VSTUDIO_HOME` | `/app/VCPChat/AppData/VStudio` | 数据根目录 |
++| `FFMPEG_PATH` | `/home/admin/.local/bin/ffmpeg` | ffmpeg |
++| `EDGE_TTS_PATH` | `/home/admin/.local/bin/edge-tts` | edge-tts |
++| `VSTUDIO_FONTS_DIR` | `/home/admin/.fonts` | libass 字体目录 |
++| `VSTUDIO_FONT_FAMILY` | `Noto Sans CJK SC` | 字体名 |
++| `VSTUDIO_X264_PRESET` | `medium` | 编码 preset |
++| `VSTUDIO_CRF` | `20` | 画质 |
++| `VSTUDIO_RENDER_TIMEOUT_MS` | `900000` | 单条 ffmpeg / 渲染超时 |
++| `VSTUDIO_FFMPEG_CONCURRENCY` | `2` | 并行 ffmpeg 上限 |
++| `VSTUDIO_TTS_TIMEOUT_MS` | `180000` | edge-tts 超时 |
++
++---
++
++## 8. 安全与健壮性
++
++- 工程 ID 白名单校验（`[A-Za-z0-9._-]`），`resolveMediaPath` 拒绝目录穿越（`..`/绝对路径越界）。
++- `project.json` 全部原子写（临时文件 + rename），渲染进度写回不会产生半截 JSON。
++- `getProject` 检测「状态停在 rendering 但渲染进程已退出」时自动修复为 `error`，前端不会永久卡住。
++- 损坏的工程在 `listProjects` 中被跳过；`getProject` 抛中文错误。
++- 渲染锁的 stale lock（进程不存在 / 超过 6 小时）自动视为无效。
++- 素材导入支持 `sourcePath` / `url` / `dataUrl` / `base64` / `content`，重名自动加序号。
++
++---
++
++## 9. 测试结果（实测）
++
++```
++$ cd /app/VCPToolBox/Plugin/VStudio && node test/smoke.mjs
++✅ [0.90s] 添加 4 类场景，时间线 0/0.45/0.9/1.35s，总长 1.95s
++✅ [2.08s] 渲染完成
++✅ [2.09s] 产物校验：final.mp4 66226 字节 / poster.jpg 3140 字节，
++           实际 1.96s 320x180，音视频流齐全
++✅ [2.10s] project.json 状态写回：rendered.status=ready progress=100
++✅ [2.20s] 插件 stdio 协议：render_status 返回 VCP 标准结构
++🎉 VStudio 冒烟测试通过（2.20s，阈值 60s）
++```
++
++`node test/robustness.mjs`（实测 10 项 <1.5s 全通过）覆盖：非法 ID / 目录穿越 / 缺失场景素材 /
++损坏 project.json / 渲染锁并发拒绝与 stale 锁失效 / 中断渲染状态修复 / saveProject 时间线重算 /
++无音频流音轨防御 / 参数校验 / project.json schema 字段完整性。
++
++真实集成验证：VCPChat 主进程侧（`VCPChat/modules/ipc/vstudioHandlers.js`）用默认
++`VSTUDIO_HOME=/app/VCPChat/AppData/VStudio` 已跑通 1920x1080 成片渲染（另一次因把 PNG 误加为
++音轨导致 `混音失败`，本核心已修复为 warning 跳过并成功重渲染该工程）。
++
++---
++
++## 10. VCPToolBox 热加载结论
++
++VCPToolBox（pm2 `vcp-main`）的 `Plugin.js` 使用 chokidar 监听 `Plugin/`（depth:1，strict manifest
++filter）。本次新增 `Plugin/VStudio/plugin-manifest.json` 后，**未重启任何服务**，运行中的
++`vcp-main` 日志出现：
++
++```
++[PluginManager] Manifest state changed (1 path(s)). Hot-reloading plugins...
++[PluginManager] Loaded manifest: V「视听」视频工程 (VStudio, Type: synchronous)
++  - Generated description for {{VCPVStudio}} (Length: 8024)
++[PluginManager] Hot-reload complete.
++```
++
++即：**新增插件目录 + manifest 可自动热加载，无需重启 vcp-main**；`{{VCPVStudio}}` 占位符
++已生成（8024 字符），在 Agent 系统提示词中加入该占位符即可让 agent 看到工具。
+diff --git a/Plugin/VStudio/VStudio.js b/Plugin/VStudio/VStudio.js
+new file mode 100644
+index 00000000..ca4f9fa7
+--- /dev/null
++++ b/Plugin/VStudio/VStudio.js
+@@ -0,0 +1,360 @@
++#!/usr/bin/env node
++'use strict';
++
++/**
++ * VStudio.js —— VCP 同步插件入口（stdio 协议）
++ * =====================================================================
++ * 协议：stdin 一行 JSON（{command:'list_projects', ...扁平参数}）→ 执行 →
++ *       stdout 一行 JSON（VCP 标准 {status,result,error,messageForAI}）。
++ * 调试信息一律走 stderr，stdout 只允许输出一行结果 JSON。
++ *
++ * 除 VCP 主服务调用外，也支持命令行直接调试：
++ *   node VStudio.js --call '{"command":"list_projects"}'
++ *   echo '{"command":"render_status","id":"proj_x"}' | node VStudio.js
++ */
++
++const fs = require('fs');
++const path = require('path');
++const core = require('./VStudioCore.js');
++
++const PLUGIN_NAME = 'VStudio';
++
++// ---------------------------------------------------------------------------
++// 参数工具
++// ---------------------------------------------------------------------------
++
++function projectIdOf(params) {
++  const id = params.id !== undefined ? params.id : params.projectId !== undefined ? params.projectId : params.project_id;
++  if (id === undefined || id === null || String(id).trim() === '') {
++    throw new Error('缺少参数 id（工程 ID）');
++  }
++  return String(id);
++}
++
++function pickObject(params, keys) {
++  for (const key of keys) {
++    if (params[key] !== undefined && params[key] !== null) return params[key];
++  }
++  return undefined;
++}
++
++/** 平铺参数（去掉协议/定位字段）当作实体数据。 */
++function flatEntity(params, excluded) {
++  const omit = new Set(['command', 'action', 'args', 'params', 'options', 'tool_name', 'maid', 'projectId', 'project_id', ...excluded]);
++  const out = {};
++  for (const [key, value] of Object.entries(params)) {
++    if (!omit.has(key)) out[key] = value;
++  }
++  return out;
++}
++
++function extractOptions(params, fallbackKeys) {
++  if (params.options && typeof params.options === 'object') return params.options;
++  if (params.params && typeof params.params === 'object') return params.params;
++  const out = {};
++  for (const key of fallbackKeys) {
++    if (params[key] !== undefined && params[key] !== null) out[key] = params[key];
++  }
++  return out;
++}
++
++// ---------------------------------------------------------------------------
++// 动作处理：action 名与 VCPChat 主进程 IPC / 前端一致（snake_case）
++// ---------------------------------------------------------------------------
++
++const ACTIONS = {
++  // ---- 工程 CRUD ----
++  list_projects: () => core.listProjects(),
++  get_project: (params) => core.getProject(projectIdOf(params)),
++  create_project: (params) => core.createProject(pickObject(params, ['project']) || flatEntity(params, ['id'])),
++  save_project: (params) => {
++    const project = pickObject(params, ['project']);
++    if (!project || typeof project !== 'object') throw new Error('save_project 需要 project 对象');
++    return core.saveProject(project);
++  },
++  update_project: (params) => {
++    const id = projectIdOf(params);
++    const patch = pickObject(params, ['patch', 'updates']) || flatEntity(params, ['id', 'projectId', 'project_id']);
++    return core.updateProject(id, patch);
++  },
++  delete_project: (params) => core.deleteProject(projectIdOf(params)),
++
++  // ---- 场景 ----
++  add_scene: (params) => {
++    const id = projectIdOf(params);
++    const scene = pickObject(params, ['scene']) || flatEntity(params, ['id', 'projectId', 'project_id']);
++    return core.addScene(id, scene);
++  },
++  update_scene: (params) => {
++    const id = projectIdOf(params);
++    const sceneId = params.sceneId !== undefined ? params.sceneId : params.scene_id;
++    const patch = pickObject(params, ['patch', 'updates']) || flatEntity(params, ['id', 'projectId', 'project_id', 'sceneId', 'scene_id']);
++    return core.updateScene(id, sceneId, patch);
++  },
++  remove_scene: (params) => {
++    const id = projectIdOf(params);
++    const sceneId = params.sceneId !== undefined ? params.sceneId : params.scene_id;
++    return core.removeScene(id, sceneId);
++  },
++  reorder_scenes: (params) => {
++    const id = projectIdOf(params);
++    const order = pickObject(params, ['order', 'sceneIds', 'scene_ids']);
++    return core.reorderScenes(id, order);
++  },
++
++  // ---- 音轨 ----
++  add_audio_track: (params) => {
++    const id = projectIdOf(params);
++    const track = pickObject(params, ['track']) || flatEntity(params, ['id', 'projectId', 'project_id']);
++    return core.addAudioTrack(id, track);
++  },
++  update_audio_track: (params) => {
++    const id = projectIdOf(params);
++    const trackId = params.trackId !== undefined ? params.trackId : params.track_id;
++    const patch = pickObject(params, ['patch', 'updates']) || flatEntity(params, ['id', 'projectId', 'project_id', 'trackId', 'track_id']);
++    return core.updateAudioTrack(id, trackId, patch);
++  },
++  remove_audio_track: (params) => {
++    const id = projectIdOf(params);
++    const trackId = params.trackId !== undefined ? params.trackId : params.track_id;
++    return core.removeAudioTrack(id, trackId);
++  },
++
++  // ---- 素材 ----
++  import_asset: (params) => {
++    const id = projectIdOf(params);
++    const payload = pickObject(params, ['asset']) || flatEntity(params, ['id', 'projectId', 'project_id']);
++    return core.importAsset(id, payload);
++  },
++  list_assets: (params) => core.listAssets(projectIdOf(params)),
++
++  // ---- 批注 ----
++  add_annotation: (params) => {
++    const id = projectIdOf(params);
++    const annotation = pickObject(params, ['annotation', 'ann']) || flatEntity(params, ['id', 'projectId', 'project_id']);
++    return core.addAnnotation(id, annotation);
++  },
++  update_annotation: (params) => {
++    const id = projectIdOf(params);
++    const annotationId = params.annotationId !== undefined ? params.annotationId : params.annId !== undefined ? params.annId : params.annotation_id;
++    const patch = pickObject(params, ['patch', 'updates']) || flatEntity(params, ['id', 'projectId', 'project_id', 'annotationId', 'annId', 'annotation_id']);
++    return core.updateAnnotation(id, annotationId, patch);
++  },
++  remove_annotation: (params) => {
++    const id = projectIdOf(params);
++    const annotationId = params.annotationId !== undefined ? params.annotationId : params.annId !== undefined ? params.annId : params.annotation_id;
++    return core.removeAnnotation(id, annotationId);
++  },
++
++  // ---- 配音 ----
++  tts_voiceover: (params) => {
++    const id = projectIdOf(params);
++    const options = extractOptions(params, ['text', 'voice', 'trackName', 'sceneId', 'start', 'rate', 'pitch', 'volume', 'fadeIn', 'fadeOut']);
++    return core.ttsVoiceover(id, options);
++  },
++
++  // ---- 渲染 ----
++  render: (params) => {
++    const id = projectIdOf(params);
++    const options = extractOptions(params, ['crf', 'preset', 'timeoutMs', 'posterTime', 'outputName', 'keepWork']);
++    return core.render(id, options);
++  },
++  render_status: (params) => core.renderStatus(projectIdOf(params)),
++
++  // ---- 辅助（非核心契约，便于 agent 自检）----
++  probe_media: async (params) => {
++    const file = params.file || params.path || params.sourcePath;
++    if (!file) throw new Error('probe_media 需要 file 参数');
++    return core.probeMedia(path.isAbsolute(file) ? file : path.resolve(process.cwd(), file));
++  },
++  get_plugin_info: () => ({
++    name: PLUGIN_NAME,
++    version: '1.0.0',
++    schemaVersion: core.SCHEMA_VERSION,
++    actions: Object.keys(ACTIONS),
++    config: core.getConfig(),
++  }),
++};
++
++// 兼容 PascalCase / camelCase 动作名（agent 偶尔写 ListProjects）
++function normalizeActionName(raw) {
++  if (!raw) return '';
++  const text = String(raw).trim();
++  if (ACTIONS[text]) return text;
++  const snake = text
++    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
++    .replace(/[\s-]+/g, '_')
++    .toLowerCase();
++  if (ACTIONS[snake]) return snake;
++  // 允许带插件名前缀，如 VStudio.list_projects
++  const tail = snake.split('.').pop();
++  return ACTIONS[tail] ? tail : snake;
++}
++
++// ---------------------------------------------------------------------------
++// 结果转 VCP 协议（content 数组 + details 结构化数据）
++// ---------------------------------------------------------------------------
++
++function projectSummaryText(project) {
++  if (!project) return '无工程数据';
++  return [
++    `工程「${project.name}」(${project.id})`,
++    `- 分辨率 ${project.width}x${project.height} @ ${project.fps}fps，时长 ${project.duration}s`,
++    `- 场景 ${project.scenes.length} 个，音轨 ${project.audio.tracks.length} 条，批注 ${project.annotations.length} 条`,
++    `- 渲染状态：${project.rendered.status}（progress ${project.rendered.progress}）`,
++  ].join('\n');
++}
++
++function buildSuccessResult(action, data) {
++  let text = '';
++  switch (action) {
++    case 'list_projects':
++      text = data.length
++        ? `共 ${data.length} 个工程：\n${data.map((item) => `- ${item.name} (${item.id}) 时长 ${item.duration}s，渲染 ${item.rendered.status}`).join('\n')}`
++        : '当前没有任何工程，可以调用 create_project 创建。';
++      break;
++    case 'get_project':
++    case 'create_project':
++    case 'save_project':
++    case 'update_project':
++    case 'add_scene':
++    case 'update_scene':
++    case 'remove_scene':
++    case 'reorder_scenes':
++    case 'add_audio_track':
++    case 'update_audio_track':
++    case 'remove_audio_track':
++    case 'add_annotation':
++    case 'update_annotation':
++    case 'remove_annotation':
++      text = projectSummaryText(data);
++      break;
++    case 'delete_project':
++      text = `工程已删除：${data.id}`;
++      break;
++    case 'import_asset':
++      text = `素材已导入：${data.src}（${data.type}，${data.size} 字节${data.duration ? `，时长 ${data.duration}s` : ''}）`;
++      break;
++    case 'list_assets':
++      text = data.length ? `共 ${data.length} 个素材：\n${data.map((item) => `- ${item.src}（${item.type}，${item.size} 字节）`).join('\n')}` : '素材库为空。';
++      break;
++    case 'tts_voiceover':
++      text = `配音完成，音轨「${data.track.name}」时长 ${data.track.duration}s，已加入工程。\n${projectSummaryText(data.project)}`;
++      break;
++    case 'render':
++      text = [
++        '渲染完成 ✅',
++        `- 成片：${data.path}（${data.duration}s，${data.width}x${data.height}@${data.fps}fps）`,
++        `- 封面：${data.posterPath}`,
++        data.warnings && data.warnings.length ? `- 警告：${data.warnings.join('；')}` : '- 无警告',
++      ].join('\n');
++      break;
++    case 'render_status':
++      text = `渲染状态：${data.statusLabel} / ${data.status}，进度 ${data.progress}%${
++        data.error ? `，错误：${data.error}` : ''
++      }${data.path ? `，成片 ${data.path}` : ''}${data.running ? '，渲染进程运行中' : ''}`;
++      break;
++    case 'probe_media':
++      text = `媒体信息：时长 ${data.duration}s，${data.width}x${data.height}${data.fps ? `@${data.fps}fps` : ''}，视频=${data.hasVideo}，音频=${data.hasAudio}`;
++      break;
++    case 'get_plugin_info':
++      text = `VStudio v${data.version}（schemaVersion=${data.schemaVersion}）\n可用动作：${data.actions.join(', ')}\n数据目录：${data.config.home}`;
++      break;
++    default:
++      text = JSON.stringify(data).slice(0, 2000);
++  }
++  return {
++    status: 'success',
++    result: {
++      content: [{ type: 'text', text }],
++      details: data,
++    },
++    messageForAI: text,
++  };
++}
++
++function buildErrorResult(error) {
++  const message = error && error.message ? error.message : String(error);
++  return {
++    status: 'error',
++    error: message,
++    messageForAI: `VStudio 工具调用失败：${message}`,
++  };
++}
++
++// ---------------------------------------------------------------------------
++// 主流程（兼容 VCP stdio 与命令行调试）
++// ---------------------------------------------------------------------------
++
++async function dispatch(request) {
++  if (!request || typeof request !== 'object') throw new Error('请求必须是 JSON 对象');
++  const action = normalizeActionName(request.command || request.action || request.tool || request.type);
++  if (!action) throw new Error('缺少 command 字段（可执行动作见 plugin-manifest.json）');
++  if (!ACTIONS[action]) throw new Error(`未知动作：${action}（可用动作：${Object.keys(ACTIONS).join(', ')}）`);
++  let payload = request;
++  if (request.args && typeof request.args === 'object') payload = { ...request, ...request.args };
++  if (request.params && typeof request.params === 'object' && action !== 'tts_voiceover') payload = { ...request, ...request.params };
++  const data = await ACTIONS[action](payload);
++  return { action, data };
++}
++
++function readStdin() {
++  return new Promise((resolve) => {
++    if (process.stdin.isTTY) {
++      resolve('');
++      return;
++    }
++    let buffer = '';
++    process.stdin.setEncoding('utf8');
++    process.stdin.on('data', (chunk) => {
++      buffer += chunk;
++    });
++    process.stdin.on('end', () => resolve(buffer));
++    process.stdin.on('error', () => resolve(buffer));
++  });
++}
++
++async function main() {
++  const callIndex = process.argv.indexOf('--call');
++  let raw = '';
++  if (callIndex >= 0) {
++    raw = process.argv[callIndex + 1] || '';
++  } else {
++    raw = await readStdin();
++  }
++  const line = String(raw)
++    .split(/\r?\n/)
++    .map((item) => item.trim())
++    .find((item) => item.length > 0);
++  if (!line) {
++    process.stdout.write(`${JSON.stringify(buildErrorResult(new Error('stdin 为空：需要一个 JSON 请求行')))}\n`);
++    return;
++  }
++  let request;
++  try {
++    request = JSON.parse(line);
++  } catch (error) {
++    process.stdout.write(`${JSON.stringify(buildErrorResult(new Error(`请求 JSON 解析失败：${error.message}`)))}\n`);
++    return;
++  }
++  try {
++    const { action, data } = await dispatch(request);
++    process.stdout.write(`${JSON.stringify(buildSuccessResult(action, data))}\n`);
++  } catch (error) {
++    // 详细堆栈走 stderr，便于 VCPToolBox 日志排查；stdout 保持一行合法 JSON
++    process.stderr.write(`[VStudio] ${error && error.stack ? error.stack : String(error)}\n`);
++    process.stdout.write(`${JSON.stringify(buildErrorResult(error))}\n`);
++  }
++}
++
++main()
++  .catch((error) => {
++    process.stderr.write(`[VStudio] 未捕获异常：${error && error.stack ? error.stack : String(error)}\n`);
++    process.stdout.write(`${JSON.stringify(buildErrorResult(error))}\n`);
++  })
++  .finally(() => {
++    // 结果写入 stdout 后：优先让事件循环自然退出（保证大 JSON 的管道写入被完整 flush），
++    // 若宿主不关闭 stdin/存在残留句柄，2 秒后兜底强制退出，避免插件进程挂住。
++    process.exitCode = 0;
++    setTimeout(() => process.exit(0), 2000).unref();
++  });
+diff --git a/Plugin/VStudio/VStudioCore.js b/Plugin/VStudio/VStudioCore.js
+new file mode 100644
+index 00000000..fec14307
+--- /dev/null
++++ b/Plugin/VStudio/VStudioCore.js
+@@ -0,0 +1,2146 @@
++'use strict';
++
++/**
++ * VStudioCore.js —— VCP「V视听」视频工程共享核心
++ * =====================================================================
++ * 纯 Node.js 实现，零第三方依赖。可以被两类调用方共同使用：
++ *   1. VCPToolBox 同步插件 Plugin/VStudio/VStudio.js（stdio 工具协议）
++ *   2. VCPChat Electron 主进程直接 require（进程内调用，无子进程开销）
++ *
++ * 数据目录（VSTUDIO_HOME，默认 /app/VCPChat/AppData/VStudio）：
++ *   projects/<id>/project.json     工程描述
++ *   projects/<id>/assets/           素材（importAsset 拷贝进来的文件）
++ *   projects/<id>/renders/          成片 final.mp4 + 封面 poster.jpg
++ *   projects/<id>/work/             渲染中间产物（渲染结束后清理）
++ *
++ * 渲染实现要点（本机 ffmpeg 7.0.2 静态构建无 drawtext，但 libass 可用）：
++ *   - 所有文字（标题/副标题/overlay）通过 ASS 字幕 + `ass` 滤镜渲染（支持中文）
++ *   - image 场景用 zoompan 做 Ken Burns 缩放/平移
++ *   - video 场景裁剪/循环补时
++ *   - title/color 场景用 color / gradients lavfi 源做底色
++ *   - 场景 layout 归一化矩形用于画中画（PiP）
++ *   - 每个场景先渲染成统一分辨率/fps 的片段，再按 cut 分组：
++ *       cut 边界 -> concat demuxer -c copy
++ *       非 cut 边界 -> xfade 单次重编码
++ *   - 音频多轨 amix（voice/bgm/sfx，每轨 start/duration/volume/fadeIn/fadeOut）
++ *   - 输出 H.264 MP4 (+faststart) 与 poster.jpg
++ *   - 渲染期间 project.json 实时写 rendered.status='rendering' 与 progress
++ *   - 文件级渲染锁 .render.lock，防止同一工程并发渲染
++ */
++
++const fs = require('fs');
++const path = require('path');
++const os = require('os');
++const { spawn } = require('child_process');
++
++const SCHEMA_VERSION = 1;
++const DEFAULT_HOME = '/app/VCPChat/AppData/VStudio';
++
++// ===========================================================================
++// 一、配置加载（config.env 只在环境变量未设置时兜底，不覆盖调用方）
++// ===========================================================================
++
++function loadEnvFile(filePath) {
++  try {
++    const text = fs.readFileSync(filePath, 'utf8');
++    for (const rawLine of text.split(/\r?\n/)) {
++      const line = rawLine.trim();
++      if (!line || line.startsWith('#')) continue;
++      const eq = line.indexOf('=');
++      if (eq <= 0) continue;
++      const key = line.slice(0, eq).trim();
++      let value = line.slice(eq + 1).trim();
++      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
++        value = value.slice(1, -1);
++      }
++      if (process.env[key] === undefined && value !== '') process.env[key] = value;
++    }
++  } catch {
++    /* 没有 config.env 是正常情况 */
++  }
++}
++loadEnvFile(path.join(__dirname, 'config.env'));
++
++function firstExistingPath(candidates) {
++  for (const candidate of candidates) {
++    if (!candidate) continue;
++    try {
++      if (fs.existsSync(candidate)) return candidate;
++    } catch {
++      /* ignore */
++    }
++  }
++  return null;
++}
++
++function envNumber(name, fallback) {
++  const value = Number(process.env[name]);
++  return Number.isFinite(value) ? value : fallback;
++}
++
++const CONFIG = Object.freeze({
++  home: path.resolve(process.env.VSTUDIO_HOME || DEFAULT_HOME),
++  ffmpeg:
++    (process.env.FFMPEG_PATH && process.env.FFMPEG_PATH.trim()) ||
++    firstExistingPath(['/home/admin/.local/bin/ffmpeg', '/usr/bin/ffmpeg']) ||
++    'ffmpeg',
++  edgeTts:
++    (process.env.EDGE_TTS_PATH && process.env.EDGE_TTS_PATH.trim()) ||
++    firstExistingPath(['/home/admin/.local/bin/edge-tts', '/usr/bin/edge-tts']) ||
++    'edge-tts',
++  fontDir: process.env.VSTUDIO_FONTS_DIR
++    ? path.resolve(process.env.VSTUDIO_FONTS_DIR)
++    : firstExistingPath(['/home/admin/.fonts', '/usr/share/fonts']) || '/usr/share/fonts',
++  fontFamily: process.env.VSTUDIO_FONT_FAMILY || 'Noto Sans CJK SC',
++  x264Preset: process.env.VSTUDIO_X264_PRESET || 'medium',
++  crf: envNumber('VSTUDIO_CRF', 20),
++  renderTimeoutMs: envNumber('VSTUDIO_RENDER_TIMEOUT_MS', 900000),
++  ttsTimeoutMs: envNumber('VSTUDIO_TTS_TIMEOUT_MS', 180000),
++  ffmpegConcurrency: Math.max(1, envNumber('VSTUDIO_FFMPEG_CONCURRENCY', 2)),
++});
++
++function getConfig() {
++  return { ...CONFIG };
++}
++
++/** VSTUDIO_HOME 支持在 require 之后通过环境变量切换（测试友好）。 */
++function homeDir() {
++  return process.env.VSTUDIO_HOME ? path.resolve(process.env.VSTUDIO_HOME) : CONFIG.home;
++}
++
++// ===========================================================================
++// 二、基础工具
++// ===========================================================================
++
++function nowIso() {
++  return new Date().toISOString();
++}
++
++function uid(prefix) {
++  return `${prefix}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
++}
++
++function round3(value) {
++  const n = Number(value);
++  if (!Number.isFinite(n)) return 0;
++  return Math.round(n * 1000) / 1000;
++}
++
++function clamp(value, min, max) {
++  const n = Number(value);
++  if (!Number.isFinite(n)) return min;
++  return Math.min(max, Math.max(min, n));
++}
++
++function num(value, fallback) {
++  if (value === null || value === undefined || value === '') return fallback;
++  const n = Number(value);
++  return Number.isFinite(n) ? n : fallback;
++}
++
++function omitUndefined(obj) {
++  const out = {};
++  for (const [key, value] of Object.entries(obj)) {
++    if (value !== undefined) out[key] = value;
++  }
++  return out;
++}
++
++function ensureDirSync(dir) {
++  fs.mkdirSync(dir, { recursive: true });
++}
++
++function readJsonFile(file, fallback) {
++  try {
++    const text = fs.readFileSync(file, 'utf8');
++    if (!text.trim()) return fallback;
++    return JSON.parse(text);
++  } catch (error) {
++    if (fallback !== undefined) return fallback;
++    throw error;
++  }
++}
++
++/** 原子写 JSON，避免渲染进度写回时被前端读到半个文件。 */
++function writeJsonAtomic(file, data) {
++  ensureDirSync(path.dirname(file));
++  const tmp = `${file}.tmp-${process.pid}-${Math.random().toString(36).slice(2, 8)}`;
++  fs.writeFileSync(tmp, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
++  fs.renameSync(tmp, file);
++}
++
++function isProcessAlive(pid) {
++  if (!pid) return false;
++  try {
++    process.kill(pid, 0);
++    return true;
++  } catch (error) {
++    return error && error.code === 'EPERM';
++  }
++}
++
++function mediaTypeFromName(name) {
++  const ext = path.extname(String(name || '')).toLowerCase();
++  if (['.mp4', '.mov', '.mkv', '.webm', '.avi', '.m4v', '.mts'].includes(ext)) return 'video';
++  if (['.mp3', '.wav', '.m4a', '.aac', '.flac', '.ogg', '.opus'].includes(ext)) return 'audio';
++  if (['.png', '.jpg', '.jpeg', '.webp', '.bmp', '.gif', '.tif', '.tiff', '.avif'].includes(ext)) return 'image';
++  return 'file';
++}
++
++function mimeFromName(name) {
++  const map = {
++    '.png': 'image/png',
++    '.jpg': 'image/jpeg',
++    '.jpeg': 'image/jpeg',
++    '.webp': 'image/webp',
++    '.gif': 'image/gif',
++    '.bmp': 'image/bmp',
++    '.mp4': 'video/mp4',
++    '.mov': 'video/quicktime',
++    '.mkv': 'video/x-matroska',
++    '.webm': 'video/webm',
++    '.mp3': 'audio/mpeg',
++    '.wav': 'audio/wav',
++    '.m4a': 'audio/mp4',
++    '.aac': 'audio/aac',
++    '.ogg': 'audio/ogg',
++    '.txt': 'text/plain',
++    '.md': 'text/markdown',
++    '.json': 'application/json',
++  };
++  return map[path.extname(String(name || '')).toLowerCase()] || 'application/octet-stream';
++}
++
++function safeFileName(name, fallbackName = 'asset') {
++  let base = path.basename(String(name || '')).replace(/[\u0000-\u001f<>:"/\\|?*]+/g, '_').trim();
++  base = base.replace(/^\.+/, '');
++  if (!base) base = fallbackName;
++  if (base.length > 150) {
++    const ext = path.extname(base);
++    base = `${base.slice(0, 150 - ext.length)}${ext}`;
++  }
++  return base;
++}
++
++function uniqueFileName(dir, desired) {
++  const ext = path.extname(desired);
++  const stem = ext ? desired.slice(0, -ext.length) : desired;
++  let candidate = desired;
++  let index = 1;
++  while (fs.existsSync(path.join(dir, candidate))) {
++    candidate = `${stem}-${index}${ext}`;
++    index += 1;
++    if (index > 9999) throw new Error('素材命名冲突过多，请手动重命名');
++  }
++  return candidate;
++}
++
++// ===========================================================================
++// 三、路径与工程存储位置
++// ===========================================================================
++
++function assertProjectId(id) {
++  if (!id || typeof id !== 'string' || !/^[A-Za-z0-9._-]+$/.test(id)) {
++    throw new Error(`非法工程 ID：${id == null ? '空' : String(id)}（只允许字母、数字、. _ -）`);
++  }
++  return id;
++}
++
++function projectsRoot() {
++  return path.join(homeDir(), 'projects');
++}
++
++function projectDir(id) {
++  return path.join(projectsRoot(), assertProjectId(id));
++}
++
++function projectFile(id) {
++  return path.join(projectDir(id), 'project.json');
++}
++
++function assetsDir(id) {
++  return path.join(projectDir(id), 'assets');
++}
++
++function rendersDir(id) {
++  return path.join(projectDir(id), 'renders');
++}
++
++function workDir(id) {
++  return path.join(projectDir(id), 'work');
++}
++
++function ensureProjectDirs(id) {
++  ensureDirSync(projectDir(id));
++  ensureDirSync(assetsDir(id));
++  ensureDirSync(rendersDir(id));
++}
++
++/**
++ * 把工程内相对路径解析为绝对路径；绝对路径必须在工程目录内（防目录穿越）。
++ * 场景 src / 音轨 src 建议使用 `assets/xxx.mp4` 这类工程内相对路径。
++ */
++function resolveMediaPath(id, relPath) {
++  if (relPath === null || relPath === undefined || String(relPath).trim() === '') {
++    throw new Error('媒体路径为空：场景或音轨缺少 src 字段');
++  }
++  const dir = projectDir(id);
++  const raw = String(relPath);
++  const abs = path.isAbsolute(raw) ? path.resolve(raw) : path.resolve(dir, raw);
++  const relative = path.relative(dir, abs);
++  if (relative === '' || relative.startsWith('..') || path.isAbsolute(relative)) {
++    throw new Error(`媒体路径越界：${raw}（必须位于工程目录内，外部文件请先 importAsset 导入）`);
++  }
++  return abs;
++}
++
++// ===========================================================================
++// 四、工程归一化（schemaVersion=1）
++// ===========================================================================
++
++const TRANSITION_TYPES = ['cut', 'fade', 'slide'];
++const SCENE_TYPES = ['image', 'video', 'title', 'color'];
++const TRACK_KINDS = ['voice', 'bgm', 'sfx'];
++const ANNOTATION_TARGETS = ['frame', 'element', 'layout'];
++const ANNOTATION_AUTHORS = ['human', 'agent'];
++const ANNOTATION_STATUSES = ['open', 'in_progress', 'resolved'];
++const RENDER_STATUSES = ['idle', 'rendering', 'ready', 'error'];
++
++const MOTION_PRESETS = {
++  none: { z0: 1, z1: 1, from: { x: 0.5, y: 0.5 }, to: { x: 0.5, y: 0.5 } },
++  zoom_in: { z0: 1, z1: 1.15, from: { x: 0.5, y: 0.5 }, to: { x: 0.5, y: 0.5 } },
++  zoom_out: { z0: 1.15, z1: 1, from: { x: 0.5, y: 0.5 }, to: { x: 0.5, y: 0.5 } },
++  pan_left: { z0: 1.2, z1: 1.2, from: { x: 0.9, y: 0.5 }, to: { x: 0.1, y: 0.5 } },
++  pan_right: { z0: 1.2, z1: 1.2, from: { x: 0.1, y: 0.5 }, to: { x: 0.9, y: 0.5 } },
++  pan_up: { z0: 1.2, z1: 1.2, from: { x: 0.5, y: 0.9 }, to: { x: 0.5, y: 0.1 } },
++  pan_down: { z0: 1.2, z1: 1.2, from: { x: 0.5, y: 0.1 }, to: { x: 0.5, y: 0.9 } },
++};
++
++function evenInt(value) {
++  const n = Math.max(2, Math.round(Number(value) || 2));
++  return n % 2 === 0 ? n : n - 1;
++}
++
++function normalizePoint(point, fallback) {
++  if (point && typeof point === 'object') {
++    return { x: clamp(num(point.x, fallback.x), 0, 1), y: clamp(num(point.y, fallback.y), 0, 1) };
++  }
++  return { x: fallback.x, y: fallback.y };
++}
++
++function normalizeMotion(motion) {
++  const raw = motion && typeof motion === 'object' ? motion : {};
++  const type = Object.prototype.hasOwnProperty.call(MOTION_PRESETS, raw.type) ? raw.type : 'none';
++  const preset = MOTION_PRESETS[type];
++  return {
++    type,
++    zoomFrom: clamp(num(raw.zoomFrom, preset.z0), 1, 4),
++    zoomTo: clamp(num(raw.zoomTo, preset.z1), 1, 4),
++    panFrom: normalizePoint(raw.panFrom, preset.from),
++    panTo: normalizePoint(raw.panTo, preset.to),
++  };
++}
++
++function normalizeTransition(transition) {
++  const raw = transition && typeof transition === 'object' ? transition : {};
++  const type = TRANSITION_TYPES.includes(raw.type) ? raw.type : 'cut';
++  // duration 保留用户请求值（前端会展示），effectiveDuration 由 computeTimeline 依据两侧场景时长计算
++  const duration = type === 'cut' ? 0 : clamp(num(raw.duration, 0.5), 0, 20);
++  return { type, duration: round3(duration), effectiveDuration: 0 };
++}
++
++function normalizeLayout(layout) {
++  const raw = layout && typeof layout === 'object' ? layout : {};
++  let x = clamp(num(raw.x, 0), 0, 1);
++  let y = clamp(num(raw.y, 0), 0, 1);
++  let w = clamp(num(raw.w, 1), 0.02, 1);
++  let h = clamp(num(raw.h, 1), 0.02, 1);
++  if (x + w > 1) w = Math.max(0.02, 1 - x);
++  if (y + h > 1) h = Math.max(0.02, 1 - y);
++  return { x: round3(x), y: round3(y), w: round3(w), h: round3(h) };
++}
++
++function normalizeTextStyle(style) {
++  const raw = style && typeof style === 'object' ? style : {};
++  const out = {};
++  const known = [
++    'fontSize',
++    'fontFamily',
++    'color',
++    'backgroundColor',
++    'boxColor',
++    'borderColor',
++    'bold',
++    'box',
++    'outline',
++    'position',
++    'align',
++    'lineSpacing',
++    'shadow',
++  ];
++  for (const key of known) {
++    if (raw[key] !== undefined && raw[key] !== null) out[key] = raw[key];
++  }
++  return out;
++}
++
++function normalizeOverlayBlock(block) {
++  const raw = block && typeof block === 'object' ? block : {};
++  return {
++    text: raw.text === null || raw.text === undefined ? '' : String(raw.text),
++    position: raw.position === undefined ? 'bottom' : raw.position,
++    style: normalizeTextStyle(raw.style),
++  };
++}
++
++function normalizeOverlay(overlay) {
++  if (Array.isArray(overlay)) return overlay.map(normalizeOverlayBlock);
++  if (overlay && typeof overlay === 'object') return normalizeOverlayBlock(overlay);
++  return { text: '', position: 'bottom', style: {} };
++}
++
++function normalizeScene(scene, opts = {}) {
++  const raw = scene && typeof scene === 'object' ? scene : {};
++  const type = SCENE_TYPES.includes(raw.type) ? raw.type : 'color';
++  const duration = clamp(num(raw.duration, type === 'title' ? 3 : 5), 0.2, 6 * 3600);
++  // startOverride：显式起点（时间线由 order 自动累计，startOverride 用于手动覆盖）
++  let startOverride = null;
++  if (Object.prototype.hasOwnProperty.call(raw, 'startOverride')) {
++    startOverride = raw.startOverride === null || raw.startOverride === undefined ? null : Math.max(0, num(raw.startOverride, 0));
++  } else if (!opts.fromStorage && raw.start !== undefined && raw.start !== null) {
++    startOverride = Math.max(0, num(raw.start, 0));
++  }
++  let color = raw.color;
++  if (color === undefined || color === null) color = '#0b1020';
++  if (Array.isArray(color)) color = color.map((c) => String(c));
++  else if (typeof color === 'object') color = { ...color };
++  else color = String(color);
++  return {
++    id: raw.id ? String(raw.id) : uid('scene'),
++    order: num(raw.order, 0),
++    type,
++    src: raw.src === null || raw.src === undefined ? '' : String(raw.src),
++    title: raw.title === null || raw.title === undefined ? '' : String(raw.title),
++    subtitle: raw.subtitle === null || raw.subtitle === undefined ? '' : String(raw.subtitle),
++    color,
++    duration: round3(duration),
++    transition: normalizeTransition(raw.transition),
++    motion: normalizeMotion(raw.motion),
++    layout: normalizeLayout(raw.layout),
++    overlay: normalizeOverlay(raw.overlay),
++    startOverride,
++  };
++}
++
++function normalizeTrack(track) {
++  const raw = track && typeof track === 'object' ? track : {};
++  const duration = raw.duration === null || raw.duration === undefined || raw.duration === '' ? null : Math.max(0, num(raw.duration, 0));
++  return {
++    id: raw.id ? String(raw.id) : uid('track'),
++    name: raw.name === null || raw.name === undefined ? '音轨' : String(raw.name),
++    kind: TRACK_KINDS.includes(raw.kind) ? raw.kind : 'bgm',
++    src: raw.src === null || raw.src === undefined ? '' : String(raw.src),
++    start: round3(Math.max(0, num(raw.start, 0))),
++    duration: duration === null ? null : round3(duration),
++    volume: round3(clamp(num(raw.volume, 1), 0, 4)),
++    fadeIn: round3(clamp(num(raw.fadeIn, 0), 0, 3600)),
++    fadeOut: round3(clamp(num(raw.fadeOut, 0), 0, 3600)),
++  };
++}
++
++function normalizeAnnotationRegion(region) {
++  const raw = region && typeof region === 'object' ? region : {};
++  return {
++    x: round3(clamp(num(raw.x, 0), 0, 1)),
++    y: round3(clamp(num(raw.y, 0), 0, 1)),
++    w: round3(clamp(num(raw.w, 0), 0, 1)),
++    h: round3(clamp(num(raw.h, 0), 0, 1)),
++  };
++}
++
++function normalizeAnnotation(annotation) {
++  const raw = annotation && typeof annotation === 'object' ? annotation : {};
++  const status = ANNOTATION_STATUSES.includes(raw.status) ? raw.status : 'open';
++  const createdAt = raw.createdAt ? String(raw.createdAt) : nowIso();
++  return {
++    id: raw.id ? String(raw.id) : uid('ann'),
++    frame: raw.frame === null || raw.frame === undefined ? null : Math.max(0, Math.round(num(raw.frame, 0))),
++    time: round3(Math.max(0, num(raw.time, 0))),
++    region: normalizeAnnotationRegion(raw.region),
++    target: ANNOTATION_TARGETS.includes(raw.target) ? raw.target : 'frame',
++    text: raw.text === null || raw.text === undefined ? '' : String(raw.text),
++    author: ANNOTATION_AUTHORS.includes(raw.author) ? raw.author : 'human',
++    status,
++    createdAt,
++    resolvedAt: status === 'resolved' ? raw.resolvedAt || nowIso() : null,
++    reply: raw.reply === null || raw.reply === undefined ? '' : String(raw.reply),
++  };
++}
++
++function toFileUrl(absolutePath) {
++  try {
++    const normalized = String(absolutePath).replace(/\\/g, '/');
++    return `file://${encodeURI(normalized)}`;
++  } catch {
++    return '';
++  }
++}
++
++function normalizeRendered(rendered) {
++  const raw = rendered && typeof rendered === 'object' ? rendered : {};
++  const pathValue = raw.path ? String(raw.path) : null;
++  const posterPath = raw.posterPath ? String(raw.posterPath) : null;
++  // 扩展字段（向后兼容）：主进程/渲染进程可直接把 videoUrl/posterUrl 交给 <video>/<img> 使用
++  const absolutePath = raw.absolutePath ? String(raw.absolutePath) : null;
++  const posterAbsolutePath = raw.posterAbsolutePath ? String(raw.posterAbsolutePath) : null;
++  // 绝对路径存在时以路径为准派生 URL，避免客户端回传旧 videoUrl（例如上一版 review 文件）导致播放错文件
++  const videoUrl = absolutePath ? toFileUrl(absolutePath) : raw.videoUrl ? String(raw.videoUrl) : '';
++  const posterUrl = posterAbsolutePath ? toFileUrl(posterAbsolutePath) : raw.posterUrl ? String(raw.posterUrl) : '';
++  return {
++    path: pathValue,
++    posterPath,
++    status: RENDER_STATUSES.includes(raw.status) ? raw.status : 'idle',
++    progress: round3(clamp(num(raw.progress, 0), 0, 100)),
++    at: raw.at ? String(raw.at) : null,
++    error: raw.error ? String(raw.error) : null,
++    duration: round3(Math.max(0, num(raw.duration, 0))),
++    // 以下为扩展字段，主进程渲染器可直接使用
++    absolutePath,
++    posterAbsolutePath,
++    videoUrl,
++    posterUrl,
++  };
++}
++
++/**
++ * 计算场景时间线：
++ *   - order 升序决定顺序
++ *   - 非 cut 转场让相邻场景重叠，scene.transition 表示「本场景 -> 下一场景」的转场
++ *   - scene.start 默认自动累计；startOverride 显式覆盖
++ *   - 转场时长会被限制在两侧场景时长的 50% 以内，避免倒置
++ */
++function computeTimeline(scenes) {
++  const ordered = [...scenes].sort((a, b) => num(a.order, 0) - num(b.order, 0));
++  const count = ordered.length;
++  for (let i = 0; i < count; i += 1) {
++    const scene = ordered[i];
++    if (i === count - 1 || scene.transition.type === 'cut') {
++      scene.transition.effectiveDuration = 0;
++      continue;
++    }
++    const next = ordered[i + 1];
++    const maxDuration = Math.min(scene.duration, next.duration) * 0.5;
++    const requested = scene.transition.duration > 0 ? scene.transition.duration : 0.5;
++    const effective = round3(clamp(requested, 0, Math.max(0.001, maxDuration)));
++    scene.transition.duration = round3(requested);
++    scene.transition.effectiveDuration = effective <= 0.001 ? 0 : effective;
++  }
++  let cursor = 0;
++  ordered.forEach((scene) => {
++    const start = scene.startOverride === null || scene.startOverride === undefined ? Math.max(0, cursor) : Math.max(0, num(scene.startOverride, 0));
++    scene.start = round3(start);
++    cursor = scene.start + scene.duration - (scene.transition.effectiveDuration || 0);
++  });
++  const duration = ordered.length ? Math.max(...ordered.map((scene) => scene.start + scene.duration)) : 0;
++  return { scenes: ordered, duration: round3(duration) };
++}
++
++function normalizeProject(project, opts = {}) {
++  if (!project || typeof project !== 'object') throw new Error('工程数据无效：必须是对象');
++  let width = Math.round(clamp(num(project.width, 1280), 160, 7680));
++  let height = Math.round(clamp(num(project.height, 720), 120, 4320));
++  width = evenIntWidth(width);
++  height = evenIntWidth(height);
++  const fps = round3(clamp(num(project.fps, 30), 1, 120));
++  const rawScenes = Array.isArray(project.scenes) ? project.scenes : [];
++  const scenes = rawScenes.map((scene, index) =>
++    normalizeScene({ ...scene, order: num(scene && scene.order, index) }, { fromStorage: !!opts.fromStorage })
++  );
++  const seenSceneIds = new Set();
++  scenes.forEach((scene, index) => {
++    if (seenSceneIds.has(scene.id)) scene.id = uid('scene');
++    seenSceneIds.add(scene.id);
++    scene.order = index;
++  });
++  const timeline = computeTimeline(scenes);
++  const rawTracks = project.audio && Array.isArray(project.audio.tracks) ? project.audio.tracks : [];
++  const tracks = rawTracks.map(normalizeTrack);
++  const seenTrackIds = new Set();
++  for (const track of tracks) {
++    if (seenTrackIds.has(track.id)) track.id = uid('track');
++    seenTrackIds.add(track.id);
++  }
++  const rawAnnotations = Array.isArray(project.annotations) ? project.annotations : [];
++  const annotations = rawAnnotations.map(normalizeAnnotation);
++  const rendered = normalizeRendered(project.rendered);
++  const now = nowIso();
++  const status = rendered.status === 'ready' ? 'ready' : 'draft';
++  return {
++    schemaVersion: SCHEMA_VERSION,
++    id: project.id ? assertProjectId(String(project.id)) : uid('proj'),
++    name: project.name === null || project.name === undefined || String(project.name).trim() === '' ? '未命名工程' : String(project.name),
++    createdAt: project.createdAt ? String(project.createdAt) : now,
++    updatedAt: project.updatedAt ? String(project.updatedAt) : now,
++    width,
++    height,
++    fps,
++    duration: timeline.duration,
++    scenes: timeline.scenes,
++    audio: { tracks },
++    annotations,
++    rendered,
++    status,
++  };
++}
++
++function evenIntWidth(value) {
++  const n = Math.round(Number(value) || 0);
++  return n % 2 === 0 ? n : n - 1;
++}
++
++// ===========================================================================
++// 五、媒体探测（本机没有可用 ffprobe，用 `ffmpeg -i` 解析 stderr）
++// ===========================================================================
++
++async function probeMedia(file) {
++  if (!file || !fs.existsSync(file)) throw new Error(`媒体文件不存在：${file}`);
++  const result = await runProcess(CONFIG.ffmpeg, ['-hide_banner', '-i', file], {
++    timeoutMs: 30000,
++    allowFail: true,
++    label: '媒体探测',
++  });
++  const text = result.stderr || '';
++  const durationMatch = /Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)/.exec(text);
++  const duration = durationMatch
++    ? Number(durationMatch[1]) * 3600 + Number(durationMatch[2]) * 60 + Number(durationMatch[3])
++    : 0;
++  const videoLine = /Stream #\d+:\d+[^\n]*: Video: [^\n]*/.exec(text);
++  let width = 0;
++  let height = 0;
++  let fps = 0;
++  if (videoLine) {
++    const dimension = /(\d{2,5})x(\d{2,5})/.exec(videoLine[0]);
++    if (dimension) {
++      width = Number(dimension[1]);
++      height = Number(dimension[2]);
++    }
++    const fpsMatch = /([\d.]+)\s*fps/.exec(videoLine[0]);
++    if (fpsMatch) fps = Number(fpsMatch[1]);
++  }
++  return {
++    duration: round3(duration),
++    width,
++    height,
++    fps,
++    hasVideo: !!videoLine,
++    hasAudio: /Stream #\d+:\d+[^\n]*: Audio:/.test(text),
++  };
++}
++
++// ===========================================================================
++// 六、进程执行（ffmpeg / edge-tts 统一入口，带超时与并发槽位）
++// ===========================================================================
++
++const ffmpegSlots = { active: 0, waiting: [] };
++
++function acquireFfmpegSlot() {
++  if (ffmpegSlots.active < CONFIG.ffmpegConcurrency) {
++    ffmpegSlots.active += 1;
++    return Promise.resolve();
++  }
++  return new Promise((resolve) => ffmpegSlots.waiting.push(resolve));
++}
++
++function releaseFfmpegSlot() {
++  const next = ffmpegSlots.waiting.shift();
++  if (next) next();
++  else ffmpegSlots.active -= 1;
++}
++
++function runProcess(command, args, options = {}) {
++  return new Promise((resolve, reject) => {
++    let child;
++    try {
++      child = spawn(command, args, { stdio: ['ignore', 'pipe', 'pipe'] });
++    } catch (error) {
++      if (options.allowFail) return resolve({ code: -1, stdout: '', stderr: String(error && error.message) });
++      return reject(new Error(`${options.label || '命令'}启动失败：${error.message}`));
++    }
++    let stdout = '';
++    let stderr = '';
++    let settled = false;
++    const timeoutMs = num(options.timeoutMs, 120000);
++    const timer = setTimeout(() => {
++      if (settled) return;
++      settled = true;
++      try {
++        child.kill('SIGKILL');
++      } catch {
++        /* ignore */
++      }
++      const message = `${options.label || '命令'}超时（${timeoutMs}ms）`;
++      if (options.allowFail) resolve({ code: -1, stdout, stderr, timedOut: true });
++      else reject(new Error(message));
++    }, timeoutMs);
++    const onData = (chunk) => {
++      const text = String(chunk);
++      stdout += text;
++      if (stdout.length > 4_000_000) stdout = stdout.slice(-2_000_000);
++    };
++    const onErr = (chunk) => {
++      const text = String(chunk);
++      stderr += text;
++      if (stderr.length > 4_000_000) stderr = stderr.slice(-2_000_000);
++    };
++    if (child.stdout) child.stdout.on('data', onData);
++    if (child.stderr) child.stderr.on('data', onErr);
++    child.on('error', (error) => {
++      clearTimeout(timer);
++      if (settled) return;
++      settled = true;
++      if (options.allowFail) resolve({ code: -1, stdout, stderr: `${stderr}${error.message}` });
++      else reject(new Error(`${options.label || '命令'}启动失败：${error.message}`));
++    });
++    child.on('close', (code) => {
++      clearTimeout(timer);
++      if (settled) return;
++      settled = true;
++      if (code === 0 || options.allowFail) {
++        resolve({ code, stdout, stderr });
++      } else {
++        const tail = stderr.trim().split('\n').filter(Boolean).slice(-10).join('\n');
++        reject(new Error(`${options.label || '命令'}失败（退出码 ${code}）：${tail || '无错误输出'}`));
++      }
++    });
++  });
++}
++
++async function runFfmpeg(args, options = {}) {
++  await acquireFfmpegSlot();
++  try {
++    return await runProcess(CONFIG.ffmpeg, args, { label: options.label || 'ffmpeg', timeoutMs: options.timeoutMs, allowFail: options.allowFail });
++  } finally {
++    releaseFfmpegSlot();
++  }
++}
++
++// ===========================================================================
++// 七、工程 CRUD
++// ===========================================================================
++
++function summaryOf(project) {
++  return {
++    id: project.id,
++    name: project.name,
++    createdAt: project.createdAt,
++    updatedAt: project.updatedAt,
++    width: project.width,
++    height: project.height,
++    fps: project.fps,
++    duration: project.duration,
++    status: project.status,
++    sceneCount: project.scenes.length,
++    annotationCount: project.annotations.length,
++    openAnnotationCount: project.annotations.filter((item) => item.status !== 'resolved').length,
++    trackCount: project.audio.tracks.length,
++    rendered: project.rendered,
++  };
++}
++
++function listProjects() {
++  const root = projectsRoot();
++  if (!fs.existsSync(root)) return [];
++  const summaries = [];
++  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
++    if (!entry.isDirectory()) continue;
++    const file = path.join(root, entry.name, 'project.json');
++    if (!fs.existsSync(file)) continue;
++    try {
++      const raw = readJsonFile(file, null);
++      if (!raw || typeof raw !== 'object') continue;
++      summaries.push(summaryOf(normalizeProject(raw, { fromStorage: true })));
++    } catch {
++      /* 损坏的工程跳过，不影响列表 */
++    }
++  }
++  summaries.sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
++  return summaries;
++}
++
++function getProject(id) {
++  const file = projectFile(id);
++  if (!fs.existsSync(file)) throw new Error(`工程不存在：${id}`);
++  let raw;
++  try {
++    raw = readJsonFile(file, null);
++  } catch (error) {
++    throw new Error(`工程数据损坏：${id}（${error.message}）`);
++  }
++  if (!raw || typeof raw !== 'object') throw new Error(`工程数据损坏：${id}`);
++  const project = normalizeProject(raw, { fromStorage: true });
++  // 上次渲染进程已退出但状态还停在 rendering：自动标记为 error，避免前端永久卡住
++  if (project.rendered.status === 'rendering' && !isRenderLockAlive(project.id)) {
++    project.rendered.status = 'error';
++    project.rendered.progress = 0;
++    project.rendered.error = '上次渲染被中断（渲染进程已退出）';
++    project.rendered.at = nowIso();
++    try {
++      writeJsonAtomic(file, project);
++    } catch {
++      /* ignore */
++    }
++  }
++  return project;
++}
++
++function createProject(payload = {}) {
++  if (payload === null || typeof payload !== 'object') throw new Error('创建工程失败：参数必须是对象');
++  const input = { ...payload };
++  if (!input.id) {
++    let candidate = uid('proj');
++    while (fs.existsSync(path.join(projectsRoot(), candidate))) candidate = uid('proj');
++    input.id = candidate;
++  }
++  input.createdAt = input.createdAt || nowIso();
++  input.updatedAt = nowIso();
++  const project = normalizeProject(input);
++  ensureProjectDirs(project.id);
++  writeJsonAtomic(projectFile(project.id), project);
++  return project;
++}
++
++function saveProject(project) {
++  if (!project || typeof project !== 'object') throw new Error('保存工程失败：工程数据无效');
++  if (!project.id) throw new Error('保存工程失败：缺少工程 ID');
++  // 整工程保存语义：scene.start 是「计算产物」而不是输入；只有显式携带 startOverride 才覆盖时间线。
++  // 这样前端把 getProject 的结果回传保存时，拖动重排 order 后时间线会自动重算，不会被旧 start 钉死。
++  const normalized = normalizeProject({ ...project, updatedAt: nowIso() }, { fromStorage: true });
++  ensureProjectDirs(normalized.id);
++  writeJsonAtomic(projectFile(normalized.id), normalized);
++  return normalized;
++}
++
++function updateProject(id, patch) {
++  const project = getProject(id);
++  if (!patch || typeof patch !== 'object') throw new Error('更新工程失败：patch 必须是对象');
++  const merged = { ...project };
++  if (patch.name !== undefined) merged.name = patch.name;
++  if (patch.width !== undefined) merged.width = patch.width;
++  if (patch.height !== undefined) merged.height = patch.height;
++  if (patch.fps !== undefined) merged.fps = patch.fps;
++  if (patch.scenes !== undefined) {
++    if (!Array.isArray(patch.scenes)) throw new Error('更新工程失败：scenes 必须是数组');
++    merged.scenes = patch.scenes;
++  }
++  if (patch.audio !== undefined) {
++    if (patch.audio && Array.isArray(patch.audio.tracks)) merged.audio = { ...project.audio, tracks: patch.audio.tracks };
++    else if (Array.isArray(patch.audio)) merged.audio = { tracks: patch.audio };
++  }
++  if (patch.annotations !== undefined) {
++    if (!Array.isArray(patch.annotations)) throw new Error('更新工程失败：annotations 必须是数组');
++    merged.annotations = patch.annotations;
++  }
++  if (patch.rendered !== undefined) {
++    // 只允许外部显式重置渲染状态（例如前端清除错误），渲染相关字段以服务端为准
++    merged.rendered = { ...project.rendered, ...(patch.rendered && typeof patch.rendered === 'object' ? patch.rendered : {}) };
++  }
++  return saveProject(merged);
++}
++
++function deleteProject(id) {
++  const dir = projectDir(id);
++  if (!fs.existsSync(dir)) throw new Error(`工程不存在：${id}`);
++  const lock = readRenderLock(id);
++  if (lock) throw new Error(`工程正在渲染中（进程 ${lock.pid}），无法删除`);
++  fs.rmSync(dir, { recursive: true, force: true });
++  return { id, deleted: true };
++}
++
++// ===========================================================================
++// 八、场景管理
++// ===========================================================================
++
++function addScene(id, scene) {
++  if (!scene || typeof scene !== 'object') throw new Error('新增场景失败：缺少场景数据');
++  const project = getProject(id);
++  const normalized = normalizeScene(scene, { fromStorage: false });
++  const ordered = [...project.scenes];
++  let insertAt = ordered.length;
++  if (scene.order !== undefined && scene.order !== null && Number.isFinite(Number(scene.order))) {
++    insertAt = clamp(Math.round(Number(scene.order)), 0, ordered.length);
++  }
++  if (ordered.some((item) => item.id === normalized.id)) normalized.id = uid('scene');
++  ordered.splice(insertAt, 0, normalized);
++  ordered.forEach((item, index) => {
++    item.order = index;
++  });
++  project.scenes = ordered;
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function updateScene(id, sceneId, patch) {
++  if (!sceneId) throw new Error('更新场景失败：缺少 sceneId');
++  if (!patch || typeof patch !== 'object') throw new Error('更新场景失败：patch 必须是对象');
++  const project = getProject(id);
++  const index = project.scenes.findIndex((item) => item.id === String(sceneId));
++  if (index < 0) throw new Error(`场景不存在：${sceneId}`);
++  const merged = { ...project.scenes[index], ...patch };
++  if (patch.start !== undefined) merged.startOverride = patch.start === null ? null : Math.max(0, num(patch.start, 0));
++  if (patch.startOverride !== undefined) merged.startOverride = patch.startOverride === null ? null : Math.max(0, num(patch.startOverride, 0));
++  project.scenes[index] = normalizeScene(merged, { fromStorage: false });
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function removeScene(id, sceneId) {
++  if (!sceneId) throw new Error('删除场景失败：缺少 sceneId');
++  const project = getProject(id);
++  const next = project.scenes.filter((item) => item.id !== String(sceneId));
++  if (next.length === project.scenes.length) throw new Error(`场景不存在：${sceneId}`);
++  next.forEach((item, index) => {
++    item.order = index;
++  });
++  project.scenes = next;
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function reorderScenes(id, order) {
++  if (!Array.isArray(order) || order.length === 0) throw new Error('重排场景失败：order 必须是非空数组');
++  const project = getProject(id);
++  const ids = project.scenes.map((item) => item.id);
++  const resolved = order.map((value) => (typeof value === 'number' ? ids[value] : String(value)));
++  if (resolved.some((value) => value === undefined)) throw new Error('重排场景失败：order 中存在无效的场景索引');
++  const unique = new Set(resolved);
++  if (resolved.length !== ids.length || unique.size !== ids.length || !ids.every((item) => unique.has(item))) {
++    throw new Error('重排场景失败：order 必须恰好包含全部场景 ID 且不能重复');
++  }
++  const map = new Map(project.scenes.map((item) => [item.id, item]));
++  project.scenes = resolved.map((sceneId, index) => ({ ...map.get(sceneId), order: index }));
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++// ===========================================================================
++// 九、音轨管理
++// ===========================================================================
++
++function addAudioTrack(id, track) {
++  if (!track || typeof track !== 'object') throw new Error('新增音轨失败：缺少音轨数据');
++  const project = getProject(id);
++  const normalized = normalizeTrack(track);
++  if (project.audio.tracks.some((item) => item.id === normalized.id)) normalized.id = uid('track');
++  project.audio.tracks.push(normalized);
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function updateAudioTrack(id, trackId, patch) {
++  if (!trackId) throw new Error('更新音轨失败：缺少 trackId');
++  if (!patch || typeof patch !== 'object') throw new Error('更新音轨失败：patch 必须是对象');
++  const project = getProject(id);
++  const index = project.audio.tracks.findIndex((item) => item.id === String(trackId));
++  if (index < 0) throw new Error(`音轨不存在：${trackId}`);
++  project.audio.tracks[index] = normalizeTrack({ ...project.audio.tracks[index], ...patch });
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function removeAudioTrack(id, trackId) {
++  if (!trackId) throw new Error('删除音轨失败：缺少 trackId');
++  const project = getProject(id);
++  const next = project.audio.tracks.filter((item) => item.id !== String(trackId));
++  if (next.length === project.audio.tracks.length) throw new Error(`音轨不存在：${trackId}`);
++  project.audio.tracks = next;
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++// ===========================================================================
++// 十、素材导入 / 列表
++// ===========================================================================
++
++function assetIndexFile(id) {
++  return path.join(assetsDir(id), '.index.json');
++}
++
++function updateAssetIndex(id, asset) {
++  try {
++    const index = readJsonFile(assetIndexFile(id), {}) || {};
++    index[asset.file] = asset;
++    writeJsonAtomic(assetIndexFile(id), index);
++  } catch {
++    /* 索引只是加速，失败可忽略 */
++  }
++}
++
++async function parseDataUrl(value) {
++  const match = /^data:([^;,]+)?(;base64)?,(.*)$/s.exec(String(value));
++  if (!match) throw new Error('导入素材失败：dataUrl 格式无效');
++  const mime = match[1] || 'application/octet-stream';
++  const data = match[2] ? Buffer.from(match[3], 'base64') : Buffer.from(decodeURIComponent(match[3]), 'utf8');
++  return { mime, buffer: data };
++}
++
++function extFromMime(mime) {
++  const map = {
++    'image/png': '.png',
++    'image/jpeg': '.jpg',
++    'image/webp': '.webp',
++    'video/mp4': '.mp4',
++    'video/quicktime': '.mov',
++    'audio/mpeg': '.mp3',
++    'audio/mp3': '.mp3',
++    'audio/wav': '.wav',
++    'audio/x-wav': '.wav',
++  };
++  return map[mime] || '';
++}
++
++async function importAsset(id, payload) {
++  if (!payload || typeof payload !== 'object') throw new Error('导入素材失败：payload 必须是对象');
++  getProject(id); // 校验工程存在
++  ensureDirSync(assetsDir(id));
++  const projectDirPath = projectDir(id);
++  const params = payload;
++  let fileName = params.name ? safeFileName(params.name) : '';
++  let buffer = null;
++  let mime = params.mime ? String(params.mime) : '';
++
++  const sourcePath = params.sourcePath || params.path || params.filePath;
++  if (sourcePath) {
++    const absolute = path.isAbsolute(String(sourcePath)) ? String(sourcePath) : path.resolve(projectDirPath, String(sourcePath));
++    if (!fs.existsSync(absolute)) throw new Error(`导入素材失败：源文件不存在 ${sourcePath}`);
++    const stat = fs.statSync(absolute);
++    if (!stat.isFile()) throw new Error(`导入素材失败：源路径不是文件 ${sourcePath}`);
++    buffer = fs.readFileSync(absolute);
++    if (!fileName) fileName = path.basename(absolute);
++    if (!mime) mime = mimeFromName(fileName);
++  } else if (params.dataUrl || (typeof params.url === 'string' && params.url.startsWith('data:'))) {
++    const parsed = await parseDataUrl(params.dataUrl || params.url);
++    buffer = parsed.buffer;
++    mime = mime || parsed.mime;
++  } else if (params.base64) {
++    buffer = Buffer.from(String(params.base64), 'base64');
++  } else if (params.url) {
++    const url = String(params.url);
++    if (!/^https?:\/\//i.test(url)) throw new Error('导入素材失败：url 只支持 http/https 或 data: URL');
++    let response;
++    try {
++      response = await fetch(url, { signal: AbortSignal.timeout(60000) });
++    } catch (error) {
++      throw new Error(`导入素材失败：下载 ${url} 失败（${error.message}）`);
++    }
++    if (!response.ok) throw new Error(`导入素材失败：下载 ${url} 返回 HTTP ${response.status}`);
++    buffer = Buffer.from(await response.arrayBuffer());
++    mime = mime || response.headers.get('content-type') || mimeFromName(url);
++    if (!fileName) {
++      try {
++        fileName = safeFileName(decodeURIComponent(new URL(url).pathname.split('/').pop() || 'asset'));
++      } catch {
++        fileName = 'asset';
++      }
++    }
++    if (!fileName) fileName = `asset-${Date.now()}${extFromMime(mime)}`;
++  } else if (params.content !== undefined) {
++    buffer = Buffer.from(String(params.content), 'utf8');
++    if (!fileName) fileName = `note-${Date.now()}.txt`;
++    mime = mime || 'text/plain';
++  } else {
++    throw new Error('导入素材失败：需要 sourcePath / url / dataUrl / base64 / content 之一');
++  }
++
++  if (!fileName) fileName = `asset-${Date.now()}${extFromMime(mime)}`;
++  fileName = uniqueFileName(assetsDir(id), safeFileName(fileName));
++  const absoluteOut = path.join(assetsDir(id), fileName);
++  fs.writeFileSync(absoluteOut, buffer);
++
++  let meta = { width: 0, height: 0, duration: 0, hasVideo: false, hasAudio: false };
++  try {
++    meta = await probeMedia(absoluteOut);
++  } catch {
++    /* 非媒体文件或探测失败：仍允许作为普通素材导入 */
++  }
++  const type = mediaTypeFromName(fileName);
++  const asset = {
++    name: fileName,
++    file: fileName,
++    src: `assets/${fileName}`,
++    path: `assets/${fileName}`,
++    absolutePath: absoluteOut,
++    type,
++    mime: mime || mimeFromName(fileName),
++    size: buffer.length,
++    width: meta.width || null,
++    height: meta.height || null,
++    duration: meta.duration ? round3(meta.duration) : null,
++    hasVideo: !!meta.hasVideo,
++    hasAudio: !!meta.hasAudio,
++    importedAt: nowIso(),
++  };
++  updateAssetIndex(id, asset);
++  return asset;
++}
++
++function listAssets(id) {
++  const dir = assetsDir(id);
++  if (!fs.existsSync(dir)) return [];
++  const index = readJsonFile(assetIndexFile(id), {}) || {};
++  return fs
++    .readdirSync(dir)
++    .filter((name) => !name.startsWith('.'))
++    .map((name) => {
++      const absolute = path.join(dir, name);
++      let stat = null;
++      try {
++        stat = fs.statSync(absolute);
++      } catch {
++        return null;
++      }
++      if (!stat.isFile()) return null;
++      const cached = index[name] || {};
++      return {
++        name,
++        file: name,
++        src: `assets/${name}`,
++        path: `assets/${name}`,
++        absolutePath: absolute,
++        type: mediaTypeFromName(name),
++        mime: cached.mime || mimeFromName(name),
++        size: stat.size,
++        width: cached.width || null,
++        height: cached.height || null,
++        duration: cached.duration || null,
++        importedAt: cached.importedAt || stat.mtime.toISOString(),
++        modifiedAt: stat.mtime.toISOString(),
++      };
++    })
++    .filter(Boolean)
++    .sort((a, b) => String(b.importedAt).localeCompare(String(a.importedAt)));
++}
++
++// ===========================================================================
++// 十一、批注
++// ===========================================================================
++
++function addAnnotation(id, annotation) {
++  if (!annotation || typeof annotation !== 'object') throw new Error('新增批注失败：缺少批注数据');
++  const project = getProject(id);
++  const normalized = normalizeAnnotation(annotation);
++  if (project.annotations.some((item) => item.id === normalized.id)) normalized.id = uid('ann');
++  project.annotations.push(normalized);
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function updateAnnotation(id, annotationId, patch) {
++  if (!annotationId) throw new Error('更新批注失败：缺少 annotationId');
++  if (!patch || typeof patch !== 'object') throw new Error('更新批注失败：patch 必须是对象');
++  const project = getProject(id);
++  const index = project.annotations.findIndex((item) => item.id === String(annotationId));
++  if (index < 0) throw new Error(`批注不存在：${annotationId}`);
++  const merged = { ...project.annotations[index], ...patch };
++  if (patch.status !== undefined) {
++    merged.status = patch.status;
++    merged.resolvedAt = patch.status === 'resolved' ? patch.resolvedAt || nowIso() : null;
++  }
++  project.annotations[index] = normalizeAnnotation(merged);
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++function removeAnnotation(id, annotationId) {
++  if (!annotationId) throw new Error('删除批注失败：缺少 annotationId');
++  const project = getProject(id);
++  const next = project.annotations.filter((item) => item.id !== String(annotationId));
++  if (next.length === project.annotations.length) throw new Error(`批注不存在：${annotationId}`);
++  project.annotations = next;
++  project.updatedAt = nowIso();
++  return saveProject(project);
++}
++
++// ===========================================================================
++// 十二、edge-tts 配音
++// ===========================================================================
++
++async function ttsVoiceover(id, options = {}) {
++  const project = getProject(id);
++  if (!options || typeof options !== 'object') throw new Error('配音失败：options 必须是对象');
++  const text = options.text === null || options.text === undefined ? '' : String(options.text).trim();
++  if (!text) throw new Error('配音失败：text 不能为空');
++  if (text.length > 5000) throw new Error('配音失败：text 过长（最多 5000 字）');
++  const voice = options.voice ? String(options.voice) : 'zh-CN-XiaoxiaoNeural';
++  ensureDirSync(assetsDir(id));
++  const fileName = uniqueFileName(assetsDir(id), safeFileName(`tts-${Date.now()}.mp3`));
++  const absoluteOut = path.join(assetsDir(id), fileName);
++  const args = ['--voice', voice, '--text', text, '--write-media', absoluteOut, '--no-progress'];
++  if (options.rate) args.push('--rate', String(options.rate));
++  if (options.pitch) args.push('--pitch', String(options.pitch));
++  if (options.ttsVolume) args.push('--volume', String(options.ttsVolume));
++
++  const result = await runProcess(CONFIG.edgeTts, args, {
++    timeoutMs: CONFIG.ttsTimeoutMs,
++    allowFail: true,
++    label: 'edge-tts 配音',
++  });
++  if (result.code !== 0) {
++    const tail = (result.stderr || '').trim().split('\n').filter(Boolean).slice(-6).join('\n');
++    throw new Error(`配音失败：edge-tts 执行出错（退出码 ${result.code}）：${tail || '无错误输出'}`);
++  }
++  if (!fs.existsSync(absoluteOut) || fs.statSync(absoluteOut).size < 200) {
++    throw new Error('配音失败：edge-tts 未生成有效音频（可能网络不可用）');
++  }
++  let meta = { duration: 0 };
++  try {
++    meta = await probeMedia(absoluteOut);
++  } catch {
++    /* ignore */
++  }
++  const duration = round3(meta.duration || 0) || 1;
++  let start = 0;
++  if (options.sceneId) {
++    const scene = project.scenes.find((item) => item.id === String(options.sceneId));
++    if (!scene) throw new Error(`配音失败：场景不存在：${options.sceneId}`);
++    start = scene.start;
++  } else {
++    start = Math.max(0, num(options.start, 0));
++  }
++  const voiceCount = project.audio.tracks.filter((item) => item.kind === 'voice').length;
++  const track = normalizeTrack({
++    id: uid('track'),
++    name: options.trackName || `旁白 ${voiceCount + 1}`,
++    kind: 'voice',
++    src: `assets/${fileName}`,
++    start,
++    duration,
++    volume: num(options.volume, 1),
++    fadeIn: num(options.fadeIn, 0),
++    fadeOut: num(options.fadeOut, 0),
++  });
++  project.audio.tracks.push(track);
++  const saved = saveProject(project);
++  updateAssetIndex(id, {
++    name: fileName,
++    file: fileName,
++    src: `assets/${fileName}`,
++    type: 'audio',
++    mime: 'audio/mpeg',
++    size: fs.statSync(absoluteOut).size,
++    width: null,
++    height: null,
++    duration,
++    hasVideo: false,
++    hasAudio: true,
++    importedAt: nowIso(),
++  });
++  return { project: saved, track };
++}
++
++// ===========================================================================
++// 十三、ASS 字幕（中文文字渲染）
++// ===========================================================================
++
++function fgQuote(value) {
++  const text = String(value);
++  if (/^[A-Za-z0-9_./-]+$/.test(text)) return text;
++  return `'${text.replace(/\\/g, '\\\\').replace(/'/g, "'\\''")}'`;
++}
++
++function assTime(seconds) {
++  const total = Math.max(0, Number(seconds) || 0);
++  const hours = Math.floor(total / 3600);
++  const minutes = Math.floor((total % 3600) / 60);
++  const secs = Math.floor(total % 60);
++  const centis = Math.round((total - Math.floor(total)) * 100);
++  const clampedCenti = centis >= 100 ? 99 : centis;
++  return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(clampedCenti).padStart(2, '0')}`;
++}
++
++function hexToAssColor(color, alpha = 0) {
++  let value = String(color === undefined || color === null ? '#FFFFFF' : color).trim();
++  value = value.replace(/^0x/i, '');
++  if (/^[0-9a-fA-F]{6}$/.test(value)) value = `#${value}`;
++  const match = /^#([0-9a-fA-F]{6})$/.exec(value);
++  if (!match) return '&H00FFFFFF';
++  const rr = match[1].slice(0, 2);
++  const gg = match[1].slice(2, 4);
++  const bb = match[1].slice(4, 6);
++  const aa = clamp(Math.round(Number(alpha) || 0), 0, 255).toString(16).padStart(2, '0');
++  return `&H${aa}${bb}${gg}${rr}`.toUpperCase();
++}
++
++function escapeAssText(text) {
++  return String(text === undefined || text === null ? '' : text)
++    .replace(/\r\n?/g, '\n')
++    .replace(/\{/g, '\\{')
++    .replace(/\}/g, '\\}')
++    .replace(/\n/g, '\\N');
++}
++
++/**
++ * 把场景中的文字块统一收集起来：title 场景的标题/副标题、任意场景的 title/subtitle、
++ * 以及 overlay（对象或数组）。
++ */
++function sceneTextBlocks(scene) {
++  const blocks = [];
++  if (scene.type === 'title') {
++    if (String(scene.title || '').trim()) blocks.push({ text: scene.title, kind: 'title', position: 'center' });
++    if (String(scene.subtitle || '').trim()) blocks.push({ text: scene.subtitle, kind: 'subtitle', position: 'center' });
++  } else {
++    if (String(scene.title || '').trim()) blocks.push({ text: scene.title, kind: 'title-any', position: 'top' });
++    if (String(scene.subtitle || '').trim()) blocks.push({ text: scene.subtitle, kind: 'subtitle-any', position: 'bottom' });
++  }
++  const overlays = Array.isArray(scene.overlay) ? scene.overlay : scene.overlay && String(scene.overlay.text || '').trim() ? [scene.overlay] : [];
++  overlays.forEach((overlay) => {
++    if (!overlay || !String(overlay.text || '').trim()) return;
++    blocks.push({ text: overlay.text, kind: 'overlay', position: overlay.position || 'bottom', style: overlay.style || {} });
++  });
++  return blocks;
++}
++
++function resolveTextPosition(position, width, height, kind) {
++  if (position && typeof position === 'object') {
++    return {
++      x: clamp(num(position.x, 0.5), 0, 1) * width,
++      y: clamp(num(position.y, 0.5), 0, 1) * height,
++      an: num(position.an, 5),
++    };
++  }
++  const key = String(position || '').toLowerCase();
++  if (kind === 'title') return { x: width / 2, y: height * 0.44, an: 5 };
++  if (kind === 'subtitle') return { x: width / 2, y: height * 0.6, an: 5 };
++  if (kind === 'title-any') return { x: width / 2, y: height * 0.1, an: 8 };
++  if (kind === 'subtitle-any') return { x: width / 2, y: height * 0.9, an: 2 };
++  switch (key) {
++    case 'top':
++      return { x: width / 2, y: height * 0.09, an: 8 };
++    case 'center':
++      return { x: width / 2, y: height * 0.5, an: 5 };
++    case 'bottom':
++      return { x: width / 2, y: height * 0.9, an: 2 };
++    case 'top-left':
++      return { x: width * 0.05, y: height * 0.07, an: 7 };
++    case 'top-right':
++      return { x: width * 0.95, y: height * 0.07, an: 9 };
++    case 'bottom-left':
++      return { x: width * 0.05, y: height * 0.93, an: 1 };
++    case 'bottom-right':
++      return { x: width * 0.95, y: height * 0.93, an: 3 };
++    default:
++      return { x: width / 2, y: height * 0.9, an: 2 };
++  }
++}
++
++function buildAssFile(project, scene, assPath) {
++  const width = project.width;
++  const height = project.height;
++  const duration = Math.max(0.1, scene.duration);
++  const blocks = sceneTextBlocks(scene);
++  const styles = [];
++  const events = [];
++  blocks.forEach((block, index) => {
++    const style = block.style || {};
++    let fontSize = num(style.fontSize, null);
++    if (fontSize === null || fontSize <= 0) {
++      if (block.kind === 'title') fontSize = Math.max(24, Math.round(height * 0.11));
++      else if (block.kind === 'title-any') fontSize = Math.max(18, Math.round(height * 0.055));
++      else if (block.kind === 'subtitle') fontSize = Math.max(14, Math.round(height * 0.042));
++      else if (block.kind === 'subtitle-any') fontSize = Math.max(12, Math.round(height * 0.036));
++      else fontSize = Math.max(12, Math.round(height * 0.036));
++    }
++    const color = style.color || (block.kind.includes('subtitle') ? '#E5E7EB' : '#FFFFFF');
++    const box = style.box === true || block.kind === 'overlay' && style.box === true;
++    const outline = num(style.outline, box ? 0 : block.kind === 'title' ? 3 : 2);
++    const bold = style.bold === true ? 1 : 0;
++    const fontFamily = style.fontFamily || CONFIG.fontFamily;
++    const borderStyle = box ? 4 : 1;
++    const primary = hexToAssColor(color, 0);
++    const outlineColor = hexToAssColor(style.borderColor || '#000000', box ? 0 : 0);
++    const backColor = hexToAssColor(style.backgroundColor || style.boxColor || '#000000', box ? 110 : 96);
++    const alignment = resolveTextPosition(block.position, width, height, block.kind);
++    const styleName = `VStudio${index}`;
++    styles.push(
++      `Style: ${styleName},${fontFamily},${Math.round(fontSize)},${primary},&H000000FF,${outlineColor},${backColor},${bold},0,0,0,100,100,0,0,${borderStyle},${Math.round(outline)},0,5,0,0,0,1`
++    );
++    const fade = duration > 0.8 ? '\\fad(220,220)' : '';
++    const x = Math.round(alignment.x);
++    const y = Math.round(alignment.y);
++    const override = `{\\an${alignment.an}\\pos(${x},${y})${fade}}`;
++    events.push(`Dialogue: 0,${assTime(0)},${assTime(duration)},${styleName},,0,0,0,,${override}${escapeAssText(block.text)}`);
++  });
++
++  const lines = [
++    '[Script Info]',
++    'ScriptType: v4.00+',
++    `PlayResX: ${width}`,
++    `PlayResY: ${height}`,
++    'WrapStyle: 0',
++    'ScaledBorderAndShadow: yes',
++    '',
++    '[V4+ Styles]',
++    'Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding',
++    ...styles,
++    '',
++    '[Events]',
++    'Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text',
++    ...events,
++    '',
++  ];
++  ensureDirSync(path.dirname(assPath));
++  fs.writeFileSync(assPath, lines.join('\n'), 'utf8');
++  return assPath;
++}
++
++// ===========================================================================
++// 十四、渲染实现
++// ===========================================================================
++
++function toLavfiColor(color) {
++  let value = String(color === undefined || color === null ? '#000000' : color).trim();
++  if (/^#[0-9a-fA-F]{6}$/.test(value)) return `0x${value.slice(1)}`;
++  if (/^#[0-9a-fA-F]{8}$/.test(value)) return `0x${value.slice(1, 7)}`;
++  if (/^0x[0-9a-fA-F]{6,8}$/.test(value)) return value;
++  if (/^[0-9a-fA-F]{6}$/.test(value)) return `0x${value}`;
++  return value; // 允许 ffmpeg 颜色名（black/white/...）
++}
++
++function parseBackground(scene) {
++  const raw = scene.color;
++  const isGradientType = scene.type === 'color' || scene.type === 'title';
++  if (Array.isArray(raw)) {
++    const colors = raw.map((item) => String(item)).filter(Boolean);
++    if (colors.length >= 2) return { gradient: true, colors: colors.slice(0, 8), angle: 0 };
++    return { gradient: false, color: colors[0] || '#0b1020' };
++  }
++  if (raw && typeof raw === 'object') {
++    const colors = Array.isArray(raw.colors) ? raw.colors.map(String).filter(Boolean) : [];
++    if (raw.type === 'gradient' || colors.length >= 2) {
++      const finalColors = colors.length >= 2 ? colors : [String(raw.from || '#0b1020'), String(raw.to || '#1e3a8a')];
++      return { gradient: true, colors: finalColors.slice(0, 8), angle: num(raw.angle, 0) };
++    }
++    return { gradient: false, color: raw.color ? String(raw.color) : '#0b1020' };
++  }
++  const text = String(raw === undefined || raw === null ? '' : raw).trim();
++  if (text.includes('|') || text.includes(',')) {
++    const colors = text.split(/[|,]/).map((item) => item.trim()).filter(Boolean);
++    if (colors.length >= 2) return { gradient: true, colors: colors.slice(0, 8), angle: 0 };
++  }
++  if (text.startsWith('gradient:')) {
++    const colors = text.slice('gradient:'.length).split(/[|,]/).map((item) => item.trim()).filter(Boolean);
++    if (colors.length >= 2) return { gradient: true, colors, angle: 0 };
++  }
++  if (!text && isGradientType) return { gradient: true, colors: ['#0b1020', '#1e3a8a'], angle: 0 };
++  return { gradient: false, color: text || '#0b1020' };
++}
++
++function gradientSource(spec, width, height, fps) {
++  const colors = spec.colors.map((item) => toLavfiColor(item));
++  const angle = num(spec.angle, 0);
++  const radians = (angle * Math.PI) / 180;
++  const dx = Math.abs(Math.cos(radians));
++  const dy = Math.abs(Math.sin(radians));
++  const x0 = 0;
++  const y0 = 0;
++  const x1 = Math.round(width * dx);
++  const y1 = Math.round(height * dy);
++  const parts = [`gradients=s=${width}x${height}:r=${fps}`];
++  colors.forEach((color, index) => parts.push(`c${index}=${color}`));
++  parts.push(`nb_colors=${colors.length}`);
++  parts.push(`x0=${x0}`, `y0=${y0}`, `x1=${x1}`, `y1=${y1}`);
++  return parts.join(':');
++}
++
++function backgroundInputArgs(scene, width, height, fps) {
++  const spec = parseBackground(scene);
++  const filter = spec.gradient ? gradientSource(spec, width, height, fps) : `color=c=${toLavfiColor(spec.color)}:s=${width}x${height}:r=${fps}`;
++  return ['-f', 'lavfi', '-i', filter];
++}
++
++function layoutToPixels(layout, width, height) {
++  const normalized = normalizeLayout(layout);
++  const w = Math.min(width, Math.max(2, evenInt(normalized.w * width)));
++  const h = Math.min(height, Math.max(2, evenInt(normalized.h * height)));
++  const x = clamp(Math.round(normalized.x * width), 0, Math.max(0, width - w));
++  const y = clamp(Math.round(normalized.y * height), 0, Math.max(0, height - h));
++  return { x, y, w, h };
++}
++
++function buildMotionExpr(motion, frames) {
++  const type = motion && Object.prototype.hasOwnProperty.call(MOTION_PRESETS, motion.type) ? motion.type : 'none';
++  const preset = MOTION_PRESETS[type];
++  const zoomFrom = clamp(num(motion && motion.zoomFrom, preset.z0), 1, 4);
++  const zoomTo = clamp(num(motion && motion.zoomTo, preset.z1), 1, 4);
++  const from = normalizePoint(motion && motion.panFrom, preset.from);
++  const to = normalizePoint(motion && motion.panTo, preset.to);
++  const denominator = Math.max(1, frames - 1);
++  const zoomExpr =
++    Math.abs(zoomTo - zoomFrom) < 1e-6
++      ? String(round3(zoomFrom))
++      : `max(1,${round3(zoomFrom)}+(${round3(zoomTo)}-${round3(zoomFrom)})*on/${denominator})`;
++  const xExpr = `(iw-iw/zoom)*(${round3(from.x)}+(${round3(to.x)}-${round3(from.x)})*on/${denominator})`;
++  const yExpr = `(ih-ih/zoom)*(${round3(from.y)}+(${round3(to.y)}-${round3(from.y)})*on/${denominator})`;
++  return { zoom: zoomExpr, x: xExpr, y: yExpr };
++}
++
++function buildSceneRenderCommand(project, scene, outPath, assPath, options) {
++  const width = project.width;
++  const height = project.height;
++  const fps = project.fps;
++  const frames = Math.max(1, Math.round(scene.duration * fps));
++  const duration = frames / fps;
++  const layout = layoutToPixels(scene.layout, width, height);
++  const fullCanvas = layout.x === 0 && layout.y === 0 && layout.w >= width && layout.h >= height;
++  const args = [];
++  const chains = [];
++  let inputIndex = 0;
++  let baseLabel = null;
++
++  if (scene.type === 'image' || scene.type === 'video') {
++    const sourcePath = resolveMediaPath(project.id, scene.src);
++    if (!fs.existsSync(sourcePath)) {
++      throw new Error(`渲染失败：找不到${scene.type === 'image' ? '图片' : '视频'}素材 ${scene.src}`);
++    }
++    if (scene.type === 'image') {
++      args.push('-i', sourcePath);
++    } else {
++      args.push('-stream_loop', '-1', '-i', sourcePath);
++    }
++    const contentWidth = layout.w;
++    const contentHeight = layout.h;
++    let chain = `[${inputIndex}:v]scale=${contentWidth}:${contentHeight}:force_original_aspect_ratio=increase,crop=${contentWidth}:${contentHeight},setsar=1`;
++    if (scene.type === 'image') {
++      const motion = buildMotionExpr(scene.motion, frames);
++      chain += `,zoompan=z='${motion.zoom}':x='${motion.x}':y='${motion.y}':d=${frames}:s=${contentWidth}x${contentHeight}:fps=${fps}`;
++    } else {
++      chain += `,fps=${fps},trim=duration=${round3(duration)},setpts=PTS-STARTPTS`;
++    }
++    chains.push(`${chain}[content]`);
++    inputIndex += 1;
++    if (fullCanvas) {
++      baseLabel = 'content';
++    } else {
++      args.push(...backgroundInputArgs(scene, width, height, fps));
++      const backgroundIndex = inputIndex;
++      inputIndex += 1;
++      chains.push(`[${backgroundIndex}:v]format=yuv420p,setsar=1[bg]`);
++      chains.push(`[bg][content]overlay=x=${layout.x}:y=${layout.y}:shortest=0:format=auto[base]`);
++      baseLabel = 'base';
++    }
++  } else {
++    args.push(...backgroundInputArgs(scene, width, height, fps));
++    const backgroundIndex = inputIndex;
++    inputIndex += 1;
++    chains.push(`[${backgroundIndex}:v]format=yuv420p,setsar=1[base]`);
++    baseLabel = 'base';
++  }
++
++  const hasText = sceneTextBlocks(scene).length > 0;
++  if (hasText) {
++    chains.push(`[${baseLabel}]ass=filename=${fgQuote(assPath)}:fontsdir=${fgQuote(CONFIG.fontDir)},format=yuv420p[vout]`);
++  } else {
++    chains.push(`[${baseLabel}]format=yuv420p[vout]`);
++  }
++
++  args.push(
++    '-filter_complex',
++    chains.join(';'),
++    '-map',
++    '[vout]',
++    '-r',
++    String(fps),
++    '-frames:v',
++    String(frames),
++    '-c:v',
++    'libx264',
++    '-preset',
++    options.preset,
++    '-crf',
++    String(options.crf),
++    '-pix_fmt',
++    'yuv420p',
++    '-g',
++    String(Math.max(2, Math.round(fps * 2))),
++    '-an',
++    '-y',
++    outPath
++  );
++  return { args, frames, duration };
++}
++
++async function renderSceneSegment(project, scene, segmentPath, assPath, options) {
++  buildAssFile(project, scene, assPath);
++  const command = buildSceneRenderCommand(project, scene, segmentPath, assPath, options);
++  await runFfmpeg(command.args, { timeoutMs: options.timeoutMs, label: `渲染场景 ${scene.id}` });
++  if (!fs.existsSync(segmentPath)) throw new Error(`渲染场景失败：未生成片段 ${scene.id}`);
++  return { file: segmentPath, frames: command.frames, duration: command.duration, transition: scene.transition };
++}
++
++async function renderGapSegment(project, gapDuration, outPath, options) {
++  const width = project.width;
++  const height = project.height;
++  const fps = project.fps;
++  const frames = Math.max(1, Math.round(gapDuration * fps));
++  const args = [
++    '-f',
++    'lavfi',
++    '-i',
++    `color=c=0x000000:s=${width}x${height}:r=${fps}`,
++    '-frames:v',
++    String(frames),
++    '-c:v',
++    'libx264',
++    '-preset',
++    options.preset,
++    '-crf',
++    String(options.crf),
++    '-pix_fmt',
++    'yuv420p',
++    '-g',
++    String(Math.max(2, Math.round(fps * 2))),
++    '-an',
++    '-y',
++    outPath,
++  ];
++  await runFfmpeg(args, { timeoutMs: options.timeoutMs, label: '渲染时间线空隙' });
++  return outPath;
++}
++
++async function renderXfadeGroup(group, outPath, project, options) {
++  const fps = project.fps;
++  const args = [];
++  group.forEach((item) => args.push('-i', item.file));
++  const chains = [];
++  group.forEach((item, index) => {
++    chains.push(`[${index}:v]fps=${fps},settb=AVTB,format=yuv420p[in${index}]`);
++  });
++  let previous = 'in0';
++  let cumulative = group[0].duration;
++  for (let index = 1; index < group.length; index += 1) {
++    const transition = group[index - 1].transOut || { type: 'fade', duration: 0.5 };
++    const transitionDuration = Math.max(0.04, Math.min(transition.duration || 0.5, group[index - 1].duration * 0.9, group[index].duration * 0.9));
++    const offset = Math.max(0, cumulative - transitionDuration);
++    const label = `vx${index}`;
++    const xfadeType = transition.type === 'slide' ? 'slideleft' : 'fade';
++    chains.push(
++      `[${previous}][in${index}]xfade=transition=${xfadeType}:duration=${round3(transitionDuration)}:offset=${round3(offset)}[${label}]`
++    );
++    previous = label;
++    cumulative = cumulative + group[index].duration - transitionDuration;
++  }
++  args.push(
++    '-filter_complex',
++    chains.join(';'),
++    '-map',
++    `[${previous}]`,
++    '-r',
++    String(fps),
++    '-c:v',
++    'libx264',
++    '-preset',
++    options.preset,
++    '-crf',
++    String(options.crf),
++    '-pix_fmt',
++    'yuv420p',
++    '-an',
++    '-movflags',
++    '+faststart',
++    '-y',
++    outPath
++  );
++  await runFfmpeg(args, { timeoutMs: options.timeoutMs, label: '渲染转场' });
++}
++
++async function mergeSceneSegments(project, segments, basePath, workPath, options) {
++  const warnings = [];
++  const items = [];
++  const scenes = project.scenes;
++  let previousEnd = 0;
++
++  for (let index = 0; index < scenes.length; index += 1) {
++    const scene = scenes[index];
++    const segment = segments[index];
++    if (scene.start > previousEnd + 0.02) {
++      const gapDuration = round3(scene.start - previousEnd);
++      const gapPath = path.join(workPath, `gap-${String(index).padStart(3, '0')}.mp4`);
++      await renderGapSegment(project, gapDuration, gapPath, options);
++      if (items.length > 0) items[items.length - 1].transOut = { type: 'cut', duration: 0 };
++      items.push({
++        file: gapPath,
++        frames: Math.max(1, Math.round(gapDuration * project.fps)),
++        duration: gapDuration,
++        transOut: { type: 'cut', duration: 0 },
++        isGap: true,
++      });
++      previousEnd = scene.start;
++    }
++    const end = scene.start + segment.duration;
++    const nextScene = scenes[index + 1];
++    let transOut = { type: 'cut', duration: 0 };
++    const effectiveTransition = scene.transition ? num(scene.transition.effectiveDuration, 0) : 0;
++    if (nextScene && scene.transition && scene.transition.type !== 'cut' && effectiveTransition > 0.001) {
++      const overlap = end - nextScene.start;
++      const nextSegment = segments[index + 1];
++      const transitionDuration = Math.min(
++        effectiveTransition,
++        Math.max(0, overlap),
++        segment.duration * 0.9,
++        nextSegment.duration * 0.9
++      );
++      if (transitionDuration > 0.02) transOut = { type: scene.transition.type, duration: round3(transitionDuration) };
++    }
++    items.push({ file: segment.file, frames: segment.frames, duration: segment.duration, transOut });
++    previousEnd = end;
++  }
++
++  // 按 cut 边界分组
++  const groups = [];
++  let currentGroup = [];
++  for (const item of items) {
++    currentGroup.push(item);
++    if (!item.transOut || item.transOut.type === 'cut' || item.transOut.duration <= 0.001) {
++      groups.push(currentGroup);
++      currentGroup = [];
++    }
++  }
++  if (currentGroup.length > 0) groups.push(currentGroup);
++
++  const groupFiles = [];
++  for (let index = 0; index < groups.length; index += 1) {
++    const group = groups[index];
++    const output = path.join(workPath, `group-${String(index).padStart(2, '0')}.mp4`);
++    if (group.length === 1) {
++      fs.copyFileSync(group[0].file, output);
++    } else {
++      await renderXfadeGroup(group, output, project, options);
++    }
++    groupFiles.push(output);
++  }
++  if (groupFiles.length === 0) throw new Error('渲染失败：没有可拼接的场景片段');
++  if (groupFiles.length === 1) {
++    fs.copyFileSync(groupFiles[0], basePath);
++  } else {
++    const listFile = path.join(workPath, 'concat.txt');
++    const lines = groupFiles.map((file) => `file '${String(file).replace(/'/g, "'\\''")}'`);
++    fs.writeFileSync(listFile, `${lines.join('\n')}\n`, 'utf8');
++    await runFfmpeg(['-y', '-f', 'concat', '-safe', '0', '-i', listFile, '-c', 'copy', '-movflags', '+faststart', basePath], {
++      timeoutMs: options.timeoutMs,
++      label: '拼接场景',
++    });
++  }
++  return { warnings, groups: groupFiles.length };
++}
++
++async function mixAudioTracks(project, totalDuration, outPath, options) {
++  const warnings = [];
++  const total = Math.max(0.2, round3(totalDuration));
++  const args = [];
++  const chains = [];
++  let trackCount = 0;
++  let inputIndex = 0;
++
++  for (const track of project.audio.tracks) {
++    if (!track.src || !String(track.src).trim()) {
++      warnings.push(`音轨「${track.name}」没有素材，已跳过`);
++      continue;
++    }
++    const start = clamp(num(track.start, 0), 0, total);
++    if (start >= total - 0.01) {
++      warnings.push(`音轨「${track.name}」起点超出成片时长，已跳过`);
++      continue;
++    }
++    let sourcePath;
++    try {
++      sourcePath = resolveMediaPath(project.id, track.src);
++    } catch (error) {
++      warnings.push(`音轨「${track.name}」路径无效，已跳过：${error.message}`);
++      continue;
++    }
++    if (!fs.existsSync(sourcePath)) {
++      warnings.push(`音轨「${track.name}」素材不存在，已跳过：${track.src}`);
++      continue;
++    }
++    // 防御：素材必须真的含音频流，否则 ffmpeg 会因 "Stream specifier ':a' matches no streams" 整体失败
++    let sourceProbe = null;
++    try {
++      sourceProbe = await probeMedia(sourcePath);
++    } catch {
++      sourceProbe = null;
++    }
++    if (sourceProbe && !sourceProbe.hasAudio) {
++      warnings.push(`音轨「${track.name}」素材不含音频流（${track.src}），已跳过`);
++      continue;
++    }
++    let duration = track.duration && track.duration > 0 ? track.duration : total - start;
++    duration = Math.min(duration, total - start);
++    if (duration <= 0.02) {
++      warnings.push(`音轨「${track.name}」有效时长过短，已跳过`);
++      continue;
++    }
++    const volume = clamp(num(track.volume, 1), 0, 4);
++    const fadeIn = clamp(num(track.fadeIn, 0), 0, duration);
++    const fadeOut = clamp(num(track.fadeOut, 0), 0, duration);
++    args.push('-i', sourcePath);
++    let chain = `[${inputIndex}:a]atrim=0:${round3(duration)},asetpts=PTS-STARTPTS,aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,volume=${round3(volume)}`;
++    if (fadeIn > 0.001) chain += `,afade=t=in:st=0:d=${round3(fadeIn)}`;
++    if (fadeOut > 0.001) chain += `,afade=t=out:st=${round3(duration - fadeOut)}:d=${round3(fadeOut)}`;
++    chain += `,adelay=${Math.round(start * 1000)}|${Math.round(start * 1000)}[a${trackCount}]`;
++    chains.push(chain);
++    trackCount += 1;
++    inputIndex += 1;
++  }
++
++  if (trackCount === 0) {
++    warnings.push('工程没有可用音轨，成片将使用静音音轨');
++    args.push('-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo');
++    chains.push(`[0:a]atrim=0:${round3(total)},asetpts=PTS-STARTPTS,apad=whole_dur=${round3(total)}[mix]`);
++  } else if (trackCount === 1) {
++    chains.push(`[a0]apad=whole_dur=${round3(total)},alimiter=limit=0.95,aformat=sample_fmts=fltp:channel_layouts=stereo[mix]`);
++  } else {
++    const labels = Array.from({ length: trackCount }, (_, index) => `[a${index}]`).join('');
++    chains.push(
++      `${labels}amix=inputs=${trackCount}:normalize=0:duration=longest:dropout_transition=0,apad=whole_dur=${round3(total)},alimiter=limit=0.95,aformat=sample_fmts=fltp:channel_layouts=stereo[mix]`
++    );
++  }
++
++  args.push(
++    '-filter_complex',
++    chains.join(';'),
++    '-map',
++    '[mix]',
++    '-t',
++    String(round3(total)),
++    '-c:a',
++    'pcm_s16le',
++    '-y',
++    outPath
++  );
++  await runFfmpeg(args, { timeoutMs: options.timeoutMs, label: '混音' });
++  return { warnings, trackCount };
++}
++
++function renderLockFile(id) {
++  return path.join(projectDir(id), '.render.lock');
++}
++
++function readRenderLock(id) {
++  try {
++    const info = readJsonFile(renderLockFile(id), null);
++    if (!info || !info.pid) return null;
++    if (Date.now() - num(info.at, 0) > 6 * 3600 * 1000) return null;
++    if (!isProcessAlive(info.pid)) return null;
++    return info;
++  } catch {
++    return null;
++  }
++}
++
++function isRenderLockAlive(id) {
++  return !!readRenderLock(id);
++}
++
++function acquireRenderLock(id) {
++  ensureDirSync(projectDir(id));
++  const existing = readRenderLock(id);
++  if (existing) throw new Error(`该工程正在渲染中（进程 ${existing.pid}），请等待完成后再试`);
++  const file = renderLockFile(id);
++  const info = { pid: process.pid, at: Date.now(), host: os.hostname() };
++  fs.writeFileSync(file, JSON.stringify(info), 'utf8');
++  return { id, file, pid: process.pid };
++}
++
++function releaseRenderLock(lock) {
++  if (!lock) return;
++  try {
++    const info = readJsonFile(lock.file, null);
++    if (info && info.pid === lock.pid) fs.rmSync(lock.file, { force: true });
++  } catch {
++    /* ignore */
++  }
++}
++
++function persistProjectSnapshot(project) {
++  try {
++    writeJsonAtomic(projectFile(project.id), project);
++  } catch {
++    /* 进度写回失败不应中断渲染 */
++  }
++}
++
++async function renderProjectInternal(project, options, ctx) {
++  const id = project.id;
++  const workPath = workDir(id);
++  const rendersPath = rendersDir(id);
++  fs.rmSync(workPath, { recursive: true, force: true });
++  ensureDirSync(workPath);
++  ensureDirSync(rendersPath);
++  // 清理上次残留临时文件
++  for (const name of fs.readdirSync(rendersPath)) {
++    if (name.startsWith('.')) {
++      try {
++        fs.rmSync(path.join(rendersPath, name), { force: true });
++      } catch {
++        /* ignore */
++      }
++    }
++  }
++
++  const width = project.width;
++  const height = project.height;
++  const fps = project.fps;
++  const renderOptions = {
++    crf: clamp(num(options.crf, CONFIG.crf), 0, 51),
++    preset: options.preset ? String(options.preset) : CONFIG.x264Preset,
++    timeoutMs: clamp(num(options.timeoutMs, CONFIG.renderTimeoutMs), 10000, 24 * 3600 * 1000),
++  };
++  const sceneCount = project.scenes.length;
++  const segments = [];
++
++  await ctx.setProgress(2, '准备渲染');
++  for (let index = 0; index < sceneCount; index += 1) {
++    const scene = project.scenes[index];
++    const prefix = `scene-${String(index).padStart(3, '0')}`;
++    const segmentPath = path.join(workPath, `${prefix}.mp4`);
++    const assPath = path.join(workPath, `${prefix}.ass`);
++    const segment = await renderSceneSegment(project, scene, segmentPath, assPath, renderOptions);
++    segments.push(segment);
++    await ctx.setProgress(2 + ((index + 1) / sceneCount) * 58, `已渲染场景 ${index + 1}/${sceneCount}`);
++  }
++
++  const basePath = path.join(workPath, 'base.mp4');
++  const mergeResult = await mergeSceneSegments(project, segments, basePath, workPath, renderOptions);
++  ctx.warnings.push(...mergeResult.warnings);
++  await ctx.setProgress(64, '场景拼接/转场完成');
++
++  let baseMeta = { duration: 0 };
++  try {
++    baseMeta = await probeMedia(basePath);
++  } catch {
++    /* ignore */
++  }
++  const totalDuration = round3(baseMeta.duration || project.duration || 0.2);
++
++  const audioPath = path.join(workPath, 'mix.wav');
++  const audioResult = await mixAudioTracks(project, totalDuration, audioPath, renderOptions);
++  ctx.warnings.push(...audioResult.warnings);
++  await ctx.setProgress(82, '多轨混音完成');
++
++  const outputName = options.outputName ? safeFileName(String(options.outputName), 'final.mp4') : 'final.mp4';
++  const finalPath = path.join(rendersPath, outputName);
++  const finalTmp = path.join(rendersPath, `.${outputName}.tmp.mp4`);
++  const muxArgs = (trim) => {
++    const args = ['-y', '-i', basePath, '-i', audioPath, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart'];
++    if (trim) args.push('-t', String(totalDuration));
++    args.push(finalTmp);
++    return args;
++  };
++  await runFfmpeg(muxArgs(true), { timeoutMs: renderOptions.timeoutMs, label: '封装成片' });
++  // 防御性校验：成片时长必须与预期一致，否则重试一次（无 -t）再兜底报错
++  let finalProbe = { duration: 0 };
++  try {
++    finalProbe = await probeMedia(finalTmp);
++  } catch {
++    /* ignore */
++  }
++  if (Math.abs((finalProbe.duration || 0) - totalDuration) > 0.5) {
++    ctx.warnings.push(`成片时长校验异常（期望 ${totalDuration}s，实际 ${finalProbe.duration}s），已重试封装`);
++    await runFfmpeg(muxArgs(false), { timeoutMs: renderOptions.timeoutMs, label: '封装成片（重试）' });
++    try {
++      finalProbe = await probeMedia(finalTmp);
++    } catch {
++      finalProbe = { duration: 0 };
++    }
++    if (Math.abs((finalProbe.duration || 0) - totalDuration) > 0.75) {
++      throw new Error(`渲染失败：成片时长异常（期望 ${totalDuration}s，实际 ${finalProbe.duration}s）`);
++    }
++  }
++  fs.renameSync(finalTmp, finalPath);
++  await ctx.setProgress(93, '生成封面');
++
++  const posterTime = clamp(num(options.posterTime, Math.min(1, totalDuration * 0.5)), 0, Math.max(0, totalDuration - 0.05));
++  const posterPath = path.join(rendersPath, 'poster.jpg');
++  const posterTmp = path.join(rendersPath, '.poster.tmp.jpg');
++  await runFfmpeg(
++    ['-y', '-ss', String(round3(posterTime)), '-i', finalPath, '-frames:v', '1', '-q:v', '2', '-update', '1', posterTmp],
++    { timeoutMs: renderOptions.timeoutMs, label: '生成封面' }
++  );
++  fs.renameSync(posterTmp, posterPath);
++
++  if (!options.keepWork) fs.rmSync(workPath, { recursive: true, force: true });
++
++  return {
++    duration: totalDuration,
++    finalPath,
++    finalRelative: `renders/${path.basename(finalPath)}`,
++    posterPath,
++    posterRelative: 'renders/poster.jpg',
++    width,
++    height,
++    fps,
++    sceneCount,
++    trackCount: audioResult.trackCount,
++    warnings: ctx.warnings,
++  };
++}
++
++/**
++ * 渲染工程成片（异步）。
++ * options: { crf, preset, timeoutMs, posterTime, outputName, keepWork }
++ * 返回 Promise<{ id, path, absolutePath, posterPath, posterAbsolutePath, duration, width, height, fps, warnings }>
++ */
++async function render(id, options = {}) {
++  if (options && typeof options !== 'object') throw new Error('渲染失败：options 必须是对象');
++  const initial = getProject(id);
++  if (!initial.scenes || initial.scenes.length === 0) throw new Error('工程中没有场景，无法渲染');
++  const lock = acquireRenderLock(id);
++  const project = getProject(id);
++
++  const ctx = {
++    warnings: [],
++    lastWriteAt: 0,
++    async setProgress(percent, message) {
++      project.rendered = {
++        ...project.rendered,
++        status: 'rendering',
++        progress: round3(clamp(percent, 0, 100)),
++        at: nowIso(),
++        error: null,
++      };
++      project.status = 'draft';
++      const now = Date.now();
++      if (now - ctx.lastWriteAt > 350 || percent >= 100) {
++        ctx.lastWriteAt = now;
++        persistProjectSnapshot(project);
++      }
++      if (message) ctx.lastMessage = message;
++    },
++  };
++
++  try {
++    await ctx.setProgress(1, '开始渲染');
++    persistProjectSnapshot(project);
++    const result = await renderProjectInternal(project, options || {}, ctx);
++
++    // 渲染期间前端可能修改了工程：以磁盘最新工程为准，仅写回渲染结果
++    let latest;
++    try {
++      latest = getProject(id);
++    } catch {
++      latest = project;
++    }
++    latest.rendered = normalizeRendered({
++      ...latest.rendered,
++      path: result.finalRelative,
++      posterPath: result.posterRelative,
++      status: 'ready',
++      progress: 100,
++      at: nowIso(),
++      error: null,
++      duration: result.duration,
++      absolutePath: result.finalPath,
++      posterAbsolutePath: result.posterPath,
++    });
++    latest.status = 'ready';
++    latest.updatedAt = nowIso();
++    writeJsonAtomic(projectFile(id), latest);
++
++    return {
++      id,
++      path: result.finalRelative,
++      absolutePath: result.finalPath,
++      posterPath: result.posterRelative,
++      posterAbsolutePath: result.posterPath,
++      videoUrl: toFileUrl(result.finalPath),
++      posterUrl: toFileUrl(result.posterPath),
++      duration: result.duration,
++      width: result.width,
++      height: result.height,
++      fps: result.fps,
++      sceneCount: result.sceneCount,
++      trackCount: result.trackCount,
++      warnings: result.warnings,
++    };
++  } catch (error) {
++    const message = error && error.message ? error.message : String(error);
++    try {
++      const latest = getProject(id);
++      latest.rendered = {
++        ...latest.rendered,
++        status: 'error',
++        progress: 0,
++        error: message,
++        at: nowIso(),
++      };
++      latest.status = 'draft';
++      writeJsonAtomic(projectFile(id), latest);
++    } catch {
++      /* ignore */
++    }
++    throw error instanceof Error ? error : new Error(message);
++  } finally {
++    releaseRenderLock(lock);
++  }
++}
++
++function renderStatus(id) {
++  const project = getProject(id); // 自动修复中断的 rendering 状态
++  return {
++    id: project.id,
++    status: project.rendered.status,
++    progress: project.rendered.progress,
++    path: project.rendered.path,
++    posterPath: project.rendered.posterPath,
++    at: project.rendered.at,
++    error: project.rendered.error,
++    duration: project.rendered.duration,
++    running: isRenderLockAlive(project.id),
++    statusLabel: project.status,
++  };
++}
++
++// ===========================================================================
++// 十五、导出（契约见 task/README；全部同步，render 返回 Promise）
++// ===========================================================================
++
++module.exports = {
++  // 工程
++  listProjects,
++  getProject,
++  createProject,
++  saveProject,
++  updateProject,
++  deleteProject,
++  // 场景
++  addScene,
++  updateScene,
++  removeScene,
++  reorderScenes,
++  // 音轨
++  addAudioTrack,
++  updateAudioTrack,
++  removeAudioTrack,
++  // 素材
++  importAsset,
++  listAssets,
++  // 批注
++  addAnnotation,
++  updateAnnotation,
++  removeAnnotation,
++  // 配音
++  ttsVoiceover,
++  // 渲染
++  render,
++  renderStatus,
++  resolveMediaPath,
++  // 辅助（非契约、供主进程/测试使用）
++  probeMedia,
++  getConfig,
++  homeDir,
++  getProjectDir: projectDir,
++  getAssetsDir: assetsDir,
++  getRendersDir: rendersDir,
++  normalizeProject,
++  isRenderLockAlive,
++  SCHEMA_VERSION,
++};
+diff --git a/Plugin/VStudio/config.env.example b/Plugin/VStudio/config.env.example
+new file mode 100644
+index 00000000..0ea1478f
+--- /dev/null
++++ b/Plugin/VStudio/config.env.example
+@@ -0,0 +1,28 @@
++# VStudio（V「视听」视频工程）插件配置模板
++# 复制为 config.env 后按需修改；VCPToolBox 启动插件时会自动把本文件加载为环境变量。
++# 注意：环境变量优先级高于本文件，VCPChat 主进程也可通过 process.env 覆盖。
++
++# ---- 数据目录 ----
++# 工程/素材/成片根目录。默认 /app/VCPChat/AppData/VStudio
++VSTUDIO_HOME=/app/VCPChat/AppData/VStudio
++
++# ---- 外部可执行文件 ----
++# 本机 ffmpeg 7.0.2 静态构建：含 libass(ass/subtitles) 但无 drawtext，因此文字统一走 ASS 字幕
++FFMPEG_PATH=/home/admin/.local/bin/ffmpeg
++EDGE_TTS_PATH=/home/admin/.local/bin/edge-tts
++
++# ---- 中文字体（libass 通过 fontsdir 查找） ----
++VSTUDIO_FONTS_DIR=/home/admin/.fonts
++VSTUDIO_FONT_FAMILY=Noto Sans CJK SC
++
++# ---- 渲染参数 ----
++# x264 preset：ultrafast/veryfast/faster/fast/medium/slow；小样可用 veryfast
++VSTUDIO_X264_PRESET=medium
++# CRF 越小越清晰（18-23 常用）
++VSTUDIO_CRF=20
++# 单条 ffmpeg / 单次渲染超时（毫秒）
++VSTUDIO_RENDER_TIMEOUT_MS=900000
++# 同时运行的 ffmpeg 进程上限
++VSTUDIO_FFMPEG_CONCURRENCY=2
++# edge-tts 超时（毫秒）
++VSTUDIO_TTS_TIMEOUT_MS=180000
+diff --git a/Plugin/VStudio/plugin-manifest.json b/Plugin/VStudio/plugin-manifest.json
+new file mode 100644
+index 00000000..e3043e78
+--- /dev/null
++++ b/Plugin/VStudio/plugin-manifest.json
+@@ -0,0 +1,158 @@
++{
++  "manifestVersion": "1.0.0",
++  "name": "VStudio",
++  "displayName": "V「视听」视频工程",
++  "pluginType": "synchronous",
++  "version": "1.0.0",
++  "description": "V「视听」人机协同视频制作插件：管理视频工程（场景/多轨音频/批注），导入素材，edge-tts 中文配音，调用 ffmpeg 渲染 H.264 成片与封面。数据目录由 VSTUDIO_HOME 指定（默认 /app/VCPChat/AppData/VStudio）。",
++  "author": "VCPToolBox",
++  "license": "CC BY-NC-SA 4.0",
++  "entryPoint": {
++    "type": "nodejs",
++    "command": "node VStudio.js",
++    "timeout": 900000
++  },
++  "communication": {
++    "protocol": "stdio",
++    "timeout": 900000
++  },
++  "configSchema": {
++    "VSTUDIO_HOME": {
++      "type": "string",
++      "description": "VStudio 数据根目录（工程/素材/成片）。默认 /app/VCPChat/AppData/VStudio。",
++      "default": "/app/VCPChat/AppData/VStudio"
++    },
++    "FFMPEG_PATH": {
++      "type": "string",
++      "description": "ffmpeg 可执行文件路径（本机为 /home/admin/.local/bin/ffmpeg，静态构建，含 libass 但无 drawtext）。",
++      "default": "/home/admin/.local/bin/ffmpeg"
++    },
++    "EDGE_TTS_PATH": {
++      "type": "string",
++      "description": "edge-tts 可执行文件路径（默认 /home/admin/.local/bin/edge-tts）。",
++      "default": "/home/admin/.local/bin/edge-tts"
++    },
++    "VSTUDIO_FONTS_DIR": {
++      "type": "string",
++      "description": "libass 中文字体目录（默认 /home/admin/.fonts，内含 Noto Sans CJK SC）。",
++      "default": "/home/admin/.fonts"
++    },
++    "VSTUDIO_FONT_FAMILY": {
++      "type": "string",
++      "description": "ASS 字幕使用的字体名。",
++      "default": "Noto Sans CJK SC"
++    },
++    "VSTUDIO_X264_PRESET": {
++      "type": "string",
++      "description": "H.264 编码 preset（默认 medium，小样可用 veryfast）。",
++      "default": "medium"
++    },
++    "VSTUDIO_CRF": {
++      "type": "integer",
++      "description": "H.264 CRF 质量（越小越清晰，默认 20）。",
++      "default": 20
++    },
++    "VSTUDIO_RENDER_TIMEOUT_MS": {
++      "type": "integer",
++      "description": "单条 ffmpeg 命令/单次渲染的超时毫秒数。",
++      "default": 900000
++    },
++    "VSTUDIO_FFMPEG_CONCURRENCY": {
++      "type": "integer",
++      "description": "同时运行的 ffmpeg 进程数上限（默认 2）。",
++      "default": 2
++    }
++  },
++  "capabilities": {
++    "invocationCommands": [
++      {
++        "commandIdentifier": "list_projects",
++        "description": "功能: 列出所有「V视听」视频工程（按最近更新时间倒序）。\n参数: 无。返回每个工程的 id/name/时长/场景数/渲染状态，可用于选择要编辑或渲染的工程。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」list_projects「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "get_project",
++        "description": "功能: 读取单个工程的完整 project.json（含 scenes/audio.tracks/annotations/rendered）。\n参数:\n- id (字符串, 必需): 工程 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」get_project「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "create_project",
++        "description": "功能: 新建视频工程。\n参数:\n- name (字符串, 可选): 工程名，默认「未命名工程」。\n- width (整数, 可选): 画面宽，默认 1280。\n- height (整数, 可选): 画面高，默认 720。\n- fps (整数, 可选): 帧率，默认 30。\n- scenes (数组, 可选): 初始场景列表。\n返回创建后的完整工程（含 id）。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」create_project「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "save_project",
++        "description": "功能: 用完整工程对象覆盖保存（一般先用 get_project 读取再修改）。\n参数:\n- project (对象, 必需): 完整工程 JSON（必须带 id）。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」save_project「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "update_project",
++        "description": "功能: 局部更新工程元信息（name/width/height/fps/scenes/audio/annotations）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- patch (对象, 必需): 要合并的字段。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」update_project「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "add_scene",
++        "description": "功能: 向工程追加（或按 order 插入）一个场景。\n参数:\n- id (字符串, 必需): 工程 ID。\n- type (字符串, 必需): image | video | title | color。\n- src (字符串): image/video 场景的素材路径（先用 import_asset 导入，返回 assets/xxx）。\n- title/subtitle (字符串): 文字（title 场景主字幕 / 任意场景叠加文字，支持中文）。\n- color (字符串或数组): 底色 #RRGGBB，或渐变色数组 [\"#0b1020\",\"#1e3a8a\"]。\n- duration (数字): 场景时长秒，默认 5。\n- transition (对象): {type:\"cut\"|\"fade\"|\"slide\", duration:0.5} 与下一场景的转场。\n- motion (对象): {type:\"zoom_in\"|\"zoom_out\"|\"pan_left\"|\"pan_right\"|\"pan_up\"|\"pan_down\", zoomFrom,zoomTo} 图片 Ken Burns。\n- layout (对象): {x,y,w,h} 归一化画中画矩形，如 {x:0.6,y:0.55,w:0.35,h:0.35}。\n- overlay (对象或数组): {text,position:\"top\"|\"center\"|\"bottom\"|{x,y},style:{fontSize,color,box,backgroundColor}}。\n- start (数字, 可选): 显式起点秒（默认按 order 自动累计）。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」add_scene「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "update_scene",
++        "description": "功能: 局部修改一个场景（字段同 add_scene，也可用 start 覆盖起点、用 order 调整顺序）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- sceneId (字符串, 必需): 场景 ID。\n- patch (对象, 必需): 要合并的字段。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」update_scene「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "remove_scene",
++        "description": "功能: 删除一个场景。\n参数:\n- id (字符串, 必需): 工程 ID。\n- sceneId (字符串, 必需): 场景 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」remove_scene「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "reorder_scenes",
++        "description": "功能: 重排场景顺序（场景起点会按新顺序自动重算）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- order (数组, 必需): 全部场景 ID 的新顺序数组。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」reorder_scenes「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "add_audio_track",
++        "description": "功能: 添加一条音轨（多轨混音，借鉴 Logic Pro/Cubase 的多轨概念）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- name (字符串): 音轨名。\n- kind (字符串): voice | bgm | sfx。\n- src (字符串, 必需): 用 import_asset 导入后的 assets/xxx.mp3 路径。\n- start (数字): 进入时间线起点秒。\n- duration (数字): 播放时长秒（默认到片尾）。\n- volume (数字): 0-2 音量，默认 1。\n- fadeIn/fadeOut (数字): 淡入淡出秒数。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」add_audio_track「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "update_audio_track",
++        "description": "功能: 局部修改音轨（start/duration/volume/fadeIn/fadeOut 等）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- trackId (字符串, 必需): 音轨 ID。\n- patch (对象, 必需): 要合并的字段。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」update_audio_track「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "remove_audio_track",
++        "description": "功能: 删除音轨。\n参数:\n- id (字符串, 必需): 工程 ID。\n- trackId (字符串, 必需): 音轨 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」remove_audio_track「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "import_asset",
++        "description": "功能: 把图片/视频/音频素材导入工程 assets/ 目录，返回可直接用于 scene.src / audio.src 的工程内相对路径。\n参数:\n- id (字符串, 必需): 工程 ID。\n- sourcePath (字符串): 服务器本地绝对路径（三选一）。\n- url (字符串): http/https 或 data: URL（三选一）。\n- base64 或 content (字符串): 直接内联数据（三选一）。\n- name (字符串): 保存文件名。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」import_asset「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "list_assets",
++        "description": "功能: 列出工程已导入的素材（含类型/大小/尺寸/时长）。\n参数:\n- id (字符串, 必需): 工程 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」list_assets「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "add_annotation",
++        "description": "功能: 给画面/元素/布局添加批注（人机协同评审的核心数据结构，agent 可添加自己的修改建议）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- time (数字): 时间点秒。\n- frame (整数, 可选): 帧号。\n- region (对象): {x,y,w,h} 归一化区域。\n- target (字符串): frame | element | layout。\n- text (字符串): 批注内容。\n- author (字符串): human | agent。\n- status (字符串): open | in_progress | resolved。\n- reply (字符串): 回复。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」add_annotation「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "update_annotation",
++        "description": "功能: 修改批注（例如 agent 处理完后把 status 置为 resolved 并写 reply）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- annotationId (字符串, 必需): 批注 ID。\n- patch (对象, 必需): 要合并的字段（text/reply/status/author/region 等）。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」update_annotation「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "remove_annotation",
++        "description": "功能: 删除批注。\n参数:\n- id (字符串, 必需): 工程 ID。\n- annotationId (字符串, 必需): 批注 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」remove_annotation「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "tts_voiceover",
++        "description": "功能: 用 edge-tts 把一段中文文本合成为旁白 mp3，自动导入素材并作为 voice 音轨加入时间线（可指定跟随场景起点）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- text (字符串, 必需): 旁白文本。\n- voice (字符串): 音色，默认 zh-CN-XiaoxiaoNeural（可选 zh-CN-YunxiNeural/zh-CN-YunjianNeural 等）。\n- trackName (字符串): 音轨名。\n- sceneId (字符串, 可选): 从该场景起点开始播放。\n- start (数字): 或直接指定起点秒。\n- rate/pitch (字符串): 如 \"+10%\"/\"+2Hz\"。\n- volume (数字): 音量。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」tts_voiceover「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "render",
++        "description": "功能: 渲染成片：场景 Ken Burns/转场/画中画/ASS 中文字幕 + 多轨混音，输出 H.264 MP4 与 poster.jpg，并写回 rendered 状态与进度。本命令会阻塞到渲染完成（小样一般几秒到几十秒）。\n参数:\n- id (字符串, 必需): 工程 ID。\n- crf (整数, 可选): H.264 质量，默认 20。\n- preset (字符串, 可选): x264 preset，默认 medium。\n- posterTime (数字, 可选): 封面截图时间秒。\n- outputName (字符串, 可选): 输出文件名，默认 final.mp4。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」render「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "render_status",
++        "description": "功能: 查询渲染状态与进度（渲染期间 project.json 会持续写 status=rendering/progress，可轮询。若上次渲染进程已退出，会自动把卡住的 rendering 状态修复为 error）。\n参数:\n- id (字符串, 必需): 工程 ID。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」render_status「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "probe_media",
++        "description": "功能: 探测媒体文件时长/分辨率/是否含音视频（本机无 ffprobe，内部用 ffmpeg -i 解析）。\n参数:\n- file (字符串, 必需): 服务器本地绝对路径。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」probe_media「末」\n<<<[END_TOOL_REQUEST]>>>"
++      },
++      {
++        "commandIdentifier": "get_plugin_info",
++        "description": "功能: 查看 VStudio 插件版本、可用动作与当前配置（调试用）。\n参数: 无。\n调用格式:\n<<<[TOOL_REQUEST]>>>\ntool_name:「始」VStudio「末」,\ncommand:「始」get_plugin_info「末」\n<<<[END_TOOL_REQUEST]>>>"
++      }
++    ]
++  }
++}
+diff --git a/Plugin/VStudio/test/robustness.mjs b/Plugin/VStudio/test/robustness.mjs
+new file mode 100644
+index 00000000..f19a36df
+--- /dev/null
++++ b/Plugin/VStudio/test/robustness.mjs
+@@ -0,0 +1,221 @@
++#!/usr/bin/env node
++/**
++ * VStudio 健壮性 / 安全 / 边界测试
++ * =====================================================================
++ * 覆盖：
++ *   1. 非法工程 ID / 目录穿越 / 越界媒体路径
++ *   2. 缺失场景素材的渲染错误（中文）
++ *   3. 损坏 project.json：getProject 报错、listProjects 跳过
++ *   4. 渲染锁：活锁拒绝并发、stale 锁自动失效
++ *   5. 中断的 rendering 状态自动修复为 error
++ *   6. saveProject 整工程保存时 timeline 按 order 重算（不被旧 start 钉死）
++ *   7. 缺失音轨素材 -> 渲染成功 + warnings（不中断成片）
++ *   8. 参数校验：reorderScenes / importAsset / ttsVoiceover / updateScene
++ *   9. project.json schema 关键字段齐全
++ *
++ * 运行：node test/robustness.mjs（默认 <30s）
++ */
++
++import assert from 'node:assert/strict';
++import { createRequire } from 'node:module';
++import { execFileSync } from 'node:child_process';
++import fs from 'node:fs';
++import path from 'node:path';
++
++const require = createRequire(import.meta.url);
++const PLUGIN_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
++const TEST_ROOT = process.env.VSTUDIO_ROBUST_ROOT || '/tmp/vstudio-backend-test';
++const HOME = path.join(TEST_ROOT, 'robust-home');
++const FFMPEG = process.env.FFMPEG_PATH || '/home/admin/.local/bin/ffmpeg';
++
++process.env.VSTUDIO_HOME = HOME;
++const core = require(path.join(PLUGIN_DIR, 'VStudioCore.js'));
++
++let passed = 0;
++async function check(name, fn) {
++  try {
++    await fn();
++    passed += 1;
++    console.log(`✅ ${name}`);
++  } catch (error) {
++    console.error(`❌ ${name}`);
++    throw error;
++  }
++}
++
++function runFfmpeg(args) {
++  execFileSync(FFMPEG, ['-hide_banner', '-loglevel', 'error', '-y', ...args], { stdio: ['ignore', 'pipe', 'pipe'] });
++}
++
++async function main() {
++  fs.rmSync(HOME, { recursive: true, force: true });
++  const mediaDir = path.join(TEST_ROOT, 'robust-media');
++  fs.mkdirSync(mediaDir, { recursive: true });
++  const imagePath = path.join(mediaDir, 'r-image.png');
++  const audioPath = path.join(mediaDir, 'r-audio.wav');
++  if (!fs.existsSync(imagePath)) runFfmpeg(['-f', 'lavfi', '-i', 'gradients=s=640x360:d=1:c0=0x112233:c1=0x445566', '-frames:v', '1', imagePath]);
++  if (!fs.existsSync(audioPath)) runFfmpeg(['-f', 'lavfi', '-i', 'sine=frequency=330:duration=2', '-c:a', 'pcm_s16le', audioPath]);
++
++  // 通用小工程工厂
++  async function makeProject(name = '健壮性测试') {
++    const project = core.createProject({ name, width: 320, height: 180, fps: 25 });
++    const image = await core.importAsset(project.id, { sourcePath: imagePath });
++    return { id: project.id, image };
++  }
++
++  // 1. 非法 ID / 目录穿越
++  await check('非法工程 ID 抛中文错误', async () => {
++    await assert.rejects(async () => core.getProject('../etc/passwd'), /非法工程 ID/);
++    await assert.rejects(async () => core.getProject('bad id!'), /非法工程 ID/);
++    await assert.rejects(async () => core.getProject(''), /非法工程 ID/);
++  });
++
++  await check('resolveMediaPath 拒绝目录穿越与越界绝对路径', async () => {
++    const { id } = await makeProject('路径安全');
++    await assert.rejects(async () => core.resolveMediaPath(id, '../../etc/passwd'), /媒体路径越界/);
++    await assert.rejects(async () => core.resolveMediaPath(id, '/etc/passwd'), /媒体路径越界/);
++    await assert.rejects(async () => core.resolveMediaPath(id, ''), /媒体路径为空/);
++    const inside = core.resolveMediaPath(id, 'assets/a.png');
++    assert.ok(inside.startsWith(core.getProjectDir(id)));
++  });
++
++  // 2. 缺失素材渲染报错
++  await check('缺失场景素材渲染抛中文错误', async () => {
++    const { id } = await makeProject('缺素材');
++    core.addScene(id, { type: 'image', src: 'assets/not-exist.png', duration: 0.4 });
++    await assert.rejects(async () => core.render(id, { preset: 'ultrafast' }), /找不到图片素材/);
++    const project = core.getProject(id);
++    assert.equal(project.rendered.status, 'error');
++    assert.match(project.rendered.error, /找不到图片素材/);
++    assert.equal(core.renderStatus(id).running, false);
++  });
++
++  // 3. 损坏 project.json
++  await check('损坏的 project.json 不污染列表，getProject 抛中文错误', async () => {
++    const { id } = await makeProject('待损坏');
++    const file = path.join(core.getProjectDir(id), 'project.json');
++    fs.writeFileSync(file, '{ this is not json', 'utf8');
++    await assert.rejects(async () => core.getProject(id), /工程数据损坏/);
++    const list = core.listProjects();
++    assert.ok(!list.some((item) => item.id === id), '损坏工程不应出现在列表');
++    fs.rmSync(core.getProjectDir(id), { recursive: true, force: true });
++  });
++
++  // 4. 渲染锁
++  await check('活渲染锁拒绝并发渲染；stale 锁自动失效', async () => {
++    const { id } = await makeProject('渲染锁');
++    core.addScene(id, { type: 'color', color: '#123456', duration: 0.4 });
++    const lockFile = path.join(core.getProjectDir(id), '.render.lock');
++    // 先放一个「活锁」（当前进程 pid）——同进程第二次 render 也应被拒绝
++    fs.writeFileSync(lockFile, JSON.stringify({ pid: process.pid, at: Date.now(), host: 'test' }));
++    assert.equal(core.isRenderLockAlive(id), true);
++    await assert.rejects(async () => core.render(id, { preset: 'ultrafast' }), /正在渲染中/);
++    // 改成死进程 pid 的 stale 锁 -> 应当可以渲染成功
++    fs.writeFileSync(lockFile, JSON.stringify({ pid: 999999, at: Date.now(), host: 'test' }));
++    assert.equal(core.isRenderLockAlive(id), false);
++    const result = await core.render(id, { preset: 'ultrafast' });
++    assert.ok(fs.existsSync(result.absolutePath));
++    assert.equal(core.isRenderLockAlive(id), false, '渲染结束应释放锁');
++  });
++
++  // 5. 中断的 rendering 状态修复
++  await check('中断的 rendering 状态被自动修复为 error', async () => {
++    const { id } = await makeProject('中断修复');
++    const file = path.join(core.getProjectDir(id), 'project.json');
++    const project = JSON.parse(fs.readFileSync(file, 'utf8'));
++    project.rendered = { ...project.rendered, status: 'rendering', progress: 42, error: null };
++    fs.writeFileSync(file, JSON.stringify(project, null, 2), 'utf8');
++    const repaired = core.getProject(id);
++    assert.equal(repaired.rendered.status, 'error');
++    assert.equal(repaired.rendered.progress, 0);
++    assert.match(repaired.rendered.error, /中断/);
++    assert.equal(core.renderStatus(id).status, 'error');
++  });
++
++  // 6. saveProject 时 timeline 按 order 重算
++  await check('saveProject 按 order 重算时间线（旧 start 不会钉死）', async () => {
++    const { id, image } = await makeProject('时间线重算');
++    core.addScene(id, { type: 'color', color: '#111111', duration: 1 });
++    core.addScene(id, { type: 'image', src: image.src, duration: 1 });
++    core.addScene(id, { type: 'color', color: '#222222', duration: 1 });
++    const project = core.getProject(id);
++    assert.deepEqual(project.scenes.map((s) => s.start), [0, 1, 2]);
++    // 模拟前端拿到 getProject 结果后拖动：把第 3 个场景拖到最前，但没改旧 start
++    const reordered = {
++      ...project,
++      scenes: [project.scenes[2], project.scenes[0], project.scenes[1]].map((scene, index) => ({ ...scene, order: index })),
++    };
++    const saved = core.saveProject(reordered);
++    assert.equal(saved.scenes[0].id, project.scenes[2].id);
++    assert.deepEqual(saved.scenes.map((s) => s.start), [0, 1, 2], '重排后 start 应按新 order 重算');
++    assert.equal(saved.duration, 3);
++  });
++
++  // 7. 缺失音轨素材：渲染成功 + warning
++  await check('缺失音轨素材只产生 warning，不中断成片', async () => {
++    const { id, image } = await makeProject('缺失音轨');
++    core.addScene(id, { type: 'image', src: image.src, duration: 0.5 });
++    core.addAudioTrack(id, { name: '坏音轨', kind: 'bgm', src: 'assets/nope.mp3', start: 0 });
++    const result = await core.render(id, { preset: 'ultrafast' });
++    assert.ok(result.warnings.some((item) => item.includes('坏音轨')), `warnings: ${result.warnings.join('|')}`);
++    assert.ok(fs.existsSync(result.absolutePath));
++    const probe = await core.probeMedia(result.absolutePath);
++    assert.equal(probe.hasAudio, true, '即使没有可用音轨，成片也应有静音音轨');
++  });
++
++  // 8. 参数校验
++  await check('参数校验：reorderScenes/importAsset/ttsVoiceover/updateScene', async () => {
++    const { id } = await makeProject('参数校验');
++    core.addScene(id, { type: 'color', color: '#333333', duration: 0.5 });
++    core.addScene(id, { type: 'color', color: '#444444', duration: 0.5 });
++    const sceneId = core.getProject(id).scenes[0].id;
++    await assert.rejects(async () => core.reorderScenes(id, ['only-one']), /必须恰好包含全部场景/);
++    await assert.rejects(async () => core.reorderScenes(id, []), /非空数组/);
++    await assert.rejects(async () => core.importAsset(id, {}), /需要 sourcePath/);
++    await assert.rejects(async () => core.importAsset(id, { sourcePath: '/no/such/file.png' }), /源文件不存在/);
++    await assert.rejects(async () => core.ttsVoiceover(id, { text: '   ' }), /text 不能为空/);
++    await assert.rejects(async () => core.updateScene(id, 'no-such-scene', { duration: 1 }), /场景不存在/);
++    await assert.rejects(async () => core.updateAnnotation(id, 'no-such-ann', { text: 'x' }), /批注不存在/);
++    await assert.rejects(async () => core.removeAudioTrack(id, 'no-such-track'), /音轨不存在/);
++    // 合法 start 覆盖仍然生效
++    const overridden = core.updateScene(id, sceneId, { start: 5 });
++    assert.ok(Math.abs(overridden.scenes[0].start - 5) < 1e-6);
++    assert.equal(overridden.duration, 6);
++  });
++
++  // 9. schema 字段完整性
++  await check('project.json schemaVersion=1 且关键字段齐全', async () => {
++    const { id, image } = await makeProject('schema 校验');
++    core.addScene(id, { type: 'image', src: image.src, duration: 1, transition: { type: 'fade', duration: 0.2 } });
++    core.addAudioTrack(id, { name: 'BGM', kind: 'bgm', src: image.src, start: 0 });
++    core.addAnnotation(id, { time: 0.2, text: '批注' });
++    const project = core.getProject(id);
++    for (const key of ['schemaVersion', 'id', 'name', 'createdAt', 'updatedAt', 'width', 'height', 'fps', 'duration', 'scenes', 'audio', 'annotations', 'rendered', 'status']) {
++      assert.ok(Object.prototype.hasOwnProperty.call(project, key), `缺少字段 ${key}`);
++    }
++    assert.equal(project.schemaVersion, 1);
++    const scene = project.scenes[0];
++    for (const key of ['id', 'order', 'start', 'duration', 'type', 'src', 'title', 'subtitle', 'color', 'transition', 'motion', 'layout', 'overlay']) {
++      assert.ok(Object.prototype.hasOwnProperty.call(scene, key), `场景缺少字段 ${key}`);
++    }
++    for (const key of ['path', 'posterPath', 'status', 'progress', 'at', 'error']) {
++      assert.ok(Object.prototype.hasOwnProperty.call(project.rendered, key), `rendered 缺少字段 ${key}`);
++    }
++    const track = project.audio.tracks[0];
++    for (const key of ['id', 'name', 'kind', 'src', 'start', 'duration', 'volume', 'fadeIn', 'fadeOut']) {
++      assert.ok(Object.prototype.hasOwnProperty.call(track, key), `音轨缺少字段 ${key}`);
++    }
++    const ann = project.annotations[0];
++    for (const key of ['id', 'frame', 'time', 'region', 'target', 'text', 'author', 'status', 'createdAt', 'resolvedAt', 'reply']) {
++      assert.ok(Object.prototype.hasOwnProperty.call(ann, key), `批注缺少字段 ${key}`);
++    }
++  });
++
++  console.log(`\n🎉 VStudio 健壮性测试通过：${passed} 项（数据目录 ${HOME}）`);
++}
++
++main().catch((error) => {
++  console.error('\n❌ VStudio 健壮性测试失败：');
++  console.error(error && error.stack ? error.stack : String(error));
++  process.exit(1);
++});
+diff --git a/Plugin/VStudio/test/smoke.mjs b/Plugin/VStudio/test/smoke.mjs
+new file mode 100644
+index 00000000..8366136d
+--- /dev/null
++++ b/Plugin/VStudio/test/smoke.mjs
+@@ -0,0 +1,253 @@
++#!/usr/bin/env node
++/**
++ * VStudio 冒烟测试（端到端）
++ * =====================================================================
++ * 覆盖：工程创建 → 素材导入 → 加场景（title/image/video/color）→ 转场 →
++ *      画中画 layout → ASS 中文字幕 / overlay → 多轨音频 → 批注全生命周期 →
++ *      场景重排/更新 → 渲染（320x180，总时长 <2s）→ 产物存在 → 渲染锁 →
++ *      project.json 渲染状态写回 → 插件 stdio 协议（VStudio.js）。
++ *
++ * 运行：node test/smoke.mjs
++ * 环境：默认 VSTUDIO_HOME=/tmp/vstudio-backend-test/smoke-home（可用环境变量覆盖）
++ * 要求：ffmpeg 可用（默认 /home/admin/.local/bin/ffmpeg，可用 FFMPEG_PATH 覆盖）
++ * 预期：<60s 内完成。
++ */
++
++import assert from 'node:assert/strict';
++import { createRequire } from 'node:module';
++import { execFileSync, spawnSync } from 'node:child_process';
++import fs from 'node:fs';
++import path from 'node:path';
++import os from 'node:os';
++
++const require = createRequire(import.meta.url);
++const PLUGIN_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
++const TEST_ROOT = process.env.VSTUDIO_SMOKE_ROOT || '/tmp/vstudio-backend-test';
++const SMOKE_HOME = process.env.VSTUDIO_HOME || path.join(TEST_ROOT, 'smoke-home');
++const MEDIA_DIR = path.join(TEST_ROOT, 'smoke-media');
++const FFMPEG = process.env.FFMPEG_PATH || '/home/admin/.local/bin/ffmpeg';
++
++process.env.VSTUDIO_HOME = SMOKE_HOME;
++const core = require(path.join(PLUGIN_DIR, 'VStudioCore.js'));
++
++const startedAt = Date.now();
++const steps = [];
++function step(name) {
++  const elapsed = ((Date.now() - startedAt) / 1000).toFixed(2);
++  steps.push({ name, elapsed });
++  console.log(`✅ [${elapsed}s] ${name}`);
++}
++
++function runFfmpeg(args, label) {
++  try {
++    execFileSync(FFMPEG, ['-hide_banner', '-loglevel', 'error', '-y', ...args], { stdio: ['ignore', 'pipe', 'pipe'] });
++  } catch (error) {
++    throw new Error(`${label} 失败：${error.stderr ? String(error.stderr).slice(-800) : error.message}`);
++  }
++}
++
++function assertMedia(file) {
++  assert.ok(fs.existsSync(file), `产物不存在：${file}`);
++  const size = fs.statSync(file).size;
++  assert.ok(size > 1024, `产物过小（${size} 字节）：${file}`);
++  return size;
++}
++
++async function main() {
++  // 0. 干净环境 + 测试素材
++  fs.rmSync(SMOKE_HOME, { recursive: true, force: true });
++  fs.mkdirSync(MEDIA_DIR, { recursive: true });
++  const imagePath = path.join(MEDIA_DIR, 'smoke-image.png');
++  const videoPath = path.join(MEDIA_DIR, 'smoke-clip.mp4');
++  const audioPath = path.join(MEDIA_DIR, 'smoke-bgm.wav');
++  if (!fs.existsSync(imagePath)) {
++    runFfmpeg(['-f', 'lavfi', '-i', 'gradients=s=960x540:d=1:c0=0x1e3a8a:c1=0x7c3aed', '-frames:v', '1', imagePath], '生成测试图片');
++  }
++  if (!fs.existsSync(videoPath)) {
++    runFfmpeg(['-f', 'lavfi', '-i', 'testsrc2=s=640x360:d=2:r=30', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', videoPath], '生成测试视频');
++  }
++  if (!fs.existsSync(audioPath)) {
++    runFfmpeg(['-f', 'lavfi', '-i', 'sine=frequency=440:duration=3', '-c:a', 'pcm_s16le', audioPath], '生成测试音频');
++  }
++  step('准备测试素材');
++
++  // 1. 创建工程
++  const project = core.createProject({ name: 'V视听冒烟测试', width: 320, height: 180, fps: 25 });
++  assert.equal(project.schemaVersion, 1);
++  assert.equal(project.width, 320);
++  assert.equal(project.height, 180);
++  assert.equal(project.fps, 25);
++  assert.equal(project.rendered.status, 'idle');
++  assert.equal(project.status, 'draft');
++  assert.ok(project.id);
++  const id = project.id;
++  step(`创建工程 ${id}`);
++
++  // 2. 导入素材
++  const image = await core.importAsset(id, { sourcePath: imagePath });
++  const clip = await core.importAsset(id, { sourcePath: videoPath });
++  const bgm = await core.importAsset(id, { sourcePath: audioPath });
++  assert.equal(image.type, 'image');
++  assert.equal(clip.type, 'video');
++  assert.equal(bgm.type, 'audio');
++  assert.equal(image.width, 960);
++  assert.ok(image.src.startsWith('assets/'));
++  assert.ok(fs.existsSync(core.resolveMediaPath(id, image.src)), '素材副本未落盘');
++  const assets = core.listAssets(id);
++  assert.equal(assets.length, 3);
++  step(`导入素材 3 个（${assets.map((item) => item.type).join('/')}）`);
++
++  // 3. 加场景：title(image/video/color 齐全) + 转场 + 画中画 + overlay
++  core.addScene(id, {
++    type: 'title',
++    title: 'V视听 · 人机协同剪辑',
++    subtitle: 'VCP 视频工程 · 后端渲染',
++    duration: 0.6,
++    color: ['#0b1020', '#1e3a8a'],
++    transition: { type: 'fade', duration: 0.15 },
++  });
++  core.addScene(id, {
++    type: 'image',
++    src: image.src,
++    duration: 0.6,
++    motion: { type: 'zoom_in', zoomFrom: 1, zoomTo: 1.15 },
++    transition: { type: 'slide', duration: 0.15 },
++    overlay: { text: 'AI 批注：这里节奏再快一点', position: 'bottom', style: { box: true, fontSize: 12 } },
++  });
++  core.addScene(id, {
++    type: 'video',
++    src: clip.src,
++    duration: 0.6,
++    layout: { x: 0.58, y: 0.52, w: 0.38, h: 0.4 },
++    color: '#0b1020',
++    transition: { type: 'fade', duration: 0.15 },
++  });
++  core.addScene(id, {
++    type: 'color',
++    color: '#7c3aed',
++    duration: 0.6,
++    title: 'AI 生成字幕',
++    subtitle: '多轨混音 · xfade 转场',
++  });
++  let current = core.getProject(id);
++  assert.equal(current.scenes.length, 4);
++  assert.equal(current.scenes.filter((scene) => scene.type === 'image').length, 1);
++  assert.ok(current.scenes[0].transition.effectiveDuration > 0, 'fade 转场有效时长应 >0');
++  assert.ok(current.duration > 1.5 && current.duration < 2.5, `总时长应约 1.95s，实际 ${current.duration}`);
++  step(`添加 4 类场景，时间线 ${current.scenes.map((scene) => scene.start).join('/')}s，总长 ${current.duration}s`);
++
++  // 4. 场景重排 / 更新
++  const idsBefore = current.scenes.map((scene) => scene.id);
++  current = core.reorderScenes(id, [idsBefore[1], idsBefore[0], ...idsBefore.slice(2)]);
++  assert.equal(current.scenes[0].id, idsBefore[1]);
++  assert.equal(current.scenes[0].start, 0);
++  current = core.updateScene(id, idsBefore[2], { overlay: { text: '更新后的批注文字', position: 'top', style: { fontSize: 12 } } });
++  assert.equal(current.scenes[2].overlay.text, '更新后的批注文字');
++  current = core.reorderScenes(id, idsBefore);
++  assert.deepEqual(current.scenes.map((scene) => scene.id), idsBefore);
++  step('场景重排 + updateScene 生效');
++
++  // 5. 多轨音频（含淡入淡出）
++  core.addAudioTrack(id, { name: 'BGM 背景乐', kind: 'bgm', src: bgm.src, start: 0, duration: 2, volume: 0.3, fadeIn: 0.2, fadeOut: 0.3 });
++  core.addAudioTrack(id, { name: 'AI 旁白', kind: 'voice', src: bgm.src, start: 0.6, duration: 1.2, volume: 0.9, fadeIn: 0.1, fadeOut: 0.2 });
++  current = core.getProject(id);
++  assert.equal(current.audio.tracks.length, 2);
++  step('添加 2 条音轨（bgm + voice，含 fadeIn/fadeOut）');
++
++  // 6. 批注全生命周期
++  let withAnn = core.addAnnotation(id, { time: 0.8, region: { x: 0.1, y: 0.1, w: 0.3, h: 0.2 }, target: 'element', text: '镜头推进太快，放慢一点', author: 'human' });
++  const annId = withAnn.annotations[0].id;
++  assert.equal(withAnn.annotations[0].status, 'open');
++  withAnn = core.updateAnnotation(id, annId, { status: 'in_progress', reply: '收到，正在调整 motion.zoomTo' });
++  assert.equal(withAnn.annotations[0].status, 'in_progress');
++  assert.equal(withAnn.annotations[0].resolvedAt, null);
++  withAnn = core.updateAnnotation(id, annId, { status: 'resolved', author: 'agent' });
++  assert.equal(withAnn.annotations[0].status, 'resolved');
++  assert.ok(withAnn.annotations[0].resolvedAt, 'resolved 批注应写入 resolvedAt');
++  current = core.getProject(id);
++  const annCount = current.annotations.length;
++  assert.equal(annCount, 1);
++  step('批注 open→in_progress→resolved 生命周期');
++
++  // 7. 渲染 + 并发锁（第二次 render 应立即被拒绝）
++  console.log('   ⏳ 渲染中（320x180，约 2s 成片）...');
++  const renderPromise = core.render(id, { preset: 'veryfast', crf: 22 });
++  await assert.rejects(core.render(id), /正在渲染中/, '同一工程并发渲染应被渲染锁拒绝');
++  const result = await renderPromise;
++  step(`渲染完成，耗时 ${((Date.now() - startedAt) / 1000).toFixed(2)}s（含全部用例）`);
++
++  // 8. 产物断言
++  const absoluteVideo = core.resolveMediaPath(id, result.path);
++  const absolutePoster = core.resolveMediaPath(id, result.posterPath);
++  const videoSize = assertMedia(absoluteVideo);
++  const posterSize = assertMedia(absolutePoster);
++  assert.equal(result.path, 'renders/final.mp4');
++  assert.equal(result.posterPath, 'renders/poster.jpg');
++  assert.ok(Math.abs(result.duration - current.duration) < 0.35, `成片时长 ${result.duration}s 应接近工程时长 ${current.duration}s`);
++  assert.ok(posterSize > 500, '封面应有效');
++  assert.match(absolutePoster, /poster\.jpg$/);
++
++  const probe = await core.probeMedia(absoluteVideo);
++  assert.equal(probe.hasVideo, true, '成片应包含视频流');
++  assert.equal(probe.hasAudio, true, '成片应包含音频流');
++  assert.equal(probe.width, 320);
++  assert.equal(probe.height, 180);
++  assert.ok(Math.abs(probe.duration - result.duration) < 0.3, `实际成片时长 ${probe.duration}s 与返回值 ${result.duration}s 不一致`);
++  step(`产物校验：final.mp4 ${videoSize} 字节 / poster.jpg ${posterSize} 字节，实际 ${probe.duration}s ${probe.width}x${probe.height}，音视频流齐全`);
++
++  // 9. 渲染状态写回
++  const status = core.renderStatus(id);
++  assert.equal(status.status, 'ready');
++  assert.equal(status.progress, 100);
++  assert.equal(status.running, false);
++  const afterRender = core.getProject(id);
++  assert.equal(afterRender.rendered.status, 'ready');
++  assert.equal(afterRender.rendered.path, 'renders/final.mp4');
++  assert.equal(afterRender.rendered.posterPath, 'renders/poster.jpg');
++  assert.ok(afterRender.rendered.at);
++  assert.equal(afterRender.status, 'ready');
++  step(`project.json 状态写回：rendered.status=ready progress=100 duration=${afterRender.rendered.duration}s`);
++
++  // 10. 列表视图
++  const list = core.listProjects();
++  assert.ok(list.some((item) => item.id === id && item.rendered.status === 'ready'));
++  step(`listProjects 返回 ${list.length} 条，工程摘要含 rendered.status`);
++
++  // 11. 插件 stdio 协议（VCPToolBox 调用方式：stdin 一行 JSON → stdout 一行 JSON）
++  const pluginFile = path.join(PLUGIN_DIR, 'VStudio.js');
++  const child = spawnSync(process.execPath, [pluginFile], {
++    input: `${JSON.stringify({ command: 'render_status', id })}\n`,
++    encoding: 'utf8',
++    env: { ...process.env, VSTUDIO_HOME: SMOKE_HOME },
++    timeout: 30000,
++  });
++  assert.equal(child.status, 0, `插件进程退出码异常：${child.status} ${child.stderr}`);
++  const lines = String(child.stdout).trim().split(/\r?\n/);
++  assert.equal(lines.length, 1, `插件 stdout 应只有一行 JSON，实际 ${lines.length} 行`);
++  const response = JSON.parse(lines[0]);
++  assert.equal(response.status, 'success');
++  assert.equal(response.result.details.status, 'ready');
++  assert.ok(Array.isArray(response.result.content) && response.result.content[0].type === 'text');
++  assert.match(response.messageForAI, /渲染状态/);
++  step('插件 stdio 协议：render_status 返回 VCP 标准 {status,result:{content,details},messageForAI}');
++
++  // 12. 错误契约：中文 Error
++  await assert.rejects(async () => core.getProject('no-such-project'), /工程不存在/);
++  await assert.rejects(async () => core.createProject(null), /参数必须是对象/);
++  step('错误契约：中文 Error message');
++
++  const totalSeconds = ((Date.now() - startedAt) / 1000).toFixed(2);
++  console.log('\n============================================');
++  console.log(`🎉 VStudio 冒烟测试通过（${totalSeconds}s，阈值 60s）`);
++  console.log(`工程目录: ${path.join(SMOKE_HOME, 'projects', id)}`);
++  console.log(`成片: ${absoluteVideo} (${videoSize} 字节, ${probe.duration}s)`);
++  console.log(`封面: ${absolutePoster} (${posterSize} 字节)`);
++  console.log(`警告: ${result.warnings.length ? result.warnings.join('; ') : '无'}`);
++  console.log('============================================');
++}
++
++main().catch((error) => {
++  console.error('\n❌ VStudio 冒烟测试失败：');
++  console.error(error && error.stack ? error.stack : String(error));
++  process.exit(1);
++});
+-- 
+2.34.1
+

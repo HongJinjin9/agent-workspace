@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-11-02T11:06:25Z",
+  "png": {
+    "after-apps-grid.png": {
+      "width": 640,
+      "height": 404,
+      "bytes": 149009
+    },
+    "after-main.png": {
+      "width": 2300,
+      "height": 843,
+      "bytes": 739815
+    },
+    "after-tray.png": {
+      "width": 2300,
+      "height": 843,
+      "bytes": 825560
+    },
+    "after-vstudio-agent.png": {
+      "width": 336,
+      "height": 238,
+      "bytes": 28554
+    },
+    "after-vstudio-annotation-list.png": {
+      "width": 336,
+      "height": 546,
+      "bytes": 62167
+    },
+    "after-vstudio-annotation-pin.png": {
+      "width": 800,
+      "height": 498,
+      "bytes": 257034
+    },
+    "after-vstudio-annotation.png": {
+      "width": 1440,
+      "height": 900,
+      "bytes": 576843
+    },
+    "after-vstudio-annotations.png": {
+      "width": 336,
+      "height": 546,
+      "bytes": 62596
+    },
+    "after-vstudio-playing-preview.png": {
+      "width": 800,
+      "height": 498,
+      "bytes": 180536
+    },
+    "after-vstudio-playing.png": {
+      "width": 1440,
+      "height": 900,
+      "bytes": 500431
+    },
+    "after-vstudio-preview.png": {
+      "width": 800,
+      "height": 498,
+      "bytes": 220775
+    },
+    "after-vstudio-project.png": {
+      "width": 1440,
+      "height": 900,
+      "bytes": 529903
+    },
+    "after-vstudio-projects.png": {
+      "width": 264,
+      "height": 360,
+      "bytes": 15042
+    },
+    "after-vstudio-timeline.png": {
+      "width": 800,
+      "height": 286,
+      "bytes": 53206
+    },
+    "after-vstudio.png": {
+      "width": 1440,
+      "height": 900,
+      "bytes": 527518
+    },
+    "before-apps-grid.png": {
+      "width": 640,
+      "height": 404,
+      "bytes": 146255
+    },
+    "before-main.png": {
+      "width": 2300,
+      "height": 843,
+      "bytes": 879543
+    },
+    "before-tray.png": {
+      "width": 2300,
+      "height": 843,
+      "bytes": 960313
+    }
+  }
+}

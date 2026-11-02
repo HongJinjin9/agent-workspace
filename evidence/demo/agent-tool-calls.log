@@ -1,0 +1,42 @@
+# VStudio 演示工程 —— AI agent 工具调用记录（VStudio.js stdio 插件，22 个工具中的 6 类）
+# 工程: V视听演示 · AI 协同剪辑 | id: proj_mvz5fnozzwxuh
+# 阶段: build(建工程) / resume(渲染审阅版+执行批注+最终渲染)
+# 时间: 2026-11-02T11:03:39.539Z
+# 调用数: 36
+
+[    66ms] (build) create_project -> success
+[   112ms] (build) import_asset -> success
+[   265ms] (build) import_asset -> success
+[   200ms] (build) import_asset -> success
+[   169ms] (build) import_asset -> success
+[   166ms] (build) import_asset -> success
+[    58ms] (build) import_asset -> success
+[    47ms] (build) import_asset -> success
+[    56ms] (build) import_asset -> success
+[    54ms] (build) import_asset -> success
+[   106ms] (build) import_asset -> success
+[    77ms] (build) import_asset -> success
+[    45ms] (build) add_scene -> success
+[    45ms] (build) add_scene -> success
+[    47ms] (build) add_scene -> success
+[    48ms] (build) add_scene -> success
+[    47ms] (build) add_scene -> success
+[    49ms] (build) add_audio_track -> success
+[    45ms] (build) add_audio_track -> success
+[    52ms] (build) add_audio_track -> success
+[    45ms] (build) add_audio_track -> success
+[    45ms] (build) add_audio_track -> success
+[    48ms] (build) add_audio_track -> success
+[    46ms] (build) add_annotation -> success
+[    44ms] (build) add_annotation -> success
+[    45ms] (build) add_annotation -> success
+[    43ms] (build) get_project -> success
+[ 26330ms] (build) render -> success
+[    58ms] (build) render_status -> success
+[    47ms] (resume) get_project -> success
+[ 25495ms] (resume) render -> success
+[    51ms] (resume) update_scene -> success
+[    48ms] (resume) update_annotation -> success
+[ 43032ms] (resume) render -> success
+[    52ms] (resume) render_status -> success
+[    44ms] (resume) get_project -> success

@@ -1,0 +1,46 @@
+{
+  "capturedAt": "2026-11-02T10:40:55.841Z",
+  "activeLauncherTab": "应用",
+  "viewport": {
+    "w": 2300,
+    "h": 843,
+    "dpr": 1
+  },
+  "appCount": 23,
+  "apps": [
+    "游戏",
+    "笔记",
+    "便签",
+    "翻译",
+    "音乐",
+    "协同",
+    "图表",
+    "文坊",
+    "记忆",
+    "论坛",
+    "日志",
+    "骰子",
+    "监听",
+    "主题",
+    "Loom",
+    "工具",
+    "数据",
+    "任务",
+    "插件",
+    "工程",
+    "终端",
+    "桌面",
+    "UI 组件库"
+  ],
+  "hasAudiovisual": false,
+  "legacyTray": {
+    "moreBtnPresent": true,
+    "vchatAppTrayDisplay": "none"
+  },
+  "chatInputPresent": true,
+  "chatInputEl": {
+    "id": "messageInput",
+    "placeholder": "输入消息... (Shift+Enter 换行)",
+    "visible": true
+  }
+}

@@ -1,0 +1,72 @@
+========================================================================
+V视听（VStudio）交付验证记录  —  2026-11-02（UTC）
+========================================================================
+
+[1] VCPToolBox 插件热加载（运行中的 vcp-main，未重启服务）
+$ grep -a 'VStudio' /home/admin/.pm2/logs/vcp-main-out.log
+[PluginManager] Loaded manifest: V「视听」视频工程 (VStudio, Type: synchronous)
+  - Generated description for {{VCPVStudio}} (Length: 8024)
+（同段日志含 Manifest state changed -> Hot-reloading plugins... -> Hot-reload complete.）
+
+[2] 管理 API 确认插件已加载且 enabled（真实输出摘要）
+$ curl -u *** http://127.0.0.1:6005/admin_api/plugins
+name: VStudio | displayName: V「视听」视频工程 | enabled: True | type: synchronous
+commands: 22 ['list_projects','get_project','create_project','save_project','update_project', ...]
+
+[3] 插件 stdio 直连（agent 工具执行路径）
+$ echo '{"command":"list_projects"}' | node /app/VCPToolBox/Plugin/VStudio/VStudio.js
+{"status":"success","result":{"content":[{"type":"text","text":"共 1 个工程：..."}],"details":[...]},"messageForAI":"..."}
+
+[4] 真实 LLM agent 调用 VStudio 工具（通过运行中的 VCP 服务 /v1/chat/completions，
+    system prompt 注入 {{VCPVStudio}}，model=deepseek-flash）
+用户: 请调用 VStudio 工具列出当前所有视频工程（list_projects），然后总结工程数量与名称。
+模型输出（节选）:
+<<<[TOOL_REQUEST]>>>
+tool_name:「始」VStudio「末」,
+command:「始」list_projects「末」
+<<<[END_TOOL_REQUEST]>>>
+
+[本轮工具调用摘要:]
+VStudio 调用成功 (记录ID: tcr-1793616814768-e25ed6a3-75ef-4de1-8f16-8c27e5fafb31)。
+[本轮工具调用摘要结束]
+
+当前共 2 个视频工程：...（真实工程名与 id，来自工具返回）
+
+[5] 后端 Core 冒烟（独立 home，640x360）
+$ VSTUDIO_HOME=/tmp/... node -e "createProject -> addScene(title) -> render"
+render 返回: {path:'renders/final.mp4', absolutePath:..., videoUrl:'file:///.../final.mp4', duration:2.5, warnings:[]}
+$ ffmpeg -i final.mp4
+Duration: 00:00:02.50 ... Video: h264 ... Audio: aac 48000 Hz stereo
+
+[6] VCPChat 重启与接线（pm2 vcpchat-desktop restarts 51/52，CDP 6s 恢复）
+主窗口 preload: chatAPI.vstudio* 全部 function；composer.insert-text 可用
+托盘应用表: count=24，含 {id:'vchat-app-vstudio',name:'视听',icon:'film',action:'open-vstudio-window'}
+vstudioListProjects IPC: {success:true,count:2}
+VStudio 窗口: title="V视听 · VCP 视频协同工坊" url=file:///app/VCPChat/VStudioModules/vstudio.html
+VStudio preload: utilityAPI.vstudio* 全部 function，apiAdapterReady=true
+「交给 AI」: {success:true,inserted:true,mode:'command'}，转交文本含 工程id/帧号/区域/target/批注/指令；
+             主窗口输入框已还原，无残留。
+
+[7] 媒体 URL 修复后运行态
+getProject.rendered.videoUrl = file:///app/VCPChat/AppData/VStudio/projects/<id>/renders/final.mp4
+VStudio #preview-video: readyState=4, mediaError=null, 截图 /tmp/prelim-vstudio2.png 预览正常出画面
+
+[8] 演示工程与成片（vstudio-media，待填）
+
+[9] 演示工程（vstudio-media + 后端复核，最终版）
+工程: proj_mvz5fnozzwxuh 「V视听演示 · AI 协同剪辑」 1280x720@30fps / 43.0s
+  scenes=5（标题卡 + MotionGit B1-B4）, audio tracks=6（4 段 edge-tts 旁白 + BGM + 模板 SFX）, annotations=3
+成片: /app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/final.mp4
+$ ffmpeg -i final.mp4
+  Duration: 00:00:43.00 | Video: h264 (High) 1280x720 yuv420p 30 fps | Audio: aac LC 48000 Hz stereo
+  整片解码 `-f null -` 无错误；响度 I=-19.1 LUFS / max_volume=-3.3 dB（无削波）
+批注闭环: frame 45 target=element 「标题上移、副标题补字」→ agent 执行（标题 y 0.44→0.38、副标题补「V视听演示片」）→ status=resolved + reply → 重渲染
+工具调用: 36 次 VStudio 插件命令（create_project/import_asset×11/add_scene×5/add_audio_track×6/add_annotation×3/render/update_scene/update_annotation/render），记录见 evidence/demo/agent-tool-calls.log
+MotionGit: kinetic-tech-zh.motion v0.2.7-open-beta（motiontemplates/385712），adapter.py plan/prepare/preview/render 真实渲染 40s 1080p60 中文母版，切 4 段 1080p30 场景素材
+抽帧: evidence/demo/final-01..06-*.png（中文正常）；批注修订前后: evidence/demo/title-v1-before.png vs final-01-title.png
+
+[10] 交付时最终重启与运行态（pm2 vcpchat-desktop restarts=53）
+$ curl http://127.0.0.1:9222/json  -> VCPChat main.html（CDP 6s 内恢复，vcpchat-error.log 为空）
+post-restart-check --open -> PASS：主窗口 chatAPI.vstudio* 全部 function；托盘 24 App 含「视听」；
+  VStudio 窗口标题/URL 正确、utilityAPI.vstudio* 就绪；工程列表 count=1（演示工程）、
+  bodyText 含「V视听演示 · AI 协同剪辑 · 3 条批注 · 已渲染」。

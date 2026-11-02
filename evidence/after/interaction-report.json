@@ -1,0 +1,192 @@
+{
+  "capturedAt": "2026-11-02T11:05:39.193Z",
+  "steps": [
+    {
+      "ts": "2026-11-02T11:05:39.293Z",
+      "msg": "target",
+      "title": "V视听 · VCP 视频协同工坊",
+      "url": "file:///app/VCPChat/VStudioModules/vstudio.html"
+    },
+    {
+      "ts": "2026-11-02T11:05:39.390Z",
+      "msg": "initial-state",
+      "projectItems": 1,
+      "activeProject": "proj_mvz5fnozzwxuh",
+      "videoSrc": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/review-v1.mp4?v=1793617519018",
+      "videoHidden": true,
+      "videoReadyState": 4,
+      "annCards": 3
+    },
+    {
+      "ts": "2026-11-02T11:05:39.488Z",
+      "msg": "active-project",
+      "id": "proj_mvz5fnozzwxuh"
+    },
+    {
+      "ts": "2026-11-02T11:05:53.313Z",
+      "msg": "video-state",
+      "src": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/final.mp4?v=1793617553060",
+      "hidden": false,
+      "readyState": 4,
+      "duration": 43,
+      "paused": true,
+      "posterHidden": true,
+      "posterSrc": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/poster.jpg?v=1793617551048",
+      "posterComplete": true,
+      "posterNaturalW": 1280
+    },
+    {
+      "ts": "2026-11-02T11:05:53.314Z",
+      "msg": "loaded-state",
+      "activeProject": "proj_mvz5fnozzwxuh",
+      "activeProjectName": "▤ V视听演示 · AI 协同剪辑 00:43 · 30fps 2 分钟前更新 已渲染",
+      "timelineDuration": "00:43 · 1290 帧",
+      "annPins": 3,
+      "regionBoxes": 3,
+      "annCards": 3,
+      "annCountText": "3",
+      "renderChip": "已渲染",
+      "projectCount": "1"
+    },
+    {
+      "ts": "2026-11-02T11:05:53.315Z",
+      "msg": "window-viewport",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "theme": ""
+    },
+    {
+      "ts": "2026-11-02T11:05:53.800Z",
+      "msg": "clicked-ann-card"
+    },
+    {
+      "ts": "2026-11-02T11:05:54.703Z",
+      "msg": "annotation-state",
+      "pinCount": 3,
+      "selectedPin": "ann-pin target-element status-resolved selected current resolved",
+      "frame": "帧 45 / 1290"
+    },
+    {
+      "ts": "2026-11-02T11:05:55.403Z",
+      "msg": "pin-clip-saved"
+    },
+    {
+      "ts": "2026-11-02T11:05:55.583Z",
+      "msg": "list-clip-saved"
+    },
+    {
+      "ts": "2026-11-02T11:05:55.886Z",
+      "msg": "seeked",
+      "t": 15.049999,
+      "readyState": 4,
+      "paused": true
+    },
+    {
+      "ts": "2026-11-02T11:05:57.410Z",
+      "msg": "playback",
+      "t1": {
+        "t": 15.049999,
+        "paused": false,
+        "readyState": 4
+      },
+      "t2": {
+        "t": 16.378088,
+        "paused": false,
+        "readyState": 4,
+        "timecode": "00:00:16:09",
+        "frame": "帧 489 / 1290"
+      },
+      "advanced": true
+    },
+    {
+      "ts": "2026-11-02T11:05:58.147Z",
+      "msg": "playing-clip-saved"
+    }
+  ],
+  "initialState": {
+    "projectItems": 1,
+    "activeProject": "proj_mvz5fnozzwxuh",
+    "videoSrc": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/review-v1.mp4?v=1793617519018",
+    "videoHidden": true,
+    "videoReadyState": 4,
+    "annCards": 3
+  },
+  "videoState": {
+    "src": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/final.mp4?v=1793617553060",
+    "hidden": false,
+    "readyState": 4,
+    "duration": 43,
+    "paused": true,
+    "posterHidden": true,
+    "posterSrc": "file:///app/VCPChat/AppData/VStudio/projects/proj_mvz5fnozzwxuh/renders/poster.jpg?v=1793617551048",
+    "posterComplete": true,
+    "posterNaturalW": 1280
+  },
+  "loadedState": {
+    "activeProject": "proj_mvz5fnozzwxuh",
+    "activeProjectName": "▤ V视听演示 · AI 协同剪辑 00:43 · 30fps 2 分钟前更新 已渲染",
+    "timelineDuration": "00:43 · 1290 帧",
+    "annPins": 3,
+    "regionBoxes": 3,
+    "annCards": 3,
+    "annCountText": "3",
+    "renderChip": "已渲染",
+    "projectCount": "1"
+  },
+  "windowViewport": {
+    "w": 1440,
+    "h": 900,
+    "dpr": 1,
+    "theme": ""
+  },
+  "annotationState": {
+    "pinCount": 3,
+    "pins": [
+      {
+        "cls": "ann-pin target-element status-resolved selected current resolved",
+        "label": "1"
+      },
+      {
+        "cls": "ann-pin target-layout status-in_progress far",
+        "label": "2"
+      },
+      {
+        "cls": "ann-pin target-frame status-open far",
+        "label": "3"
+      }
+    ],
+    "selectedPin": "ann-pin target-element status-resolved selected current resolved",
+    "selectedCard": "#1 画面元素 已解决 帧 45 · 00:00:01:15 标题卡不错；副标题补上「V视听演示片」，标题整体上移 6% 更稳。 区域 30%, 34% · 40%×30% AI：已把标题卡标题上移 6%（y 0.44 → 0.38）、副标题补充「V视听演示片」，并用 ASS 重新渲染标题场景，已重新出片。 定位 重新打开 删除",
+    "annCountText": "3",
+    "annListText": "#1 画面元素 已解决 帧 45 · 00:00:01:15 标题卡不错；副标题补上「V视听演示片」，标题整体上移 6% 更稳。 区域 30%, 34% · 40%×30% AI：已把标题卡标题上移 6%（y 0.44 → 0.38）、副标题补充「V视听演示片」，并用 ASS 重新渲染标题场景，已重新出片。 定位 重新打开 删除 #2 画面布局 进行中 帧 830 · 00:00:27:20 左右对比卡间距偏窄，拉开到 40px；结论行整体下移，避免压到卡片。 区域 18%, 40% · 64%×42% AI：已在 MotionGit 模板 B3 单元调整版式并重新渲染，替换工程中的场景素材。 定位 标记已解决 删除 #3 画面内容 待处理 帧 1220 · 00:00:40:20 结尾节奏偏快，最后一帧多停留 0.5 秒，配乐淡出再慢一点。 区域 26%, 52% · 48%×18% 定位 标记已解决 删除",
+    "frame": "帧 45 / 1290",
+    "timecode": "00:00:01:15"
+  },
+  "playback": {
+    "t1": {
+      "t": 15.049999,
+      "paused": false,
+      "readyState": 4
+    },
+    "t2": {
+      "t": 16.378088,
+      "paused": false,
+      "readyState": 4,
+      "timecode": "00:00:16:09",
+      "frame": "帧 489 / 1290"
+    },
+    "advanced": true,
+    "pausedAfter": true
+  },
+  "logs": [
+    {
+      "source": "console",
+      "level": "log",
+      "text": "[Preload][utility] loaded"
+    }
+  ],
+  "errorCount": 0,
+  "errors": [],
+  "finishedAt": "2026-11-02T11:05:59.809Z"
+}
