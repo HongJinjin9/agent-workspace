@@ -1,6 +1,6 @@
 # V视听（VStudio）— 人类与 AI Agent 协同视频工坊
 
-> 自动交付说明 · 对应 Issue [#3](https://github.com/HongJinjin9/agent-workspace/issues/3)
+> 自动交付说明 · 对应原工作 Issue #3
 > 交付时间：2026-11-02（21:00 前暂停点） · **本机已实际应用并验证**
 
 ## 1. 需求对照

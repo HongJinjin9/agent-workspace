@@ -37,7 +37,7 @@ Nova 发言稿（群聊「自媒体」话题原文 → 12 个旁白节拍）
   └─ 合成：ffmpeg（分段归一化 → 硬切拼剪 → 调色/遮幅/字幕 → 旁白+BGM+音效混音 → loudnorm）
 ```
 
-交付：PR #4 评论 https://github.com/HongJinjin9/agent-workspace/pull/4#issuecomment-6597094110（视频 + 3 张静帧）；成片 `out/vibe-cinematic.mp4`，全片解码无错误，响度 mean -17.9dB / max -1.1dB。
+交付：PR #4 评论（历史记录未随公开版本迁移）（视频 + 3 张静帧）；成片 `out/vibe-cinematic.mp4`，全片解码无错误，响度 mean -17.9dB / max -1.1dB。
 
 ## 复现
 

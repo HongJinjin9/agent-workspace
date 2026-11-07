@@ -1,6 +1,6 @@
 # V视听（VStudio）— UI Before / After 视觉证据
 
-- **Ticket**：VCP 系统的「V视听」功能开发（GitHub issue HongJinjin9/agent-workspace#3）
+- **Ticket**：VCP 系统的「V视听」功能开发（原工作 Issue #3）
 - **应用**：VCPChat Electron（xvfb 虚拟显示器运行；CDP 调试端口 `127.0.0.1:9222`）
 - **证据性质**：全部为**真实运行中应用窗口的 CDP 截图**（`Page.captureScreenshot`），不是 mockup / 设计稿 / 合成图。点击、播放、批注选中均通过 CDP `Input.dispatchMouseEvent` 真实鼠标事件或页面内真实 API 完成，截图反映采集瞬间的实际画面。
 - **采集工具**：`tools/cdp.js`、`tools/capture-after.js`、`tools/capture-interactions.js`、`tools/resize-main-window.sh`（Node ≥18 + `/app/VCPChat/node_modules/ws`，无需安装依赖）。

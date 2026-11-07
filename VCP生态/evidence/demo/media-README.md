@@ -1,6 +1,6 @@
 # V视听演示 · 成片与真实制作链路（vstudio-media 交付）
 
-> Ticket：VCP 系统的「V视听」功能开发（HongJinjin9/agent-workspace#3）
+> Ticket：VCP 系统的「V视听」功能开发（原工作 Issue #3）
 > 本目录是「人给视频内容 → AI agent 调用视频制作工具 → 出成片 → 人逐帧/逐元素提意见 → agent 修订重渲染」这条链路的**可复现实证**。
 > 所有时间均为 UTC。
 

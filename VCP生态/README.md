@@ -1,6 +1,6 @@
 # VCP生态
 
-VCP 生态的组成与交付物归集目录（对应 Issue [#13](https://github.com/HongJinjin9/agent-workspace/issues/13)）。
+VCP 生态的组成与交付物归集目录（对应原工作 Issue #13）。
 
 ## 组成
 
