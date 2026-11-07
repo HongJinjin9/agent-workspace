@@ -9,12 +9,12 @@
     "after-main.png": {
       "width": 2300,
       "height": 843,
-      "bytes": 739815
+      "bytes": 617553
     },
     "after-tray.png": {
       "width": 2300,
       "height": 843,
-      "bytes": 825560
+      "bytes": 694883
     },
     "after-vstudio-agent.png": {
       "width": 336,
@@ -84,12 +84,27 @@
     "before-main.png": {
       "width": 2300,
       "height": 843,
-      "bytes": 879543
+      "bytes": 768241
     },
     "before-tray.png": {
       "width": 2300,
       "height": 843,
-      "bytes": 960313
+      "bytes": 843355
+    }
+  },
+  "publicRedactions": {
+    "note": "公开版：为保护个人隐私，四张整窗截图（before-main/before-tray/after-main/after-tray）的左侧个人侧栏已打码；其余截图未修改。",
+    "files": [
+      "before-main.png",
+      "before-tray.png",
+      "after-main.png",
+      "after-tray.png"
+    ],
+    "region": {
+      "x": 0,
+      "y": 42,
+      "width": 234,
+      "height": 801
     }
   }
 }

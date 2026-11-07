@@ -9,6 +9,8 @@
 
 > 尺寸说明（如实记录）：before 采集时主窗口 X 窗口为 2300×843。应用重启后主窗口恢复默认 1300×800，本证据在 after 采集前用 `xdotool` 将 X 窗口设置为 2308×847（Chromium 8px 边框 → 内容区 innerWidth 2300 × innerHeight 843），与 before 完全一致；截图实际为 2300×843。会话期间 xvfb 屏幕为 1600×1000，窗口大于屏幕不影响 CDP 全视口截图。方法脚本见 `tools/resize-main-window.sh`。
 
+> **公开版说明（2026-11-07）**：为保护个人隐私，`before-main.png`、`before-tray.png`、`after-main.png`、`after-tray.png` 四张整窗截图中**左侧个人侧栏（账号名、头像、话题列表）已打码**；其余截图为原始采集未修改，整窗尺寸仍为 2300×843。
+
 ---
 
 ## BEFORE（改动前：当前运行实例中尚无「视听」）
