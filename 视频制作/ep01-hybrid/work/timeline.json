@@ -1,0 +1,354 @@
+{
+ "fps": 24,
+ "total": 259.78,
+ "segments": [
+  {
+   "id": "S1",
+   "start": 0.0,
+   "dur": 21.79,
+   "end": 21.79,
+   "vo_start": 3.0,
+   "vo_dur": 18.79,
+   "text": "混动车最值钱的，不是发动机，也不是电池。\n是那套看不见的能量管理。\n开久了你会习惯：每次踩刹车，它都在把动能一点一点收回来，存进电池。\n我一直觉得，这套逻辑，比很多人生道理都聪明。",
+   "file": "work/tts/s1.mp3"
+  },
+  {
+   "id": "S2",
+   "start": 21.79,
+   "dur": 45.02,
+   "end": 66.81,
+   "vo_start": 22.09,
+   "vo_dur": 43.42,
+   "text": "这几年，很多人都在过一种混动的生活。\n白天有一份必须做好的工作，晚上有一件不肯放下的热爱。\n有人白天写代码，晚上弹琴；有人白天开会，晚上做木工。\n家里人劝你：别折腾了，把一件事做好就行。\n可你心里清楚，那件看起来没用的事，才是你给自己充电的地方。\n更麻烦的是电量焦虑：白天把电用在了通勤和会议，晚上想给自己充一点，发现只剩百分之五。\n问题是，两套动力，真的能共存吗？\n大部分人的结果是：工作没干好，热爱也没做成，人被撕成两半。",
+   "file": "work/tts/s2.mp3"
+  },
+  {
+   "id": "S3",
+   "start": 66.81,
+   "dur": 34.03,
+   "end": 100.84,
+   "vo_start": 67.11,
+   "vo_dur": 32.23,
+   "text": "混动车不是发动机加电机这么简单。\n它真正的核心，是一套能量管理策略。\n什么时候用电，什么时候用油，什么时候一起上，什么时候把刹车的动能收回来。\n每一度电，都要放在它效率最高的地方。\n混动之所以省油，不是因为它有两个动力，而是因为它知道，什么时候该用哪一个。\n人也一样。\n你不是缺动力，你是缺一套能量管理。\n我把它分成四种模式。",
+   "file": "work/tts/s3.mp3"
+  },
+  {
+   "id": "S4",
+   "start": 100.84,
+   "dur": 78.98,
+   "end": 179.82,
+   "vo_start": 101.14,
+   "vo_dur": 76.58,
+   "text": "第一种，纯电模式。安静、专注，只做一件事。写方案、查资料、写稿，把手机扣过去，只留一盏灯。这段时间里，世界是静音的。\n第二种，并联模式。你和工具一起出力。就像现在，我用 AI 查资料、搭框架，但判断和取舍，必须是我。AI 可以是副驾，也可以是发动机，但方向盘，得在你手里。\n第三种，串联模式。发动机不直接驱动车轮，它只负责发电。放到人身上，就是用一件不产出的事，给自己充电。跑步、发呆、看书、陪家人。很多人把休息当浪费，可发电的时候，车看起来什么都没做。那不是浪费时间，那是发电。\n第四种，回收模式。刹车的时候，把动能存回电池。人生的每一次挫败也一样，先别急着难过，把它变成经验，存起来。能量不会消失，它只是换了一种形式存在。踩刹车不是失败，是换一种方式前进。\n这四种模式里，最容易被忽略的，是回收。",
+   "file": "work/tts/s4.mp3"
+  },
+  {
+   "id": "S5",
+   "start": 179.82,
+   "dur": 27.94,
+   "end": 207.76,
+   "vo_start": 180.12,
+   "vo_dur": 25.34,
+   "text": "不知道你有没有过这样的时候。\n一件你熬了很久的事，最后没成。\n当时觉得，全白干了。\n可过了一阵子，你发现那件事教你的东西，正好用在了下一件事上。\n那些当时没结果的力气，其实都被存了起来。\n所有让你疼过的东西，只要你复盘一次，它就会变成下一次的电量。",
+   "file": "work/tts/s5.mp3"
+  },
+  {
+   "id": "S6",
+   "start": 207.76,
+   "dur": 52.02,
+   "end": 259.78,
+   "vo_start": 208.06,
+   "vo_dur": 46.82,
+   "text": "所以我现在不再追求平衡了。\n平衡是静态的，像一个完美的平均值。可生活每天都在变。\n我追求的是高效区间。\n知道什么时候全力输出，什么时候切回充电，什么时候允许自己，什么都不做。\n所谓成熟，不是把热爱戒掉，是学会给它安排一个高效区间。\n车最省油的时刻，从来不是油门踩到底，而是每一份动力，都用在了该用的地方。\n人最好的状态，也不是满电，是切换自如。\n如果你也在两种生活之间拉扯，别急着选一个。\n先给自己，做一份能量管理。\n你的第二动力，是什么？评论区告诉我。",
+   "file": "work/tts/s6.mp3"
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0.0,
+   "end": 2.971,
+   "dur": 2.971,
+   "type": "single",
+   "src": "car_dash",
+   "src_t": 0.0,
+   "kind": "dash",
+   "seg": "S1"
+  },
+  {
+   "n": 2,
+   "start": 2.971,
+   "end": 8.914,
+   "dur": 5.943,
+   "type": "single",
+   "src": "car_dash",
+   "src_t": 2.0,
+   "kind": "dash",
+   "seg": "S1"
+  },
+  {
+   "n": 3,
+   "start": 8.914,
+   "end": 16.838,
+   "dur": 7.924,
+   "type": "single",
+   "src": "brake_pedal",
+   "src_t": 2.0,
+   "kind": "regen",
+   "seg": "S1"
+  },
+  {
+   "n": 4,
+   "start": 16.838,
+   "end": 21.79,
+   "dur": 4.952,
+   "type": "single",
+   "src": "desk_lamp",
+   "src_t": 1.0,
+   "kind": "desk",
+   "seg": "S1"
+  },
+  {
+   "n": 5,
+   "start": 21.79,
+   "end": 30.794,
+   "dur": 9.004,
+   "type": "split",
+   "src": [
+    "metro_window",
+    "desk_lamp"
+   ],
+   "src_t": 0.0,
+   "kind": "split",
+   "seg": "S2"
+  },
+  {
+   "n": 6,
+   "start": 30.794,
+   "end": 39.798,
+   "dur": 9.004,
+   "type": "montage",
+   "src": [
+    "piano_hands",
+    "woodworking",
+    "keyboard_typing"
+   ],
+   "src_t": 0.0,
+   "kind": "montage",
+   "seg": "S2"
+  },
+  {
+   "n": 7,
+   "start": 39.798,
+   "end": 54.805,
+   "dur": 15.007,
+   "type": "single",
+   "src": "phone_desk",
+   "src_t": 1.0,
+   "kind": "phone",
+   "seg": "S2"
+  },
+  {
+   "n": 8,
+   "start": 54.805,
+   "end": 66.81,
+   "dur": 12.005,
+   "type": "single",
+   "src": "empty_chair",
+   "src_t": 1.0,
+   "kind": "pullout",
+   "seg": "S2"
+  },
+  {
+   "n": 9,
+   "start": 66.81,
+   "end": 73.816,
+   "dur": 7.006,
+   "type": "dark",
+   "src": null,
+   "src_t": 0.0,
+   "kind": "diagram_intro",
+   "seg": "S3"
+  },
+  {
+   "n": 10,
+   "start": 73.816,
+   "end": 92.833,
+   "dur": 19.017,
+   "type": "dark",
+   "src": null,
+   "src_t": 0.0,
+   "kind": "diagram_modes",
+   "seg": "S3"
+  },
+  {
+   "n": 11,
+   "start": 92.833,
+   "end": 96.836,
+   "dur": 4.004,
+   "type": "single",
+   "src": "pen_writing",
+   "src_t": 0.5,
+   "kind": "write",
+   "seg": "S3"
+  },
+  {
+   "n": 12,
+   "start": 96.836,
+   "end": 100.84,
+   "dur": 4.004,
+   "type": "dark",
+   "src": null,
+   "src_t": 0.0,
+   "kind": "fourgrid",
+   "seg": "S3"
+  },
+  {
+   "n": 13,
+   "start": 100.84,
+   "end": 114.836,
+   "dur": 13.996,
+   "type": "single",
+   "src": "rain_window",
+   "src_t": 1.0,
+   "kind": "quiet",
+   "seg": "S4"
+  },
+  {
+   "n": 14,
+   "start": 114.836,
+   "end": 132.832,
+   "dur": 17.995,
+   "type": "single",
+   "src": "keyboard_typing",
+   "src_t": 1.0,
+   "kind": "ai",
+   "seg": "S4"
+  },
+  {
+   "n": 15,
+   "start": 132.832,
+   "end": 155.826,
+   "dur": 22.994,
+   "type": "montage",
+   "src": [
+    "running",
+    "tea",
+    "reading"
+   ],
+   "src_t": 0.0,
+   "kind": "warm",
+   "seg": "S4"
+  },
+  {
+   "n": 16,
+   "start": 155.826,
+   "end": 173.822,
+   "dur": 17.995,
+   "type": "single",
+   "src": "car_interior_night",
+   "src_t": 1.0,
+   "kind": "regen2",
+   "seg": "S4"
+  },
+  {
+   "n": 17,
+   "start": 173.822,
+   "end": 179.82,
+   "dur": 5.998,
+   "type": "dark",
+   "src": null,
+   "src_t": 0.0,
+   "kind": "fourgrid2",
+   "seg": "S4"
+  },
+  {
+   "n": 18,
+   "start": 179.82,
+   "end": 186.805,
+   "dur": 6.985,
+   "type": "single",
+   "src": "crumpled_paper",
+   "src_t": 0.5,
+   "kind": "paper",
+   "seg": "S5"
+  },
+  {
+   "n": 19,
+   "start": 186.805,
+   "end": 193.79,
+   "dur": 6.985,
+   "type": "single",
+   "src": "rain_window",
+   "src_t": 2.0,
+   "kind": "rain",
+   "seg": "S5"
+  },
+  {
+   "n": 20,
+   "start": 193.79,
+   "end": 198.779,
+   "dur": 4.989,
+   "type": "single",
+   "src": "crumpled_paper",
+   "src_t": 3.0,
+   "kind": "paper2",
+   "seg": "S5"
+  },
+  {
+   "n": 21,
+   "start": 198.779,
+   "end": 207.76,
+   "dur": 8.981,
+   "type": "single",
+   "src": "pen_writing",
+   "src_t": 2.0,
+   "kind": "write2",
+   "seg": "S5"
+  },
+  {
+   "n": 22,
+   "start": 207.76,
+   "end": 227.768,
+   "dur": 20.008,
+   "type": "single",
+   "src": "city_night_aerial",
+   "src_t": 0.0,
+   "kind": "city",
+   "seg": "S6"
+  },
+  {
+   "n": 23,
+   "start": 227.768,
+   "end": 241.773,
+   "dur": 14.005,
+   "type": "single",
+   "src": "car_interior_night",
+   "src_t": 3.0,
+   "kind": "hud",
+   "seg": "S6"
+  },
+  {
+   "n": 24,
+   "start": 241.773,
+   "end": 256.779,
+   "dur": 15.006,
+   "type": "single",
+   "src": "desk_lamp",
+   "src_t": 8.0,
+   "kind": "outro",
+   "seg": "S6"
+  },
+  {
+   "n": 25,
+   "start": 256.779,
+   "end": 259.78,
+   "dur": 3.001,
+   "type": "dark",
+   "src": null,
+   "src_t": 0.0,
+   "kind": "endcard",
+   "seg": "S6"
+  }
+ ]
+}
