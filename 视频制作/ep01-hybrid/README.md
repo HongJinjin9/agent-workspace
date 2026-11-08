@@ -13,16 +13,16 @@
 
 | 文件 | 作用 |
 | --- | --- |
-| `script.md` | 稿件副本（来源版本） |
-| `narration/segments.json` | 从 §4 抽取的 6 段纯口播（剥离提示与引用块） |
+| `narration/segments.json` | 从稿件 §4 抽取的 6 段纯口播（剥离提示与引用块；稿件原文见 `自媒体稿/`） |
 | `tts_segments.py` | 逐段 edge-tts + 实测时长 → `work/tts/` |
 | `fetch_stock.py` | Pexels B-roll 下载（23 支：仪表/刹车/工位/地铁/键盘/手机/纸笔/雨窗/城市夜景/车内等） |
 | `build_timeline.py` | 由 TTS 实测时长 + 分镜设计表生成 `work/timeline.json`（25 镜、总时长） |
-| `gen_bg.py` | 把 B-roll 裁成 900×1600、teal-orange 调色 + 颗粒、24fps，输出逐帧背景 `work/bg/`（分屏/蒙太奇镜头单独合成） |
+| `gen_bg_par.py` | 并行把 B-roll 裁成 900×1600、teal-orange 调色、24fps，输出逐帧背景（分屏/蒙太奇镜头单独合成） |
 | `scene_hybrid.py` | 渲染器：背景帧 + 能量光带（2D 贝塞尔 / 3D 流动）+ 混动 3D 剖面（5 节点、四种模式）+ 仪表 HUD + 四宫格 + 字幕 + 8 处花字 + 片尾卡 |
-| `build_audio.py` | 旁白按时间码铺轨 + BGM/氛围层 + whoosh/riser/impact，loudnorm I=-14 / TP=-1.5 |
-| `gen_cover.py` | 9:16 封面与 3:4 视频号封面 |
-| `finalize.py` | 等待渲染 → 1080×1920 编码（crf24）+ 静帧抽取 + 封面 |
+| `subs.py` | 解析 edge-tts 句级 SRT，生成 ≤14 字/行、精确起止的字幕时间轴（`work/srt/*.srt`） |
+| `build_audio2.py` | v2 混音：6 段场景化连续音乐床 + sidechain 自动压低 + 音效 + 两遍 loudnorm（-14 LUFS / TP -1.5） |
+| `gen_cover.py` | 9:16 与 3:4 视频号封面（成片封面见 PR 评论，不入库） |
+| `finalize.py` | 等待渲染 → 1080×1920 编码（crf24）+ 静帧/封面抽取 |
 
 ## v2 修订（2026-11-08 反馈）
 
@@ -33,11 +33,13 @@
 
 ```bash
 python3 tts_segments.py && python3 fetch_stock.py && python3 build_timeline.py
-python3 build_audio.py && python3 gen_bg.py
+python3 build_audio2.py && python3 gen_bg_par.py
 mkdir -p work/frames
-for r in "0 780" "780 1560" ... "5460 6234"; do setsid nohup python3 scene_hybrid.py $r & done
+for r in "0 1040" "1040 2080" ... "5200 6234"; do setsid nohup python3 scene_hybrid.py $r & done
 python3 finalize.py
 ```
 
 素材：Pexels License（B-roll）；Mixkit Free License（BGM/SFX）；Noto Sans/Serif CJK（OFL）；旁白 edge-tts。
 合规：不出镜、不署名、不提及职业背景；AI 生成内容声明见片尾卡与发布文案。
+
+> 文件最小化：成片 mp4、静帧、封面与交付评论不随仓库入库（通过 PR 评论/群聊交付），仓库只保留可复现的脚本、文档、时间轴与 SRT。
