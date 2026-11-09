@@ -631,8 +631,8 @@ def render_frame(fi):
     # 转场淡入（每个镜头前 0.25s）
     if tg<0.25:
         black=Image.new('RGBA',(W,H),(0,0,0,int(255*(1-tg/0.25)))); r.img.alpha_composite(black)
-    r.flush()
     caption(r,t)
+    r.flush()
     return post(r.img,fi)
 
 def write(fi):

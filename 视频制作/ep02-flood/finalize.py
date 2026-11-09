@@ -6,10 +6,13 @@ os.makedirs(f'{ROOT}/out',exist_ok=True)
 def count():
     try: return len([f for f in os.listdir(f'{ROOT}/work/frames') if f.endswith('.jpg')])
     except FileNotFoundError: return 0
+last=-1; stable=0
 while True:
-    c=count(); r=subprocess.run(['pgrep','-fc','scene_flood.py'],capture_output=True,text=True).stdout.strip()
-    if c>=N and r=='0': break
-    print('waiting',c,N,r,flush=True); time.sleep(5)
+    c=count()
+    if c>=N and c==last: stable+=1
+    else: stable=0
+    if c>=N and stable>=3: break
+    last=c; print('waiting',c,N,flush=True); time.sleep(3)
 out=f'{ROOT}/out/ep02-flood.mp4'
 subprocess.run([FF,'-hide_banner','-loglevel','error','-y','-framerate','24','-i',f'{ROOT}/work/frames/f%05d.jpg','-i',f'{ROOT}/work/audio.m4a',
   '-vf','scale=1080:1920:flags=lanczos,unsharp=5:5:0.4:5:5:0.0','-c:v','libx264','-preset','veryfast','-crf','24','-pix_fmt','yuv420p','-profile:v','high',
