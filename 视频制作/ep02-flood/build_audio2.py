@@ -43,11 +43,17 @@ def add_sfx(name,t,vol,fade=0.12):
     i=add_input(['-i',f'{ROOT}/assets/sfx/{name}'])
     FILTERS.append(f'[{i}:a]aresample=48000,volume={vol},afade=t=in:st=0:d={fade},afade=t=out:st=0.65:d=0.35,'
                    f'adelay={int(round(t*1000))}|{int(round(t*1000))}[x{i}]'); sfx.append(f'[x{i}]')
-add_sfx('whoosh-1.mp3',0.3,0.16); add_sfx('impact-1.mp3',0.5,0.20)
+# 爆款钩子：3 秒内多拍强音效
+add_sfx('impact-3.mp3',0.35,0.30); add_sfx('whoosh-1.mp3',1.15,0.20); add_sfx('impact-1.mp3',1.16,0.22)
+add_sfx('whoosh-2.mp3',2.10,0.20); add_sfx('impact-2.mp3',2.12,0.22)
+add_sfx('whoosh-3.mp3',3.02,0.20); add_sfx('impact-3.mp3',3.05,0.20)
+# 每个镜头切换的轻 whoosh（爆款卡点）
+for sh in TL['shots']:
+    add_sfx('whoosh-3.mp3',max(0,sh['start']-0.05),0.055)
+# 段落/章节重音
 for s in segs[1:]:
-    add_sfx('whoosh-2.mp3',max(0,s['start']-0.35),0.09)
+    add_sfx('impact-1.mp3',max(0,s['start']+0.05),0.13)
 add_sfx('riser-1.mp3',max(0,segs[2]['start']-1.6),0.13)
-add_sfx('impact-2.mp3',max(0,segs[5]['start']-0.25),0.18)
 add_sfx('riser-1.mp3',max(0,segs[5]['start']-2.4),0.12)
 FILTERS.append(''.join(sfx)+f'amix=inputs={len(sfx)}:normalize=0:duration=longest[sfx]')
 FILTERS.append('[narr_mix][bed_duck][sfx]amix=inputs=3:normalize=0:duration=longest,alimiter=limit=0.95,apad=whole_dur='+str(TOTAL)+'[mix]')

@@ -99,11 +99,38 @@ HUA=[
 import subs as SUB
 CAPS=[(c['start'],c['end'],c['text']) for c in SUB.build_caps(TL)]
 
+KEY_RE=__import__('re').compile(r'(AI|6\.02|11\.25|42\.8|141\.7|23000|1078|1075|1057|一秒|今天|真的|负责|流量|筛子|兜底|谁赔|条款|标识|注意力|核实|署名|算法|平台|观众)')
+
+def _cap_layer(txt,size=56):
+    f=ft(F_SANS,size)
+    parts=[]; pos=0
+    for m in KEY_RE.finditer(txt):
+        if m.start()>pos: parts.append((txt[pos:m.start()],WHITE))
+        parts.append((m.group(0),WARM)); pos=m.end()
+    if pos<len(txt): parts.append((txt[pos:],WHITE))
+    if not parts: parts=[(txt,WHITE)]
+    tmp=ImageDraw.Draw(Image.new('RGBA',(4,4)))
+    ws=[tmp.textlength(t,font=f) for t,_ in parts]
+    total=sum(ws); pad=24
+    lay=Image.new('RGBA',(int(total)+pad*2,size+pad*2),(0,0,0,0)); d=ImageDraw.Draw(lay)
+    x=pad
+    for (t,col),w in zip(parts,ws):
+        d.text((x,pad+size*0.12),t,font=f,fill=col+(255,),stroke_width=4,stroke_fill=(0,0,0,255))
+        x+=w
+    return lay
+
 def caption(r,t):
     for (a,b,txt) in CAPS:
         if a<=t<b:
-            im=text_tex(txt,44,WHITE,glow=10,glow_color=(0,0,0),glow_strength=0.5,stroke=3,stroke_color=(0,0,0))
-            r.put(im,W//2,1400,alpha=0.97); return
+            # 底部压暗条
+            strip=Image.new('RGBA',(W,240),(0,0,0,0)); sd=ImageDraw.Draw(strip)
+            for yy in range(240):
+                sd.line((0,240+yy,W,240+yy),fill=(0,0,0,int(120*(yy/240))))
+            r.img.alpha_composite(strip,(0,H-300))
+            anim=min(1,(t-a)/0.13)
+            lay=_cap_layer(txt)
+            y=1400+int((1-anim)*26)
+            r.put(lay,W//2,y,alpha=anim); return
 
 def post(im, fi):
     arr=np.asarray(im.convert('RGB')).astype(np.int16)
@@ -148,15 +175,27 @@ def play_icon(r,x,y,s=40,col=WHITE,alpha=1.0):
 
 # ---------------- 各镜
 def sc_cold(r,tg,fi,shot=None):
-    if tg<1.2:
-        r.put(text_tex('',1,WHITE),W//2,H//2)
-        return
-    a=min(1,(tg-1.2)/1.6)
-    gl=Image.new('RGBA',(W,H),(0,0,0,0)); gd=ImageDraw.Draw(gl)
-    gd.ellipse((W//2-200,H//2-330,W//2+200,H//2+330),fill=(120,190,255,int(60*a)))
-    gl=gl.filter(ImageFilter.GaussianBlur(90)); r.img.alpha_composite(gl)
-    phone_frame(r,W//2,H//2,420,760,glow=False)
-    r.put(text_tex('深夜 23:47',30,(150,170,190),font=F_SANS_R,glow=6),W//2,H//2+520,alpha=a)
+    # 爆款 3 秒钩子：大字冲击 + 快速切
+    beats=[(0.30,1.15,'6.02 亿',150,WARM,(0,0,0)),
+           (1.15,2.10,'人在用 AI 生成内容',54,WHITE,(1,0,0)),
+           (2.10,3.00,'你刚划走的那条',78,WHITE,(0,1,0)),
+           (3.00,3.55,'可能不是「人」写的',78,WARM,(1,1,0)),
+           (3.55,4.00,'—— 那 是 谁 写 的 ？',48,WHITE,(0,0,0))]
+    for (a,b,txt,size,col,_k) in beats:
+        if a<=tg<b:
+            alpha=min(1,(tg-a)/0.16); pop=0.82+0.18*min(1,(tg-a)/0.2)
+            t1=text_tex(txt,int(size*pop),col,font=F_SANS,glow=26,glow_color=col,glow_strength=0.6,stroke=4,stroke_color=(0,0,0))
+            r.put(t1,W//2,H//2-120,alpha=alpha)
+            fl=Image.new('RGBA',(W,H),(255,250,240,int(48*max(0,1-(tg-a)/0.14))))
+            r.img.alpha_composite(fl)
+    # 底部手机微光
+    if tg>0.5:
+        gl=Image.new('RGBA',(W,H),(0,0,0,0)); gd=ImageDraw.Draw(gl)
+        gd.ellipse((W//2-230,H-520,W//2+230,H-120),fill=(110,180,240,46))
+        r.img.alpha_composite(gl.filter(ImageFilter.GaussianBlur(80)))
+    # 数据来源小字（全片可信度背书）
+    if tg>3.0:
+        r.put(text_tex('数据：CNNIC 2026',22,(150,160,172),font=F_SANS_R),W//2,H-140,alpha=min(1,(tg-3.0)/0.4))
 
 def feed_card(r,x,y,w=380,h=150,title='',tag='',alpha=1.0,hl=False):
     lay=Image.new('RGBA',(w,h),(0,0,0,0)); d=ImageDraw.Draw(lay)
@@ -576,12 +615,24 @@ def sc_lamp(r,tg,fi,shot):
     ve=Image.new('RGBA',(W,H),(2,3,6,110)); r.img.alpha_composite(ve)
 
 def endcard(r,tg,fi,shot):
-    lay=Image.new('RGBA',(W,H),(0,0,0,255)); r.img=lay
-    a=min(1,tg/1.0)
-    r.put(text_tex('内容洪水里',52,WHITE,font=F_SERIF,glow=10),W//2,620,alpha=a)
-    r.put(text_tex('最贵的是「真的」',64,WARM,font=F_SERIF,glow=18,glow_color=(240,190,100),glow_strength=0.5),W//2,750,alpha=a)
-    r.put(text_tex('关注 · 一起做点经得起核实的内容',26,(170,180,190),font=F_SANS_R,glow=6),W//2,1000,alpha=max(0,min(1,(tg-1.2)/0.8)))
-    r.put(text_tex('画面与配音含 AI 辅助制作',20,(120,130,140),font=F_SANS_R),W//2,1450,alpha=0.8)
+    r.img=Image.new('RGBA',(W,H),(4,6,10,255))
+    d0=ImageDraw.Draw(r.img)
+    for yy in range(0,H,2):
+        d0.line((0,yy,W,yy),fill=(6,8,14,255))
+    a=min(1,tg/0.5)
+    # 主标题
+    r.put(text_tex('内容洪水里',58,WHITE,font=F_SERIF,glow=16),W//2,520,alpha=a)
+    r.put(text_tex('最贵的是「真的」',76,WARM,font=F_SERIF,glow=30,glow_color=(240,190,100),glow_strength=0.6,stroke=3),W//2,660,alpha=a)
+    # 互动引导（爆款结尾）
+    if tg>0.8:
+        a2=min(1,(tg-0.8)/0.5)
+        lay=Image.new('RGBA',(760,110),(0,0,0,0)); d=ImageDraw.Draw(lay)
+        d.rounded_rectangle((1,1,758,108),radius=16,fill=(240,195,106,235))
+        r.put(lay,W//2,930,alpha=a2)
+        r.put(text_tex('评论区聊聊：你最近一次信错了什么？',30,(10,12,16),font=F_SANS),W//2,985,alpha=a2)
+    if tg>1.4:
+        r.put(text_tex('关注 · 一起做点经得起核实的内容',28,(200,208,218),font=F_SANS_R,glow=8),W//2,1180,alpha=min(1,(tg-1.4)/0.5))
+    r.put(text_tex('画面与配音含 AI 辅助制作',20,(120,130,140),font=F_SANS_R),W//2,1480,alpha=0.75)
 
 SCENE={'cold':sc_cold,'phone_feed':sc_phone_feed,'phone_forward':sc_phone_forward,'phone_rumor':sc_phone_rumor,
  'data':sc_data,'glitch':sc_glitch,'expert':sc_expert,'erase':sc_erase,'flood':sc_flood,'curve':sc_curve,
@@ -614,23 +665,61 @@ def load_bg(fi):
         except Exception: pass
     return None
 
+CHAPTERS=[(SEGS['S1']['start'],'01','我信错了一条'),(SEGS['S2']['start'],'02','内容流水线'),
+ (SEGS['S3']['start'],'03','一条硬曲线'),(SEGS['S4']['start'],'04','规则卡在流量上'),
+ (SEGS['S5']['start'],'05','洪水与筛选'),(SEGS['S6']['start'],'06','谁赔')]
+
+def chapter_card(r,t):
+    for (st,num,title) in CHAPTERS:
+        dt=t-st
+        if 0.05<=dt<1.5:
+            a=min(1,dt/0.18)*min(1,max(0,(1.5-dt)/0.35))
+            slide=int((1-min(1,dt/0.25))*90)
+            lay=Image.new('RGBA',(620,170),(0,0,0,0)); d=ImageDraw.Draw(lay)
+            d.rounded_rectangle((1,1,618,168),radius=16,fill=(8,12,18,215),outline=(240,195,106,160),width=2)
+            d.text((26,14),num,font=ft(F_SANS,84),fill=(240,195,106,255))
+            d.text((160,52),title,font=ft(F_SANS,44),fill=(240,244,248,255))
+            d.line((160,130,600,130),fill=(240,195,106,120),width=3)
+            r.put(lay,W//2-slide,300,alpha=a)
+
+def progress_bar(r,t):
+    lay=Image.new('RGBA',(W,10),(0,0,0,0)); d=ImageDraw.Draw(lay)
+    d.rectangle((0,0,W,4),fill=(255,255,255,40))
+    d.rectangle((0,0,int(W*min(1,t/TL['total'])),4),fill=(240,195,106,230))
+    for (st,_,_) in CHAPTERS:
+        x=int(W*st/TL['total']); d.rectangle((x,0,x+2,7),fill=(255,255,255,120))
+    r.put(lay,0,0,anchor='tl',depth=0.05)
+
 def render_frame(fi):
     t=fi/FPS
     shot=shot_at(t); tg=t-shot['start']
     bg=load_bg(fi)
+    prog=(t-shot['start'])/max(0.2,shot['end']-shot['start'])
+    # 镜头缓慢推进（爆款节奏感）
+    if bg is not None:
+        sc=1.0+0.05*min(1,prog)
+        w2,h2=int(W*sc),int(H*sc)
+        b2=bg.resize((w2,h2),Image.BILINEAR)
+        bg=b2.crop(((w2-W)//2,(h2-H)//2,(w2-W)//2+W,(h2-H)//2+H))
     r=R(bg if bg else dark_bg(t, seed=shot['i']))
     if bg is not None:
         ve=Image.new('RGBA',(W,H),(4,8,14,40)); r.img.alpha_composite(ve)
     fn=SCENE.get(shot['label'])
     if fn: fn(r,tg,fi,shot)
-    # 花字
+    chapter_card(r,t); progress_bar(r,t)
+    # 花字（爆款样式：色块底 + 大字 + 弹入）
     for (si,off,txt,col) in HUA:
         if shot['i']==si and tg>=off:
-            a=min(1,(tg-off)/0.5); h=hua_tex(txt,0,color=col)
-            r.put(h,W//2,360,alpha=a)
-    # 转场淡入（每个镜头前 0.25s）
-    if tg<0.25:
-        black=Image.new('RGBA',(W,H),(0,0,0,int(255*(1-tg/0.25)))); r.img.alpha_composite(black)
+            a=min(1,(tg-off)/0.28)
+            pop=0.86+0.14*min(1,(tg-off)/0.22)
+            h=hua_tex(txt,0,color=col,size=int(60*pop))
+            lay=Image.new('RGBA',(h.width+56,h.height+30),(0,0,0,0)); d=ImageDraw.Draw(lay)
+            d.rounded_rectangle((1,1,lay.width-2,lay.height-2),radius=14,fill=(12,16,24,205),outline=col+(140,),width=2)
+            lay.alpha_composite(h,(28,15))
+            r.put(lay,W//2,360,alpha=a)
+    # 镜头闪白（爆款转场）
+    if tg<0.12:
+        fl=Image.new('RGBA',(W,H),(255,250,240,int(60*(1-tg/0.12)))); r.img.alpha_composite(fl)
     caption(r,t)
     r.flush()
     return post(r.img,fi)
