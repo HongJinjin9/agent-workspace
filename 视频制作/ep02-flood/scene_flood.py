@@ -656,7 +656,11 @@ def sc_hist(r,tg,fi,shot,era,sub):
 def shot_at(t):
     for s in SHOTS:
         if s['start']<=t<s['end']: return s
-    return SHOTS[-1]
+    prev=SHOTS[0]
+    for s in SHOTS:
+        if s['start']<=t: prev=s
+        else: break
+    return prev
 
 def load_bg(fi):
     p=os.path.join(ROOT,'work','bg',f'f{fi:05d}.jpg')
@@ -692,9 +696,9 @@ def progress_bar(r,t):
 
 def render_frame(fi):
     t=fi/FPS
-    shot=shot_at(t); tg=t-shot['start']
+    shot=shot_at(t); tg=max(0.0,t-shot['start'])
     bg=load_bg(fi)
-    prog=(t-shot['start'])/max(0.2,shot['end']-shot['start'])
+    prog=min(1.0,max(0.0,(t-shot['start'])/max(0.2,shot['end']-shot['start'])))
     # 镜头缓慢推进（爆款节奏感）
     if bg is not None:
         sc=1.0+0.05*min(1,prog)
@@ -718,7 +722,7 @@ def render_frame(fi):
             lay.alpha_composite(h,(28,15))
             r.put(lay,W//2,360,alpha=a)
     # 镜头闪白（爆款转场）
-    if tg<0.12:
+    if tg<0.12 and t>=shot['start']:
         fl=Image.new('RGBA',(W,H),(255,250,240,int(60*(1-tg/0.12)))); r.img.alpha_composite(fl)
     caption(r,t)
     r.flush()
