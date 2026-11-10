@@ -6,9 +6,10 @@
 
 ## 成片
 
-- `out/apec-qimen.mp4`：9:16 竖屏 1080×1920 / 24fps / H.264 + AAC
-- 时长 5 分 22 秒（322.2s）；1080×1920 / 24fps / 20.0MB结构：钩子 → 定局（阴阳遁/节气三元/符头）→ 布地盘（逆布六仪三奇）
-  → 值符值使 → 完整盘面 → 断（核心/主办方/经贸/安保/变数/应期）→ 可检验四条 → 学理与免责 → CTA
+> 成片**不随仓库分发**，通过 Issue #3 评论附件交付；本工程目录只保留脚本、时间轴、字幕与复现说明，按下方流水线可重新产出。
+
+- 规格：9:16 竖屏 1080×1920 / 24fps / H.264 + AAC，时长 5 分 22 秒（322.2s）
+- 结构：钩子 → 定局（阴阳遁/节气三元/符头）→ 布地盘（逆布六仪三奇）→ 值符值使 → 完整盘面 → 断（核心/主办方/经贸/安保/变数/应期）→ 可检验四条 → 学理与免责 → CTA
 
 ## 制作方式（两条参考都用上了）
 
@@ -65,4 +66,4 @@ python3 render_video.py 0 7733   # 帧渲染（可分段并行）
   - 配乐 Mixkit「Vastness」循环铺满 + whoosh/riser/impact 音效；loudnorm I=-15；
   - 旁白 edge-tts 同一稿 23 段；交付静帧与附件流程不变。
 - 渲染 900×1600@24fps（CPU 8 进程并行）→ 成片 1080×1920（lanczos 放大 + 轻锐化）。
-- 产物：`out/apec-qimen-v2f.mp4`（45.2MB, crf25, 1080×1920；`out/apec-qimen-v2.mp4` 为 crf21 高码率版 131MB，超出 GitHub 附件上限仅本地留存）；帧：`work/frames2/`；脚本：`engine3d.py`、`scene3d.py`、`gen_backdrops.py`、`encode2.sh`、`finalize-v2.sh`。
+- 产物：成片 `out/apec-qimen-v2f.mp4`（crf25，1080×1920，约 45MB）由 `finalize-v2.sh` 生成，**不随仓库分发**，通过 Issue #3 评论附件交付；crf21 高码率版（131MB）超出 GitHub 附件上限，仅本地留存。帧输出：`work/frames2/`；脚本：`engine3d.py`、`scene3d.py`、`gen_backdrops.py`、`encode2.sh`、`finalize-v2.sh`。
