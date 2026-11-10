@@ -45,6 +45,10 @@ KEYS_ENV = "/app/vedio/china-aigc/keys.env"
 FFMPEG = "/home/admin/.local/bin/ffmpeg"
 FFPROBE = "/home/admin/.local/bin/ffprobe"
 
+# 本机 6 GB cgroup：抽帧分析阶段每个线程都会拉起一个 ffmpeg，默认只允许 2 个并发。
+# 2026-11-10 的 OOM 与此类并行峰值有关；可用 EP03_FFMPEG_JOBS 覆盖（1 为串行）。
+FFMPEG_JOBS = max(1, int(os.environ.get("EP03_FFMPEG_JOBS", "2")))
+
 KEY_NAMES = {
     "desk_night": "夜晚书桌",
     "laptop_night": "暗处笔记本冷光",
@@ -617,9 +621,9 @@ def stage_backdrops(force=False):
         scored.sort(key=lambda x: -x[0])
         return (task, (meta, scored), None)
 
-    log(f"抽帧分析 {len(tasks)} 段素材（每段 7 帧）…")
+    log(f"抽帧分析 {len(tasks)} 段素材（每段 7 帧，ffmpeg 并发上限 {FFMPEG_JOBS}）…")
     analyzed = []
-    with ThreadPoolExecutor(max_workers=8) as ex:
+    with ThreadPoolExecutor(max_workers=FFMPEG_JOBS) as ex:
         for r in ex.map(analyze, tasks):
             task, data, err = r
             if err:

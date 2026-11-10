@@ -12,8 +12,11 @@
   python3 scene_judgment.py --still s1c 12.0 --out /tmp/a.png       # 单帧预览
   python3 scene_judgment.py --range 0 400 --outdir work/frames      # 渲染帧区间
   python3 scene_judgment.py --bench s1a                             # 单帧耗时
+
+并发：--range 进程共享渲染槽位，默认最多 2 个同时渲染（EP03_RENDER_JOBS 可覆盖，1 为串行）。
 """
 import argparse
+import fcntl
 import json
 import re
 import math
@@ -35,6 +38,33 @@ TOTAL = float(TL["total"])
 SHOTS = TL["shots"]
 SHOT_MAP = {s["id"]: s for s in SHOTS}
 SENTENCES = TL.get("sentences", [])
+
+# ---------------------------------------------------------------- 并发闸门
+# 本机 cgroup 只有 6 GB。2026-11-10 一次 8 段并行渲染把内存顶到上限，内核 OOM 杀掉了
+# 3082/3080 等进程。渲染槽位是进程级互斥：不论 README、run_render.sh 还是临时命令起了
+# 多少段，同一台机器上真正在渲染的 scene_judgment 进程都不超过 RENDER_JOBS 个。
+# 默认 2；可用环境变量 EP03_RENDER_JOBS 覆盖（1 即完全串行）。
+RENDER_JOBS = max(1, int(os.environ.get("EP03_RENDER_JOBS", "2")))
+SLOT_DIR = os.environ.get("EP03_RENDER_SLOT_DIR", "/tmp/ep03-render-slots")
+
+
+def acquire_render_slot():
+    """占用一个渲染槽位；占不到就阻塞等待。返回的 fd 需保持打开，进程退出时锁自动释放。"""
+    os.makedirs(SLOT_DIR, exist_ok=True)
+    waited = 0
+    while True:
+        for i in range(RENDER_JOBS):
+            fd = os.open(os.path.join(SLOT_DIR, "slot-%02d.lock" % i), os.O_CREAT | os.O_RDWR, 0o644)
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return fd, i
+            except OSError:
+                os.close(fd)
+        # 长时间排队时每 60s 提示一次，避免日志刷屏
+        if waited % 20 == 0:
+            print("[render] 渲染并发已满（上限 %d），等待空槽 …" % RENDER_JOBS, flush=True)
+        waited += 1
+        time.sleep(3)
 
 # ---------------------------------------------------------------- 基础常量
 F_SERIF = "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"
@@ -2356,6 +2386,8 @@ def main():
         return
     if args.range:
         a, b = args.range
+        slot_fd, slot = acquire_render_slot()
+        print("[render] 槽位 %d/%d（EP03_RENDER_JOBS），range=%d..%d" % (slot + 1, RENDER_JOBS, a, b), flush=True)
         os.makedirs(args.outdir, exist_ok=True)
         for fi in range(a, b):
             t = fi / FPS

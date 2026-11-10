@@ -12,6 +12,8 @@ import time
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 FF = "/home/admin/.local/bin/ffmpeg"
+# 本机 6 GB cgroup：编码线程同样要压住（默认 2，EP03_FFMPEG_THREADS 可覆盖）。
+ENC_THREADS = max(1, int(os.environ.get("EP03_FFMPEG_THREADS", "2")))
 TL = json.load(open(os.path.join(ROOT, "work", "timeline.json"), encoding="utf-8"))
 TOTAL = float(TL["total"])
 FPS = int(TL.get("fps", 24))
@@ -87,6 +89,7 @@ def main():
          "-i", AUDIO,
          "-vf", "scale=1080:1920:flags=lanczos,unsharp=5:5:0.35:5:5:0.0",
          "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p",
+         "-threads", str(ENC_THREADS),
          "-profile:v", "high", "-level", "4.1",
          "-c:a", "copy",
          "-movflags", "+faststart", "-t", f"{TOTAL:.3f}", OUT])

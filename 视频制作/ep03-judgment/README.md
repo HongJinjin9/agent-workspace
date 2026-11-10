@@ -53,7 +53,13 @@
 | `scene_judgment.py` | 渲染器：3D 桌面光栅化、纸张/印章/笔尖、数据动效、字幕、调色颗粒 |
 | `gen_cover.py` | 封面（9:16 1080×1920 / 3:4 1200×1600） |
 | `finalize.py` | 等帧 → 1080×1920 H.264 + AAC 编码 → 静帧/封面 → 自检 |
-| `run_render.sh` | 分块并行渲染入口（`./run_render.sh <start_frame> <end_frame>`） |
+| `run_render.sh` | 分块渲染入口（`./run_render.sh <start_frame> <end_frame>`）；多段可同时起，实际并发由下文的渲染槽位限制 |
+
+> **资源约束（本机 6 GB cgroup）**：2026-11-10 的 OOM 事故与 8 段并行渲染有关，脚本因此内置两道闸门：
+> - 渲染：`scene_judgment.py` 用 `/tmp/ep03-render-slots` 下的文件锁限制同时渲染的进程数，默认 **2**；
+>   环境变量 `EP03_RENDER_JOBS` 可覆盖（设为 1 即完全串行）。即使一次起 8 段，多出来的也会等待空槽。
+> - ffmpeg：`fetch_assets.py` 的抽帧分析默认 **2** 并发（`EP03_FFMPEG_JOBS`）；`finalize.py` 编码加
+>   `-threads 2`（`EP03_FFMPEG_THREADS`）。
 
 复现（本机 `/app/vedio/ep03-judgment`）：
 
@@ -61,6 +67,7 @@
 python3 tts_perf.py && python3 fetch_assets.py && python3 gen_textures.py
 python3 music.py && python3 sfx.py && python3 build_audio.py
 python3 build_timeline.py
+# 并发：scene_judgment 自带渲染槽位（默认 2，EP03_RENDER_JOBS 可覆盖），一次起 8 段也只会同时跑 2 段。
 mkdir -p work/frames
 for r in "0 700" "700 1400" "1400 2100" "2100 2800" "2800 3500" "3500 4200" "4200 4900" "4900 5611"; do
   setsid nohup ./run_render.sh $r & done
