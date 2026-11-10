@@ -1,0 +1,248 @@
+{
+ "total": 235.27,
+ "fps": 24,
+ "segments": [
+  {
+   "id": "S1",
+   "file": "work/tts/s1.mp3",
+   "start": 4.0,
+   "dur": 19.13,
+   "vo_start": 4.0,
+   "vo_dur": 19.13
+  },
+  {
+   "id": "S2",
+   "file": "work/tts/s2.mp3",
+   "start": 23.93,
+   "dur": 43.82,
+   "vo_start": 23.93,
+   "vo_dur": 43.82
+  },
+  {
+   "id": "S3",
+   "file": "work/tts/s3.mp3",
+   "start": 68.55,
+   "dur": 28.49,
+   "vo_start": 68.55,
+   "vo_dur": 28.49
+  },
+  {
+   "id": "S4",
+   "file": "work/tts/s4.mp3",
+   "start": 97.84,
+   "dur": 37.9,
+   "vo_start": 97.84,
+   "vo_dur": 37.9
+  },
+  {
+   "id": "S5",
+   "file": "work/tts/s5.mp3",
+   "start": 136.54,
+   "dur": 30.43,
+   "vo_start": 136.54,
+   "vo_dur": 30.43
+  },
+  {
+   "id": "S6",
+   "file": "work/tts/s6.mp3",
+   "start": 167.77,
+   "dur": 63.5,
+   "vo_start": 167.77,
+   "vo_dur": 63.5
+  }
+ ],
+ "shots": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 4.0,
+   "kind": "dark",
+   "src": null,
+   "label": "cold"
+  },
+  {
+   "i": 2,
+   "start": 4.0,
+   "end": 10.0,
+   "kind": "dark",
+   "src": null,
+   "label": "phone_feed"
+  },
+  {
+   "i": 3,
+   "start": 10.0,
+   "end": 16.0,
+   "kind": "dark",
+   "src": null,
+   "label": "phone_forward"
+  },
+  {
+   "i": 4,
+   "start": 16.0,
+   "end": 23.13,
+   "kind": "dark",
+   "src": null,
+   "label": "phone_rumor"
+  },
+  {
+   "i": 5,
+   "start": 23.93,
+   "end": 35.93,
+   "kind": "stock",
+   "src": "datacenter",
+   "label": "data"
+  },
+  {
+   "i": 6,
+   "start": 35.93,
+   "end": 45.93,
+   "kind": "stock",
+   "src": "old_tv",
+   "label": "glitch"
+  },
+  {
+   "i": 7,
+   "start": 45.93,
+   "end": 56.93,
+   "kind": "dark",
+   "src": null,
+   "label": "expert"
+  },
+  {
+   "i": 8,
+   "start": 56.93,
+   "end": 67.75,
+   "kind": "stock",
+   "src": "desk_lamp",
+   "label": "erase"
+  },
+  {
+   "i": 9,
+   "start": 68.55,
+   "end": 83.55,
+   "kind": "dark",
+   "src": null,
+   "label": "flood"
+  },
+  {
+   "i": 10,
+   "start": 83.55,
+   "end": 97.04,
+   "kind": "dark",
+   "src": null,
+   "label": "curve"
+  },
+  {
+   "i": 11,
+   "start": 97.84,
+   "end": 112.84,
+   "kind": "stock",
+   "src": "laptop_night",
+   "label": "creator"
+  },
+  {
+   "i": 12,
+   "start": 112.84,
+   "end": 127.84,
+   "kind": "dark",
+   "src": null,
+   "label": "law"
+  },
+  {
+   "i": 13,
+   "start": 127.84,
+   "end": 135.74,
+   "kind": "dark",
+   "src": null,
+   "label": "dual"
+  },
+  {
+   "i": 14,
+   "start": 136.54,
+   "end": 141.54,
+   "kind": "stock",
+   "src": "printing_press",
+   "label": "hist_print"
+  },
+  {
+   "i": 15,
+   "start": 141.54,
+   "end": 146.54,
+   "kind": "stock",
+   "src": "old_tv",
+   "label": "hist_tv"
+  },
+  {
+   "i": 16,
+   "start": 146.54,
+   "end": 152.04,
+   "kind": "stock",
+   "src": "phone_scroll",
+   "label": "hist_phone"
+  },
+  {
+   "i": 17,
+   "start": 152.04,
+   "end": 166.97,
+   "kind": "dark",
+   "src": null,
+   "label": "sieve"
+  },
+  {
+   "i": 18,
+   "start": 167.77,
+   "end": 181.77,
+   "kind": "stock",
+   "src": "pen_writing",
+   "label": "source"
+  },
+  {
+   "i": 19,
+   "start": 181.77,
+   "end": 195.77,
+   "kind": "stock",
+   "src": "citynight",
+   "label": "city"
+  },
+  {
+   "i": 20,
+   "start": 195.77,
+   "end": 209.77,
+   "kind": "stock",
+   "src": "phone_dark",
+   "label": "scroll"
+  },
+  {
+   "i": 21,
+   "start": 209.77,
+   "end": 221.77,
+   "kind": "stock",
+   "src": "servers",
+   "label": "clause"
+  },
+  {
+   "i": 22,
+   "start": 221.77,
+   "end": 229.77,
+   "kind": "stock",
+   "src": "phone_dark",
+   "label": "publish"
+  },
+  {
+   "i": 23,
+   "start": 229.77,
+   "end": 231.27,
+   "kind": "stock",
+   "src": "desk_lamp",
+   "label": "lamp"
+  },
+  {
+   "i": 24,
+   "start": 231.27,
+   "end": 235.27,
+   "kind": "dark",
+   "src": null,
+   "label": "endcard"
+  }
+ ]
+}
