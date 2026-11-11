@@ -1400,21 +1400,30 @@ def tex_numbers(t):
         d = ImageDraw.Draw(base)
         txt(d, (76, 80), "他们发现", 52, PAPER_INK, F_SERIF_B)
         rule(d, 76, 168, 924, 168, (120, 108, 92), 2)
-        txt(d, (90, 240), "319", 130, PAPER_INK, F_SERIF_B)
         txt(d, (90, 400), "名知识工作者", 34, INK_SOFT)
-        txt(d, (520, 240), "936", 130, PAPER_INK, F_SERIF_B)
         txt(d, (520, 400), "个真实使用案例", 34, INK_SOFT)
         rule(d, 76, 520, 924, 520, (150, 144, 130), 2)
         _PAPER_CACHE[key] = base
     p = base.copy()
     d = ImageDraw.Draw(p)
-    a = clamp((t - 1.2) / 2.0)
+    # 数字自 0 计数生长（最需要“关系”而不是“表格”的两组数）
+    e = ease_out(clamp(t / 1.8))
+    n1 = int(round(319 * e))
+    n2 = int(round(936 * e))
+    txt(d, (90, 232), str(n1), 132, PAPER_INK, F_SERIF_B)
+    txt(d, (520, 232), str(n2), 132, PAPER_INK, F_SERIF_B)
+    a = clamp((t - 1.9) / 1.6)
     if a > 0:
-        put(p, text_tex("对 AI 越有信心", 40, PAPER_INK, F_SANS_B, pad=10), 90, 620, anchor="la", alpha=a)
-        put(p, text_tex("→ 批判性思考越少", 40, RED, F_SANS_B, pad=10), 420, 620, anchor="la", alpha=a)
-        put(p, text_tex("对自己能力越有信心", 40, PAPER_INK, F_SANS_B, pad=10), 90, 730, anchor="la", alpha=a)
-        put(p, text_tex("→ 批判性思考越多", 40, (120, 150, 120), F_SANS_B, pad=10), 420, 730, anchor="la", alpha=a)
-        txt(d, (90, 880), "（自报研究 · 相关关系）", 28, INK_LIGHT)
+        e2 = ease_out(clamp((t - 1.9) / 1.6))
+        x = 90
+        put(p, text_tex("对 AI 越有信心", 40, PAPER_INK, F_SANS_B, pad=10), x, 618, anchor="la", alpha=a)
+        # 关系箭头/结论逐段生长
+        put(p, text_tex("→ 批判性思考越少", 40, RED, F_SANS_B, pad=10), x + int(330 * e2), 618,
+            anchor="la", alpha=a)
+        put(p, text_tex("对自己能力越有信心", 40, PAPER_INK, F_SANS_B, pad=10), x, 726, anchor="la", alpha=a)
+        put(p, text_tex("→ 批判性思考越多", 40, (120, 150, 120), F_SANS_B, pad=10), x + int(350 * e2),
+            726, anchor="la", alpha=a)
+        txt(d, (90, 862), "（自报研究 · 相关关系，不是因果）", 28, INK_LIGHT)
     return p
 
 
@@ -1485,34 +1494,49 @@ def tex_mit(t):
         d = ImageDraw.Draw(base)
         txt(d, (76, 76), "另一项研究", 52, PAPER_INK, F_SERIF_B)
         rule(d, 76, 162, 924, 162, (120, 108, 92), 2)
-        txt(d, (88, 220), "MIT Media Lab · 54 名参与者", 38, PAPER_INK, F_SANS_B)
-        txt(d, (88, 285), "分组写论文", 30, INK_SOFT)
-        # EEG 波形底
-        txt(d, (88, 380), "大脑连接活动（EEG 初步结果）", 28, INK_SOFT)
-        rule(d, 88, 450, 912, 450, (150, 144, 130), 2)
-        txt(d, (88, 980), "作品记忆与归属感", 28, INK_SOFT)
-        rule(d, 88, 1050, 912, 1050, (150, 144, 130), 2)
         _PAPER_CACHE[key] = base
     p = base.copy()
     d = ImageDraw.Draw(p)
-    # EEG 波形振幅随时间衰减
-    amp = lerp(34.0, 8.0, clamp(t / 6.0))
-    phase = t * 9.0
-    pts = []
-    for i in range(0, 824, 3):
-        x = 88 + i
-        env = 0.45 + 0.55 * math.sin(i / 90.0 + t * 1.3) ** 2
-        y = 700 - amp * env * math.sin(i / 9.0 + phase) - amp * 0.4 * math.sin(i / 3.1 - phase * 1.7)
-        pts.append((x, y))
-    if len(pts) > 1:
-        d.line(pts, fill=(78, 104, 96) + (235,), width=3)
-    # 预印本标签
-    if t > 1.4:
-        a = clamp((t - 1.4) / 0.6)
-        put(p, text_tex("预印本 · 初步结果", 40, RED, F_SANS_B, pad=12, stroke=1), 88, 1100,
-            anchor="la", alpha=a)
-    if t > 2.6:
-        txt(d, (88, 1180), "样本有限 · 尚未同行评审", 26, INK_SOFT)
+    # ---- 第一拍（0–4.5s）：来源 ----
+    a1 = clamp(t / 0.9)
+    put(p, text_tex("MIT Media Lab · 预印本", 38, PAPER_INK, F_SANS_B, pad=10), 88, 214,
+        anchor="la", alpha=a1)
+    put(p, text_tex("54 名参与者分组写论文", 32, INK_SOFT, F_SANS, pad=8), 88, 276,
+        anchor="la", alpha=a1)
+    # ---- 第二拍（3.2–9.5s）：结果，EEG 波形与两条结论 ----
+    a2 = clamp((t - 3.2) / 1.2)
+    if a2 > 0:
+        txt(d, (88, 352), "大脑连接活动（EEG · 初步）", 28, INK_SOFT)
+        rule(d, 88, 430, 912, 430, (150, 144, 130), 2)
+        amp = lerp(34.0, 8.0, clamp((t - 3.2) / 5.0))
+        phase = (t - 3.2) * 9.0
+        pts = []
+        for i in range(0, 824, 3):
+            x = 88 + i
+            env = 0.45 + 0.55 * math.sin(i / 90.0 + t * 1.3) ** 2
+            y = 660 - amp * env * math.sin(i / 9.0 + phase) - amp * 0.4 * math.sin(i / 3.1 - phase * 1.7)
+            pts.append((x, y))
+        if len(pts) > 1:
+            d.line(pts, fill=(78, 104, 96) + (int(235 * a2),), width=3)
+        put(p, text_tex("↓ 作品记忆与归属感", 30, (120, 140, 128), F_SANS_B, pad=8), 88, 860,
+            anchor="la", alpha=clamp((t - 5.2) / 0.8))
+    # ---- 第三拍（9.0–14.5s）：边界，红色批注逐条落下 ----
+    labs = ["样本有限（54 人）", "未同行评审", "不能外推为普遍结论"]
+    for i, lab in enumerate(labs):
+        aa = clamp((t - 8.6 - i * 0.55) / 0.5)
+        if aa <= 0:
+            continue
+        y = 930 + i * 108
+        box = Image.new("RGBA", (790, 92), (0, 0, 0, 0))
+        bd = ImageDraw.Draw(box)
+        bd.rounded_rectangle((2, 2, 788, 90), radius=8, outline=RED + (int(220 * aa),), width=3)
+        put(p, box, 500, y + 46, anchor="mm", alpha=aa)
+        put(p, text_tex(lab, 36, RED, F_SANS_B, pad=8), 96, y + 20, anchor="la", alpha=aa)
+    if t > 2.2:
+        a3 = clamp((t - 2.2) / 0.8)
+        # 预印本标签放在右上，不占正文
+        put(p, text_tex("预印本 · 初步结果", 30, RED, F_SANS_B, pad=10), 560, 214,
+            anchor="la", alpha=a3)
     return p
 
 
@@ -2232,21 +2256,34 @@ def shot_s6i(scene, t, shot):
     scene.flush()
     scene.img = add_light(scene.img, "desk_lamp", t, 0.55)
     scene.img.alpha_composite(v_grad(60, 225))
-    a = clamp((t - 0.2) / 0.8)
-    screen_text(scene.img, "你最近一次把判断交给 AI，", 400, 46, (234, 230, 222), fnt=F_SERIF,
+    screen_text(scene.img, "你最近一次把判断交给 AI，", 392, 46, (234, 230, 222), fnt=F_SERIF,
                 glow=12, t0=0.2, t=t, alpha=0.95)
-    screen_text(scene.img, "事后后悔了吗？", 474, 50, (234, 230, 222), fnt=F_SERIF,
+    screen_text(scene.img, "事后后悔了吗？", 466, 50, (234, 230, 222), fnt=F_SERIF,
                 glow=14, t0=0.9, t=t, alpha=0.95)
     a2 = clamp((t - 1.8) / 0.7)
     if a2 > 0:
         put(scene.img, text_tex("评论区说说", 42, GOLD, fnt=F_SANS_B, glow=12, glow_color=GOLD),
-            W / 2, 580, alpha=a2)
-        put(scene.img, text_tex("AI 时代最贵的债，是判断力", 30, (198, 194, 186), fnt=F_SERIF, glow=6),
-            W / 2, 1130, alpha=a2 * 0.9)
-        put(scene.img, text_tex("画面与配音有 AI 参与；选题、核实和判断是人做的。", 22,
-                                (152, 150, 144), fnt=F_SANS, pad=10), W / 2, 1182, alpha=a2 * 0.85)
-        put(scene.img, text_tex("第 03 期 · 判断力债务", 26, (182, 178, 170), fnt=F_SANS, pad=10),
-            W / 2, 1252, alpha=a2 * 0.8)
+            W / 2, 566, alpha=a2)
+    # ---- 片尾声明：旁白“最后交代一句……”进入后，画面同步出现可读声明（P0 修复）----
+    a3 = clamp((t - 5.35) / 0.7)
+    if a3 > 0:
+        lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(lay)
+        for y in range(900, H):
+            a = int(150 * clamp((y - 900) / 260.0))
+            d.line((0, y, W, y), fill=(3, 4, 6, a))
+        scene.img.alpha_composite(lay)
+        d2 = ImageDraw.Draw(scene.img)
+        d2.line((W // 2 - 190, 968, W // 2 + 190, 968), fill=GOLD + (int(200 * a3),), width=2)
+        put(scene.img, text_tex("本片画面与配音含 AI 辅助制作", 32, (240, 234, 222), fnt=F_SANS_B,
+                                glow=10, glow_color=GOLD, glow_strength=0.3, pad=12),
+            W / 2, 1032, alpha=a3)
+        put(scene.img, text_tex("选题、核实与判断由人完成", 25, (200, 194, 182), fnt=F_SANS, pad=10),
+            W / 2, 1086, alpha=a3 * 0.95)
+        put(scene.img, text_tex("AI 时代最贵的债，是判断力", 26, (196, 190, 180), fnt=F_SERIF, glow=5),
+            W / 2, 1170, alpha=a3 * 0.85)
+        put(scene.img, text_tex("第 03 期 · 判断力债务", 24, (170, 166, 158), fnt=F_SANS, pad=8),
+            W / 2, 1222, alpha=a3 * 0.8)
     return scene.img
 
 

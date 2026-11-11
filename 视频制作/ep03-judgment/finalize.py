@@ -46,6 +46,7 @@ STILLS = [
     (215.0, "still-21-standards"),
     (222.0, "still-22-title"),
     (228.0, "still-23-endcard"),
+    (233.5, "still-24-declaration"),
 ]
 
 
