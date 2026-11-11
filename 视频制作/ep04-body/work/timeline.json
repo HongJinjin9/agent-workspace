@@ -1,0 +1,1467 @@
+{
+ "total": 236.883,
+ "fps": 24,
+ "provisional": false,
+ "cold_open": 3.0,
+ "outro": 6.5,
+ "segments": [
+  {
+   "id": "S1",
+   "name": "困惑",
+   "start": 3.0,
+   "dur": 20.212,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "我一直有个想不明白的事。",
+     "start": 3.0,
+     "end": 5.0111
+    },
+    {
+     "i": 2,
+     "text": "同一段路，同样一张参数表，为什么有的车坐上去，你会松一口气；",
+     "start": 5.7311,
+     "end": 11.4933
+    },
+    {
+     "i": 3,
+     "text": "有的车，你会不自觉地抓紧扶手？",
+     "start": 11.7933,
+     "end": 14.7039
+    },
+    {
+     "i": 4,
+     "text": "我以前觉得这是玄学。",
+     "start": 15.5239,
+     "end": 17.5517
+    },
+    {
+     "i": 5,
+     "text": "后来才知道，这件事背后，是三个物理量。",
+     "start": 18.1317,
+     "end": 22.062
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "减速带",
+   "start": 24.662,
+   "dur": 54.2688,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "先说第一个。减速带。",
+     "start": 24.662,
+     "end": 27.1279
+    },
+    {
+     "i": 2,
+     "text": "你有没有注意过，好车过减速带是「咚」——一声，干净利落。",
+     "start": 27.6779,
+     "end": 32.9796
+    },
+    {
+     "i": 3,
+     "text": "有的车是「咣当」——一下，然后还晃三晃。",
+     "start": 33.4796,
+     "end": 37.0467
+    },
+    {
+     "i": 4,
+     "text": "差别在哪？",
+     "start": 37.6967,
+     "end": 38.7872
+    },
+    {
+     "i": 5,
+     "text": "车身压在一根弹簧上，它有自己爱晃的频率，大概是 1 到 2 赫兹，也就是一秒晃一到两下。",
+     "start": 39.4072,
+     "end": 47.2401
+    },
+    {
+     "i": 6,
+     "text": "车轮在弹簧下面，更轻更硬，它晃得快得多，10 到 15 赫兹。",
+     "start": 47.7901,
+     "end": 53.4903
+    },
+    {
+     "i": 7,
+     "text": "而人的身体，对 4 到 8 赫兹的上下振动最敏感。",
+     "start": 53.9903,
+     "end": 58.2995
+    },
+    {
+     "i": 8,
+     "text": "所以关键，其实不在于「软」还是「硬」。",
+     "start": 59.0795,
+     "end": 62.0889
+    },
+    {
+     "i": 9,
+     "text": "关键在于阻尼——冲击来了，它能不能一次就收住。",
+     "start": 62.7089,
+     "end": 67.0351
+    },
+    {
+     "i": 10,
+     "text": "阻尼够，冲击一次就结束，你听到「咚」。",
+     "start": 67.8551,
+     "end": 71.256
+    },
+    {
+     "i": 11,
+     "text": "阻尼不够，能量没吃完，它就会接着晃——你听到「咣当」，身体也跟着晃。",
+     "start": 71.806,
+     "end": 77.9308
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "敢不敢踩",
+   "start": 80.3808,
+   "dur": 47.9684,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "第二个。过弯。",
+     "start": 80.3808,
+     "end": 82.1081
+    },
+    {
+     "i": 2,
+     "text": "有的车过弯，你敢踩油门。",
+     "start": 82.6581,
+     "end": 84.9854
+    },
+    {
+     "i": 3,
+     "text": "有的车，你脚一碰到刹车就想减速。",
+     "start": 85.4354,
+     "end": 88.5159
+    },
+    {
+     "i": 4,
+     "text": "差别不在悬架形式，在它给不给你信息。",
+     "start": 89.1359,
+     "end": 92.5251
+    },
+    {
+     "i": 5,
+     "text": "车在过弯的时候，会通过几件事告诉你它的状态：",
+     "start": 93.2251,
+     "end": 97.4525
+    },
+    {
+     "i": 6,
+     "text": "方向盘变重多少、车身倾多少、后轮什么时候开始滑。",
+     "start": 97.8025,
+     "end": 102.3264
+    },
+    {
+     "i": 7,
+     "text": "好车，这些信息是一条平滑的线。",
+     "start": 102.9464,
+     "end": 105.9677
+    },
+    {
+     "i": 8,
+     "text": "你手上感觉到「还够」，它真的还够。",
+     "start": 106.3177,
+     "end": 109.5232
+    },
+    {
+     "i": 9,
+     "text": "差的车，这条线是断的。",
+     "start": 110.1732,
+     "end": 112.5043
+    },
+    {
+     "i": 10,
+     "text": "前面很轻松，突然就到了极限。",
+     "start": 112.9243,
+     "end": 115.6531
+    },
+    {
+     "i": 11,
+     "text": "所以「敢不敢踩」不是胆子问题。",
+     "start": 116.4031,
+     "end": 118.6773
+    },
+    {
+     "i": 12,
+     "text": "是这辆车有没有提前告诉你：还差多少。",
+     "start": 119.2273,
+     "end": 122.8237
+    },
+    {
+     "i": 13,
+     "text": "信息传递的提前量，就是操控感的本质。",
+     "start": 123.5437,
+     "end": 127.3492
+    }
+   ]
+  },
+  {
+   "id": "S4",
+   "name": "电车",
+   "start": 129.7992,
+   "dur": 49.4301,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "第三个。电动车。",
+     "start": 129.7992,
+     "end": 131.8563
+    },
+    {
+     "i": 2,
+     "text": "很多人说，电车加速快，但「没劲」。",
+     "start": 132.4363,
+     "end": 135.5512
+    },
+    {
+     "i": 3,
+     "text": "这话听着矛盾，其实很准确。",
+     "start": 136.1012,
+     "end": 138.8514
+    },
+    {
+     "i": 4,
+     "text": "因为你的身体感知的不是加速度，是加速度的变化率——专业上叫 jerk，加加速度。",
+     "start": 139.4714,
+     "end": 145.9545
+    },
+    {
+     "i": 5,
+     "text": "燃油车踩一脚油门，扭矩是慢慢爬上来的。",
+     "start": 146.8045,
+     "end": 150.4732
+    },
+    {
+     "i": 6,
+     "text": "电车呢？电机在零转速就是满扭矩。",
+     "start": 151.0232,
+     "end": 154.8059
+    },
+    {
+     "i": 7,
+     "text": "你踩下去的那一瞬间，加速度是突然出现的。",
+     "start": 155.2059,
+     "end": 158.838
+    },
+    {
+     "i": 8,
+     "text": "所以推背感更猛，晕车感也更猛。",
+     "start": 159.558,
+     "end": 162.7806
+    },
+    {
+     "i": 9,
+     "text": "密歇根大学有一项研究发现，电动车的纵向 jerk——特别是动能回收松开油门那一下——是晕车的关键触发因素。",
+     "start": 163.4306,
+     "end": 172.0097
+    },
+    {
+     "i": 10,
+     "text": "换句话说，「推背感」和「晕车感」，是同一个物理量的两面。",
+     "start": 172.9097,
+     "end": 178.1293
+    }
+   ]
+  },
+  {
+   "id": "S5",
+   "name": "收束",
+   "start": 180.6793,
+   "dur": 49.7041,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "讲这三个，不是为了让你记住赫兹和阻尼比。",
+     "start": 180.6793,
+     "end": 185.0434
+    },
+    {
+     "i": 2,
+     "text": "是因为它们说明了一件事。",
+     "start": 185.6634,
+     "end": 187.9516
+    },
+    {
+     "i": 3,
+     "text": "参数表能告诉你，这辆车「能做什么」。",
+     "start": 188.7716,
+     "end": 191.9425
+    },
+    {
+     "i": 4,
+     "text": "但它告诉不了你，「坐在里面是什么感觉」。",
+     "start": 192.4625,
+     "end": 195.7502
+    },
+    {
+     "i": 5,
+     "text": "而这，恰恰是 AI 时代最稀缺的东西。",
+     "start": 196.5702,
+     "end": 200.4299
+    },
+    {
+     "i": 6,
+     "text": "AI 可以写出一辆车的所有参数。",
+     "start": 201.4299,
+     "end": 203.9773
+    },
+    {
+     "i": 7,
+     "text": "但它写不出——你过那个减速带时，身体是松的，还是紧的。",
+     "start": 204.5273,
+     "end": 209.9815
+    },
+    {
+     "i": 8,
+     "text": "身体的记忆，是最后一个没法外包的东西。",
+     "start": 210.9015,
+     "end": 214.8316
+    },
+    {
+     "i": 9,
+     "text": "你坐过最让你放心的车，是哪一辆？",
+     "start": 216.2816,
+     "end": 219.262
+    },
+    {
+     "i": 10,
+     "text": "评论区聊聊。",
+     "start": 219.962,
+     "end": 221.0014
+    },
+    {
+     "i": 11,
+     "text": "最后交代一句：这个视频的画面和配音，有 AI 参与；但选题、核实和判断，是人做的。",
+     "start": 221.5514,
+     "end": 229.7834
+    }
+   ]
+  }
+ ],
+ "sentences": [
+  {
+   "seg": "S1",
+   "i": 1,
+   "start": 3.0,
+   "end": 5.0111,
+   "text": "我一直有个想不明白的事。"
+  },
+  {
+   "seg": "S1",
+   "i": 2,
+   "start": 5.7311,
+   "end": 11.4933,
+   "text": "同一段路，同样一张参数表，为什么有的车坐上去，你会松一口气；"
+  },
+  {
+   "seg": "S1",
+   "i": 3,
+   "start": 11.7933,
+   "end": 14.7039,
+   "text": "有的车，你会不自觉地抓紧扶手？"
+  },
+  {
+   "seg": "S1",
+   "i": 4,
+   "start": 15.5239,
+   "end": 17.5517,
+   "text": "我以前觉得这是玄学。"
+  },
+  {
+   "seg": "S1",
+   "i": 5,
+   "start": 18.1317,
+   "end": 22.062,
+   "text": "后来才知道，这件事背后，是三个物理量。"
+  },
+  {
+   "seg": "S2",
+   "i": 1,
+   "start": 24.662,
+   "end": 27.1279,
+   "text": "先说第一个。减速带。"
+  },
+  {
+   "seg": "S2",
+   "i": 2,
+   "start": 27.6779,
+   "end": 32.9796,
+   "text": "你有没有注意过，好车过减速带是「咚」——一声，干净利落。"
+  },
+  {
+   "seg": "S2",
+   "i": 3,
+   "start": 33.4796,
+   "end": 37.0467,
+   "text": "有的车是「咣当」——一下，然后还晃三晃。"
+  },
+  {
+   "seg": "S2",
+   "i": 4,
+   "start": 37.6967,
+   "end": 38.7872,
+   "text": "差别在哪？"
+  },
+  {
+   "seg": "S2",
+   "i": 5,
+   "start": 39.4072,
+   "end": 47.2401,
+   "text": "车身压在一根弹簧上，它有自己爱晃的频率，大概是 1 到 2 赫兹，也就是一秒晃一到两下。"
+  },
+  {
+   "seg": "S2",
+   "i": 6,
+   "start": 47.7901,
+   "end": 53.4903,
+   "text": "车轮在弹簧下面，更轻更硬，它晃得快得多，10 到 15 赫兹。"
+  },
+  {
+   "seg": "S2",
+   "i": 7,
+   "start": 53.9903,
+   "end": 58.2995,
+   "text": "而人的身体，对 4 到 8 赫兹的上下振动最敏感。"
+  },
+  {
+   "seg": "S2",
+   "i": 8,
+   "start": 59.0795,
+   "end": 62.0889,
+   "text": "所以关键，其实不在于「软」还是「硬」。"
+  },
+  {
+   "seg": "S2",
+   "i": 9,
+   "start": 62.7089,
+   "end": 67.0351,
+   "text": "关键在于阻尼——冲击来了，它能不能一次就收住。"
+  },
+  {
+   "seg": "S2",
+   "i": 10,
+   "start": 67.8551,
+   "end": 71.256,
+   "text": "阻尼够，冲击一次就结束，你听到「咚」。"
+  },
+  {
+   "seg": "S2",
+   "i": 11,
+   "start": 71.806,
+   "end": 77.9308,
+   "text": "阻尼不够，能量没吃完，它就会接着晃——你听到「咣当」，身体也跟着晃。"
+  },
+  {
+   "seg": "S3",
+   "i": 1,
+   "start": 80.3808,
+   "end": 82.1081,
+   "text": "第二个。过弯。"
+  },
+  {
+   "seg": "S3",
+   "i": 2,
+   "start": 82.6581,
+   "end": 84.9854,
+   "text": "有的车过弯，你敢踩油门。"
+  },
+  {
+   "seg": "S3",
+   "i": 3,
+   "start": 85.4354,
+   "end": 88.5159,
+   "text": "有的车，你脚一碰到刹车就想减速。"
+  },
+  {
+   "seg": "S3",
+   "i": 4,
+   "start": 89.1359,
+   "end": 92.5251,
+   "text": "差别不在悬架形式，在它给不给你信息。"
+  },
+  {
+   "seg": "S3",
+   "i": 5,
+   "start": 93.2251,
+   "end": 97.4525,
+   "text": "车在过弯的时候，会通过几件事告诉你它的状态："
+  },
+  {
+   "seg": "S3",
+   "i": 6,
+   "start": 97.8025,
+   "end": 102.3264,
+   "text": "方向盘变重多少、车身倾多少、后轮什么时候开始滑。"
+  },
+  {
+   "seg": "S3",
+   "i": 7,
+   "start": 102.9464,
+   "end": 105.9677,
+   "text": "好车，这些信息是一条平滑的线。"
+  },
+  {
+   "seg": "S3",
+   "i": 8,
+   "start": 106.3177,
+   "end": 109.5232,
+   "text": "你手上感觉到「还够」，它真的还够。"
+  },
+  {
+   "seg": "S3",
+   "i": 9,
+   "start": 110.1732,
+   "end": 112.5043,
+   "text": "差的车，这条线是断的。"
+  },
+  {
+   "seg": "S3",
+   "i": 10,
+   "start": 112.9243,
+   "end": 115.6531,
+   "text": "前面很轻松，突然就到了极限。"
+  },
+  {
+   "seg": "S3",
+   "i": 11,
+   "start": 116.4031,
+   "end": 118.6773,
+   "text": "所以「敢不敢踩」不是胆子问题。"
+  },
+  {
+   "seg": "S3",
+   "i": 12,
+   "start": 119.2273,
+   "end": 122.8237,
+   "text": "是这辆车有没有提前告诉你：还差多少。"
+  },
+  {
+   "seg": "S3",
+   "i": 13,
+   "start": 123.5437,
+   "end": 127.3492,
+   "text": "信息传递的提前量，就是操控感的本质。"
+  },
+  {
+   "seg": "S4",
+   "i": 1,
+   "start": 129.7992,
+   "end": 131.8563,
+   "text": "第三个。电动车。"
+  },
+  {
+   "seg": "S4",
+   "i": 2,
+   "start": 132.4363,
+   "end": 135.5512,
+   "text": "很多人说，电车加速快，但「没劲」。"
+  },
+  {
+   "seg": "S4",
+   "i": 3,
+   "start": 136.1012,
+   "end": 138.8514,
+   "text": "这话听着矛盾，其实很准确。"
+  },
+  {
+   "seg": "S4",
+   "i": 4,
+   "start": 139.4714,
+   "end": 145.9545,
+   "text": "因为你的身体感知的不是加速度，是加速度的变化率——专业上叫 jerk，加加速度。"
+  },
+  {
+   "seg": "S4",
+   "i": 5,
+   "start": 146.8045,
+   "end": 150.4732,
+   "text": "燃油车踩一脚油门，扭矩是慢慢爬上来的。"
+  },
+  {
+   "seg": "S4",
+   "i": 6,
+   "start": 151.0232,
+   "end": 154.8059,
+   "text": "电车呢？电机在零转速就是满扭矩。"
+  },
+  {
+   "seg": "S4",
+   "i": 7,
+   "start": 155.2059,
+   "end": 158.838,
+   "text": "你踩下去的那一瞬间，加速度是突然出现的。"
+  },
+  {
+   "seg": "S4",
+   "i": 8,
+   "start": 159.558,
+   "end": 162.7806,
+   "text": "所以推背感更猛，晕车感也更猛。"
+  },
+  {
+   "seg": "S4",
+   "i": 9,
+   "start": 163.4306,
+   "end": 172.0097,
+   "text": "密歇根大学有一项研究发现，电动车的纵向 jerk——特别是动能回收松开油门那一下——是晕车的关键触发因素。"
+  },
+  {
+   "seg": "S4",
+   "i": 10,
+   "start": 172.9097,
+   "end": 178.1293,
+   "text": "换句话说，「推背感」和「晕车感」，是同一个物理量的两面。"
+  },
+  {
+   "seg": "S5",
+   "i": 1,
+   "start": 180.6793,
+   "end": 185.0434,
+   "text": "讲这三个，不是为了让你记住赫兹和阻尼比。"
+  },
+  {
+   "seg": "S5",
+   "i": 2,
+   "start": 185.6634,
+   "end": 187.9516,
+   "text": "是因为它们说明了一件事。"
+  },
+  {
+   "seg": "S5",
+   "i": 3,
+   "start": 188.7716,
+   "end": 191.9425,
+   "text": "参数表能告诉你，这辆车「能做什么」。"
+  },
+  {
+   "seg": "S5",
+   "i": 4,
+   "start": 192.4625,
+   "end": 195.7502,
+   "text": "但它告诉不了你，「坐在里面是什么感觉」。"
+  },
+  {
+   "seg": "S5",
+   "i": 5,
+   "start": 196.5702,
+   "end": 200.4299,
+   "text": "而这，恰恰是 AI 时代最稀缺的东西。"
+  },
+  {
+   "seg": "S5",
+   "i": 6,
+   "start": 201.4299,
+   "end": 203.9773,
+   "text": "AI 可以写出一辆车的所有参数。"
+  },
+  {
+   "seg": "S5",
+   "i": 7,
+   "start": 204.5273,
+   "end": 209.9815,
+   "text": "但它写不出——你过那个减速带时，身体是松的，还是紧的。"
+  },
+  {
+   "seg": "S5",
+   "i": 8,
+   "start": 210.9015,
+   "end": 214.8316,
+   "text": "身体的记忆，是最后一个没法外包的东西。"
+  },
+  {
+   "seg": "S5",
+   "i": 9,
+   "start": 216.2816,
+   "end": 219.262,
+   "text": "你坐过最让你放心的车，是哪一辆？"
+  },
+  {
+   "seg": "S5",
+   "i": 10,
+   "start": 219.962,
+   "end": 221.0014,
+   "text": "评论区聊聊。"
+  },
+  {
+   "seg": "S5",
+   "i": 11,
+   "start": 221.5514,
+   "end": 229.7834,
+   "text": "最后交代一句：这个视频的画面和配音，有 AI 参与；但选题、核实和判断，是人做的。"
+  }
+ ],
+ "shots": [
+  {
+   "id": "c0",
+   "seg": "COLD",
+   "kind": "pil",
+   "scene": "cold_title",
+   "at": {
+    "abs": 0.0
+   },
+   "start": 0.0,
+   "dur": 3.0
+  },
+  {
+   "id": "s1a",
+   "seg": "S1",
+   "kind": "broll",
+   "asset": "night_pov",
+   "in": 1.0,
+   "look": "night",
+   "at": {
+    "seg": "S1",
+    "sent": 1,
+    "off": 0.0
+   },
+   "start": 3.0,
+   "dur": 2.731
+  },
+  {
+   "id": "s1b",
+   "seg": "S1",
+   "kind": "broll",
+   "asset": "car_dash",
+   "in": 1.2,
+   "look": "warm",
+   "overlay": "spec_sheet",
+   "at": {
+    "seg": "S1",
+    "sent": 2,
+    "off": 0.0
+   },
+   "start": 5.731,
+   "dur": 6.062
+  },
+  {
+   "id": "s1c",
+   "seg": "S1",
+   "kind": "broll",
+   "asset": "hands_steering",
+   "in": 1.0,
+   "look": "hand",
+   "overlay": "grip_hint",
+   "at": {
+    "seg": "S1",
+    "sent": 3,
+    "off": 0.0
+   },
+   "start": 11.793,
+   "dur": 3.731
+  },
+  {
+   "id": "s1d",
+   "seg": "S1",
+   "kind": "broll",
+   "asset": "rain_window",
+   "in": 1.5,
+   "look": "night",
+   "overlay": "mystic",
+   "at": {
+    "seg": "S1",
+    "sent": 4,
+    "off": 0.0
+   },
+   "start": 15.524,
+   "dur": 2.608
+  },
+  {
+   "id": "s1e",
+   "seg": "S1",
+   "kind": "pil",
+   "scene": "three_intro",
+   "at": {
+    "seg": "S1",
+    "sent": 5,
+    "off": 0.0
+   },
+   "start": 18.132,
+   "dur": 6.53
+  },
+  {
+   "id": "s2a",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "speed_bump",
+   "in": 1.0,
+   "look": "mud",
+   "at": {
+    "seg": "S2",
+    "sent": 1,
+    "off": 0.0
+   },
+   "start": 24.662,
+   "dur": 3.016
+  },
+  {
+   "id": "s2b",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "wheel_suspension",
+   "in": 1.0,
+   "look": "mud",
+   "overlay": "impact_dong",
+   "at": {
+    "seg": "S2",
+    "sent": 2,
+    "off": 0.0
+   },
+   "start": 27.678,
+   "dur": 5.802
+  },
+  {
+   "id": "s2c",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "speed_bump",
+   "in": 10.2,
+   "look": "mud",
+   "overlay": "impact_wobble",
+   "at": {
+    "seg": "S2",
+    "sent": 3,
+    "off": 0.0
+   },
+   "start": 33.48,
+   "dur": 4.217
+  },
+  {
+   "id": "s2d",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "puddle_night",
+   "in": 1.0,
+   "look": "night",
+   "at": {
+    "seg": "S2",
+    "sent": 4,
+    "off": 0.0
+   },
+   "start": 37.697,
+   "dur": 1.71
+  },
+  {
+   "id": "s2e",
+   "seg": "S2",
+   "kind": "pil",
+   "scene": "susp_body",
+   "at": {
+    "seg": "S2",
+    "sent": 5,
+    "off": 0.0
+   },
+   "start": 39.407,
+   "dur": 8.383
+  },
+  {
+   "id": "s2f",
+   "seg": "S2",
+   "kind": "pil",
+   "scene": "susp_wheel",
+   "at": {
+    "seg": "S2",
+    "sent": 6,
+    "off": 0.0
+   },
+   "start": 47.79,
+   "dur": 6.2
+  },
+  {
+   "id": "s2g",
+   "seg": "S2",
+   "kind": "pil",
+   "scene": "freq_bands",
+   "at": {
+    "seg": "S2",
+    "sent": 7,
+    "off": 0.0
+   },
+   "start": 53.99,
+   "dur": 5.09
+  },
+  {
+   "id": "s2h",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "puddle_night",
+   "in": 4.5,
+   "look": "night",
+   "overlay": "soft_hard",
+   "at": {
+    "seg": "S2",
+    "sent": 8,
+    "off": 0.0
+   },
+   "start": 59.08,
+   "dur": 3.629
+  },
+  {
+   "id": "s2i",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "puddle_night",
+   "in": 7.5,
+   "look": "night",
+   "overlay": "damping_curves",
+   "at": {
+    "seg": "S2",
+    "sent": 9,
+    "off": 0.0
+   },
+   "start": 62.709,
+   "dur": 5.146
+  },
+  {
+   "id": "s2j",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "wheel_suspension",
+   "in": 3.0,
+   "look": "mud",
+   "overlay": "damped_trace",
+   "at": {
+    "seg": "S2",
+    "sent": 10,
+    "off": 0.0
+   },
+   "start": 67.855,
+   "dur": 3.951
+  },
+  {
+   "id": "s2k",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "puddle_night",
+   "in": 11.0,
+   "look": "night",
+   "overlay": "undamped_trace",
+   "at": {
+    "seg": "S2",
+    "sent": 11,
+    "off": 0.0
+   },
+   "start": 71.806,
+   "dur": 2.75
+  },
+  {
+   "id": "s2k2",
+   "seg": "S2",
+   "kind": "broll",
+   "asset": "car_interior_night",
+   "in": 3.0,
+   "look": "night",
+   "overlay": "body_sway",
+   "at": {
+    "seg": "S2",
+    "sent": 11,
+    "off": 2.75
+   },
+   "start": 74.556,
+   "dur": 5.825
+  },
+  {
+   "id": "s3a",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "winding_road",
+   "in": 1.0,
+   "look": "aerial",
+   "at": {
+    "seg": "S3",
+    "sent": 1,
+    "off": 0.0
+   },
+   "start": 80.381,
+   "dur": 5.054
+  },
+  {
+   "id": "s3b",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "brake_pedal",
+   "in": 0.6,
+   "look": "warm",
+   "at": {
+    "seg": "S3",
+    "sent": 3,
+    "off": 0.0
+   },
+   "start": 85.435,
+   "dur": 3.701
+  },
+  {
+   "id": "s3c",
+   "seg": "S3",
+   "kind": "pil",
+   "scene": "not_form",
+   "at": {
+    "seg": "S3",
+    "sent": 4,
+    "off": 0.0
+   },
+   "start": 89.136,
+   "dur": 4.089
+  },
+  {
+   "id": "s3d",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "hands_steering",
+   "in": 3.0,
+   "look": "hand",
+   "overlay": "channels3",
+   "at": {
+    "seg": "S3",
+    "sent": 5,
+    "off": 0.0
+   },
+   "start": 93.225,
+   "dur": 4.577
+  },
+  {
+   "id": "s3e",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "rearview_mirror_2",
+   "in": 1.0,
+   "look": "night",
+   "overlay": "channels_line",
+   "at": {
+    "seg": "S3",
+    "sent": 6,
+    "off": 0.0
+   },
+   "start": 97.802,
+   "dur": 5.144
+  },
+  {
+   "id": "s3f",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "rearview_mirror_2",
+   "in": 2.0,
+   "look": "night",
+   "overlay": "smooth_info",
+   "at": {
+    "seg": "S3",
+    "sent": 7,
+    "off": 0.0
+   },
+   "start": 102.946,
+   "dur": 3.372
+  },
+  {
+   "id": "s3g",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "hands_steering",
+   "in": 6.0,
+   "look": "hand",
+   "overlay": "enough_marker",
+   "at": {
+    "seg": "S3",
+    "sent": 8,
+    "off": 0.0
+   },
+   "start": 106.318,
+   "dur": 3.855
+  },
+  {
+   "id": "s3h",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "rearview_mirror_2",
+   "in": 4.0,
+   "look": "night",
+   "overlay": "broken_info",
+   "at": {
+    "seg": "S3",
+    "sent": 9,
+    "off": 0.0
+   },
+   "start": 110.173,
+   "dur": 2.751
+  },
+  {
+   "id": "s3i",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "winding_road_2",
+   "in": 2.0,
+   "look": "aerial",
+   "overlay": "line_drop",
+   "at": {
+    "seg": "S3",
+    "sent": 10,
+    "off": 0.0
+   },
+   "start": 112.924,
+   "dur": 3.479
+  },
+  {
+   "id": "s3j",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "brake_pedal",
+   "in": 3.5,
+   "look": "warm",
+   "at": {
+    "seg": "S3",
+    "sent": 11,
+    "off": 0.0
+   },
+   "start": 116.403,
+   "dur": 2.824
+  },
+  {
+   "id": "s3k",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "rearview_mirror_2",
+   "in": 6.0,
+   "look": "night",
+   "overlay": "lead_time",
+   "at": {
+    "seg": "S3",
+    "sent": 12,
+    "off": 0.0
+   },
+   "start": 119.227,
+   "dur": 4.317
+  },
+  {
+   "id": "s3l",
+   "seg": "S3",
+   "kind": "broll",
+   "asset": "night_pov",
+   "in": 4.0,
+   "look": "night",
+   "overlay": "ahead_line",
+   "at": {
+    "seg": "S3",
+    "sent": 13,
+    "off": 0.0
+   },
+   "start": 123.544,
+   "dur": 6.255
+  },
+  {
+   "id": "s4a",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "night_car",
+   "in": 1.0,
+   "look": "night",
+   "at": {
+    "seg": "S4",
+    "sent": 1,
+    "off": 0.0
+   },
+   "start": 129.799,
+   "dur": 6.302
+  },
+  {
+   "id": "s4b",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "car_dash",
+   "in": 0.8,
+   "look": "warm",
+   "at": {
+    "seg": "S4",
+    "sent": 3,
+    "off": 0.0
+   },
+   "start": 136.101,
+   "dur": 3.37
+  },
+  {
+   "id": "s4c",
+   "seg": "S4",
+   "kind": "pil",
+   "scene": "jerk_def",
+   "at": {
+    "seg": "S4",
+    "sent": 4,
+    "off": 0.0
+   },
+   "start": 139.471,
+   "dur": 7.333
+  },
+  {
+   "id": "s4d",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "car_engine",
+   "in": 0.6,
+   "look": "warm",
+   "overlay": "torque_ramp",
+   "at": {
+    "seg": "S4",
+    "sent": 5,
+    "off": 0.0
+   },
+   "start": 146.804,
+   "dur": 4.219
+  },
+  {
+   "id": "s4e",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "car_dash",
+   "in": 4.0,
+   "look": "warm",
+   "overlay": "torque_step",
+   "at": {
+    "seg": "S4",
+    "sent": 6,
+    "off": 0.0
+   },
+   "start": 151.023,
+   "dur": 4.183
+  },
+  {
+   "id": "s4f",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "rain_drive",
+   "in": 1.0,
+   "look": "night",
+   "overlay": "jerk_spike",
+   "at": {
+    "seg": "S4",
+    "sent": 7,
+    "off": 0.0
+   },
+   "start": 155.206,
+   "dur": 4.352
+  },
+  {
+   "id": "s4g",
+   "seg": "S4",
+   "kind": "broll",
+   "asset": "car_interior_night",
+   "in": 6.0,
+   "look": "night",
+   "overlay": "push_nausea",
+   "at": {
+    "seg": "S4",
+    "sent": 8,
+    "off": 0.0
+   },
+   "start": 159.558,
+   "dur": 3.873
+  },
+  {
+   "id": "s4h",
+   "seg": "S4",
+   "kind": "pil",
+   "scene": "umtri_card",
+   "at": {
+    "seg": "S4",
+    "sent": 9,
+    "off": 0.0
+   },
+   "start": 163.431,
+   "dur": 9.479
+  },
+  {
+   "id": "s4i",
+   "seg": "S4",
+   "kind": "pil",
+   "scene": "two_sides",
+   "at": {
+    "seg": "S4",
+    "sent": 10,
+    "off": 0.0
+   },
+   "start": 172.91,
+   "dur": 7.769
+  },
+  {
+   "id": "s5a",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "city_night_aerial",
+   "in": 0.6,
+   "look": "night",
+   "overlay": "residual_curves",
+   "at": {
+    "seg": "S5",
+    "sent": 1,
+    "off": 0.0
+   },
+   "start": 180.679,
+   "dur": 4.984
+  },
+  {
+   "id": "s5b",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "car_interior_night",
+   "in": 9.0,
+   "look": "night",
+   "at": {
+    "seg": "S5",
+    "sent": 2,
+    "off": 0.0
+   },
+   "start": 185.663,
+   "dur": 3.109
+  },
+  {
+   "id": "s5c",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "car_dash",
+   "in": 2.0,
+   "look": "warm",
+   "overlay": "spec_can",
+   "at": {
+    "seg": "S5",
+    "sent": 3,
+    "off": 0.0
+   },
+   "start": 188.772,
+   "dur": 3.691
+  },
+  {
+   "id": "s5d",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "hands_steering",
+   "in": 8.0,
+   "look": "hand",
+   "overlay": "spec_cannot",
+   "at": {
+    "seg": "S5",
+    "sent": 4,
+    "off": 0.0
+   },
+   "start": 192.463,
+   "dur": 4.107
+  },
+  {
+   "id": "s5e",
+   "seg": "S5",
+   "kind": "pil",
+   "scene": "converge",
+   "at": {
+    "seg": "S5",
+    "sent": 5,
+    "off": 0.0
+   },
+   "start": 196.57,
+   "dur": 4.86
+  },
+  {
+   "id": "s5f",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "car_dash",
+   "in": 4.0,
+   "look": "warm",
+   "overlay": "ai_specs",
+   "at": {
+    "seg": "S5",
+    "sent": 6,
+    "off": 0.0
+   },
+   "start": 201.43,
+   "dur": 3.097
+  },
+  {
+   "id": "s5g",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "hands_steering",
+   "in": 10.0,
+   "look": "hand",
+   "overlay": "ecg_body",
+   "at": {
+    "seg": "S5",
+    "sent": 7,
+    "off": 0.0
+   },
+   "start": 204.527,
+   "dur": 6.374
+  },
+  {
+   "id": "s5h",
+   "seg": "S5",
+   "kind": "pil",
+   "scene": "merge_ecg",
+   "at": {
+    "seg": "S5",
+    "sent": 8,
+    "off": 0.0
+   },
+   "start": 210.901,
+   "dur": 5.381
+  },
+  {
+   "id": "s5i",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "night_pov",
+   "in": 6.0,
+   "look": "night",
+   "overlay": "question",
+   "at": {
+    "seg": "S5",
+    "sent": 9,
+    "off": 0.0
+   },
+   "start": 216.282,
+   "dur": 3.68
+  },
+  {
+   "id": "s5j",
+   "seg": "S5",
+   "kind": "broll",
+   "asset": "night_car",
+   "in": 3.0,
+   "look": "night",
+   "overlay": "comment",
+   "at": {
+    "seg": "S5",
+    "sent": 10,
+    "off": 0.0
+   },
+   "start": 219.962,
+   "dur": 1.589
+  },
+  {
+   "id": "s5k",
+   "seg": "S5",
+   "kind": "pil",
+   "scene": "end_card",
+   "at": {
+    "seg": "S5",
+    "sent": 11,
+    "off": 0.0
+   },
+   "start": 221.551,
+   "dur": 8.349
+  },
+  {
+   "id": "s5l",
+   "seg": "S5",
+   "kind": "pil",
+   "scene": "end_hold",
+   "at": {
+    "abs": 229.9
+   },
+   "start": 229.9,
+   "dur": 6.983
+  }
+ ]
+}

@@ -1,0 +1,1512 @@
+{
+  "episode": "第04期-你的身体，比参数表更懂车",
+  "generated_at": "2026-11-11 12:48:01",
+  "canvas": {
+    "film": "1920x1080",
+    "fps": 24,
+    "backdrop": "1920x1080 JPG",
+    "note": "成片 2.35:1 遮幅；底片供 Ken Burns/背景层，未调色"
+  },
+  "visual_direction": "真实 B-roll 路面/车内/手部 + 程序化数据层；S2 减速带阻尼、S3 过弯侧倾/后视镜、S4 雨滴/jerk 是视觉核心",
+  "themes": {
+    "speed_bump": {
+      "theme_cn": "减速带/过坎",
+      "queries": [
+        "car driving over speed bump",
+        "speed bump road",
+        "car crossing speed bump",
+        "driving over bumpy road",
+        "car driving mud road",
+        "car driving dirt road",
+        "car moving on sloppy road",
+        "car on gravel road"
+      ],
+      "use_hint": "S2 核心画面：车轮压过减速带；“咚/咣当”的实拍锚点，可接阻尼振荡曲线"
+    },
+    "wheel_suspension": {
+      "theme_cn": "车轮/悬架特写",
+      "queries": [
+        "car wheel close up",
+        "car suspension",
+        "shock absorber",
+        "car tire close up",
+        "wheel suspension car",
+        "car wheel on dirt road",
+        "rain on car tire"
+      ],
+      "use_hint": "S2 车轮-弹簧-减振器结构解释的实拍底；100mm 微距质感（胎面/轮拱）"
+    },
+    "wet_road_night": {
+      "theme_cn": "雨夜路面积水倒影",
+      "queries": [
+        "wet road night",
+        "rain road reflection",
+        "puddle reflection night",
+        "wet asphalt night"
+      ],
+      "use_hint": "S2 阻尼曲线载体：车身倒影在积水里荡开又收敛；S4 雨夜路面"
+    },
+    "winding_road": {
+      "theme_cn": "弯道/山路",
+      "queries": [
+        "winding mountain road aerial",
+        "curved road",
+        "mountain road drive",
+        "bend road aerial"
+      ],
+      "use_hint": "S3 过弯：弯道路面/山路俯拍，接侧倾角—横向加速度曲线"
+    },
+    "rearview_mirror": {
+      "theme_cn": "后视镜",
+      "queries": [
+        "rear view mirror driving",
+        "car side mirror road",
+        "mirror car driving"
+      ],
+      "use_hint": "S3 核心观察界面：后视镜里车身与地平线夹角，侧倾角曲线依附其上"
+    },
+    "windshield_rain": {
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "queries": [
+        "rain on windshield",
+        "rain windshield driving",
+        "raindrops windshield",
+        "rain drops car window driving"
+      ],
+      "use_hint": "S4 jerk 载体：加速瞬间雨滴被甩出的轨迹；S5 情绪收束"
+    },
+    "hands_steering": {
+      "theme_cn": "手握方向盘特写",
+      "queries": [
+        "hands on steering wheel",
+        "steering wheel close up",
+        "driver hands steering wheel",
+        "hand steering wheel driving"
+      ],
+      "use_hint": "S1/S3/S5 身体层：手握方向盘微调、回正力矩的触感特写"
+    },
+    "night_driving": {
+      "theme_cn": "夜间行车",
+      "queries": [
+        "night driving car",
+        "car driving night road",
+        "night road headlights",
+        "driving at night"
+      ],
+      "use_hint": "S1/S5 夜间行车氛围；S3 信心与信息提前量的长镜头"
+    }
+  },
+  "stock": [
+    {
+      "file": "assets/stock/hands_steering_01.mp4",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.88,
+      "fps": "30",
+      "filesize": 5085561,
+      "use_hint": "S1/S3/S5 身体层：手握方向盘微调、回正力矩的触感特写",
+      "frames": [
+        "assets/backdrops/hands_steering_01_01.jpg",
+        "assets/backdrops/hands_steering_01_02.jpg",
+        "assets/backdrops/hands_steering_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/close-up-of-a-person-holding-steering-wheel-9130073/",
+      "pexels_id": 9130073,
+      "query": "hands on steering wheel",
+      "author": "Dario Fernandez Ruz",
+      "author_url": "https://www.pexels.com/@dario-fernandez-ruz",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/hands_steering_02.mp4",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "width": 1920,
+      "height": 1080,
+      "duration": 7.98,
+      "fps": "24",
+      "filesize": 4731901,
+      "use_hint": "S1/S3/S5 身体层：手握方向盘微调、回正力矩的触感特写",
+      "frames": [
+        "assets/backdrops/hands_steering_02_01.jpg",
+        "assets/backdrops/hands_steering_02_02.jpg",
+        "assets/backdrops/hands_steering_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/close-up-view-of-hands-on-steering-wheel-11675556/",
+      "pexels_id": 11675556,
+      "query": "hands on steering wheel",
+      "author": "Sergei Skrynnik",
+      "author_url": "https://www.pexels.com/@screeny42",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/night_driving_01.mp4",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "width": 1920,
+      "height": 1080,
+      "duration": 10.9,
+      "fps": "25",
+      "filesize": 5258082,
+      "use_hint": "S1/S5 夜间行车氛围；S3 信心与信息提前量的长镜头",
+      "frames": [
+        "assets/backdrops/night_driving_01_01.jpg",
+        "assets/backdrops/night_driving_01_02.jpg",
+        "assets/backdrops/night_driving_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/a-car-driving-through-a-city-at-night-19830439/",
+      "pexels_id": 19830439,
+      "query": "night driving car",
+      "author": "Orhan Pergel",
+      "author_url": "https://www.pexels.com/@skylake",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/night_driving_02.mp4",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "width": 1920,
+      "height": 1080,
+      "duration": 7.51,
+      "fps": "24",
+      "filesize": 5018960,
+      "use_hint": "S1/S5 夜间行车氛围；S3 信心与信息提前量的长镜头",
+      "frames": [
+        "assets/backdrops/night_driving_02_01.jpg",
+        "assets/backdrops/night_driving_02_02.jpg",
+        "assets/backdrops/night_driving_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/car-driving-at-night-13643105/",
+      "pexels_id": 13643105,
+      "query": "night road headlights",
+      "author": "Erik Mclean",
+      "author_url": "https://www.pexels.com/@introspectivedsgn",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/rearview_mirror_01.mp4",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "width": 1920,
+      "height": 1080,
+      "duration": 20.37,
+      "fps": "30",
+      "filesize": 15207001,
+      "use_hint": "S3 核心观察界面：后视镜里车身与地平线夹角，侧倾角曲线依附其上",
+      "frames": [
+        "assets/backdrops/rearview_mirror_01_01.jpg",
+        "assets/backdrops/rearview_mirror_01_02.jpg",
+        "assets/backdrops/rearview_mirror_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/view-from-the-side-mirror-of-a-moving-car-4974625/",
+      "pexels_id": 4974625,
+      "query": "car side mirror road",
+      "author": "https://kaboompics.com/",
+      "author_url": "https://www.pexels.com/@karola-g",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/rearview_mirror_02.mp4",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "width": 1920,
+      "height": 1080,
+      "duration": 8.12,
+      "fps": "25",
+      "filesize": 5374530,
+      "use_hint": "S3 核心观察界面：后视镜里车身与地平线夹角，侧倾角曲线依附其上",
+      "frames": [
+        "assets/backdrops/rearview_mirror_02_01.jpg",
+        "assets/backdrops/rearview_mirror_02_02.jpg",
+        "assets/backdrops/rearview_mirror_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/rearview-mirror-driving-on-scenic-highway-34001033/",
+      "pexels_id": 34001033,
+      "query": "car side mirror road",
+      "author": "Damir K",
+      "author_url": "https://www.pexels.com/@damir",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/speed_bump_01.mp4",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "width": 2560,
+      "height": 1440,
+      "duration": 16.36,
+      "fps": "30",
+      "filesize": 27625207,
+      "use_hint": "S2 核心画面：车轮压过减速带；“咚/咣当”的实拍锚点，可接阻尼振荡曲线",
+      "frames": [
+        "assets/backdrops/speed_bump_01_01.jpg",
+        "assets/backdrops/speed_bump_01_02.jpg",
+        "assets/backdrops/speed_bump_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/coming-at-you-through-a-large-puddle-19516511/",
+      "pexels_id": 19516511,
+      "query": "manual-pick (Pexels 无真实减速带片段，用过水坑替代)",
+      "author": "Rock Pifer",
+      "author_url": "https://www.pexels.com/@rock-pifer-804693923",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/speed_bump_02.mp4",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "width": 1920,
+      "height": 1080,
+      "duration": 6.02,
+      "fps": "24",
+      "filesize": 4804657,
+      "use_hint": "S2 核心画面：车轮压过减速带；“咚/咣当”的实拍锚点，可接阻尼振荡曲线",
+      "frames": [
+        "assets/backdrops/speed_bump_02_01.jpg",
+        "assets/backdrops/speed_bump_02_02.jpg",
+        "assets/backdrops/speed_bump_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/car-driving-through-mud-11794068/",
+      "pexels_id": 11794068,
+      "query": "manual-pick (车轮压过烂路，替代减速带过坎)",
+      "author": "Connor Scott McManus",
+      "author_url": "https://www.pexels.com/@connorscottmcmanus",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wet_road_night_01.mp4",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "width": 1920,
+      "height": 1080,
+      "duration": 15.05,
+      "fps": "59.94",
+      "filesize": 36420104,
+      "use_hint": "S2 阻尼曲线载体：车身倒影在积水里荡开又收敛；S4 雨夜路面",
+      "frames": [
+        "assets/backdrops/wet_road_night_01_01.jpg",
+        "assets/backdrops/wet_road_night_01_02.jpg",
+        "assets/backdrops/wet_road_night_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/moody-urban-street-scene-with-reflections-at-night-40863419/",
+      "pexels_id": 40863419,
+      "query": "wet road night",
+      "author": "Evgenij Mikhailov",
+      "author_url": "https://www.pexels.com/@evgenij-mikhailov-118166450",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wet_road_night_02.mp4",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.99,
+      "fps": "23.98",
+      "filesize": 9252536,
+      "use_hint": "S2 阻尼曲线载体：车身倒影在积水里荡开又收敛；S4 雨夜路面",
+      "frames": [
+        "assets/backdrops/wet_road_night_02_01.jpg",
+        "assets/backdrops/wet_road_night_02_02.jpg",
+        "assets/backdrops/wet_road_night_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/street-during-rain-at-night-12570193/",
+      "pexels_id": 12570193,
+      "query": "wet road night",
+      "author": "Ricky Esquivel",
+      "author_url": "https://www.pexels.com/@rickyesquivel",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wet_road_night_03.mp4",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "width": 1920,
+      "height": 1080,
+      "duration": 14.19,
+      "fps": "24",
+      "filesize": 4724817,
+      "use_hint": "S2 阻尼曲线载体：车身倒影在积水里荡开又收敛；S4 雨夜路面",
+      "frames": [
+        "assets/backdrops/wet_road_night_03_01.jpg",
+        "assets/backdrops/wet_road_night_03_02.jpg",
+        "assets/backdrops/wet_road_night_03_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/driving-on-road-in-rain-at-night-11785816/",
+      "pexels_id": 11785816,
+      "query": "wet road night",
+      "author": "Özge  Kurban",
+      "author_url": "https://www.pexels.com/@ozge-kurban-212560441",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wheel_suspension_01.mp4",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "width": 1920,
+      "height": 1080,
+      "duration": 27.33,
+      "fps": "29.97",
+      "filesize": 20368654,
+      "use_hint": "S2 车轮-弹簧-减振器结构解释的实拍底；100mm 微距质感（胎面/轮拱）",
+      "frames": [
+        "assets/backdrops/wheel_suspension_01_01.jpg",
+        "assets/backdrops/wheel_suspension_01_02.jpg",
+        "assets/backdrops/wheel_suspension_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/view-on-car-wheel-driving-on-desert-10358974/",
+      "pexels_id": 10358974,
+      "query": "manual-pick",
+      "author": "Denys Gromov",
+      "author_url": "https://www.pexels.com/@jdgromov",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wheel_suspension_02.mp4",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "width": 1920,
+      "height": 1080,
+      "duration": 6.13,
+      "fps": "30",
+      "filesize": 3562811,
+      "use_hint": "S2 车轮-弹簧-减振器结构解释的实拍底；100mm 微距质感（胎面/轮拱）",
+      "frames": [
+        "assets/backdrops/wheel_suspension_02_01.jpg",
+        "assets/backdrops/wheel_suspension_02_02.jpg",
+        "assets/backdrops/wheel_suspension_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/close-up-of-car-tire-on-a-dirt-road-29902177/",
+      "pexels_id": 29902177,
+      "query": "manual-pick",
+      "author": "Hakan Kayahan",
+      "author_url": "https://www.pexels.com/@hakan-kayahan-1453673684",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/wheel_suspension_03.mp4",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "width": 1920,
+      "height": 1080,
+      "duration": 9.73,
+      "fps": "60",
+      "filesize": 5724755,
+      "use_hint": "S2 车轮-弹簧-减振器结构解释的实拍底；100mm 微距质感（胎面/轮拱）",
+      "frames": [
+        "assets/backdrops/wheel_suspension_03_01.jpg",
+        "assets/backdrops/wheel_suspension_03_02.jpg",
+        "assets/backdrops/wheel_suspension_03_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/mechanic-working-on-car-suspension-system-40300734/",
+      "pexels_id": 40300734,
+      "query": "manual-pick",
+      "author": "Alex Vo",
+      "author_url": "https://www.pexels.com/@alex-vo-2157406627",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/winding_road_01.mp4",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.81,
+      "fps": "29.97",
+      "filesize": 8694374,
+      "use_hint": "S3 过弯：弯道路面/山路俯拍，接侧倾角—横向加速度曲线",
+      "frames": [
+        "assets/backdrops/winding_road_01_01.jpg",
+        "assets/backdrops/winding_road_01_02.jpg",
+        "assets/backdrops/winding_road_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/drone-footage-of-a-winding-mountain-road-15952966/",
+      "pexels_id": 15952966,
+      "query": "winding mountain road aerial",
+      "author": "Nitin Khajotia",
+      "author_url": "https://www.pexels.com/@nitin-khajotia-55235902",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/winding_road_02.mp4",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "width": 1920,
+      "height": 1080,
+      "duration": 14.1,
+      "fps": "59.94",
+      "filesize": 14316978,
+      "use_hint": "S3 过弯：弯道路面/山路俯拍，接侧倾角—横向加速度曲线",
+      "frames": [
+        "assets/backdrops/winding_road_02_01.jpg",
+        "assets/backdrops/winding_road_02_02.jpg",
+        "assets/backdrops/winding_road_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/majestic-aerial-view-of-curved-mountain-roads-39306857/",
+      "pexels_id": 39306857,
+      "query": "manual-pick (替换含品牌涂装赛车)",
+      "author": "Florian Delée",
+      "author_url": "https://www.pexels.com/@florian-delee-209542985",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/winding_road_03.mp4",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.34,
+      "fps": "29.97",
+      "filesize": 8428053,
+      "use_hint": "S3 过弯：弯道路面/山路俯拍，接侧倾角—横向加速度曲线",
+      "frames": [
+        "assets/backdrops/winding_road_03_01.jpg",
+        "assets/backdrops/winding_road_03_02.jpg",
+        "assets/backdrops/winding_road_03_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/drone-view-of-winding-mountain-roads-13126809/",
+      "pexels_id": 13126809,
+      "query": "winding mountain road aerial",
+      "author": "Flu Photography",
+      "author_url": "https://www.pexels.com/@flu-photography-251116872",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/windshield_rain_01.mp4",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "width": 1920,
+      "height": 1080,
+      "duration": 19.76,
+      "fps": "25",
+      "filesize": 11202904,
+      "use_hint": "S4 jerk 载体：加速瞬间雨滴被甩出的轨迹；S5 情绪收束",
+      "frames": [
+        "assets/backdrops/windshield_rain_01_01.jpg",
+        "assets/backdrops/windshield_rain_01_02.jpg",
+        "assets/backdrops/windshield_rain_01_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/a-person-driving-a-car-while-raining-wipers-on-working-on-the-windshield-3913495/",
+      "pexels_id": 3913495,
+      "query": "rain windshield driving",
+      "author": "Lars Mai",
+      "author_url": "https://www.pexels.com/@larsmai",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/windshield_rain_02.mp4",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "width": 1920,
+      "height": 1080,
+      "duration": 14.83,
+      "fps": "24",
+      "filesize": 8611739,
+      "use_hint": "S4 jerk 载体：加速瞬间雨滴被甩出的轨迹；S5 情绪收束",
+      "frames": [
+        "assets/backdrops/windshield_rain_02_01.jpg",
+        "assets/backdrops/windshield_rain_02_02.jpg",
+        "assets/backdrops/windshield_rain_02_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/rain-droplets-on-windshield-close-up-34479250/",
+      "pexels_id": 34479250,
+      "query": "raindrops windshield",
+      "author": "Jonathan David",
+      "author_url": "https://www.pexels.com/@jonathan-david-1312107",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/windshield_rain_03.mp4",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.44,
+      "fps": "29.97",
+      "filesize": 7377096,
+      "use_hint": "S4 jerk 载体：加速瞬间雨滴被甩出的轨迹；S5 情绪收束",
+      "frames": [
+        "assets/backdrops/windshield_rain_03_01.jpg",
+        "assets/backdrops/windshield_rain_03_02.jpg",
+        "assets/backdrops/windshield_rain_03_03.jpg"
+      ],
+      "source": "https://www.pexels.com/video/video-in-a-car-wiping-the-windshield-while-raining-6194746/",
+      "pexels_id": 6194746,
+      "query": "rain on windshield",
+      "author": "sol bittencourt",
+      "author_url": "https://www.pexels.com/@sol-bittencourt-3107957",
+      "license": "Pexels License"
+    },
+    {
+      "file": "assets/stock/car_engine.mp4",
+      "theme": "car_engine",
+      "theme_cn": "发动机舱",
+      "width": 1920,
+      "height": 1080,
+      "duration": 11.3,
+      "fps": "23.98",
+      "filesize": 2466411,
+      "use_hint": "S4 燃油车扭矩爬升（转速缓慢上爬的实拍）",
+      "frames": [
+        "assets/backdrops/car_engine_01.jpg",
+        "assets/backdrops/car_engine_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/car_dash.mp4",
+      "theme": "car_dash",
+      "theme_cn": "仪表盘",
+      "width": 1920,
+      "height": 1080,
+      "duration": 10.59,
+      "fps": "23.98",
+      "filesize": 3779091,
+      "use_hint": "S1 参数表对照、S4 速度感/数字与现实对照",
+      "frames": [
+        "assets/backdrops/car_dash_01.jpg",
+        "assets/backdrops/car_dash_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/brake_pedal.mp4",
+      "theme": "brake_pedal",
+      "theme_cn": "刹车踏板",
+      "width": 1920,
+      "height": 1080,
+      "duration": 10.08,
+      "fps": "100",
+      "filesize": 5042092,
+      "use_hint": "S2 减速动作、S4 动能回收松油门",
+      "frames": [
+        "assets/backdrops/brake_pedal_01.jpg",
+        "assets/backdrops/brake_pedal_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/car_interior_night.mp4",
+      "theme": "car_interior_night",
+      "theme_cn": "夜间车内",
+      "width": 1920,
+      "height": 1080,
+      "duration": 10.9,
+      "fps": "25",
+      "filesize": 5258082,
+      "use_hint": "S3 过弯车内视角、S5 收束",
+      "frames": [
+        "assets/backdrops/car_interior_night_01.jpg",
+        "assets/backdrops/car_interior_night_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/steering_night.mp4",
+      "theme": "steering_night",
+      "theme_cn": "夜间方向盘",
+      "width": 1920,
+      "height": 1080,
+      "duration": 9.34,
+      "fps": "29.97",
+      "filesize": 8044399,
+      "use_hint": "S3 方向盘回正力矩/信息提前量",
+      "frames": [
+        "assets/backdrops/steering_night_01.jpg",
+        "assets/backdrops/steering_night_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/battery.mp4",
+      "theme": "battery",
+      "theme_cn": "电池包",
+      "width": 1920,
+      "height": 1080,
+      "duration": 12.44,
+      "fps": "25",
+      "filesize": 2173760,
+      "use_hint": "S4 电动化转场（油→电）",
+      "frames": [
+        "assets/backdrops/battery_01.jpg",
+        "assets/backdrops/battery_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/rain_window.mp4",
+      "theme": "rain_window",
+      "theme_cn": "雨窗",
+      "width": 1920,
+      "height": 1080,
+      "duration": 9.94,
+      "fps": "30",
+      "filesize": 6501078,
+      "use_hint": "S4 雨滴/视线模糊，jerk 的情绪铺垫",
+      "frames": [
+        "assets/backdrops/rain_window_01.jpg",
+        "assets/backdrops/rain_window_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/metro_window.mp4",
+      "theme": "metro_window",
+      "theme_cn": "地铁车窗",
+      "width": 1920,
+      "height": 1080,
+      "duration": 9.47,
+      "fps": "30",
+      "filesize": 2910217,
+      "use_hint": "S1 通勤/城市日常，困惑开场",
+      "frames": [
+        "assets/backdrops/metro_window_01.jpg",
+        "assets/backdrops/metro_window_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    },
+    {
+      "file": "assets/stock/city_night_aerial.mp4",
+      "theme": "city_night_aerial",
+      "theme_cn": "城市夜景航拍",
+      "width": 1920,
+      "height": 1080,
+      "duration": 9.08,
+      "fps": "29.97",
+      "filesize": 6644321,
+      "use_hint": "S1/S5 城市夜景、情绪留白",
+      "frames": [
+        "assets/backdrops/city_night_aerial_01.jpg",
+        "assets/backdrops/city_night_aerial_02.jpg"
+      ],
+      "source": "legacy: /app/vedio/ep01-hybrid/assets/stock/（ep01 fetch_stock.py 从 Pexels 获取，原始出处未记录）",
+      "pexels_id": null,
+      "author": null,
+      "author_url": null,
+      "license": "Pexels License（经 ep01-hybrid 获取；原始作者信息未留存）"
+    }
+  ],
+  "backdrops": [
+    {
+      "file": "assets/backdrops/hands_steering_01_01.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/hands_steering_01_02.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/hands_steering_01_03.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/hands_steering_02_01.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/hands_steering_02_02.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/hands_steering_02_03.jpg",
+      "theme": "hands_steering",
+      "theme_cn": "手握方向盘特写",
+      "source_stock": "assets/stock/hands_steering_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_01_01.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_01_02.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_01_03.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_02_01.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_02_02.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/night_driving_02_03.jpg",
+      "theme": "night_driving",
+      "theme_cn": "夜间行车",
+      "source_stock": "assets/stock/night_driving_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_01_01.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_01_02.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_01_03.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_02_01.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_02_02.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rearview_mirror_02_03.jpg",
+      "theme": "rearview_mirror",
+      "theme_cn": "后视镜",
+      "source_stock": "assets/stock/rearview_mirror_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_01_01.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_01_02.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_01_03.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_02_01.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_02_02.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/speed_bump_02_03.jpg",
+      "theme": "speed_bump",
+      "theme_cn": "减速带/过坎",
+      "source_stock": "assets/stock/speed_bump_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_01_01.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_01_02.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_01_03.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_02_01.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_02_02.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_02_03.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_03_01.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_03_02.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wet_road_night_03_03.jpg",
+      "theme": "wet_road_night",
+      "theme_cn": "雨夜路面积水倒影",
+      "source_stock": "assets/stock/wet_road_night_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_01_01.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_01_02.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_01_03.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_02_01.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_02_02.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_02_03.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_03_01.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_03_02.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/wheel_suspension_03_03.jpg",
+      "theme": "wheel_suspension",
+      "theme_cn": "车轮/悬架特写",
+      "source_stock": "assets/stock/wheel_suspension_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_01_01.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_01_02.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_01_03.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_02_01.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_02_02.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_02_03.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_03_01.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_03_02.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/winding_road_03_03.jpg",
+      "theme": "winding_road",
+      "theme_cn": "弯道/山路",
+      "source_stock": "assets/stock/winding_road_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_01_01.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_01_02.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_01_03.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_01.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_02_01.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_02_02.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_02_03.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_02.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_03_01.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_03_02.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/windshield_rain_03_03.jpg",
+      "theme": "windshield_rain",
+      "theme_cn": "挡风玻璃雨滴（行驶中）",
+      "source_stock": "assets/stock/windshield_rain_03.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_engine_01.jpg",
+      "theme": "car_engine",
+      "theme_cn": "发动机舱",
+      "source_stock": "assets/stock/car_engine.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_engine_02.jpg",
+      "theme": "car_engine",
+      "theme_cn": "发动机舱",
+      "source_stock": "assets/stock/car_engine.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_dash_01.jpg",
+      "theme": "car_dash",
+      "theme_cn": "仪表盘",
+      "source_stock": "assets/stock/car_dash.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_dash_02.jpg",
+      "theme": "car_dash",
+      "theme_cn": "仪表盘",
+      "source_stock": "assets/stock/car_dash.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/brake_pedal_01.jpg",
+      "theme": "brake_pedal",
+      "theme_cn": "刹车踏板",
+      "source_stock": "assets/stock/brake_pedal.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/brake_pedal_02.jpg",
+      "theme": "brake_pedal",
+      "theme_cn": "刹车踏板",
+      "source_stock": "assets/stock/brake_pedal.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_interior_night_01.jpg",
+      "theme": "car_interior_night",
+      "theme_cn": "夜间车内",
+      "source_stock": "assets/stock/car_interior_night.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/car_interior_night_02.jpg",
+      "theme": "car_interior_night",
+      "theme_cn": "夜间车内",
+      "source_stock": "assets/stock/car_interior_night.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/steering_night_01.jpg",
+      "theme": "steering_night",
+      "theme_cn": "夜间方向盘",
+      "source_stock": "assets/stock/steering_night.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/steering_night_02.jpg",
+      "theme": "steering_night",
+      "theme_cn": "夜间方向盘",
+      "source_stock": "assets/stock/steering_night.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/battery_01.jpg",
+      "theme": "battery",
+      "theme_cn": "电池包",
+      "source_stock": "assets/stock/battery.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/battery_02.jpg",
+      "theme": "battery",
+      "theme_cn": "电池包",
+      "source_stock": "assets/stock/battery.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rain_window_01.jpg",
+      "theme": "rain_window",
+      "theme_cn": "雨窗",
+      "source_stock": "assets/stock/rain_window.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/rain_window_02.jpg",
+      "theme": "rain_window",
+      "theme_cn": "雨窗",
+      "source_stock": "assets/stock/rain_window.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/metro_window_01.jpg",
+      "theme": "metro_window",
+      "theme_cn": "地铁车窗",
+      "source_stock": "assets/stock/metro_window.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/metro_window_02.jpg",
+      "theme": "metro_window",
+      "theme_cn": "地铁车窗",
+      "source_stock": "assets/stock/metro_window.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/city_night_aerial_01.jpg",
+      "theme": "city_night_aerial",
+      "theme_cn": "城市夜景航拍",
+      "source_stock": "assets/stock/city_night_aerial.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    },
+    {
+      "file": "assets/backdrops/city_night_aerial_02.jpg",
+      "theme": "city_night_aerial",
+      "theme_cn": "城市夜景航拍",
+      "source_stock": "assets/stock/city_night_aerial.mp4",
+      "frame_time": null,
+      "width": 1920,
+      "height": 1080,
+      "note": "仅等比缩放+中心裁切，未做最终调色"
+    }
+  ],
+  "summary": {
+    "stock_total": 29,
+    "stock_new_pexels": 20,
+    "stock_legacy": 9,
+    "backdrops_total": 78,
+    "download_mb": 202.0,
+    "stock_total_mb": 242.8,
+    "budget_mb": 400
+  }
+}
