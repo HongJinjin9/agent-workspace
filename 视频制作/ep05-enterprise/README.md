@@ -134,4 +134,11 @@ python3 gen_cover.py && python3 make_contact_sheet.py
 - 主标题：为什么公司越大，越容易自己绊自己；副标题：一条逃不掉的数学，和三种不同的应对
 - 简介与置顶评论：见 `自媒体稿/第05期-为什么公司越大，越容易自己绊自己.md` §8
 - 封面：`delivery/cover-16x9.jpg` / `cover-1x1.jpg` / `cover-3x4.jpg`；联系表：`delivery/contact-sheet.jpg`
-- 播出状态：**待评审**（尚未发布）
+- 播出状态：**已发布**（2026-11-13，见下方发布记录）
+
+
+## 十、发布记录（2026-11-13）
+
+- **微信视频号**：已发表（2026-11-13 07:35 北京 / 2026-11-12 23:35 UTC）。发布账号「山的大山的山」（视频号 ID `sphoclgmaffC0it`）；视频数 43 → 44；短标题「为什么公司越大越容易自己绊自己」；3:4 自定义封面；视频标注「含AI生成内容」；描述含简介、话题标签与 AI 辅助制作声明/引用来源；位置深圳市（账号默认）；声明原创未勾选；不定时发表。
+- **哔哩哔哩**：已发布（2026-11-13 07:40 北京 / 2026-11-12 23:40 UTC）：<https://www.bilibili.com/video/BV12GWe6vEYH/>。发布账号「_大山」；标题「为什么公司越大，越容易自己绊自己｜一条逃不掉的数学，和三种不同的应对」；时长 04:00；分区 科技数码；创作声明「含AI生成内容」；16:9 自定义封面（同步 4:3 展示）；标签 组织管理 / 大公司 / 变革疲劳 / 职场观察 / 管理 / 职场 / 组织行为学 / 科层制 / 知识科普；简介含 AI 声明与引用来源；转码完成（360P/480P/720P/1080P 高清）；审核通过，公开页可见「含AI生成内容」标注。
+- 发布证据（Release `ep05-enterprise-video` 资产）：`wx-01-create-page.jpg`（发表页）、`wx-02-form-before-publish.jpg`（文案/封面/标注填好后）、`wx-03-publish-success.jpg`（发表成功提示）、`wx-04-published-list.jpg`（视频号作品数 43→44）、`bili-01-submitted.jpg`（投稿成功页）、`bili-02-submission-progress.jpg`（转码完成/审核进度）、`bili-03-manager-list.jpg`（稿件管理列表首条）、`bili-04-video-page.jpg`（B 站公开视频页，含「含AI生成内容」标注）；本地留存于 `delivery/publish-evidence/`（按惯例不入库）。
