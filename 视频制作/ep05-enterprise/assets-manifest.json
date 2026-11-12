@@ -1,0 +1,518 @@
+{
+ "episode": "第 05 期《为什么公司越大，越容易自己绊自己》",
+ "generated_by": "ep05assets.py",
+ "generated_at_utc": "2026-11-12T15:02:53Z",
+ "spec": "SPEC.md（1920x1080 / 24fps / 2.35:1 遮幅 / H.264 High + AAC 48k）",
+ "broll_stock": {
+  "city_night_01.mp4": {
+   "bytes": 89417785,
+   "duration_s": 15.64,
+   "resolution": "3840x2160",
+   "fps": 23.98,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "city_night_aerial.mp4": {
+   "bytes": 6644321,
+   "duration_s": 9.08,
+   "resolution": "1920x1080",
+   "fps": 29.97,
+   "source": "ep01-hybrid/assets/stock",
+   "license": "Pexels License"
+  },
+  "citynight.mp4": {
+   "bytes": 20196940,
+   "duration_s": 15.64,
+   "resolution": "1920x1080",
+   "fps": 23.98,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "desk_night_01.mp4": {
+   "bytes": 17999659,
+   "duration_s": 12.01,
+   "resolution": "3840x2160",
+   "fps": 29.97,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "desk_night_02.mp4": {
+   "bytes": 22314290,
+   "duration_s": 16.3,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "empty_chair.mp4": {
+   "bytes": 6354575,
+   "duration_s": 9.26,
+   "resolution": "1920x1080",
+   "fps": 25.0,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "handwriting_01.mp4": {
+   "bytes": 41742280,
+   "duration_s": 23.19,
+   "resolution": "3840x2160",
+   "fps": 23.98,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "keyboard_typing.mp4": {
+   "bytes": 5310279,
+   "duration_s": 8.5,
+   "resolution": "1920x1080",
+   "fps": 30.0,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "laptop_night_01.mp4": {
+   "bytes": 13692976,
+   "duration_s": 9.4,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "night_desk.mp4": {
+   "bytes": 920963,
+   "duration_s": 12.01,
+   "resolution": "1280x720",
+   "fps": 29.97,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "paper_texture_01.mp4": {
+   "bytes": 18131661,
+   "duration_s": 12.87,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "pen_writing_01.mp4": {
+   "bytes": 14581734,
+   "duration_s": 9.49,
+   "resolution": "2732x1440",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "rain_window_01.mp4": {
+   "bytes": 8263331,
+   "duration_s": 12.01,
+   "resolution": "1920x1080",
+   "fps": 29.97,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "signing_01.mp4": {
+   "bytes": 25299842,
+   "duration_s": 8.8,
+   "resolution": "3840x2160",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  }
+ },
+ "logical_to_file": {
+  "comfy_c1": {
+   "file": "c1.mp4",
+   "shots": [
+    "s1a",
+    "s1f",
+    "s2g",
+    "s6e"
+   ]
+  },
+  "comfy_c2": {
+   "file": "c2.mp4",
+   "shots": [
+    "s1b"
+   ]
+  },
+  "comfy_c3": {
+   "file": "c3.mp4",
+   "shots": [
+    "s1c"
+   ]
+  },
+  "signing": {
+   "file": "signing_01.mp4",
+   "shots": [
+    "s1d"
+   ]
+  },
+  "comfy_c8": {
+   "file": "c8.mp4",
+   "shots": [
+    "s2e",
+    "s6b"
+   ]
+  },
+  "comfy_c5": {
+   "file": "c5.mp4",
+   "shots": [
+    "s3a",
+    "s3d"
+   ]
+  },
+  "comfy_c4": {
+   "file": "c4.mp4",
+   "shots": [
+    "s3c"
+   ]
+  },
+  "comfy_c6": {
+   "file": "c6.mp4",
+   "shots": [
+    "s4a"
+   ]
+  },
+  "comfy_c7": {
+   "file": "c7.mp4",
+   "shots": [
+    "s5a"
+   ]
+  },
+  "empty_chair": {
+   "file": "empty_chair.mp4",
+   "shots": [
+    "s5d"
+   ]
+  }
+ },
+ "comfy_h3": {
+  "note": "ComfyUI H3 实拍质感镜头（SPEC §0 空间层）：8 条 c1–c8 全部由 RTX5090 租用实例生成，864x480 生成后统一放大到 1920x1080/24fps（c1–c8 为 app:4x-UltraSharp+lanczos 版本，upgrade 完成于 2026-11-12 14:37–14:50Z），13 个 comfy 镜头全部使用真实 H3 画面，未使用 SPEC §0 退化 B-roll（fallback 仅作为备用方案保留）。",
+  "clips": {
+   "comfy_c1": {
+    "path": "assets/comfy/c1.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Corridor slow push-in, folder handed along",
+    "shots": [
+     "s1a",
+     "s1f",
+     "s2g",
+     "s6e"
+    ],
+    "seed": 202611120501,
+    "job_id": "0fe514bf-092e-46e2-ad6e-c688e8e535bb",
+    "req_res": [
+     1280,
+     736
+    ],
+    "downloaded_utc": "2026-11-12T14:29:47Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "2cba238b-00d9-4c99-a876-4fdfdc1cdee1",
+     "upscale_done_utc": "2026-11-12T14:37:48Z",
+     "upscale_output_mb": 1.76
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:30:06Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c2": {
+    "path": "assets/comfy/c2.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Hands passing a document folder, close-up",
+    "shots": [
+     "s1b"
+    ],
+    "seed": 202611120502,
+    "job_id": "fe9d24bf-a3b7-4cf8-983b-fff62d5a6540",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:30:19Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "f7b74d39-c114-4a9a-8ec3-660e6790e023",
+     "upscale_done_utc": "2026-11-12T14:44:41Z",
+     "upscale_output_mb": 1.16
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:30:33Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c3": {
+    "path": "assets/comfy/c3.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Rubber stamp pressing onto paper, red mark lands",
+    "shots": [
+     "s1c"
+    ],
+    "seed": 202611120503,
+    "job_id": "fe64a914-a476-46fe-81a0-5dbd613fdc9a",
+    "req_res": [
+     1280,
+     736
+    ],
+    "downloaded_utc": "2026-11-12T14:30:55Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "73315eb4-3f41-436e-ace0-50ec37bf9261",
+     "upscale_done_utc": "2026-11-12T14:42:57Z",
+     "upscale_output_mb": 1.49
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:31:41Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c4": {
+    "path": "assets/comfy/c4.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Elevator doors slide open, floor buttons light up",
+    "shots": [
+     "s3c"
+    ],
+    "seed": 202611120504,
+    "job_id": "f3816933-39ef-487a-b0c3-530bb02f620a",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:31:33Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "564fe258-5fc6-431c-b2e1-e7a14f05ab06",
+     "upscale_done_utc": "2026-11-12T14:39:31Z",
+     "upscale_output_mb": 0.89
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:31:55Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c5": {
+    "path": "assets/comfy/c5.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Looking up through a high-rise atrium, stacked floors",
+    "shots": [
+     "s3a",
+     "s3d"
+    ],
+    "seed": 202611120505,
+    "job_id": "5f99558d-b879-463e-8506-9169b9342511",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:32:07Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "18d551ba-a2f0-4007-a68f-c9a7063b8a50",
+     "upscale_done_utc": "2026-11-12T14:41:14Z",
+     "upscale_output_mb": 2.53
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:32:23Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c6": {
+    "path": "assets/comfy/c6.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Top-down meeting table, papers and hands, no faces",
+    "shots": [
+     "s4a"
+    ],
+    "seed": 202611120506,
+    "job_id": "120836c5-775b-48c8-af33-fd938e381cd4",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:32:40Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "b328844d-7c97-439c-a980-25607c0da458",
+     "upscale_done_utc": "2026-11-12T14:46:25Z",
+     "upscale_output_mb": 2.05
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:32:57Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c7": {
+    "path": "assets/comfy/c7.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Empty office corridor, lights switch on row by row",
+    "shots": [
+     "s5a"
+    ],
+    "seed": 202611120507,
+    "job_id": "d2b9d49b-14b7-4933-87f5-cb14bfae1c33",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:33:13Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "c1e29433-0f05-4296-9ec1-3026d11ac52e",
+     "upscale_done_utc": "2026-11-12T14:48:08Z",
+     "upscale_output_mb": 1.5
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:33:24Z"
+    },
+    "fallback_used": false
+   },
+   "comfy_c8": {
+    "path": "assets/comfy/c8.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 本地/4x-UltraSharp 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.17,
+    "fps": 24.0,
+    "label": "Venetian-blind grid of dusk light on wall and papers",
+    "shots": [
+     "s2e",
+     "s6b"
+    ],
+    "seed": 202611120508,
+    "job_id": "57c1b058-e6ff-4028-90a5-fc0047ade3aa",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-12T14:33:44Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "upscale_job_id": "a1bb9f3e-575c-47e0-8ec9-5c9d5ea8e68c",
+     "upscale_done_utc": "2026-11-12T14:49:54Z",
+     "upscale_output_mb": 1.2
+    },
+    "conform": {
+     "method": "app:4x-UltraSharp+lanczos 1920x1080",
+     "conformed_utc": "2026-11-12T14:34:19Z"
+    },
+    "fallback_used": false
+   }
+  },
+  "used_shots": 13
+ },
+ "programmatic_scenes": {
+  "engine": "scenes_pil.py（PIL/numpy/cv2）+ ep05viz.py",
+  "kind": "pil（全画幅程序化场景）",
+  "scenes_used": [
+   "arrows_blank",
+   "arrows_still",
+   "arrows_swarm",
+   "bridges",
+   "cold_title",
+   "end_card",
+   "fatigue_curve",
+   "fatigue_data",
+   "fatigue_pull",
+   "floors_rise",
+   "loop_complex",
+   "net_full",
+   "net_grow_n10",
+   "net_grow_n20",
+   "net_grow_n3",
+   "net_loosen",
+   "net_math",
+   "net_seed",
+   "outro_black",
+   "rhythm"
+  ],
+  "math_basis": "关系数 n(n-1)/2；楼层路径随层数递增；箭头离心自保；变革疲劳峰值递减；片尾网松开（全部由真实数学关系生成，非手绘）"
+ },
+ "overlays_used": [
+  "big_disease",
+  "blame_blank",
+  "data_74_43",
+  "defensive_structure",
+  "dir_one",
+  "formula_edges",
+  "quote_carnegie",
+  "quote_gallup",
+  "quote_negscale",
+  "quote_rules",
+  "quote_setting",
+  "stamp_count"
+ ],
+ "fonts": [
+  {
+   "name": "Noto Serif CJK SC Bold",
+   "path": "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
+   "license": "OFL"
+  },
+  {
+   "name": "Noto Sans CJK SC",
+   "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+   "license": "OFL"
+  },
+  {
+   "name": "DejaVu Sans Mono Bold",
+   "path": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+   "license": "DejaVu Fonts License"
+  }
+ ],
+ "audio": {
+  "narration": "edge-tts zh-CN-YunjianNeural 逐句表演（narration/performance.json）",
+  "music": "本期原创合成配乐（music.py，numpy，无外部曲库）",
+  "sfx": "本期原创合成音效（sfx.py，numpy）",
+  "mix": "build_audio.py 两遍 loudnorm，成片实测 I=-14.43 LUFS / TP=-1.51 dBTP"
+ }
+}

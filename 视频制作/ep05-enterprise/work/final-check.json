@@ -1,0 +1,109 @@
+{
+  "out": "/app/vedio/ep05-enterprise/out/ep05-enterprise.mp4",
+  "expected_frames": 5750,
+  "expected_duration": 239.565,
+  "duration": 239.57,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 24.0,
+  "size_mb": 62.79,
+  "frames": 5749,
+  "decode_errors": "",
+  "loudness": {
+    "I": -14.43,
+    "TP": -1.51,
+    "LRA": 3.5,
+    "thresh": -24.93
+  },
+  "narration_corr": {
+    "S1_2": 0.9163449559817912,
+    "S3_6": 0.9464352907955513,
+    "S5_6": 0.9238118958108151
+  },
+  "subs": {
+    "cues": 95,
+    "monotonic": true,
+    "overlap_pairs": 0,
+    "long_lines": [],
+    "long_line_count": 0,
+    "out_of_sentence_range": [],
+    "sentences": 64,
+    "sentences_covered": 64,
+    "first": 2.2,
+    "last": 238.765
+  },
+  "frame_checks": {
+    "subtitle-check": {
+      "top": 0.0020912247474747475,
+      "bottom": 2.965368529040404,
+      "content": 34.4668536815768,
+      "bottom_max": 246
+    },
+    "end-declaration": {
+      "top": 0.001341540404040404,
+      "bottom": 4.653768150252525,
+      "content": 26.448467498978758,
+      "bottom_max": 247
+    },
+    "net-190": {
+      "top": 0.005224116161616161,
+      "bottom": 2.0738123421717174,
+      "content": 18.18353311376634,
+      "bottom_max": 249
+    },
+    "floors": {
+      "top": 0.005330650252525253,
+      "bottom": 2.9067116477272728,
+      "content": 13.322677313112745,
+      "bottom_max": 243
+    },
+    "fade-out": {
+      "top": 0.0,
+      "bottom": 0.0,
+      "content": 2.9360702614379086e-05,
+      "bottom_max": 0
+    }
+  },
+  "letterbox_ok": true,
+  "subtitle_ok": true,
+  "end_card_ok": true,
+  "fade_ok": true,
+  "comfy": {
+    "used": [
+      "comfy_c1",
+      "comfy_c2",
+      "comfy_c3",
+      "comfy_c1",
+      "comfy_c8",
+      "comfy_c1",
+      "comfy_c5",
+      "comfy_c4",
+      "comfy_c5",
+      "comfy_c6",
+      "comfy_c7",
+      "comfy_c8",
+      "comfy_c1"
+    ],
+    "fallback": []
+  },
+  "stills": [
+    "still-01-corridor",
+    "still-02-network-190",
+    "still-03-floors-rise",
+    "still-04-arrows-blank",
+    "still-05-74-43",
+    "still-06-net-loosen",
+    "still-07-dawn-light",
+    "still-08-end-card",
+    "still-09-end-hold"
+  ],
+  "covers": [
+    "cover-16x9.jpg",
+    "cover-1x1.jpg",
+    "cover-3x4.jpg"
+  ],
+  "contact_sheet": true,
+  "verify_elapsed": 52.3
+}

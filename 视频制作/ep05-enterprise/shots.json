@@ -1,0 +1,463 @@
+[
+  {
+    "id": "c0",
+    "seg": "COLD",
+    "kind": "pil",
+    "scene": "cold_title",
+    "at": {
+      "abs": 0.0
+    },
+    "note": "标题 + 第一张网开始织（黑场→标题）"
+  },
+  {
+    "id": "s1a",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 0.0,
+    "look": "office",
+    "at": {
+      "seg": "S1",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "走廊缓推：文件被一路递过去（过五关的空间感）"
+  },
+  {
+    "id": "s1b",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "comfy_c2",
+    "in": 0.3,
+    "look": "warm",
+    "overlay": "stamp_count",
+    "at": {
+      "seg": "S1",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "手递文件，角标计数「5 部门 / 7 个字」逐个亮起"
+  },
+  {
+    "id": "s1c",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "comfy_c3",
+    "in": 0.2,
+    "look": "warm",
+    "at": {
+      "seg": "S1",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "印章压下，红印落下的瞬间接「没人记得」的停顿"
+  },
+  {
+    "id": "s1d",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "signing",
+    "in": 1.0,
+    "look": "warm",
+    "at": {
+      "seg": "S1",
+      "sent": 4,
+      "off": 0.0
+    },
+    "note": "签字笔触特写：以为「管理没做好」的旧解释"
+  },
+  {
+    "id": "s1e",
+    "seg": "S1",
+    "kind": "pil",
+    "scene": "net_seed",
+    "at": {
+      "seg": "S1",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "否定旧解释：画面里第一张网开始生长（3 节点）"
+  },
+  {
+    "id": "s1f",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 2.6,
+    "look": "mood",
+    "overlay": "big_disease",
+    "at": {
+      "seg": "S1",
+      "sent": 6,
+      "off": 0.0
+    },
+    "note": "走廊尽头定格，「大本身带的病」压字"
+  },
+  {
+    "id": "s2a",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "net_grow_n3",
+    "at": {
+      "seg": "S2",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "格雷卡纳斯：3 个点，3 条线（n(n-1)/2）"
+  },
+  {
+    "id": "s2b",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "net_grow_n10",
+    "at": {
+      "seg": "S2",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "管 10 人：节点/线密度第一次明显上涨"
+  },
+  {
+    "id": "s2c",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "net_grow_n20",
+    "overlay": "formula_edges",
+    "at": {
+      "seg": "S2",
+      "sent": 4,
+      "off": 0.0
+    },
+    "note": "管 20 人：线数按 20×19/2=190 生长并填满画面"
+  },
+  {
+    "id": "s2d",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "net_math",
+    "at": {
+      "seg": "S2",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "加法 vs 乘法：两条生长曲线并置，乘法线陡起"
+  },
+  {
+    "id": "s2e",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "comfy_c8",
+    "in": 1.0,
+    "look": "office",
+    "overlay": "quote_negscale",
+    "at": {
+      "seg": "S2",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "组织规模负效率：百叶窗光影上压「信息越散，效率越低」"
+  },
+  {
+    "id": "s2f",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "net_full",
+    "at": {
+      "seg": "S2",
+      "sent": 8,
+      "off": 0.0
+    },
+    "note": "信息不对称恶化：网密到屏息，沟通开始漏"
+  },
+  {
+    "id": "s2g",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 2.0,
+    "look": "office",
+    "overlay": "quote_setting",
+    "at": {
+      "seg": "S2",
+      "sent": 9,
+      "off": 0.0
+    },
+    "note": "走廊空镜：不是哪家公司的毛病，是所有大组织的出厂设置"
+  },
+  {
+    "id": "s3a",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "comfy_c5",
+    "in": 0.6,
+    "look": "office",
+    "at": {
+      "seg": "S3",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "中庭仰拍：有的公司活得挺好 → 抬头看层级"
+  },
+  {
+    "id": "s3b",
+    "seg": "S3",
+    "kind": "pil",
+    "scene": "floors_rise",
+    "at": {
+      "seg": "S3",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "楼板一层层加高（3→5→8 层），路径每层变长"
+  },
+  {
+    "id": "s3c",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "comfy_c4",
+    "in": 0.4,
+    "look": "office",
+    "overlay": "defensive_structure",
+    "at": {
+      "seg": "S3",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "电梯门开合：每加一层多停一次，多一道审批"
+  },
+  {
+    "id": "s3d",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "comfy_c5",
+    "in": 2.0,
+    "look": "office",
+    "overlay": "quote_rules",
+    "at": {
+      "seg": "S3",
+      "sent": 9,
+      "off": 0.0
+    },
+    "note": "中庭回望：规则越压越紧，一线灵活度下降"
+  },
+  {
+    "id": "s3e",
+    "seg": "S3",
+    "kind": "pil",
+    "scene": "loop_complex",
+    "at": {
+      "seg": "S3",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "循环：复杂→加层→更复杂→再加层，箭头首尾咬合闭环"
+  },
+  {
+    "id": "s4a",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "comfy_c6",
+    "in": 0.6,
+    "look": "office",
+    "at": {
+      "seg": "S4",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "会议桌俯拍：职责不清，先是「大家觉得管理没做好」"
+  },
+  {
+    "id": "s4b",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "arrows_swarm",
+    "arrow_phase": 0.0,
+    "at": {
+      "seg": "S4",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "恰恰相反：箭头逐个向外自保，密度上升"
+  },
+  {
+    "id": "s4c",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "arrows_blank",
+    "overlay": "blame_blank",
+    "arrow_phase": 9.0,
+    "at": {
+      "seg": "S4",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "中央渐空：谁都不越界，事情卡在缝里"
+  },
+  {
+    "id": "s4d",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "arrows_still",
+    "arrow_phase": 16.0,
+    "at": {
+      "seg": "S4",
+      "sent": 9,
+      "off": 0.0
+    },
+    "note": "理性自保的合力定格：整体不理性（最重一锤，慢）"
+  },
+  {
+    "id": "s5a",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "comfy_c7",
+    "in": 0.4,
+    "look": "mood",
+    "at": {
+      "seg": "S5",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "空走廊：更隐蔽的代价，人走空"
+  },
+  {
+    "id": "s5b",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "fatigue_curve",
+    "at": {
+      "seg": "S5",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "变革疲劳：曲线被反复拉起，峰值逐次变矮"
+  },
+  {
+    "id": "s5c",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "fatigue_data",
+    "overlay": "data_74_43",
+    "at": {
+      "seg": "S5",
+      "sent": 6,
+      "off": 0.0
+    },
+    "note": "2016 74% → 2022 43%：两个数字落在曲线上"
+  },
+  {
+    "id": "s5d",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "empty_chair",
+    "in": 1.0,
+    "look": "mood",
+    "overlay": "quote_gallup",
+    "at": {
+      "seg": "S5",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "73% 经历过破坏性变革：空椅与停顿"
+  },
+  {
+    "id": "s5e",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "fatigue_pull",
+    "overlay": "quote_carnegie",
+    "at": {
+      "seg": "S5",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "最后一次拉不动：不是不愿变革，是没被装备好、支持、看见"
+  },
+  {
+    "id": "s6a",
+    "seg": "S6",
+    "kind": "pil",
+    "scene": "net_loosen",
+    "at": {
+      "seg": "S6",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "网慢慢松开一条缝（不是剪断，是留出通行的路）"
+  },
+  {
+    "id": "s6b",
+    "seg": "S6",
+    "kind": "broll",
+    "asset": "comfy_c8",
+    "in": 2.2,
+    "look": "dawn",
+    "overlay": "dir_one",
+    "at": {
+      "seg": "S6",
+      "sent": 4,
+      "off": 0.0
+    },
+    "note": "第一方向：承认「大」有代价，光从缝里透进来"
+  },
+  {
+    "id": "s6c",
+    "seg": "S6",
+    "kind": "pil",
+    "scene": "bridges",
+    "at": {
+      "seg": "S6",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "第二方向：少加层、多加桥；层级之间有桥可走"
+  },
+  {
+    "id": "s6d",
+    "seg": "S6",
+    "kind": "pil",
+    "scene": "rhythm",
+    "at": {
+      "seg": "S6",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "第三方向：变革要有节奏，曲线有呼吸地起落"
+  },
+  {
+    "id": "s6e",
+    "seg": "S6",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 1.6,
+    "look": "dawn",
+    "at": {
+      "seg": "S6",
+      "sent": 13,
+      "off": 0.0
+    },
+    "note": "走廊光里走远：变大不是错，把加层当唯一解药才是"
+  },
+  {
+    "id": "s6f",
+    "seg": "S6",
+    "kind": "pil",
+    "scene": "end_card",
+    "at": {
+      "seg": "S6",
+      "sent": 15,
+      "off": 1.2
+    },
+    "note": "片尾卡：标题 + 「本片画面与配音含 AI 辅助制作 / 选题、核实与判断，由人完成」"
+  },
+  {
+    "id": "outro",
+    "seg": "OUTRO",
+    "kind": "pil",
+    "scene": "outro_black",
+    "at": {
+      "from_end": 0.8
+    },
+    "note": "黑场收束：AI 声明口播结束（约 238.77s）后最后 0.8s 淡出黑"
+  }
+]

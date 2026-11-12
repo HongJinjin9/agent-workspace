@@ -1,0 +1,104 @@
+{
+ "series": "ep05-enterprise",
+ "created_utc": "2026-11-12T13:20:00Z",
+ "workflow": "workflows/t2v_api.json",
+ "defaults": {
+  "width": 864,
+  "height": 480,
+  "duration": 5.0,
+  "steps": 8,
+  "fps": 24,
+  "enable_lightning_lora": true
+ },
+ "style": "cinematic live-action feel, 35/85/100mm, shallow DOF, teal-orange grade, film grain, no readable text, no logos, no faces (hands only)",
+ "shots": [
+  {
+   "id": "c1",
+   "seg": "S1",
+   "title": "Corridor slow push-in, folder handed along",
+   "md": "s1a / s1f / s2g / s6e",
+   "width": 1280,
+   "height": 736,
+   "duration": 5.0,
+   "seed": 202611120501,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic live-action dolly shot inside a modern high-rise office corridor at dusk, 35mm lens, shallow depth of field: the camera pushes slowly forward along the corridor. On the right side of frame a slim light-grey document folder is handed from one hand to the next and travels away from camera down a line of people; only hands, shirt sleeves and a shoulder edge are in frame, no faces. Ceiling strip lights slide their reflections along the polished floor, warm desk-lamp orange against cool teal shadows, fine film grain, subtle handheld steadiness, natural motion blur.\noverall_soundscape: quiet ventilation hum, soft footsteps on polished floor, the crisp rustle and faint slap of a paper folder changing hands, a distant door latch clicking.\nnon_diegetic_music: low sustained synth pad, sparse piano notes, restrained and slightly tense.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs. No people faces, no full bodies."
+  },
+  {
+   "id": "c2",
+   "seg": "S1",
+   "title": "Hands passing a document folder, close-up",
+   "md": "s1b",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120502,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme close-up, 85mm lens, very shallow depth of field: a hand on the left pushes a slim manila document folder across a dark wooden desk toward a hand that enters from the right; the receiving hand closes on the folder edge, fingers tightening, and draws it out of frame. Warm tungsten desk lamp from upper left, cool window light rimming the fingers, teal-orange grade, fine film grain, crisp skin texture, realistic hand physics.\noverall_soundscape: soft paper and thick cardstock friction, a faint desk creak, a quiet exhale of cloth.\nnon_diegetic_music: single low piano note, room tone settling.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs."
+  },
+  {
+   "id": "c3",
+   "seg": "S1",
+   "title": "Rubber stamp pressing onto paper, red mark lands",
+   "md": "s1c",
+   "width": 1280,
+   "height": 736,
+   "duration": 5.0,
+   "seed": 202611120503,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a hand grips a dark wooden rubber stamp and presses it firmly down onto a sheet of paper, holds for a beat, then lifts it; a clean round red ink mark with no readable characters is left on the paper, its edges sharpening as the ink meets the paper fibres. Warm desk lamp light, cool shadow falloff on the desk, saturated red ink against warm off-white paper, floating dust motes, fine film grain, realistic paper compression and ink transfer.\noverall_soundscape: a firm muffled thud as the stamp meets paper, the small wooden click of it lifting, a soft paper settling rustle.\nnon_diegetic_music: low cello swell, held breath.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs. No characters or numbers inside the stamp mark."
+  },
+  {
+   "id": "c4",
+   "seg": "S3",
+   "title": "Elevator doors slide open, floor buttons light up",
+   "md": "s3c",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120504,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic interior shot facing a brushed stainless-steel elevator, 35mm lens, shallow depth of field: the elevator doors slide apart smoothly from the centre, revealing a warm-lit empty car; on the foreground panel beside the doors one round floor button lights up amber, then the next, then the next in a slow sequence. Cool fluorescent corridor light from behind camera mixes with warm amber button glow, teal-orange grade, soft reflections sliding across the metal, fine film grain, smooth mechanical motion.\noverall_soundscape: a soft electric motor whirr, the metallic slide and rubber seal of opening doors, quiet relay clicks as the buttons illuminate, distant building hum.\nnon_diegetic_music: pulsing low synth, one note per button.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs. No readable floor numbers."
+  },
+  {
+   "id": "c5",
+   "seg": "S3",
+   "title": "Looking up through a high-rise atrium, stacked floors",
+   "md": "s3a / s3d",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120505,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic low-angle shot looking straight up through a tall office atrium, 35mm lens: stacked floors, glass balustrades and walkways rise in layers toward a skylight, and the camera slowly tilts upward, revealing one more floor, then another, until the skylight fills the top of frame. Pale daylight from above, cool teal shadows in the concrete, warm orange light from a few lit offices, faint dust in the air, gentle lens vignette, fine film grain, smooth handheld drift.\noverall_soundscape: a vast airy room tone, distant faint office murmur, a soft low whoosh of air rising.\nnon_diegetic_music: wide ambient pad, slow rising chord.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs."
+  },
+  {
+   "id": "c6",
+   "seg": "S4",
+   "title": "Top-down meeting table, papers and hands, no faces",
+   "md": "s4a",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120506,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic top-down overhead shot straight down onto a long wooden meeting table, 50mm lens, shallow depth of field: sheets of paper, a slim folder and a pen lie on the table; two pairs of hands slide documents toward each other and align them, the pen rolling slightly, while the camera drifts slowly laterally above the table. Warm office ceiling light, cool shadow patches, teal-orange grade, fine film grain, subtle motion blur at the frame edges.\noverall_soundscape: paper sliding on wood, a pen rolling, muffled room tone, a distant chair creak.\nnon_diegetic_music: sparse muted piano, even pulse.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs. No heads, no faces from above."
+  },
+  {
+   "id": "c7",
+   "seg": "S5",
+   "title": "Empty office corridor, lights switch on row by row",
+   "md": "s5a",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120507,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide shot down a long empty office corridor at night, 35mm lens, deep one-point perspective: the strip lights along the ceiling switch on one by one, starting from the far end and advancing toward the camera, each panel blooming briefly before settling into steady white; the corridor floor reflects each new line of light. No people anywhere. Cool white light with warm door-frame accents, teal-orange grade, gentle atmospheric haze, fine film grain, locked-off camera with a very slow push.\noverall_soundscape: a relay click and electric hum for each light switching on, receding down the corridor, then a long quiet room tone.\nnon_diegetic_music: ticking synth pulse, cold and minimal.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs. No people, no motionless static frame."
+  },
+  {
+   "id": "c8",
+   "seg": "S2/S6",
+   "title": "Venetian-blind grid of dusk light on wall and papers",
+   "md": "s2e / s6b",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611120508,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close shot of a venetian blind casting a grid of hazy amber dusk light onto a pale office wall and a sheet of paper on a desk, 85mm lens, shallow depth of field: the slats shift a few degrees and the bright rectangular grid of light slides slowly across the wall and paper, sharpening and softening as it moves; dust motes drift in the beams. Warm amber sunset light from the window, deep teal shadow in the room, teal-orange grade, fine film grain, very slow drifting camera.\noverall_soundscape: a soft wooden blind creak, faint evening city murmur far below, paper edge fluttering.\nnon_diegetic_music: warm sustained strings, quiet resolution.\nNo readable text, no letters, no signage, no company logos, no faces, no watermark, no flicker, no strobing, no extra fingers or limbs."
+  }
+ ]
+}
