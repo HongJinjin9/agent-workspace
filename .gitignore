@@ -1,0 +1,67 @@
+# VCP agent-workspace 忽略规则
+#
+# 设计原则（2026-11-12）：
+#   1. 本项目实行「最小化入库」：成片、素材、渲染中间帧不入库，只保留可复现的脚本、
+#      文档、时间轴与字幕。规则据此精确到目录，不做宽泛通配。
+#   2. .gitignore 只对「未被跟踪」的文件生效。已被跟踪的文件不会因下列规则移出仓库，
+#      如需移出须显式 git rm --cached。
+#   3. 下列内容属于有意入库，禁止用规则覆盖：
+#        - VCP生态/evidence/**            （证据材料，含 agent-tool-calls.log）
+#        - VCP生态/patches/*.patch        （补丁存档）
+#        - 视频制作/*/work/*.json         （timeline 等时间轴）
+#        - 视频制作/*/work/srt/**         （句级字幕）
+#        - 视频制作/*/work/*.md           （audio-report 等报告）
+#        - 视频制作/*/delivery/**         （静帧、封面、交付说明）
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- 虚拟环境与依赖 ----------
+.venv/
+venv/
+env/
+ENV/
+node_modules/
+
+# ---------- 系统与编辑器 ----------
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# ---------- 视频工程：渲染中间产物 ----------
+# 逐帧渲染量极大（每期数千张 JPG），且可由脚本重建。
+视频制作/*/work/frames/
+视频制作/*/work/bg/
+视频制作/*/work/tts/
+视频制作/*/work/sfx/
+
+# ---------- 视频工程：音频中间件 ----------
+# 旁白/混音成品体积大，可由 tts_perf.py + build_audio.py 重建。
+视频制作/*/work/*.wav
+视频制作/*/work/*.m4a
+视频制作/*/work/*.mp3
+
+# ---------- 视频工程：成片输出 ----------
+# 成片不入库，通过 Release / PR 评论交付。
+视频制作/*/out/
+视频制作/*/final.mp4
+
+# ---------- 视频工程：素材 ----------
+# Pexels B-roll、音乐、字体纹理等按 manifest 用脚本拉取，不随仓库分发。
+视频制作/*/assets/
+
+# ---------- 临时文件 ----------
+*.tmp
+*.bak
+tmp/
