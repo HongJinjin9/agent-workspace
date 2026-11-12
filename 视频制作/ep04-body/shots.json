@@ -1,0 +1,664 @@
+[
+  {
+    "id": "c0",
+    "seg": "COLD",
+    "kind": "pil",
+    "scene": "cold_title",
+    "at": {
+      "abs": 0.0
+    }
+  },
+  {
+    "id": "s1a",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "night_pov",
+    "in": 1.0,
+    "look": "night",
+    "at": {
+      "seg": "S1",
+      "sent": 1,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s1b",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "car_dash",
+    "in": 1.2,
+    "look": "warm",
+    "overlay": "spec_sheet",
+    "at": {
+      "seg": "S1",
+      "sent": 2,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s1c",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "hands_steering",
+    "in": 1.0,
+    "look": "hand",
+    "overlay": "grip_hint",
+    "at": {
+      "seg": "S1",
+      "sent": 3,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s1d",
+    "seg": "S1",
+    "kind": "broll",
+    "asset": "rain_window",
+    "in": 1.5,
+    "look": "night",
+    "overlay": "mystic",
+    "at": {
+      "seg": "S1",
+      "sent": 4,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s1e",
+    "seg": "S1",
+    "kind": "pil",
+    "scene": "three_intro",
+    "at": {
+      "seg": "S1",
+      "sent": 5,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2a",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "speed_bump",
+    "in": 1.0,
+    "look": "mud",
+    "at": {
+      "seg": "S2",
+      "sent": 1,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2b",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "wheel_suspension",
+    "in": 1.0,
+    "look": "mud",
+    "overlay": "impact_dong",
+    "at": {
+      "seg": "S2",
+      "sent": 2,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2c",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "speed_bump",
+    "in": 10.2,
+    "look": "mud",
+    "overlay": "impact_wobble",
+    "at": {
+      "seg": "S2",
+      "sent": 3,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2d",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "puddle_night",
+    "in": 1.0,
+    "look": "night",
+    "at": {
+      "seg": "S2",
+      "sent": 4,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2e",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "susp_body",
+    "at": {
+      "seg": "S2",
+      "sent": 5,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2f",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "susp_wheel",
+    "at": {
+      "seg": "S2",
+      "sent": 6,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2g",
+    "seg": "S2",
+    "kind": "pil",
+    "scene": "freq_bands",
+    "at": {
+      "seg": "S2",
+      "sent": 7,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2h",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "puddle_night",
+    "in": 4.5,
+    "look": "night",
+    "overlay": "soft_hard",
+    "at": {
+      "seg": "S2",
+      "sent": 8,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2i",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "puddle_night",
+    "in": 7.5,
+    "look": "night",
+    "overlay": "damping_curves",
+    "at": {
+      "seg": "S2",
+      "sent": 9,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2j",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "wheel_suspension",
+    "in": 3.0,
+    "look": "mud",
+    "overlay": "damped_trace",
+    "at": {
+      "seg": "S2",
+      "sent": 10,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2k",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "puddle_night",
+    "in": 11.0,
+    "look": "night",
+    "overlay": "undamped_trace",
+    "at": {
+      "seg": "S2",
+      "sent": 11,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s2k2",
+    "seg": "S2",
+    "kind": "broll",
+    "asset": "car_interior_night",
+    "in": 3.0,
+    "look": "night",
+    "overlay": "body_sway",
+    "at": {
+      "seg": "S2",
+      "sent": 11,
+      "off": 2.75
+    }
+  },
+  {
+    "id": "s3a",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "winding_road",
+    "in": 1.0,
+    "look": "aerial",
+    "at": {
+      "seg": "S3",
+      "sent": 1,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3b",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "brake_pedal",
+    "in": 0.6,
+    "look": "warm",
+    "at": {
+      "seg": "S3",
+      "sent": 3,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3c",
+    "seg": "S3",
+    "kind": "pil",
+    "scene": "not_form",
+    "at": {
+      "seg": "S3",
+      "sent": 4,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3d",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "hands_steering",
+    "in": 3.0,
+    "look": "hand",
+    "overlay": "channels3",
+    "at": {
+      "seg": "S3",
+      "sent": 5,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3e",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "rearview_mirror_2",
+    "in": 1.0,
+    "look": "night",
+    "overlay": "channels_line",
+    "at": {
+      "seg": "S3",
+      "sent": 6,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3f",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "rearview_mirror_2",
+    "in": 2.0,
+    "look": "night",
+    "overlay": "smooth_info",
+    "at": {
+      "seg": "S3",
+      "sent": 7,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3g",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "hands_steering",
+    "in": 6.0,
+    "look": "hand",
+    "overlay": "enough_marker",
+    "at": {
+      "seg": "S3",
+      "sent": 8,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3h",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "rearview_mirror_2",
+    "in": 4.0,
+    "look": "night",
+    "overlay": "broken_info",
+    "at": {
+      "seg": "S3",
+      "sent": 9,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3i",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "winding_road_2",
+    "in": 2.0,
+    "look": "aerial",
+    "overlay": "line_drop",
+    "at": {
+      "seg": "S3",
+      "sent": 10,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3j",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "brake_pedal",
+    "in": 3.5,
+    "look": "warm",
+    "at": {
+      "seg": "S3",
+      "sent": 11,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3k",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "rearview_mirror_2",
+    "in": 6.0,
+    "look": "night",
+    "overlay": "lead_time",
+    "at": {
+      "seg": "S3",
+      "sent": 12,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s3l",
+    "seg": "S3",
+    "kind": "broll",
+    "asset": "night_pov",
+    "in": 4.0,
+    "look": "night",
+    "overlay": "ahead_line",
+    "at": {
+      "seg": "S3",
+      "sent": 13,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4a",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "night_car",
+    "in": 1.0,
+    "look": "night",
+    "at": {
+      "seg": "S4",
+      "sent": 1,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4b",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "car_dash",
+    "in": 0.8,
+    "look": "warm",
+    "at": {
+      "seg": "S4",
+      "sent": 3,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4c",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "jerk_def",
+    "at": {
+      "seg": "S4",
+      "sent": 4,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4d",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "car_engine",
+    "in": 0.6,
+    "look": "warm",
+    "overlay": "torque_ramp",
+    "at": {
+      "seg": "S4",
+      "sent": 5,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4e",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "car_dash",
+    "in": 4.0,
+    "look": "warm",
+    "overlay": "torque_step",
+    "at": {
+      "seg": "S4",
+      "sent": 6,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4f",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "rain_drive",
+    "in": 1.0,
+    "look": "night",
+    "overlay": "jerk_spike",
+    "at": {
+      "seg": "S4",
+      "sent": 7,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4g",
+    "seg": "S4",
+    "kind": "broll",
+    "asset": "car_interior_night",
+    "in": 6.0,
+    "look": "night",
+    "overlay": "push_nausea",
+    "at": {
+      "seg": "S4",
+      "sent": 8,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4h",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "umtri_card",
+    "at": {
+      "seg": "S4",
+      "sent": 9,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s4i",
+    "seg": "S4",
+    "kind": "pil",
+    "scene": "two_sides",
+    "at": {
+      "seg": "S4",
+      "sent": 10,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5a",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "city_night_aerial",
+    "in": 0.6,
+    "look": "night",
+    "overlay": "residual_curves",
+    "at": {
+      "seg": "S5",
+      "sent": 1,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5b",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "car_interior_night",
+    "in": 9.0,
+    "look": "night",
+    "at": {
+      "seg": "S5",
+      "sent": 2,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5c",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "car_dash",
+    "in": 2.0,
+    "look": "warm",
+    "overlay": "spec_can",
+    "at": {
+      "seg": "S5",
+      "sent": 3,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5d",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "hands_steering",
+    "in": 8.0,
+    "look": "hand",
+    "overlay": "spec_cannot",
+    "at": {
+      "seg": "S5",
+      "sent": 4,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5e",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "converge",
+    "at": {
+      "seg": "S5",
+      "sent": 5,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5f",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "car_dash",
+    "in": 4.0,
+    "look": "warm",
+    "overlay": "ai_specs",
+    "at": {
+      "seg": "S5",
+      "sent": 6,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5g",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "hands_steering",
+    "in": 10.0,
+    "look": "hand",
+    "overlay": "ecg_body",
+    "at": {
+      "seg": "S5",
+      "sent": 7,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5h",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "merge_ecg",
+    "at": {
+      "seg": "S5",
+      "sent": 8,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5i",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "night_pov",
+    "in": 6.0,
+    "look": "night",
+    "overlay": "question",
+    "at": {
+      "seg": "S5",
+      "sent": 9,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5j",
+    "seg": "S5",
+    "kind": "broll",
+    "asset": "night_car",
+    "in": 3.0,
+    "look": "night",
+    "overlay": "comment",
+    "at": {
+      "seg": "S5",
+      "sent": 10,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5k",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "end_card",
+    "at": {
+      "seg": "S5",
+      "sent": 11,
+      "off": 0.0
+    }
+  },
+  {
+    "id": "s5l",
+    "seg": "S5",
+    "kind": "pil",
+    "scene": "end_hold",
+    "at": {
+      "abs": 229.9
+    }
+  }
+]
