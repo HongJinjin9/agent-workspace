@@ -1,0 +1,83 @@
+/* 图形场景样式（mh-graphics 所有）—— 卷宗体：冷炭底 + 纸页 + 暖金 + 墨红 */
+
+.g-root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* cold charcoal ground */
+.g-dark {
+  background: radial-gradient(120% 95% at 50% 26%, #171a1f 0%, #0d0f13 44%, #08090c 100%);
+  background-color: #08090c;
+}
+
+/* subtle paper fibre: fine cross-hatch gradients + warm wash */
+.g-fibre {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(226, 218, 200, 0.03) 0px,
+      rgba(226, 218, 200, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 104, 78, 0.028) 0px,
+      rgba(120, 104, 78, 0.028) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    radial-gradient(90% 60% at 40% 30%, rgba(217, 164, 65, 0.035) 0%, transparent 70%);
+  mix-blend-mode: soft-light;
+}
+
+/* vignette around the letterboxed image */
+.g-vignette {
+  background:
+    radial-gradient(
+      125% 92% at 50% 44%,
+      transparent 42%,
+      rgba(0, 0, 0, 0.34) 78%,
+      rgba(0, 0, 0, 0.62) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      transparent 16%,
+      transparent 84%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
+}
+
+/* cream dossier paper */
+.g-paper {
+  background: radial-gradient(120% 90% at 30% 18%, #f3eddf 0%, #e9e3d6 46%, #dcd4c2 100%);
+  background-color: #e9e3d6;
+}
+
+/* faint ruled lines for paper scenes (quote cards) */
+.g-ruled {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(74, 70, 61, 0.1) 0px,
+    rgba(74, 70, 61, 0.1) 1px,
+    transparent 1px,
+    transparent 56px
+  );
+}
+
+/* mono numerals should be tabular */
+.g-num {
+  font-family: "DejaVu Sans Mono", "Noto Sans Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* typewriter cursor block */
+.g-cursor {
+  background: #b3392e;
+}

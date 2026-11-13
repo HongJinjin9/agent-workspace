@@ -110,3 +110,14 @@ VCP 视听协作体系（Issue #3）中产出并迭代的三条自媒体视频�
 - 目录按最小化原则：只保留文档、脚本与一个 API 工作流；测试片与抽帧不入库
 
 > 合规提醒：MiniMax H3 为开放权重，但**本地权重的商用输出需另购商业许可**；用于带货/分成的内容前必须先确认许可。
+
+
+## 十一、第 06 期 MotionHarness（帧驭）重制版（ep06-motionharness）
+
+在第 06 期 v1 之后，按「用 MotionHarness 擅长的方式重做」的反馈，用 MotionHarness 把同一发言稿与配音重做成**可编辑的动画工程**并导出新成片：卷宗体影像论文（纸页/案卷标签/年份章/证据角标/打字机引述/红色印章/数据图版 + 2.35:1 遮幅 + 胶片颗粒），46 个数据驱动镜头（H3 实拍感镜头再剪辑 + 10 个图形场景）+ 72 条字幕 + 9 个时间轴叠加事件。
+
+- 工程：`ep06-motionharness/`（MotionHarness Standard 工程：`mh.json` / `document.json` / `src/scene.js` 引擎 / `src/core` / `src/modules` / `src/graphics` / `src/data`）；编辑指南见 `ep06-motionharness/README.md`，模块契约见 `SPEC.md`
+- 可编辑点：`src/data/facts.js`（事实/数字）、`src/data/shots.json`（46 镜分镜/相机）、`src/data/srt.json`（字幕）、`src/theme.js`（色板/字号/遮幅）、`src/graphics/`（图形场景）
+- 大素材（H3 镜头 14 条、静帧、成品混音）不入库：`scripts/prepare-assets.sh` 可从第 06 期工程重建，或使用 Release 的 `ep06-motionharness-project.zip`（工程 + 素材打包，解压即可 `mh render`）
+- 资源纪律：MotionHarness CLI 只在制作/渲染期间启动，渲染完成后停止守护进程；单渲染、无并发
+- 播出状态：**待评审**（成片与工程包通过 Release 交付，不入库）

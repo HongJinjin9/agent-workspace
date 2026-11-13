@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "projectType": "standard",
+  "runtimeVersion": 1,
+  "entry": "src/scene.js",
+  "width": 1920,
+  "height": 1080,
+  "duration": 230.2056,
+  "fps": 24,
+  "audio": [
+    { "src": "assets/audio.wav", "start": 0, "duration": 230.2056, "volume": 0, "fadeIn": 0.0, "fadeOut": 0.6 }
+  ]
+}

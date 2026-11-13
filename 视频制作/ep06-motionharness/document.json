@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "projectType": "standard",
+  "revision": 0,
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 230.2056,
+    "fps": 24
+  },
+  "audio": [
+    {
+      "src": "assets/audio.wav",
+      "start": 0,
+      "duration": 230.2056,
+      "volume": 0,
+      "fadeIn": 0,
+      "fadeOut": 0.6
+    }
+  ],
+  "title": "ep06-mh"
+}

@@ -1,0 +1,80 @@
+[
+ {
+  "type": "stamp",
+  "text": "判决",
+  "at": 53.54,
+  "dur": 2.6,
+  "x": 62,
+  "y": 58,
+  "rot": -7,
+  "color": "red"
+ },
+ {
+  "type": "tally",
+  "stage": 1,
+  "at": 53.6,
+  "dur": 3.7,
+  "counts": "1 : 0",
+  "note": "老规矩 先下一局"
+ },
+ {
+  "type": "label",
+  "text": "只差 993 台",
+  "at": 86.75,
+  "dur": 3.02,
+  "x": 50,
+  "y": 30
+ },
+ {
+  "type": "tally",
+  "stage": 2,
+  "at": 93.23,
+  "dur": 5.33,
+  "counts": "1 : 1",
+  "note": "账本 追回一局"
+ },
+ {
+  "type": "label",
+  "text": "当年划的这条线",
+  "at": 111.02,
+  "dur": 3.69,
+  "x": 46,
+  "y": 72
+ },
+ {
+  "type": "stamp",
+  "text": "改判",
+  "at": 131.19,
+  "dur": 2.4,
+  "x": 60,
+  "y": 56,
+  "rot": 6,
+  "color": "red"
+ },
+ {
+  "type": "tally",
+  "stage": 3,
+  "at": 131.2,
+  "dur": 3.87,
+  "counts": "2 : 1 : 1",
+  "note": "这局，平"
+ },
+ {
+  "type": "stamp",
+  "text": "再判",
+  "at": 182.2,
+  "dur": 2.2,
+  "x": 58,
+  "y": 54,
+  "rot": -5,
+  "color": "red"
+ },
+ {
+  "type": "tally",
+  "stage": 4,
+  "at": 182.25,
+  "dur": 3.71,
+  "counts": "谁也没赢",
+  "note": "账本背后的东西，变了"
+ }
+]

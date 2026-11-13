@@ -1,0 +1,8 @@
+# MotionHarness 施工目录（不入库）
+.mh/
+.tmp/
+out/
+node_modules/
+
+# 大素材不入库：H3 镜头 / 静帧 / 混音；用 scripts/prepare-assets.sh 重建，或从 Release 的工程包获取
+assets/

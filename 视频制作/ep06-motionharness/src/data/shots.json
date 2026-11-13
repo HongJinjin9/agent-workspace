@@ -1,0 +1,913 @@
+[
+ {
+  "id": "cold_title",
+  "kind": "graphic",
+  "asset": "cover",
+  "start": 0.0,
+  "seg": "COLD",
+  "kicker": "VIBE 知识共赏 · 第 06 期",
+  "title": "他们说，这是最糟糕的方案",
+  "sub": "一场持续六年的技术判决，和它自己的判决",
+  "end": 2.8,
+  "dur": 2.8
+ },
+ {
+  "id": "cold_wide",
+  "kind": "footage",
+  "asset": "c1",
+  "start": 2.8,
+  "seg": "COLD",
+  "in": 0.4,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.06,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.14,
+    "x": -14,
+    "y": -8
+   }
+  },
+  "end": 8.9989,
+  "dur": 6.1989
+ },
+ {
+  "id": "cold_close",
+  "kind": "footage",
+  "asset": "c1",
+  "start": 8.9989,
+  "seg": "COLD",
+  "in": 2.6,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.34,
+    "x": -90,
+    "y": -40
+   },
+   "to": {
+    "s": 1.28,
+    "x": -60,
+    "y": -20
+   }
+  },
+  "end": 11.6036,
+  "dur": 2.6047
+ },
+ {
+  "id": "cold_ledger",
+  "kind": "still",
+  "asset": "c12",
+  "start": 11.6036,
+  "seg": "COLD",
+  "look": "warm",
+  "camera": {
+   "from": {
+    "s": 1.1,
+    "x": 20,
+    "y": 10
+   },
+   "to": {
+    "s": 1.18,
+    "x": -10,
+    "y": 0
+   }
+  },
+  "caption": "账本 · 记录",
+  "end": 14.4239,
+  "dur": 2.8203
+ },
+ {
+  "id": "cold_blank",
+  "kind": "still",
+  "asset": "c11",
+  "start": 14.4239,
+  "seg": "COLD",
+  "look": "warm",
+  "camera": {
+   "from": {
+    "s": 1.04,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.1,
+    "x": 0,
+    "y": -6
+   }
+  },
+  "caption": "手册 · 规则",
+  "end": 17.7039,
+  "dur": 3.28
+ },
+ {
+  "id": "a1_room",
+  "kind": "footage",
+  "asset": "c13",
+  "start": 17.7039,
+  "seg": "ACT1",
+  "in": 0.4,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.03,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.12,
+    "x": 10,
+    "y": -10
+   }
+  },
+  "end": 22.3889,
+  "dur": 4.685
+ },
+ {
+  "id": "a1_quote",
+  "kind": "graphic",
+  "asset": "quote_feng",
+  "start": 22.3889,
+  "seg": "ACT1",
+  "text": "增程式电动车从单车角度看具备一定价值，但从整个国家和地球的角度来说，简直是胡说八道，是最糟糕的方案。",
+  "speaker": "冯思翰",
+  "role": "大众集团中国区 CEO",
+  "date": "2020 年 9 月 8 日",
+  "source": "成都媒体沟通会",
+  "end": 28.399,
+  "dur": 6.0101
+ },
+ {
+  "id": "a1_manual",
+  "kind": "footage",
+  "asset": "c2",
+  "start": 28.399,
+  "seg": "ACT1",
+  "in": 0.8,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.18,
+    "x": -20,
+    "y": -10
+   },
+   "to": {
+    "s": 1.24,
+    "x": -40,
+    "y": -24
+   }
+  },
+  "end": 32.0226,
+  "dur": 3.6236
+ },
+ {
+  "id": "a1_pen",
+  "kind": "footage",
+  "asset": "c9",
+  "start": 32.0226,
+  "seg": "ACT1",
+  "in": 0.6,
+  "rate": 0.75,
+  "look": "warm",
+  "camera": {
+   "from": {
+    "s": 1.2,
+    "x": 10,
+    "y": 10
+   },
+   "to": {
+    "s": 1.3,
+    "x": -20,
+    "y": -10
+   }
+  },
+  "end": 36.1071,
+  "dur": 4.0845
+ },
+ {
+  "id": "a1_thermo",
+  "kind": "graphic",
+  "asset": "statement",
+  "start": 36.1071,
+  "seg": "ACT1",
+  "lines": [
+   "这不是观点。",
+   "这是热力学。"
+  ],
+  "note": "第一幕 · 老规矩",
+  "end": 39.5612,
+  "dur": 3.4541
+ },
+ {
+  "id": "a1_l1",
+  "kind": "still",
+  "asset": "c4",
+  "start": 39.5612,
+  "seg": "ACT1",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.12,
+    "x": -20,
+    "y": 0
+   },
+   "to": {
+    "s": 1.2,
+    "x": 0,
+    "y": -8
+   }
+  },
+  "caption": "小账本",
+  "end": 41.4238,
+  "dur": 1.8626
+ },
+ {
+  "id": "a1_m1",
+  "kind": "still",
+  "asset": "c2",
+  "start": 41.4238,
+  "seg": "ACT1",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.3,
+    "x": -40,
+    "y": -20
+   },
+   "to": {
+    "s": 1.38,
+    "x": -60,
+    "y": -30
+   }
+  },
+  "caption": "老规矩",
+  "end": 42.9283,
+  "dur": 1.5045
+ },
+ {
+  "id": "a1_l2",
+  "kind": "footage",
+  "asset": "c4",
+  "start": 42.9283,
+  "seg": "ACT1",
+  "in": 0.5,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.16,
+    "x": -10,
+    "y": 0
+   },
+   "to": {
+    "s": 1.26,
+    "x": 20,
+    "y": -10
+   }
+  },
+  "end": 50.4194,
+  "dur": 7.4911
+ },
+ {
+  "id": "a1_m2",
+  "kind": "still",
+  "asset": "c2",
+  "start": 50.4194,
+  "seg": "ACT1",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.36,
+    "x": -40,
+    "y": -20
+   },
+   "to": {
+    "s": 1.42,
+    "x": -50,
+    "y": -24
+   }
+  },
+  "end": 52.392,
+  "dur": 1.9726
+ },
+ {
+  "id": "a1_l3",
+  "kind": "footage",
+  "asset": "c4",
+  "start": 52.392,
+  "seg": "ACT1",
+  "in": 2.6,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.24,
+    "x": -10,
+    "y": 0
+   },
+   "to": {
+    "s": 1.32,
+    "x": 10,
+    "y": -10
+   }
+  },
+  "end": 53.54,
+  "dur": 1.148
+ },
+ {
+  "id": "a1_stamp",
+  "kind": "footage",
+  "asset": "c3",
+  "start": 53.54,
+  "seg": "ACT1",
+  "in": 0.8,
+  "rate": 0.6,
+  "look": "warm",
+  "camera": {
+   "from": {
+    "s": 1.1,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.26,
+    "x": -20,
+    "y": -20
+   }
+  },
+  "end": 57.2963,
+  "dur": 3.7563
+ },
+ {
+  "id": "a2_year",
+  "kind": "graphic",
+  "asset": "act_title",
+  "start": 57.2963,
+  "seg": "ACT2",
+  "act": "第二幕",
+  "title": "验证",
+  "year": "2021",
+  "end": 61.0148,
+  "dur": 3.7185
+ },
+ {
+  "id": "a2_bar1",
+  "kind": "graphic",
+  "asset": "bar_compare",
+  "start": 61.0148,
+  "seg": "ACT2",
+  "stage": 1,
+  "value": 13438,
+  "label": "理想 ONE",
+  "sub": "2021-11 · 单月上险（台）",
+  "end": 73.2611,
+  "dur": 12.2463
+ },
+ {
+  "id": "a2_bar2",
+  "kind": "graphic",
+  "asset": "bar_compare",
+  "start": 73.2611,
+  "seg": "ACT2",
+  "stage": 2,
+  "value": 12445,
+  "delta": 993,
+  "label": "大众五款中大型 SUV",
+  "sub": "途昂 / 途锐 / 揽境 / ID.6 X / ID.6 Crozz",
+  "end": 82.8102,
+  "dur": 9.5491
+ },
+ {
+  "id": "a2_gap",
+  "kind": "footage",
+  "asset": "c7",
+  "start": 82.8102,
+  "seg": "ACT2",
+  "in": 0.6,
+  "rate": 0.75,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.12,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.22,
+    "x": 0,
+    "y": -10
+   }
+  },
+  "end": 89.7734,
+  "dur": 6.9632
+ },
+ {
+  "id": "a2_li",
+  "kind": "graphic",
+  "asset": "quote_li",
+  "start": 89.7734,
+  "seg": "ACT2",
+  "text": "感谢鞭策，继续努力。",
+  "speaker": "李想",
+  "date": "2021 年 12 月 22 日",
+  "source": "微博",
+  "end": 93.2324,
+  "dur": 3.459
+ },
+ {
+  "id": "a2_m",
+  "kind": "still",
+  "asset": "c2",
+  "start": 93.2324,
+  "seg": "ACT2",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.34,
+    "x": -40,
+    "y": -20
+   },
+   "to": {
+    "s": 1.44,
+    "x": -60,
+    "y": -30
+   }
+  },
+  "caption": "老规矩",
+  "end": 98.5591,
+  "dur": 5.3267
+ },
+ {
+  "id": "a3_year",
+  "kind": "graphic",
+  "asset": "act_title",
+  "start": 98.5591,
+  "seg": "ACT3",
+  "act": "第三幕",
+  "title": "改判",
+  "year": "2025",
+  "end": 100.29,
+  "dur": 1.7309
+ },
+ {
+  "id": "a3_room",
+  "kind": "footage",
+  "asset": "c13",
+  "start": 100.29,
+  "seg": "ACT3",
+  "in": 1.2,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.1,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.16,
+    "x": -10,
+    "y": -10
+   }
+  },
+  "end": 106.0678,
+  "dur": 5.7778
+ },
+ {
+  "id": "a3_car",
+  "kind": "graphic",
+  "asset": "evidence_card",
+  "start": 106.0678,
+  "seg": "ACT3",
+  "tag": "2025 · 上海车展",
+  "title": "三款概念车",
+  "sub": "其中一款，是增程",
+  "note": "证据 · 改判的起点",
+  "end": 109.3257,
+  "dur": 3.2579
+ },
+ {
+  "id": "a3_l1",
+  "kind": "footage",
+  "asset": "c8",
+  "start": 109.3257,
+  "seg": "ACT3",
+  "in": 0.6,
+  "rate": 0.75,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.18,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.28,
+    "x": -20,
+    "y": -10
+   }
+  },
+  "end": 111.0196,
+  "dur": 1.6939
+ },
+ {
+  "id": "a3_line",
+  "kind": "footage",
+  "asset": "c9",
+  "start": 111.0196,
+  "seg": "ACT3",
+  "in": 1.4,
+  "rate": 0.65,
+  "look": "warm",
+  "camera": {
+   "from": {
+    "s": 1.24,
+    "x": 10,
+    "y": 10
+   },
+   "to": {
+    "s": 1.34,
+    "x": -10,
+    "y": -6
+   }
+  },
+  "end": 114.7147,
+  "dur": 3.6951
+ },
+ {
+  "id": "a3_id",
+  "kind": "graphic",
+  "asset": "evidence_card",
+  "start": 114.7147,
+  "seg": "ACT3",
+  "tag": "2025 · 增程回归",
+  "title": "ID.ERA 9X",
+  "sub": "官方说法：增程新王",
+  "note": "证据 · 判它的人开始造它",
+  "end": 121.948,
+  "dur": 7.2333
+ },
+ {
+  "id": "a3_rule",
+  "kind": "footage",
+  "asset": "c2",
+  "start": 121.948,
+  "seg": "ACT3",
+  "in": 0.8,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.16,
+    "x": -20,
+    "y": -10
+   },
+   "to": {
+    "s": 1.26,
+    "x": -40,
+    "y": -18
+   }
+  },
+  "end": 127.8657,
+  "dur": 5.9177
+ },
+ {
+  "id": "a3_l2",
+  "kind": "footage",
+  "asset": "c4",
+  "start": 127.8657,
+  "seg": "ACT3",
+  "in": 1.2,
+  "rate": 0.75,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.2,
+    "x": -10,
+    "y": 0
+   },
+   "to": {
+    "s": 1.3,
+    "x": 10,
+    "y": -10
+   }
+  },
+  "end": 130.0938,
+  "dur": 2.2281
+ },
+ {
+  "id": "a3_m",
+  "kind": "still",
+  "asset": "c2",
+  "start": 130.0938,
+  "seg": "ACT3",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.34,
+    "x": -50,
+    "y": -24
+   },
+   "to": {
+    "s": 1.42,
+    "x": -60,
+    "y": -30
+   }
+  },
+  "end": 135.0699,
+  "dur": 4.9761
+ },
+ {
+  "id": "a4_year",
+  "kind": "graphic",
+  "asset": "act_title",
+  "start": 135.0699,
+  "seg": "ACT4",
+  "act": "第四幕",
+  "title": "再判",
+  "year": "2026",
+  "end": 137.1928,
+  "dur": 2.1229
+ },
+ {
+  "id": "a4_curve1",
+  "kind": "graphic",
+  "asset": "data_curve",
+  "start": 137.1928,
+  "seg": "ACT4",
+  "stage": 1,
+  "end": 145.0519,
+  "dur": 7.8591
+ },
+ {
+  "id": "a4_curve2",
+  "kind": "graphic",
+  "asset": "data_curve",
+  "start": 145.0519,
+  "seg": "ACT4",
+  "stage": 2,
+  "end": 155.2196,
+  "dur": 10.1677
+ },
+ {
+  "id": "a4_l1",
+  "kind": "footage",
+  "asset": "c8",
+  "start": 155.2196,
+  "seg": "ACT4",
+  "in": 0.5,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.2,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.32,
+    "x": -20,
+    "y": -10
+   }
+  },
+  "end": 161.4892,
+  "dur": 6.2696
+ },
+ {
+  "id": "a4_ev",
+  "kind": "graphic",
+  "asset": "evidence_card",
+  "start": 161.4892,
+  "seg": "ACT4",
+  "tag": "2026 · 退潮",
+  "title": "800V · 充电 5 分钟 400 公里",
+  "sub": "当年逼着人选增程的理由，正在被拿走",
+  "note": "证据 · 技术条件变了",
+  "end": 174.4861,
+  "dur": 12.9969
+ },
+ {
+  "id": "a4_l2",
+  "kind": "footage",
+  "asset": "c4",
+  "start": 174.4861,
+  "seg": "ACT4",
+  "in": 0.8,
+  "rate": 0.8,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.26,
+    "x": -10,
+    "y": 0
+   },
+   "to": {
+    "s": 1.36,
+    "x": 10,
+    "y": -10
+   }
+  },
+  "end": 177.9991,
+  "dur": 3.513
+ },
+ {
+  "id": "a4_m",
+  "kind": "still",
+  "asset": "c2",
+  "start": 177.9991,
+  "seg": "ACT4",
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.36,
+    "x": -50,
+    "y": -24
+   },
+   "to": {
+    "s": 1.44,
+    "x": -60,
+    "y": -30
+   }
+  },
+  "caption": "老规矩",
+  "end": 180.0318,
+  "dur": 2.0327
+ },
+ {
+  "id": "a4_m2",
+  "kind": "footage",
+  "asset": "c14",
+  "start": 180.0318,
+  "seg": "ACT4",
+  "in": 0.6,
+  "rate": 0.6,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.1,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.2,
+    "x": -10,
+    "y": -10
+   }
+  },
+  "end": 182.2,
+  "dur": 2.1682
+ },
+ {
+  "id": "a4_hold",
+  "kind": "graphic",
+  "asset": "statement",
+  "start": 182.2,
+  "seg": "ACT4",
+  "lines": [
+   "账没错。",
+   "变的是，账本背后的东西。"
+  ],
+  "note": "第四幕 · 结论",
+  "end": 185.9584,
+  "dur": 3.7584
+ },
+ {
+  "id": "cl_room",
+  "kind": "footage",
+  "asset": "c1",
+  "start": 185.9584,
+  "seg": "CLOSE",
+  "in": 1.0,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.06,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.14,
+    "x": 0,
+    "y": -8
+   }
+  },
+  "end": 188.4811,
+  "dur": 2.5227
+ },
+ {
+  "id": "cl_blank",
+  "kind": "still",
+  "asset": "c11",
+  "start": 188.4811,
+  "seg": "CLOSE",
+  "look": "warm",
+  "caption": "空白手册",
+  "camera": {
+   "from": {
+    "s": 1.08,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.16,
+    "x": 0,
+    "y": -8
+   }
+  },
+  "end": 192.6299,
+  "dur": 4.1488
+ },
+ {
+  "id": "cl_lm",
+  "kind": "footage",
+  "asset": "c7",
+  "start": 192.6299,
+  "seg": "CLOSE",
+  "in": 0.8,
+  "rate": 0.7,
+  "look": "cool",
+  "camera": {
+   "from": {
+    "s": 1.16,
+    "x": 0,
+    "y": 0
+   },
+   "to": {
+    "s": 1.26,
+    "x": 0,
+    "y": -10
+   }
+  },
+  "end": 197.4941,
+  "dur": 4.8642
+ },
+ {
+  "id": "cl_years",
+  "kind": "graphic",
+  "asset": "year_montage",
+  "start": 197.4941,
+  "seg": "CLOSE",
+  "years": [
+   [
+    "2020",
+    "被判死刑"
+   ],
+   [
+    "2021",
+    "翻了案"
+   ],
+   [
+    "2025",
+    "判它的人开始造它"
+   ],
+   [
+    "2026",
+    "它自己开始退潮"
+   ]
+  ],
+  "end": 211.9166,
+  "dur": 14.4225
+ },
+ {
+  "id": "cl_statement",
+  "kind": "graphic",
+  "asset": "statement",
+  "start": 211.9166,
+  "seg": "CLOSE",
+  "lines": [
+   "没有永远的裁判。",
+   "只有不断被重新判决的技术。"
+  ],
+  "note": "收束",
+  "end": 214.57,
+  "dur": 2.6534
+ },
+ {
+  "id": "cl_end",
+  "kind": "graphic",
+  "asset": "end_card",
+  "start": 214.57,
+  "seg": "CLOSE",
+  "decls": [
+   "本片人物为 AI 生成的虚构形象，不代表任何真实人物",
+   "本片画面与配音含 AI 辅助制作"
+  ],
+  "human": "选题、核实与判断，由人完成",
+  "sources": [
+   "引述：冯思翰 2020-09-08 成都媒体沟通会",
+   "上险数据：中国产经网 · 销量/份额：乘联会",
+   "ID.ERA 9X 定位：上汽大众官方"
+  ],
+  "cta": "点赞 · 关注，下期见",
+  "end": 230.2056,
+  "dur": 15.6356
+ }
+]
