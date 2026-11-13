@@ -1,0 +1,156 @@
+{
+  "out": "out/ep06-dialogue.mp4",
+  "expected_frames": 5525,
+  "expected_duration": 230.206,
+  "duration": 230.22,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 24.0,
+  "size_mb": 55.95,
+  "frames": 5524,
+  "decode_errors": "",
+  "loudness": {
+    "I": -14.31,
+    "TP": -1.68,
+    "LRA": 7.5,
+    "thresh": -25.53
+  },
+  "narration_corr": {
+    "ACT1_2": 0.9394226559810173,
+    "ACT3_2": 0.9231852189416301,
+    "CLOSE_7": 0.9203279494969191
+  },
+  "subs": {
+    "cues": 72,
+    "monotonic": true,
+    "overlap_pairs": 0,
+    "long_lines": [],
+    "long_line_count": 0,
+    "out_of_sentence_range": [],
+    "sentences": 58,
+    "sentences_covered": 58,
+    "first": 2.8,
+    "last": 228.491
+  },
+  "frame_checks": {
+    "subtitle-check": {
+      "top": 0.005977746212121212,
+      "bottom": 3.787618371212121,
+      "content": 63.76222490298203,
+      "bottom_max": 249
+    },
+    "end-declaration": {
+      "top": 0.008061079545454545,
+      "bottom": 2.465589488636364,
+      "content": 21.380175142973854,
+      "bottom_max": 247
+    },
+    "quote-card": {
+      "top": 0.0014717487373737373,
+      "bottom": 3.590652619949495,
+      "content": 19.198865145016338,
+      "bottom_max": 249
+    },
+    "data-curve": {
+      "top": 0.00342092803030303,
+      "bottom": 1.8123224431818181,
+      "content": 14.92611953635621,
+      "bottom_max": 246
+    },
+    "fade-out": {
+      "top": 0.0,
+      "bottom": 0.0,
+      "content": 1.914828431372549e-05,
+      "bottom_max": 0
+    }
+  },
+  "letterbox_ok": true,
+  "subtitle_ok": true,
+  "end_card_ok": true,
+  "fade_ok": true,
+  "comfy": {
+    "video": [
+      "comfy_c1",
+      "comfy_c1",
+      "comfy_c13",
+      "comfy_c2",
+      "comfy_c3",
+      "comfy_c10",
+      "comfy_c12",
+      "comfy_c5",
+      "comfy_c4",
+      "comfy_c13",
+      "comfy_c5",
+      "comfy_c8",
+      "comfy_c6",
+      "comfy_c9",
+      "comfy_c2",
+      "comfy_c12",
+      "comfy_c7",
+      "comfy_c14",
+      "comfy_c13",
+      "comfy_c8",
+      "comfy_c4",
+      "comfy_c2",
+      "comfy_c7",
+      "comfy_c14",
+      "comfy_c13",
+      "comfy_c6",
+      "comfy_c14",
+      "comfy_c11"
+    ],
+    "still": [],
+    "broll": [],
+    "used": [
+      "comfy_c1",
+      "comfy_c1",
+      "comfy_c13",
+      "comfy_c2",
+      "comfy_c3",
+      "comfy_c10",
+      "comfy_c12",
+      "comfy_c5",
+      "comfy_c4",
+      "comfy_c13",
+      "comfy_c5",
+      "comfy_c8",
+      "comfy_c6",
+      "comfy_c9",
+      "comfy_c2",
+      "comfy_c12",
+      "comfy_c7",
+      "comfy_c14",
+      "comfy_c13",
+      "comfy_c8",
+      "comfy_c4",
+      "comfy_c2",
+      "comfy_c7",
+      "comfy_c14",
+      "comfy_c13",
+      "comfy_c6",
+      "comfy_c14",
+      "comfy_c11"
+    ],
+    "fallback": []
+  },
+  "stills": [
+    "still-01-cold-open",
+    "still-02-quote-feng",
+    "still-03-bar-compare",
+    "still-04-quote-li",
+    "still-05-distance-close",
+    "still-06-data-curve",
+    "still-07-blank-manual",
+    "still-08-end-card",
+    "still-09-end-declaration"
+  ],
+  "covers": [
+    "cover-16x9.jpg",
+    "cover-1x1.jpg",
+    "cover-3x4.jpg"
+  ],
+  "contact_sheet": true,
+  "verify_elapsed": 54.3
+}

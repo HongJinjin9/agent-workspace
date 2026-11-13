@@ -1,0 +1,650 @@
+[
+ {
+  "idx": 1,
+  "start": 2.8,
+  "end": 5.9637,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "COLD",
+  "text": "2020 年，一场关于技术路线的判决，"
+ },
+ {
+  "idx": 2,
+  "start": 5.9637,
+  "end": 7.6789,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "COLD",
+  "text": "从一张会议桌开始。"
+ },
+ {
+  "idx": 3,
+  "start": 8.9989,
+  "end": 10.4036,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "COLD",
+  "text": "桌边坐着两个人。"
+ },
+ {
+  "idx": 4,
+  "start": 11.6036,
+  "end": 14.4239,
+  "speaker": "N",
+  "sent": 3,
+  "seg": "COLD",
+  "text": "一个带着手册，一个带着账本。"
+ },
+ {
+  "idx": 5,
+  "start": 17.7039,
+  "end": 19.5479,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "ACT1",
+  "text": "2020 年 9 月 8 日，"
+ },
+ {
+  "idx": 6,
+  "start": 19.5479,
+  "end": 21.7289,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "ACT1",
+  "text": "成都，一场媒体沟通会。"
+ },
+ {
+  "idx": 7,
+  "start": 22.3889,
+  "end": 24.8959,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "ACT1",
+  "text": "大众集团中国区 CEO 冯思翰，"
+ },
+ {
+  "idx": 8,
+  "start": 24.8959,
+  "end": 27.319,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "ACT1",
+  "text": "被问到怎么看增程式电动车。"
+ },
+ {
+  "idx": 9,
+  "start": 28.399,
+  "end": 31.1226,
+  "speaker": "M",
+  "sent": 3,
+  "seg": "ACT1",
+  "text": "内燃机发电，再用电驱动车轮。"
+ },
+ {
+  "idx": 10,
+  "start": 32.0226,
+  "end": 35.1471,
+  "speaker": "M",
+  "sent": 4,
+  "seg": "ACT1",
+  "text": "中间多一道转换，能量就多丢一次。"
+ },
+ {
+  "idx": 11,
+  "start": 36.1071,
+  "end": 38.2412,
+  "speaker": "M",
+  "sent": 5,
+  "seg": "ACT1",
+  "text": "这不是观点，这是热力学。"
+ },
+ {
+  "idx": 12,
+  "start": 39.5612,
+  "end": 40.7638,
+  "speaker": "L",
+  "sent": 6,
+  "seg": "ACT1",
+  "text": "账不是这么算的。"
+ },
+ {
+  "idx": 13,
+  "start": 41.4238,
+  "end": 42.1483,
+  "speaker": "M",
+  "sent": 7,
+  "seg": "ACT1",
+  "text": "那怎么算？"
+ },
+ {
+  "idx": 14,
+  "start": 42.9283,
+  "end": 44.8823,
+  "speaker": "L",
+  "sent": 8,
+  "seg": "ACT1",
+  "text": "用户不看你中间丢了多少。"
+ },
+ {
+  "idx": 15,
+  "start": 45.4223,
+  "end": 47.4105,
+  "speaker": "L",
+  "sent": 9,
+  "seg": "ACT1",
+  "text": "他看我一箱油能跑多远，"
+ },
+ {
+  "idx": 16,
+  "start": 47.4105,
+  "end": 49.5794,
+  "speaker": "L",
+  "sent": 9,
+  "seg": "ACT1",
+  "text": "看我在高速上敢不敢超车。"
+ },
+ {
+  "idx": 17,
+  "start": 50.4194,
+  "end": 51.432,
+  "speaker": "M",
+  "sent": 10,
+  "seg": "ACT1",
+  "text": "这叫不算账。"
+ },
+ {
+  "idx": 18,
+  "start": 52.392,
+  "end": 53.5363,
+  "speaker": "L",
+  "sent": 11,
+  "seg": "ACT1",
+  "text": "这叫算别的账。"
+ },
+ {
+  "idx": 19,
+  "start": 57.2963,
+  "end": 60.0548,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "ACT2",
+  "text": "一年后。2021 年 11 月。"
+ },
+ {
+  "idx": 20,
+  "start": 61.0148,
+  "end": 62.83,
+  "speaker": "L",
+  "sent": 2,
+  "seg": "ACT2",
+  "text": "理想 ONE，单月上险——"
+ },
+ {
+  "idx": 21,
+  "start": 63.43,
+  "end": 65.4545,
+  "speaker": "L",
+  "sent": 3,
+  "seg": "ACT2",
+  "text": "一万三千四百三十八台。"
+ },
+ {
+  "idx": 22,
+  "start": 66.2945,
+  "end": 66.7667,
+  "speaker": "M",
+  "sent": 4,
+  "seg": "ACT2",
+  "text": "多少？"
+ },
+ {
+  "idx": 23,
+  "start": 67.4267,
+  "end": 71.9411,
+  "speaker": "L",
+  "sent": 5,
+  "seg": "ACT2",
+  "text": "一、万、三、千、四、百、三、十、八。"
+ },
+ {
+  "idx": 24,
+  "start": 73.2611,
+  "end": 75.2736,
+  "speaker": "N",
+  "sent": 6,
+  "seg": "ACT2",
+  "text": "同一个月，大众旗下五"
+ },
+ {
+  "idx": 25,
+  "start": 75.2736,
+  "end": 76.8936,
+  "speaker": "N",
+  "sent": 6,
+  "seg": "ACT2",
+  "text": "款中大型 SUV——"
+ },
+ {
+  "idx": 26,
+  "start": 77.5536,
+  "end": 80.0674,
+  "speaker": "N",
+  "sent": 7,
+  "seg": "ACT2",
+  "text": "途昂、途锐、揽境、ID."
+ },
+ {
+  "idx": 27,
+  "start": 80.0674,
+  "end": 82.1502,
+  "speaker": "N",
+  "sent": 7,
+  "seg": "ACT2",
+  "text": "6 X、ID.6 Crozz。"
+ },
+ {
+  "idx": 28,
+  "start": 82.8102,
+  "end": 85.6699,
+  "speaker": "N",
+  "sent": 8,
+  "seg": "ACT2",
+  "text": "加起来，一万二千四百四十五台。"
+ },
+ {
+  "idx": 29,
+  "start": 86.7499,
+  "end": 88.4534,
+  "speaker": "L",
+  "sent": 9,
+  "seg": "ACT2",
+  "text": "还差九百九十三台。"
+ },
+ {
+  "idx": 30,
+  "start": 89.7734,
+  "end": 92.3324,
+  "speaker": "N",
+  "sent": 10,
+  "seg": "ACT2",
+  "text": "李想在微博上，只发了八个字。"
+ },
+ {
+  "idx": 31,
+  "start": 93.2324,
+  "end": 94.6791,
+  "speaker": "M",
+  "sent": 11,
+  "seg": "ACT2",
+  "text": "……这一页，我记下来了。"
+ },
+ {
+  "idx": 32,
+  "start": 98.5591,
+  "end": 99.6288,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "ACT3",
+  "text": "又过了四年。"
+ },
+ {
+  "idx": 33,
+  "start": 100.2888,
+  "end": 103.0104,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "ACT3",
+  "text": "2025 年 4 月，上海车展。"
+ },
+ {
+  "idx": 34,
+  "start": 103.0104,
+  "end": 105.2878,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "ACT3",
+  "text": "大众发布三款概念车。"
+ },
+ {
+  "idx": 35,
+  "start": 106.0678,
+  "end": 108.0057,
+  "speaker": "N",
+  "sent": 3,
+  "seg": "ACT3",
+  "text": "其中一款，是增程。"
+ },
+ {
+  "idx": 36,
+  "start": 109.3257,
+  "end": 110.2996,
+  "speaker": "L",
+  "sent": 4,
+  "seg": "ACT3",
+  "text": "你在看什么？"
+ },
+ {
+  "idx": 37,
+  "start": 111.0196,
+  "end": 113.1547,
+  "speaker": "M",
+  "sent": 5,
+  "seg": "ACT3",
+  "text": "我在看，当年我划的这条线。"
+ },
+ {
+  "idx": 38,
+  "start": 114.7147,
+  "end": 117.632,
+  "speaker": "N",
+  "sent": 6,
+  "seg": "ACT3",
+  "text": "上汽大众 ID.ERA 9X 上市。"
+ },
+ {
+  "idx": 39,
+  "start": 118.292,
+  "end": 121.108,
+  "speaker": "N",
+  "sent": 7,
+  "seg": "ACT3",
+  "text": "官方对它的说法是——\"增程新王\"。"
+ },
+ {
+  "idx": 40,
+  "start": 121.948,
+  "end": 122.9719,
+  "speaker": "M",
+  "sent": 8,
+  "seg": "ACT3",
+  "text": "规则没有变。"
+ },
+ {
+  "idx": 41,
+  "start": 123.9919,
+  "end": 126.4257,
+  "speaker": "M",
+  "sent": 9,
+  "seg": "ACT3",
+  "text": "变的是，谁在按规则算账。"
+ },
+ {
+  "idx": 42,
+  "start": 127.8657,
+  "end": 129.3138,
+  "speaker": "L",
+  "sent": 10,
+  "seg": "ACT3",
+  "text": "那现在，谁赢？"
+ },
+ {
+  "idx": 43,
+  "start": 130.0938,
+  "end": 131.1899,
+  "speaker": "M",
+  "sent": 11,
+  "seg": "ACT3",
+  "text": "这局，平。"
+ },
+ {
+  "idx": 44,
+  "start": 135.0699,
+  "end": 136.3528,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "ACT4",
+  "text": "但故事还没完。"
+ },
+ {
+  "idx": 45,
+  "start": 137.1928,
+  "end": 140.837,
+  "speaker": "L",
+  "sent": 2,
+  "seg": "ACT4",
+  "text": "2025 年，增程全年销量超过 123"
+ },
+ {
+  "idx": 46,
+  "start": 140.837,
+  "end": 144.3319,
+  "speaker": "L",
+  "sent": 2,
+  "seg": "ACT4",
+  "text": "万辆，占新能源市场超过 10%。"
+ },
+ {
+  "idx": 47,
+  "start": 145.0519,
+  "end": 147.1159,
+  "speaker": "L",
+  "sent": 3,
+  "seg": "ACT4",
+  "text": "2026 年前五个月，"
+ },
+ {
+  "idx": 48,
+  "start": 147.1159,
+  "end": 150.224,
+  "speaker": "L",
+  "sent": 3,
+  "seg": "ACT4",
+  "text": "41 万辆——同比下滑 9.7%。"
+ },
+ {
+  "idx": 49,
+  "start": 151.004,
+  "end": 154.2596,
+  "speaker": "L",
+  "sent": 4,
+  "seg": "ACT4",
+  "text": "5 月单月，同比跌 24.9%。"
+ },
+ {
+  "idx": 50,
+  "start": 155.2196,
+  "end": 155.7823,
+  "speaker": "L",
+  "sent": 5,
+  "seg": "ACT4",
+  "text": "……跌了。"
+ },
+ {
+  "idx": 51,
+  "start": 157.0423,
+  "end": 157.8405,
+  "speaker": "M",
+  "sent": 6,
+  "seg": "ACT4",
+  "text": "跌了多少？"
+ },
+ {
+  "idx": 52,
+  "start": 158.5605,
+  "end": 160.1692,
+  "speaker": "L",
+  "sent": 7,
+  "seg": "ACT4",
+  "text": "百分之二十四点九。"
+ },
+ {
+  "idx": 53,
+  "start": 161.4892,
+  "end": 165.3223,
+  "speaker": "N",
+  "sent": 8,
+  "seg": "ACT4",
+  "text": "纯电在涨。800V 高压平台下放到十几万"
+ },
+ {
+  "idx": 54,
+  "start": 165.3223,
+  "end": 168.5891,
+  "speaker": "N",
+  "sent": 8,
+  "seg": "ACT4",
+  "text": "的车，充电五分钟能跑四百公里。"
+ },
+ {
+  "idx": 55,
+  "start": 169.3091,
+  "end": 172.009,
+  "speaker": "N",
+  "sent": 9,
+  "seg": "ACT4",
+  "text": "当年逼着人选增程的那个理由，"
+ },
+ {
+  "idx": 56,
+  "start": 172.009,
+  "end": 173.1661,
+  "speaker": "N",
+  "sent": 9,
+  "seg": "ACT4",
+  "text": "正在被拿走。"
+ },
+ {
+  "idx": 57,
+  "start": 174.4861,
+  "end": 176.7991,
+  "speaker": "L",
+  "sent": 10,
+  "seg": "ACT4",
+  "text": "那我这本账，是不是也算错了？"
+ },
+ {
+  "idx": 58,
+  "start": 177.9991,
+  "end": 178.7118,
+  "speaker": "M",
+  "sent": 11,
+  "seg": "ACT4",
+  "text": "账没错。"
+ },
+ {
+  "idx": 59,
+  "start": 180.0318,
+  "end": 182.1984,
+  "speaker": "M",
+  "sent": 12,
+  "seg": "ACT4",
+  "text": "是账本背后的东西，变了。"
+ },
+ {
+  "idx": 60,
+  "start": 185.9584,
+  "end": 187.4011,
+  "speaker": "N",
+  "sent": 1,
+  "seg": "CLOSE",
+  "text": "两个人都不说话了。"
+ },
+ {
+  "idx": 61,
+  "start": 188.4811,
+  "end": 191.3099,
+  "speaker": "N",
+  "sent": 2,
+  "seg": "CLOSE",
+  "text": "桌上，多了一本新的空白手册。"
+ },
+ {
+  "idx": 62,
+  "start": 192.6299,
+  "end": 193.8897,
+  "speaker": "M",
+  "sent": 3,
+  "seg": "CLOSE",
+  "text": "这本，还没写。"
+ },
+ {
+  "idx": 63,
+  "start": 194.9097,
+  "end": 195.9341,
+  "speaker": "L",
+  "sent": 4,
+  "seg": "CLOSE",
+  "text": "那就先空着。"
+ },
+ {
+  "idx": 64,
+  "start": 197.4941,
+  "end": 200.3667,
+  "speaker": "N",
+  "sent": 5,
+  "seg": "CLOSE",
+  "text": "2020 年，增程被判了死刑。"
+ },
+ {
+  "idx": 65,
+  "start": 201.0267,
+  "end": 203.0374,
+  "speaker": "N",
+  "sent": 6,
+  "seg": "CLOSE",
+  "text": "2021 年，它翻了案。"
+ },
+ {
+  "idx": 66,
+  "start": 203.6974,
+  "end": 207.278,
+  "speaker": "N",
+  "sent": 7,
+  "seg": "CLOSE",
+  "text": "2025 年，判它的人，自己开始造它。"
+ },
+ {
+  "idx": 67,
+  "start": 207.938,
+  "end": 210.8366,
+  "speaker": "N",
+  "sent": 8,
+  "seg": "CLOSE",
+  "text": "2026 年，它自己也开始退潮。"
+ },
+ {
+  "idx": 68,
+  "start": 211.9166,
+  "end": 213.3677,
+  "speaker": "N",
+  "sent": 9,
+  "seg": "CLOSE",
+  "text": "没有永远的裁判。"
+ },
+ {
+  "idx": 69,
+  "start": 214.5677,
+  "end": 217.0656,
+  "speaker": "N",
+  "sent": 10,
+  "seg": "CLOSE",
+  "text": "只有不断被重新判决的技术。"
+ },
+ {
+  "idx": 70,
+  "start": 220.5056,
+  "end": 223.4951,
+  "speaker": "N",
+  "sent": 0,
+  "seg": "OUTRO",
+  "text": "本片人物为 AI 生成的虚构形象，"
+ },
+ {
+  "idx": 71,
+  "start": 223.4951,
+  "end": 225.5015,
+  "speaker": "N",
+  "sent": 0,
+  "seg": "OUTRO",
+  "text": "不代表任何真实人物；"
+ },
+ {
+  "idx": 72,
+  "start": 225.5015,
+  "end": 228.491,
+  "speaker": "N",
+  "sent": 0,
+  "seg": "OUTRO",
+  "text": "本片画面与配音含 AI 辅助制作。"
+ }
+]

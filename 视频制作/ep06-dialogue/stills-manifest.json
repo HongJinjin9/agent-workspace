@@ -1,0 +1,240 @@
+{
+  "episode": "ep06",
+  "title": "他们说，这是最糟糕的方案",
+  "tool": "china-aigc/scripts/aigc_cn.py --platform agnes --mode t2i --ratio 16:9",
+  "platform": "agnes",
+  "model": "agnes-image-2.1-flash",
+  "aspect": "16:9",
+  "native_size": [
+    1312,
+    736
+  ],
+  "note": "Agnes clamps larger requests to 1312x736 (16:9); doubao account overdue, aliyun model unpurchased, minimax key invalid — agnes only. comfy-stills JPGs are lanczos 1920x1080 drop-in fallbacks.",
+  "count": 14,
+  "stills": [
+    {
+      "id": "c1",
+      "prompt": "Wide symmetrical cinematic still, an extremely long dark conference table receding into shadow, two anonymous human silhouettes seated facing each other at opposite ends, one silhouette of a generic middle-aged East-Asian businessman in a plain dark grey suit, no tie, sleeves rolled up, short dark hair, seen only from behind / side / over-the-shoulder, face never visible, one of a generic young East-Asian woman in a light beige casual jacket, hair loosely tied, seen only from behind / side / three-quarter back, face never visible, an old thick worn paper manual near him and a leather ledger notebook near her, cold grey empty boardroom, warm gold desk lamps glowing along the table, 35mm lens, deep focus",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c1.png",
+      "jpg": "assets/comfy-stills/c1.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 913289,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c2",
+      "prompt": "Cinematic side/back view of a generic middle-aged East-Asian businessman in a plain dark grey suit, no tie, sleeves rolled up, short dark hair, seen only from behind / side / over-the-shoulder, face never visible, at one side of a very long dark conference table, flipping through a thick worn paper manual, warm desk lamp light from the left, cold blue-grey shadows on the right, dark empty boardroom",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c2.png",
+      "jpg": "assets/comfy-stills/c2.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 898986,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c3",
+      "prompt": "Extreme close-up macro of a man's hands pressing a dark wooden rubber stamp onto a paper document on a dark wooden table, a red round ink mark half-formed on the paper, warm lamp light raking across the table, crisp skin and paper detail, hands only, no face",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c3.png",
+      "jpg": "assets/comfy-stills/c3.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1278326,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c4",
+      "prompt": "Cinematic medium shot of a generic young East-Asian woman in a light beige casual jacket, hair loosely tied, seen only from behind / side / three-quarter back, face never visible, seated across a dark conference table, looking down at a tablet and an open old ledger, cold screen glow on her, back three-quarter view, her face soft and out of focus, light beige casual clothes",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c4.png",
+      "jpg": "assets/comfy-stills/c4.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1114228,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c5",
+      "prompt": "Close-up of a woman's hands pushing a thick worn leather ledger notebook across a dark wooden conference table toward the camera, slight motion blur on the hands, warm gold lamp light, dark background, shallow depth of field, hands only",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c5.png",
+      "jpg": "assets/comfy-stills/c5.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 900289,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c6",
+      "prompt": "Macro cinematic still of thick old manual pages mid-flip, paper bending and catching warm golden light, dust motes floating in the light beam, dark background, extremely shallow depth of field",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c6.png",
+      "jpg": "assets/comfy-stills/c6.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1045168,
+      "generated_at": "2026-11-13T04:51:43+00:00"
+    },
+    {
+      "id": "c7",
+      "prompt": "Over-shoulder two-shot, both figures seen from behind and side at a long dark conference table facing each other, a generic middle-aged East-Asian businessman in a plain dark grey suit, no tie, sleeves rolled up, short dark hair, seen only from behind / side / over-the-shoulder, face never visible and a generic young East-Asian woman in a light beige casual jacket, hair loosely tied, seen only from behind / side / three-quarter back, face never visible, warm desk lamps between them on the table, distance closer than before, cold grey room",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c7.png",
+      "jpg": "assets/comfy-stills/c7.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1101753,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c8",
+      "prompt": "Close-up of a woman's index finger tapping a tablet screen displaying abstract glowing blue numeric shapes, unreadable and blurred, cold blue screen glow on her hand, dark conference table, shallow depth of field, digits blurred not readable",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c8.png",
+      "jpg": "assets/comfy-stills/c8.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 953921,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c9",
+      "prompt": "Macro of a man's hand holding a black pen underlining a line in an old paper manual, warm golden lamp light, visible paper texture and fibre, hand only",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c9.png",
+      "jpg": "assets/comfy-stills/c9.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1231728,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c10",
+      "prompt": "Macro of a red round official-looking rubber stamp mark on white paper, no readable characters inside the mark, only plain rings and abstract shapes, paper fibre and ink bleed at the edges, warm light, extreme close-up",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c10.png",
+      "jpg": "assets/comfy-stills/c10.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1438905,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c11",
+      "prompt": "Quiet cinematic still life of a new thick blank manual with a plain dark cover lying on a dark table, side light from the left, dust motes in the air, empty background, cool grey and warm gold tones, minimal, no people",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c11.png",
+      "jpg": "assets/comfy-stills/c11.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 913751,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c12",
+      "prompt": "Close-up of an old open ledger with faint column rules on aged paper, a black pen resting on it, warm golden light, paper texture, shallow depth of field, dark background, no readable writing",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c12.png",
+      "jpg": "assets/comfy-stills/c12.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 1156387,
+      "generated_at": "2026-11-13T04:51:44+00:00"
+    },
+    {
+      "id": "c13",
+      "prompt": "Empty modern conference room at dusk, long table and chairs, big window with blurred city lights outside, cold blue-grey light, no people, quiet cinematic wide shot",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c13.png",
+      "jpg": "assets/comfy-stills/c13.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 994823,
+      "generated_at": "2026-11-13T04:51:45+00:00"
+    },
+    {
+      "id": "c14",
+      "prompt": "Cinematic back view of a middle-aged man in a dark grey suit closing a thick manual and leaning back in his chair at a long conference table, backlit silhouette, warm rim light from a desk lamp, cold grey room, no face visible",
+      "negative_prompt": "celebrity, politician, brand logo, car badge, uniform, name tag, readable text, watermark, distorted hands, extra fingers, clear frontal face",
+      "style_suffix": "cinematic documentary photograph, live-action realism, cool grey base palette with warm gold accents, shallow depth of field, 2.35:1 anamorphic framing composed safely inside a 16:9 frame, subtle 35mm film grain, generic fictional people, no recognizable facial features, not resembling any public figure, no logos, no brand marks, no readable text, no watermark",
+      "model": "agnes-image-2.1-flash",
+      "platform": "agnes",
+      "file": "assets/agnes/c14.png",
+      "jpg": "assets/comfy-stills/c14.jpg",
+      "size": [
+        1312,
+        736
+      ],
+      "bytes": 918999,
+      "generated_at": "2026-11-13T04:51:45+00:00"
+    }
+  ]
+}

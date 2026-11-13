@@ -1,0 +1,609 @@
+{
+  "voices": {
+    "N": {
+      "voice": "zh-CN-YunjianNeural",
+      "role": "旁白",
+      "label": "旁白",
+      "note": "沉稳男声，中慢速讲故事；不站队。处理：80Hz 低切、轻压缩、短房间混响 wet≈0.10"
+    },
+    "M": {
+      "voice": "zh-CN-YunyangNeural",
+      "role": "老规矩",
+      "label": "老规矩",
+      "note": "低沉、笃定、不带情绪；基准 pitch −10Hz、rate 偏慢；处理：轻微混响 wet≈0.22（权威感）+ 低架提升"
+    },
+    "L": {
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "role": "小账本",
+      "label": "小账本",
+      "note": "清亮、干脆、只报事实；基准 pitch +2Hz、rate 偏快；处理：无混响（wet=0）、高频略提"
+    }
+  },
+  "fps": 24,
+  "cold_open": 2.8,
+  "act_gap": 1.6,
+  "segment_gap": 1.6,
+  "outro": 10.5,
+  "notes": "第 06 期《他们说，这是最糟糕的方案》三声部表演谱：N 旁白（zh-CN-YunjianNeural，沉稳男声、中慢速讲故事）、M 老规矩（zh-CN-YunyangNeural，低沉男声 pitch −10Hz 基准、笃定慢速）、L 小账本（zh-CN-XiaoxiaoNeural，清亮女声 +2Hz 基准、干脆偏快）。文字严格取自稿件 §4（括号内表演提示不读；两处【引述卡｜屏幕显示】为画面字卡，不送 TTS；片尾声明块不读，改由一句口播 AI 声明收尾）。对话剧留白比知识短片更长：短兵相接处 0.45–0.65s，判决/转折处 0.8–1.4s，幕间 1.5s，句尾大留白 1.8–2.2s。",
+  "outro_voice": {
+    "text": "本片人物为 AI 生成的虚构形象，不代表任何真实人物；本片画面与配音含 AI 辅助制作。",
+    "speaker": "N",
+    "rate": "-2%",
+    "pitch": "-3Hz",
+    "pause_before": 0.8,
+    "pause_after": 0.0,
+    "note": "片尾双声明口播（虚构人物 + AI 辅助制作），认真、克制、不喊麦"
+  },
+  "segments": [
+    {
+      "id": "COLD",
+      "name": "冷开场",
+      "emotion": "平静，像在讲一个旧案卷；悬念，不急着下判断",
+      "pause_before": 0.0,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "2020 年，一场关于技术路线的判决，从一张会议桌开始。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 1.32,
+          "note": "平静起句；像翻开一份旧案卷，日期落到\"2020 年\""
+        },
+        {
+          "i": 2,
+          "speaker": "N",
+          "text": "桌边坐着两个人。",
+          "rate": "-3%",
+          "pitch": "-3Hz",
+          "pause_after": 1.2,
+          "note": "画面拉远：桌边坐着两个人；停一拍再进下一句"
+        },
+        {
+          "i": 3,
+          "speaker": "N",
+          "text": "一个带着手册，一个带着账本。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 1.68,
+          "note": "\"一个…一个…\"左右分开；句后留白进第一幕"
+        }
+      ]
+    },
+    {
+      "id": "ACT1",
+      "name": "第一幕·立判",
+      "emotion": "权威：老规矩笃定陈述物理定律，小账本干脆顶回；旁白只做转述",
+      "pause_before": 1.5,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "2020 年 9 月 8 日，成都，一场媒体沟通会。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.66,
+          "note": "转述，语速平稳；日期念清楚，不快"
+        },
+        {
+          "i": 2,
+          "speaker": "N",
+          "text": "大众集团中国区 CEO 冯思翰，被问到怎么看增程式电动车。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 1.08,
+          "note": "\"被问到怎么看增程式电动车\"——把问题交出去，后接引述卡"
+        },
+        {
+          "i": 3,
+          "speaker": "M",
+          "text": "内燃机发电，再用电驱动车轮。",
+          "rate": "-6%",
+          "pitch": "-10Hz",
+          "pause_after": 0.9,
+          "note": "老规矩开口：笃定，不带情绪，像陈述物理定律"
+        },
+        {
+          "i": 4,
+          "speaker": "M",
+          "text": "中间多一道转换，能量就多丢一次。",
+          "rate": "-6%",
+          "pitch": "-10Hz",
+          "pause_after": 0.96,
+          "note": "\"多丢一次\"轻轻落下，不留情绪"
+        },
+        {
+          "i": 5,
+          "speaker": "M",
+          "text": "这不是观点，这是热力学。",
+          "rate": "-8%",
+          "pitch": "-11Hz",
+          "pause_after": 1.32,
+          "note": "判决落下：\"这不是观点\"微停，\"这是热力学\"咬住；句后大留白（盖章落点）"
+        },
+        {
+          "i": 6,
+          "speaker": "L",
+          "text": "账不是这么算的。",
+          "rate": "+6%",
+          "pitch": "+3Hz",
+          "pause_after": 0.66,
+          "note": "小账本干脆，不狡辩；句尾不上扬"
+        },
+        {
+          "i": 7,
+          "speaker": "M",
+          "text": "那怎么算？",
+          "rate": "-5%",
+          "pitch": "-10Hz",
+          "pause_after": 0.78,
+          "note": "翻开手册，问句真问，句尾略上扬"
+        },
+        {
+          "i": 8,
+          "speaker": "L",
+          "text": "用户不看你中间丢了多少。",
+          "rate": "+5%",
+          "pitch": "+3Hz",
+          "pause_after": 0.54,
+          "note": "把账本往前一推，语速稍快"
+        },
+        {
+          "i": 9,
+          "speaker": "L",
+          "text": "他看我一箱油能跑多远，看我在高速上敢不敢超车。",
+          "rate": "+6%",
+          "pitch": "+3Hz",
+          "pause_after": 0.84,
+          "note": "\"敢不敢超车\"轻挑一下，不解释"
+        },
+        {
+          "i": 10,
+          "speaker": "M",
+          "text": "这叫不算账。",
+          "rate": "-7%",
+          "pitch": "-11Hz",
+          "pause_after": 0.96,
+          "note": "合上手册，声音压低；\"这叫不算账\"短、硬"
+        },
+        {
+          "i": 11,
+          "speaker": "L",
+          "text": "这叫算别的账。",
+          "rate": "+4%",
+          "pitch": "+2Hz",
+          "pause_after": 2.16,
+          "note": "不退让，四个字落地；句后大留白进第二幕"
+        }
+      ]
+    },
+    {
+      "id": "ACT2",
+      "name": "第二幕·验证",
+      "emotion": "反转：数字自己说话，节奏收紧；老规矩第一次松动",
+      "pause_before": 1.5,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "一年后。2021 年 11 月。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.96,
+          "note": "节奏收紧，像翻开新的一页；\"一年后\"后微停"
+        },
+        {
+          "i": 2,
+          "speaker": "L",
+          "text": "理想 ONE，单月上险——",
+          "rate": "+3%",
+          "pitch": "+3Hz",
+          "pause_after": 0.6,
+          "note": "把账本推到桌子中间"
+        },
+        {
+          "i": 3,
+          "speaker": "L",
+          "text": "一万三千四百三十八台。",
+          "rate": "+4%",
+          "pitch": "+3Hz",
+          "pause_after": 0.84,
+          "note": "报数；句后停一拍，让数字站住"
+        },
+        {
+          "i": 4,
+          "speaker": "M",
+          "text": "多少？",
+          "rate": "-4%",
+          "pitch": "-10Hz",
+          "pause_after": 0.66,
+          "note": "老规矩抬头：\"多少？\"短，真意外"
+        },
+        {
+          "i": 5,
+          "speaker": "L",
+          "text": "一、万、三、千、四、百、三、十、八。",
+          "rate": "+2%",
+          "pitch": "+3Hz",
+          "pause_after": 1.32,
+          "note": "一字一顿，每个数字都断开；句后留白"
+        },
+        {
+          "i": 6,
+          "speaker": "N",
+          "text": "同一个月，大众旗下五款中大型 SUV——",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.66,
+          "note": "旁白停顿一拍，再报另一组数字"
+        },
+        {
+          "i": 7,
+          "speaker": "N",
+          "text": "途昂、途锐、揽境、ID.6 X、ID.6 Crozz。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 0.66,
+          "note": "车名逐个念清楚，不抢"
+        },
+        {
+          "i": 8,
+          "speaker": "N",
+          "text": "加起来，一万二千四百四十五台。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 1.08,
+          "note": "\"加起来\"停一下，再落数字；句后大留白"
+        },
+        {
+          "i": 9,
+          "speaker": "L",
+          "text": "还差九百九十三台。",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "pause_after": 1.32,
+          "note": "轻轻补一句，\"还差九百九十三台\"——判决落点"
+        },
+        {
+          "i": 10,
+          "speaker": "N",
+          "text": "李想在微博上，只发了八个字。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 0.9,
+          "note": "语气转平，像在念一条微博"
+        },
+        {
+          "i": 11,
+          "speaker": "M",
+          "text": "……这一页，我记下来了。",
+          "rate": "-6%",
+          "pitch": "-10Hz",
+          "pause_after": 2.28,
+          "note": "翻开手册，笔停在半空很久；\"……这一页\"先叹一口气，慢；句后大留白进第三幕"
+        }
+      ]
+    },
+    {
+      "id": "ACT3",
+      "name": "第三幕·改判",
+      "emotion": "微妙：老规矩翻回自己划过的那一页，两人距离拉近，打平",
+      "pause_before": 1.5,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "又过了四年。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.66,
+          "note": "时间跳转，语速略快"
+        },
+        {
+          "i": 2,
+          "speaker": "N",
+          "text": "2025 年 4 月，上海车展。大众发布三款概念车。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.78,
+          "note": "车展发布，陈述清楚"
+        },
+        {
+          "i": 3,
+          "speaker": "N",
+          "text": "其中一款，是增程。",
+          "rate": "-4%",
+          "pitch": "-2Hz",
+          "pause_after": 1.32,
+          "note": "\"是增程\"三个字放慢；句后停一拍（老规矩翻页）"
+        },
+        {
+          "i": 4,
+          "speaker": "L",
+          "text": "你在看什么？",
+          "rate": "+4%",
+          "pitch": "+3Hz",
+          "pause_after": 0.72,
+          "note": "察觉得到，轻问"
+        },
+        {
+          "i": 5,
+          "speaker": "M",
+          "text": "我在看，当年我划的这条线。",
+          "rate": "-8%",
+          "pitch": "-11Hz",
+          "pause_after": 1.56,
+          "note": "声音低下去；\"当年我划的这条线\"放慢；句后留白"
+        },
+        {
+          "i": 6,
+          "speaker": "N",
+          "text": "上汽大众 ID.ERA 9X 上市。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 0.66,
+          "note": "平静陈述"
+        },
+        {
+          "i": 7,
+          "speaker": "N",
+          "text": "官方对它的说法是——\"增程新王\"。",
+          "rate": "-4%",
+          "pitch": "-2Hz",
+          "pause_after": 0.84,
+          "note": "引号里的\"增程新王\"轻读，不评价"
+        },
+        {
+          "i": 8,
+          "speaker": "M",
+          "text": "规则没有变。",
+          "rate": "-7%",
+          "pitch": "-10Hz",
+          "pause_after": 1.02,
+          "note": "把那页折了个角；\"规则没有变\"短、稳"
+        },
+        {
+          "i": 9,
+          "speaker": "M",
+          "text": "变的是，谁在按规则算账。",
+          "rate": "-8%",
+          "pitch": "-11Hz",
+          "pause_after": 1.44,
+          "note": "\"变的是，谁在按规则算账\"——一字一顿；句后留白"
+        },
+        {
+          "i": 10,
+          "speaker": "L",
+          "text": "那现在，谁赢？",
+          "rate": "+4%",
+          "pitch": "+3Hz",
+          "pause_after": 0.78,
+          "note": "追问，不咄咄逼人"
+        },
+        {
+          "i": 11,
+          "speaker": "M",
+          "text": "这局，平。",
+          "rate": "-7%",
+          "pitch": "-10Hz",
+          "pause_after": 2.28,
+          "note": "合上手册，靠回椅背；\"这局，平\"三个字落地；句后大留白进第四幕"
+        }
+      ]
+    },
+    {
+      "id": "ACT4",
+      "name": "第四幕·再判",
+      "emotion": "冷：账本一方也开始往下翻；\"账没错，是账本背后的东西变了\"是全片最重一句",
+      "pause_before": 1.5,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "但故事还没完。",
+          "rate": "-2%",
+          "pitch": "-2Hz",
+          "pause_after": 0.84,
+          "note": "语气变冷，像在念一份报表"
+        },
+        {
+          "i": 2,
+          "speaker": "L",
+          "text": "2025 年，增程全年销量超过 123 万辆，占新能源市场超过 10%。",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "pause_after": 0.72,
+          "note": "翻账本的手停住；数字清楚"
+        },
+        {
+          "i": 3,
+          "speaker": "L",
+          "text": "2026 年前五个月，41 万辆——同比下滑 9.7%。",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "pause_after": 0.78,
+          "note": "\"同比下滑 9.7%\"落下"
+        },
+        {
+          "i": 4,
+          "speaker": "L",
+          "text": "5 月单月，同比跌 24.9%。",
+          "rate": "+1%",
+          "pitch": "+2Hz",
+          "pause_after": 0.96,
+          "note": "\"跌 24.9%\"；句后停一拍"
+        },
+        {
+          "i": 5,
+          "speaker": "L",
+          "text": "……跌了。",
+          "rate": "-5%",
+          "pitch": "+0Hz",
+          "pause_after": 1.26,
+          "note": "声音低下去；\"跌了\"很轻，后留白"
+        },
+        {
+          "i": 6,
+          "speaker": "M",
+          "text": "跌了多少？",
+          "rate": "-6%",
+          "pitch": "-10Hz",
+          "pause_after": 0.72,
+          "note": "没有抬头，问一句"
+        },
+        {
+          "i": 7,
+          "speaker": "L",
+          "text": "百分之二十四点九。",
+          "rate": "-4%",
+          "pitch": "+0Hz",
+          "pause_after": 1.32,
+          "note": "很轻，一字一字；句后留白"
+        },
+        {
+          "i": 8,
+          "speaker": "N",
+          "text": "纯电在涨。800V 高压平台下放到十几万的车，充电五分钟能跑四百公里。",
+          "rate": "-4%",
+          "pitch": "-2Hz",
+          "pause_after": 0.72,
+          "note": "旁白平稳陈述，不煽"
+        },
+        {
+          "i": 9,
+          "speaker": "N",
+          "text": "当年逼着人选增程的那个理由，正在被拿走。",
+          "rate": "-5%",
+          "pitch": "-3Hz",
+          "pause_after": 1.32,
+          "note": "\"正在被拿走\"放轻；句后留白"
+        },
+        {
+          "i": 10,
+          "speaker": "L",
+          "text": "那我这本账，是不是也算错了？",
+          "rate": "+1%",
+          "pitch": "+2Hz",
+          "pause_after": 1.2,
+          "note": "抬头看向对方；问句不锐，句尾略落"
+        },
+        {
+          "i": 11,
+          "speaker": "M",
+          "text": "账没错。",
+          "rate": "-8%",
+          "pitch": "-11Hz",
+          "pause_after": 1.32,
+          "note": "沉默两拍后开口；\"账没错\"短、稳，后停一拍"
+        },
+        {
+          "i": 12,
+          "speaker": "M",
+          "text": "是账本背后的东西，变了。",
+          "rate": "-9%",
+          "pitch": "-11Hz",
+          "pause_after": 2.16,
+          "note": "全片最重一句；\"是账本背后的东西，变了\"放慢，最后落下；句后大留白进收束"
+        }
+      ]
+    },
+    {
+      "id": "CLOSE",
+      "name": "收束",
+      "emotion": "留白：两个人都沉默，桌上多了一本空白手册；旁白一句一句落地，不喊",
+      "pause_before": 1.5,
+      "sentences": [
+        {
+          "i": 1,
+          "speaker": "N",
+          "text": "两个人都不说话了。",
+          "rate": "-3%",
+          "pitch": "-2Hz",
+          "pause_after": 1.08,
+          "note": "放慢；两个人都沉默了，停一拍"
+        },
+        {
+          "i": 2,
+          "speaker": "N",
+          "text": "桌上，多了一本新的空白手册。",
+          "rate": "-4%",
+          "pitch": "-3Hz",
+          "pause_after": 1.32,
+          "note": "\"多了一本新的空白手册\"——停一拍再进对话"
+        },
+        {
+          "i": 3,
+          "speaker": "M",
+          "text": "这本，还没写。",
+          "rate": "-7%",
+          "pitch": "-10Hz",
+          "pause_after": 1.02,
+          "note": "看着那本空白手册；\"这本，还没写\"轻"
+        },
+        {
+          "i": 4,
+          "speaker": "L",
+          "text": "那就先空着。",
+          "rate": "+2%",
+          "pitch": "+2Hz",
+          "pause_after": 1.56,
+          "note": "轻轻一句，\"那就先空着\"；句后留白，进旁白收束"
+        },
+        {
+          "i": 5,
+          "speaker": "N",
+          "text": "2020 年，增程被判了死刑。",
+          "rate": "-4%",
+          "pitch": "-3Hz",
+          "pause_after": 0.66,
+          "note": "一句一句，落地"
+        },
+        {
+          "i": 6,
+          "speaker": "N",
+          "text": "2021 年，它翻了案。",
+          "rate": "-4%",
+          "pitch": "-3Hz",
+          "pause_after": 0.66,
+          "note": "一句一句"
+        },
+        {
+          "i": 7,
+          "speaker": "N",
+          "text": "2025 年，判它的人，自己开始造它。",
+          "rate": "-5%",
+          "pitch": "-3Hz",
+          "pause_after": 0.66,
+          "note": "一句一句"
+        },
+        {
+          "i": 8,
+          "speaker": "N",
+          "text": "2026 年，它自己也开始退潮。",
+          "rate": "-5%",
+          "pitch": "-3Hz",
+          "pause_after": 1.08,
+          "note": "一句一句；\"它自己也开始退潮\"落下"
+        },
+        {
+          "i": 9,
+          "speaker": "N",
+          "text": "没有永远的裁判。",
+          "rate": "-6%",
+          "pitch": "-4Hz",
+          "pause_after": 1.2,
+          "note": "放慢；\"没有永远的裁判\"停一拍"
+        },
+        {
+          "i": 10,
+          "speaker": "N",
+          "text": "只有不断被重新判决的技术。",
+          "rate": "-8%",
+          "pitch": "-4Hz",
+          "pause_after": 2.64,
+          "note": "最后一句，慢，不喊；句后大留白，音乐完整再现后停"
+        }
+      ]
+    }
+  ]
+}

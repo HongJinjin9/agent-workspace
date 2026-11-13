@@ -1,0 +1,656 @@
+{
+ "series": "ep06-dialogue",
+ "generated": true,
+ "generated_utc": "2026-11-13T05:20:23Z",
+ "window_utc": "2026-11-13T05:04:27Z/05:13:42Z",
+ "window_nominal_utc": "2026-11-13T04:40:00Z/05:40:00Z",
+ "app_entry": "https://wp08.unicorn.org.cn:22815",
+ "generator": "ComfyUI H3 video app — MiniMax H3 int8 + 8-step turbo LoRA, RTX 5090 32GB (ComfyUI 0.36.0)",
+ "app_ready_utc": "2026-11-12T14:28:08Z",
+ "window_note": "窗口异常但最终完成：名义窗口 2026-11-13 04:40–05:40 UTC（北京 12:40–13:40，计时收费 1 小时）。04:40:00–05:03Z 旧入口 https://wp08.unicorn.org.cn:24909 不可达（ConnectionError / 60s ConnectTimeout 交替，TLS 从未完成、零 HTTP 响应；始终无 302→/login?err=1，非账号密码问题）；机器于 12:48 北京重启并更换入口，新入口 https://wp08.unicorn.org.cn:22815 于 05:04:28Z 登录成功（ComfyUI 0.36.0 / RTX 5090 33.7GB），05:04:30Z 开始生成，05:13:42Z 完成 C1–C14 全部 14 条（C1 冷启动 111.8s，C2–C14 热采样 32.0–35.2s/条），05:15:24Z 前全部本地 ffmpeg lanczos 升到 1920×1080（保留 H3 原生音轨）。实际占用约 9 分钟机器时间；此后未再提交任务。角色均为 AI 虚构形象：镜头仅侧影/过肩/手部/背影，无清晰正脸、无真实人物相似性、无 logo、无可读文字。",
+ "evidence": {
+  "old_entry_failure": "2026-11-13T04:40:00Z-05:03Z: old entry :24909 returned ConnectionError/ConnectTimeout, no HTTP response (not credentials)",
+  "new_instance_url": "https://wp08.unicorn.org.cn:22815",
+  "login_ok_utc": "2026-11-13T05:04:28Z",
+  "first_generation_submit_utc": "2026-11-13T05:04:30Z",
+  "raws_complete_utc": "2026-11-13T05:13:42Z",
+  "local_1080p_conforms_complete_utc": "2026-11-13T05:15:24Z"
+ },
+ "counts": {
+  "raw": 14,
+  "final_1080p": 14,
+  "total": 14
+ },
+ "shots": {
+  "c1": {
+   "id": "c1",
+   "label": "Wide symmetric two silhouettes at long conference table",
+   "segments": "COLD",
+   "spec": "cold open",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide symmetric shot down the length of a long dark-wood conference table in a modern office at dusk, 35mm lens, shallow depth of field: two seated figures in plain dark clothing face each other at opposite ends, seen only as backlit silhouettes against the cold grey window; on the table between them lie one thick worn manual and one old ledger. Cold blue-grey window light rims their shoulders while a warm gold desk lamp pools on the wood; slow subtle push-in. Generic, no recognizable facial features, no public figure resemblance.\noverall_soundscape: a deep room tone, a faint chair creak, the soft rustle of paper, distant city hum through glass.\nnon_diegetic_music: low sustained cello drone, sparse and uneasy.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130101,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "b069a7b3-2424-46a2-ac98-cff7b8c17590",
+   "elapsed_s": 111.8,
+   "downloaded_utc": "2026-11-13T05:06:22Z",
+   "source_filename": "ep06__00001_.mp4",
+   "raw": "assets/comfy/raw/c1_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c1.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 12.5,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c2": {
+   "id": "c2",
+   "label": "Middle-aged man side silhouette flipping old manual",
+   "segments": "ACT1",
+   "spec": "M / act1/act3",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium side-profile shot, 85mm lens, shallow depth of field: a middle-aged man in a plain dark-grey suit with no tie and rolled sleeves sits at one side of the long table, facing left in soft silhouette, and slowly flips through a thick worn manual; his face is turned away and softly out of focus, only the jawline and shoulder read. A warm desk lamp lights the manual pages and the wood; behind him cold grey window light. His fingers turn one heavy page at a time. Generic fictional character, no recognizable facial features, no public figure resemblance.\noverall_soundscape: paper pages turning slowly, a soft sleeve rustle, a low lamp hum, quiet room tone.\nnon_diegetic_music: low sparse piano notes over a muted bass drone.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130102,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "780d9cad-c687-43c9-bd73-cb4903907780",
+   "elapsed_s": 32.1,
+   "downloaded_utc": "2026-11-13T05:06:54Z",
+   "source_filename": "ep06__00002_.mp4",
+   "raw": "assets/comfy/raw/c2_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c2.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 9.2,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c3": {
+   "id": "c3",
+   "label": "Man's hands stamping a document, red mark lands",
+   "segments": "ACT1",
+   "spec": "act1 verdict",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a man's hands in dark grey suit sleeves grip a heavy wooden rubber stamp and press it firmly onto a typed document on the dark wood table, hold for a beat, then lift; a crisp round red ink mark is left on the paper, no readable characters. Warm desk-lamp light from the left, cool shadow falloff, dust motes in the beam, matte paper fibres. One action only.\noverall_soundscape: a firm muffled thud as the stamp meets paper, the small wooden click of it lifting, paper settling.\nnon_diegetic_music: a single low struck piano note, then silence.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130103,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "74671da1-ba69-47a6-b39c-e9999856400f",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:07:28Z",
+   "source_filename": "ep06__00003_.mp4",
+   "raw": "assets/comfy/raw/c3_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c3.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 15.4,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c4": {
+   "id": "c4",
+   "label": "Young woman looking down at tablet/ledger, screen glow",
+   "segments": "ACT2",
+   "spec": "L / act2",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium shot across the conference table, 85mm lens, shallow depth of field: a young woman in light casual clothing with hair loosely tied sits at the far side, head lowered toward a tablet and an old ledger lying side by side; her face is lit only by the cool screen glow from below and is soft, mostly out of frame margin, hair falling across it — never a clear frontal face. Warm table lamp on the ledger, cold grey window behind. She taps the tablet once and writes a line in the ledger. Generic fictional character, no recognizable facial features, no public figure resemblance.\noverall_soundscape: a soft electronic tick, a pencil scratching paper, quiet room tone.\nnon_diegetic_music: gentle muted electronic pulse, warm pad entering.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130104,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "0f65f288-36db-4f21-b616-c3ea25ac0c74",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:08:02Z",
+   "source_filename": "ep06__00004_.mp4",
+   "raw": "assets/comfy/raw/c4_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c4.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 16.7,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c5": {
+   "id": "c5",
+   "label": "Woman's hands pushing ledger across the table",
+   "segments": "ACT2",
+   "spec": "act2",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a young woman's hands with light casual sleeves slide an old ledger across the dark-wood conference table toward the opposite side of frame, then withdraw; the ledger moves smoothly over the wood, its worn cover and ruled pages catching the warm desk lamp. Cool grey light from the window on the far edge of the table, dust motes, subtle motion blur at the frame edges. One action only.\noverall_soundscape: the soft drag of a bound ledger over wood, a faint paper flutter, a quiet room.\nnon_diegetic_music: a low tick-tock synth pulse, patient.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130105,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "85650daf-4eb4-4945-b5c8-478d9265018e",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:08:36Z",
+   "source_filename": "ep06__00005_.mp4",
+   "raw": "assets/comfy/raw/c5_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c5.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 17.2,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c6": {
+   "id": "c6",
+   "label": "Macro thick manual pages flipping and bending",
+   "segments": "MOTIF",
+   "spec": "book motif",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: the thick, worn pages of an old manual flip and bend in slow sequence, each page lifting and falling with a soft curve; the paper is yellowed, its edges soft and fibrous, warm desk-lamp light raking across the surface and catching floating dust motes. A hand enters at the edge and releases one page. No readable text, only blurred lines on the paper.\noverall_soundscape: the dry rustle and snap of thick paper pages turning one after another.\nnon_diegetic_music: a lone sustained violin note, held.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130106,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "34922280-1f8c-4242-baeb-a12fa23fdbf4",
+   "elapsed_s": 33.9,
+   "downloaded_utc": "2026-11-13T05:09:11Z",
+   "source_filename": "ep06__00006_.mp4",
+   "raw": "assets/comfy/raw/c6_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c6.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 28.4,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c7": {
+   "id": "c7",
+   "label": "Over-shoulder two-shot at table, distance closer",
+   "segments": "ACT3",
+   "spec": "act3",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic over-the-shoulder two-shot, 50mm lens, shallow depth of field: from behind the seated man's shoulder we see across the conference table to the young woman's side-back as she leans slightly toward him; both are in side or back view only, faces not visible; between them the old manual and the ledger lie close. Warm desk lamp between them, cold grey window light behind her, shallow focus shifting slowly from his shoulder to her hands. Still and tense, only small movements.\noverall_soundscape: a deep quiet room tone, a soft breath, the tiny clink of a pen set down.\nnon_diegetic_music: a sparse two-note cello motif repeating, unresolved.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130107,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "74106880-fad5-42f8-89cf-76817d3cabec",
+   "elapsed_s": 32.0,
+   "downloaded_utc": "2026-11-13T05:09:43Z",
+   "source_filename": "ep06__00007_.mp4",
+   "raw": "assets/comfy/raw/c7_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c7.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 20.2,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c8": {
+   "id": "c8",
+   "label": "Woman's finger tapping tablet, abstract numbers glow",
+   "segments": "ACT2/DATA",
+   "spec": "act2/act4 data",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a young woman's index finger taps a tablet lying on the dark-wood table; the screen glow lights her fingertip and the wood around it with cool blue light, and abstract luminous figures drift and blur behind the glass — completely unreadable, no actual numbers legible. Warm desk-lamp rim from the right, window cold light behind, shallow focus on the fingertip, subtle glitch-free motion.\noverall_soundscape: a soft glassy tap, a faint electronic hum from the screen, low room tone.\nnon_diegetic_music: minimal pulsing synth, one note per tap.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130108,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "41362fed-9871-4d6f-9d7f-afbcaf68cae3",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:10:17Z",
+   "source_filename": "ep06__00008_.mp4",
+   "raw": "assets/comfy/raw/c8_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c8.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 22.4,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c9": {
+   "id": "c9",
+   "label": "Man's hand underlining a line in manual with pen",
+   "segments": "ACT1/ACT3",
+   "spec": "act1/act3",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a man's hand in a dark grey suit sleeve holds a plain metal pen and draws a slow straight underline beneath a line on a page of a thick worn manual; the pen nib leaves a thin dark ink line, the paper texture and faint blurred type visible but unreadable. Warm desk-lamp light from the left, cool shadow on the right, dust in the beam. One smooth motion.\noverall_soundscape: the soft scratch of a pen on paper, a quiet breath, a faint page whisper.\nnon_diegetic_music: a single low piano chord, sustained.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130109,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "0869ff00-1b91-4e7c-ab9d-7ebe41e5f370",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:10:51Z",
+   "source_filename": "ep06__00009_.mp4",
+   "raw": "assets/comfy/raw/c9_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c9.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 21.1,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c10": {
+   "id": "c10",
+   "label": "Red round stamp mark on paper, macro",
+   "segments": "VERDICT",
+   "spec": "verdict landing",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: a page of a typed document on a dark-wood table, seen from just above; in the centre of the frame a freshly pressed round red ink mark sits on the paper, its edges slightly feathered into the fibres, completely without readable characters or numbers; warm desk-lamp light rakes across the paper, casting a faint shadow of a hand at the frame edge, dust motes floating. Very slow drifting camera.\noverall_soundscape: near silence, a faint room hum and one soft paper settle.\nnon_diegetic_music: a low held cello note, quiet resolution.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130110,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "10ed5b2c-518c-442e-a845-0834cb647db2",
+   "elapsed_s": 33.9,
+   "downloaded_utc": "2026-11-13T05:11:25Z",
+   "source_filename": "ep06__00010_.mp4",
+   "raw": "assets/comfy/raw/c10_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c10.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 23.5,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c11": {
+   "id": "c11",
+   "label": "New blank manual/notebook on dark table, side light, dust",
+   "segments": "ACT3/CLOSE",
+   "spec": "act3 close",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close shot, 85mm lens, shallow depth of field: a new, clean, blank manual with a plain dark cover lies closed at the centre of the dark-wood conference table, lit from the side by a low warm lamp; cold grey window light falls across the far edge. Fine dust drifts slowly through the light above it, and the camera drifts almost imperceptibly. No title, no text, no logo on the cover. Calm, empty, slightly hopeful.\noverall_soundscape: a very quiet room, a faint lamp buzz, one soft distant chair creak.\nnon_diegetic_music: a single warm piano note and a soft pad swell.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130111,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "3e92aa27-c427-40fc-ba61-76c4ec5921d0",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:11:59Z",
+   "source_filename": "ep06__00011_.mp4",
+   "raw": "assets/comfy/raw/c11_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c11.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 15.1,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c12": {
+   "id": "c12",
+   "label": "Old ledger close-up with column rules and pen",
+   "segments": "ACT2/ACT4",
+   "spec": "act2/act4",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close shot, 85mm lens, shallow depth of field: an old ledger lies open on the dark-wood table, its yellowed pages ruled with faint columns and rows, handwritten entries blurred and unreadable; a dark fountain pen rests across the page, its nib catching a thin warm highlight. Warm desk-lamp light from upper left, cool shadow falloff, paper fibres and a faint edge wear visible, dust motes. Camera very slowly drifts along the page. No readable text or numbers.\noverall_soundscape: the faint creak of a ledger binding, a soft pen touch, quiet room tone.\nnon_diegetic_music: a muted upright bass line, walking slowly.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130112,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "71fc2407-2010-4aac-b475-9bdeaad00265",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:12:33Z",
+   "source_filename": "ep06__00012_.mp4",
+   "raw": "assets/comfy/raw/c12_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c12.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 16.4,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c13": {
+   "id": "c13",
+   "label": "Empty conference room at dusk, city window, cold light",
+   "segments": "TRANSITION",
+   "spec": "transition",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide static shot of an empty modern conference room at dusk, 35mm lens: a long dark-wood table with empty chairs around it, cold blue-grey light from floor-to-ceiling windows revealing a blurred city skyline beyond; a single warm desk lamp left on at one end of the table, its glow small against the cold room. No people. Very slow push-in, subtle dust in the air, film grain. Quiet and emptied out.\noverall_soundscape: a broad airy room tone, distant city murmur through glass, a faint lamp hum.\nnon_diegetic_music: sparse ambient pad, cold and open, a low piano note.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130113,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "fc16535d-c485-4946-b8e3-faa29b5722f5",
+   "elapsed_s": 33.8,
+   "downloaded_utc": "2026-11-13T05:13:07Z",
+   "source_filename": "ep06__00013_.mp4",
+   "raw": "assets/comfy/raw/c13_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c13.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 100.0,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  },
+  "c14": {
+   "id": "c14",
+   "label": "Man's back view closing manual, leaning back, backlit",
+   "segments": "ACT3/END",
+   "spec": "act3 end",
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium shot from behind, 50mm lens, shallow depth of field: the back view of a middle-aged man in a plain dark-grey suit with rolled sleeves, seated at the long conference table; he slowly closes the thick worn manual with one hand, then leans back into the chair, shoulders settling. Backlit by cold grey window light so he reads as a dark silhouette with rim light on his shoulders and hair; the warm desk lamp lights the closed manual on the table. No face visible from behind. One continuous action.\noverall_soundscape: the soft thump of a heavy manual closing, fabric shifting as he leans back, a long quiet room tone.\nnon_diegetic_music: a final low cello note, letting the silence settle.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face.",
+   "seed": 202611130114,
+   "req_res": [
+    864,
+    480
+   ],
+   "req_duration_s": 5.0,
+   "job_id": "0f0f7510-29d1-4c42-be0c-b2ed7ba90d04",
+   "elapsed_s": 35.2,
+   "downloaded_utc": "2026-11-13T05:13:42Z",
+   "source_filename": "ep06__00014_.mp4",
+   "raw": "assets/comfy/raw/c14_raw.mp4",
+   "raw_res": [
+    864,
+    480
+   ],
+   "raw_duration_s": 5.17,
+   "raw_fps": 24.0,
+   "raw_audio": true,
+   "status": "ok",
+   "final": "assets/comfy/c14.mp4",
+   "final_res": [
+    1920,
+    1080
+   ],
+   "final_duration_s": 5.18,
+   "final_fps": 24.0,
+   "upscaled": true,
+   "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+   "upscale_engine": "local-ffmpeg",
+   "upscale_elapsed_s": 24.7,
+   "verified_raw": {
+    "pass": true,
+    "problems": []
+   },
+   "verified_final": {
+    "pass": true,
+    "problems": []
+   }
+  }
+ }
+}

@@ -1,0 +1,818 @@
+{
+ "episode": "第 06 期《他们说，这是最糟糕的方案》",
+ "generated_by": "ep06assets.py",
+ "generated_at_utc": "2026-11-13T05:41:06Z",
+ "spec": "SPEC.md（1920x1080 / 24fps / 2.35:1 遮幅 / H.264 High + AAC 48k）",
+ "characters": {
+  "note": "两位角色（老规矩 M / 小账本 L）均为 AI 生成的虚构形象，不代表、不模拟、不影射任何真实人物；正脸不清晰（侧影/背影/过肩/手部），引述均由旁白转述并标注时间出处。",
+  "voices": "N=zh-CN-YunjianNeural（旁白）/ M=zh-CN-YunyangNeural（老规矩）/ L=zh-CN-XiaoxiaoNeural（小账本）"
+ },
+ "broll_stock": {
+  "city_aerial.mp4": {
+   "bytes": 6644321,
+   "duration_s": 9.08,
+   "resolution": "1920x1080",
+   "fps": 29.97,
+   "source": "ep05-enterprise/assets/stock",
+   "license": "Pexels License"
+  },
+  "city_night_01.mp4": {
+   "bytes": 89417785,
+   "duration_s": 15.64,
+   "resolution": "3840x2160",
+   "fps": 23.98,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "citynight.mp4": {
+   "bytes": 20196940,
+   "duration_s": 15.64,
+   "resolution": "1920x1080",
+   "fps": 23.98,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "desk_lamp.mp4": {
+   "bytes": 2541176,
+   "duration_s": 12.01,
+   "resolution": "1920x1080",
+   "fps": 29.97,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "desk_night_01.mp4": {
+   "bytes": 17999659,
+   "duration_s": 12.01,
+   "resolution": "3840x2160",
+   "fps": 29.97,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "desk_night_02.mp4": {
+   "bytes": 22314290,
+   "duration_s": 16.3,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "empty_chair.mp4": {
+   "bytes": 6354575,
+   "duration_s": 9.26,
+   "resolution": "1920x1080",
+   "fps": 25.0,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "ep05_blinds.mp4": {
+   "bytes": 1257415,
+   "duration_s": 5.17,
+   "resolution": "1920x1080",
+   "fps": 24.0,
+   "source": "ep05-enterprise/assets/comfy/c8.mp4（借用 H3 百叶窗光）",
+   "license": "Pexels License"
+  },
+  "ep05_elevator.mp4": {
+   "bytes": 936405,
+   "duration_s": 5.17,
+   "resolution": "1920x1080",
+   "fps": 24.0,
+   "source": "ep05-enterprise/assets/comfy/c4.mp4（借用 H3 电梯镜头）",
+   "license": "Pexels License"
+  },
+  "ep05_meeting.mp4": {
+   "bytes": 2154367,
+   "duration_s": 5.17,
+   "resolution": "1920x1080",
+   "fps": 24.0,
+   "source": "ep05-enterprise/assets/comfy/c6.mp4（借用 H3 会议桌镜头）",
+   "license": "Pexels License"
+  },
+  "handwriting_01.mp4": {
+   "bytes": 41742280,
+   "duration_s": 23.19,
+   "resolution": "3840x2160",
+   "fps": 23.98,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "keyboard_typing.mp4": {
+   "bytes": 5310279,
+   "duration_s": 8.5,
+   "resolution": "1920x1080",
+   "fps": 30.0,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "laptop_night_01.mp4": {
+   "bytes": 13692976,
+   "duration_s": 9.4,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "magnifier_01.mp4": {
+   "bytes": 93743229,
+   "duration_s": 29.96,
+   "resolution": "3840x2160",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "night_desk.mp4": {
+   "bytes": 920963,
+   "duration_s": 12.01,
+   "resolution": "1280x720",
+   "fps": 29.97,
+   "source": "ep02-flood/assets/stock",
+   "license": "Pexels License"
+  },
+  "old_books_01.mp4": {
+   "bytes": 15774539,
+   "duration_s": 9.22,
+   "resolution": "3840x2160",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "paper_texture_01.mp4": {
+   "bytes": 18131661,
+   "duration_s": 12.87,
+   "resolution": "3840x2160",
+   "fps": 30.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "pen_writing_01.mp4": {
+   "bytes": 14581734,
+   "duration_s": 9.49,
+   "resolution": "2732x1440",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "rain_window_01.mp4": {
+   "bytes": 8263331,
+   "duration_s": 12.01,
+   "resolution": "1920x1080",
+   "fps": 29.97,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  },
+  "signing_01.mp4": {
+   "bytes": 25299842,
+   "duration_s": 8.8,
+   "resolution": "3840x2160",
+   "fps": 25.0,
+   "source": "ep03-judgment/assets/stock",
+   "license": "Pexels License"
+  }
+ },
+ "logical_to_file": {
+  "comfy_c1": {
+   "file": "c1.mp4",
+   "shots": [
+    "cold1",
+    "cold2"
+   ]
+  },
+  "comfy_c13": {
+   "file": "c13.mp4",
+   "shots": [
+    "a1a",
+    "a2a",
+    "a4a",
+    "o0"
+   ]
+  },
+  "comfy_c2": {
+   "file": "c2.mp4",
+   "shots": [
+    "a1c",
+    "a3c",
+    "a4e"
+   ]
+  },
+  "comfy_c3": {
+   "file": "c3.mp4",
+   "shots": [
+    "a1d"
+   ]
+  },
+  "comfy_c10": {
+   "file": "c10.mp4",
+   "shots": [
+    "a1d2"
+   ]
+  },
+  "comfy_c12": {
+   "file": "c12.mp4",
+   "shots": [
+    "a1e",
+    "a3d"
+   ]
+  },
+  "comfy_c5": {
+   "file": "c5.mp4",
+   "shots": [
+    "a1f",
+    "a2b"
+   ]
+  },
+  "comfy_c4": {
+   "file": "c4.mp4",
+   "shots": [
+    "a1g",
+    "a4d"
+   ]
+  },
+  "comfy_c8": {
+   "file": "c8.mp4",
+   "shots": [
+    "a2d",
+    "a4c"
+   ]
+  },
+  "comfy_c6": {
+   "file": "c6.mp4",
+   "shots": [
+    "a3a",
+    "o2"
+   ]
+  },
+  "comfy_c9": {
+   "file": "c9.mp4",
+   "shots": [
+    "a3b"
+   ]
+  },
+  "comfy_c7": {
+   "file": "c7.mp4",
+   "shots": [
+    "a3e",
+    "a4f"
+   ]
+  },
+  "comfy_c14": {
+   "file": "c14.mp4",
+   "shots": [
+    "a3f",
+    "a4g",
+    "o3"
+   ]
+  },
+  "comfy_c11": {
+   "file": "c11.mp4",
+   "shots": [
+    "o4"
+   ]
+  }
+ },
+ "comfy_stills": {
+  "comfy_c1": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c1.jpg",
+   "available": true,
+   "bytes": 178656
+  },
+  "comfy_c2": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c2.jpg",
+   "available": true,
+   "bytes": 167520
+  },
+  "comfy_c3": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c3.jpg",
+   "available": true,
+   "bytes": 299163
+  },
+  "comfy_c4": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c4.jpg",
+   "available": true,
+   "bytes": 228059
+  },
+  "comfy_c5": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c5.jpg",
+   "available": true,
+   "bytes": 173797
+  },
+  "comfy_c6": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c6.jpg",
+   "available": true,
+   "bytes": 218223
+  },
+  "comfy_c7": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c7.jpg",
+   "available": true,
+   "bytes": 229316
+  },
+  "comfy_c8": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c8.jpg",
+   "available": true,
+   "bytes": 184217
+  },
+  "comfy_c9": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c9.jpg",
+   "available": true,
+   "bytes": 278218
+  },
+  "comfy_c10": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c10.jpg",
+   "available": true,
+   "bytes": 373824
+  },
+  "comfy_c11": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c11.jpg",
+   "available": true,
+   "bytes": 175170
+  },
+  "comfy_c12": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c12.jpg",
+   "available": true,
+   "bytes": 265519
+  },
+  "comfy_c13": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c13.jpg",
+   "available": true,
+   "bytes": 200526
+  },
+  "comfy_c14": {
+   "path": "/app/vedio/ep06-dialogue/assets/comfy-stills/c14.jpg",
+   "available": true,
+   "bytes": 185787
+  }
+ },
+ "stills_dirs": [
+  "assets/comfy-stills",
+  "assets/agnes"
+ ],
+ "comfy_h3": {
+  "note": "ComfyUI H3 角色/物件镜头（SPEC §1 C1–C14）：14/14 条交付，864x480 生成后统一放大到 1920x1080/24fps；缺失条目按 SPEC §0 使用本地 B-roll 退路。",
+  "clips": {
+   "comfy_c1": {
+    "path": "assets/comfy/c1.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Wide symmetric two silhouettes at long conference table",
+    "shots": [
+     "cold1",
+     "cold2"
+    ],
+    "seed": 202611130101,
+    "job_id": "b069a7b3-2424-46a2-ac98-cff7b8c17590",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:06:22Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c1.jpg",
+    "fallback_used": false
+   },
+   "comfy_c2": {
+    "path": "assets/comfy/c2.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Middle-aged man side silhouette flipping old manual",
+    "shots": [
+     "a1c",
+     "a3c",
+     "a4e"
+    ],
+    "seed": 202611130102,
+    "job_id": "780d9cad-c687-43c9-bd73-cb4903907780",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:06:54Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c2.jpg",
+    "fallback_used": false
+   },
+   "comfy_c3": {
+    "path": "assets/comfy/c3.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Man's hands stamping a document, red mark lands",
+    "shots": [
+     "a1d"
+    ],
+    "seed": 202611130103,
+    "job_id": "74671da1-ba69-47a6-b39c-e9999856400f",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:07:28Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c3.jpg",
+    "fallback_used": false
+   },
+   "comfy_c4": {
+    "path": "assets/comfy/c4.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Young woman looking down at tablet/ledger, screen glow",
+    "shots": [
+     "a1g",
+     "a4d"
+    ],
+    "seed": 202611130104,
+    "job_id": "0f65f288-36db-4f21-b616-c3ea25ac0c74",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:08:02Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c4.jpg",
+    "fallback_used": false
+   },
+   "comfy_c5": {
+    "path": "assets/comfy/c5.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Woman's hands pushing ledger across the table",
+    "shots": [
+     "a1f",
+     "a2b"
+    ],
+    "seed": 202611130105,
+    "job_id": "85650daf-4eb4-4945-b5c8-478d9265018e",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:08:36Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c5.jpg",
+    "fallback_used": false
+   },
+   "comfy_c6": {
+    "path": "assets/comfy/c6.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Macro thick manual pages flipping and bending",
+    "shots": [
+     "a3a",
+     "o2"
+    ],
+    "seed": 202611130106,
+    "job_id": "34922280-1f8c-4242-baeb-a12fa23fdbf4",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:09:11Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c6.jpg",
+    "fallback_used": false
+   },
+   "comfy_c7": {
+    "path": "assets/comfy/c7.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Over-shoulder two-shot at table, distance closer",
+    "shots": [
+     "a3e",
+     "a4f"
+    ],
+    "seed": 202611130107,
+    "job_id": "74106880-fad5-42f8-89cf-76817d3cabec",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:09:43Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c7.jpg",
+    "fallback_used": false
+   },
+   "comfy_c8": {
+    "path": "assets/comfy/c8.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Woman's finger tapping tablet, abstract numbers glow",
+    "shots": [
+     "a2d",
+     "a4c"
+    ],
+    "seed": 202611130108,
+    "job_id": "41362fed-9871-4d6f-9d7f-afbcaf68cae3",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:10:17Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c8.jpg",
+    "fallback_used": false
+   },
+   "comfy_c9": {
+    "path": "assets/comfy/c9.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Man's hand underlining a line in manual with pen",
+    "shots": [
+     "a3b"
+    ],
+    "seed": 202611130109,
+    "job_id": "0869ff00-1b91-4e7c-ab9d-7ebe41e5f370",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:10:51Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c9.jpg",
+    "fallback_used": false
+   },
+   "comfy_c10": {
+    "path": "assets/comfy/c10.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Red round stamp mark on paper, macro",
+    "shots": [
+     "a1d2"
+    ],
+    "seed": 202611130110,
+    "job_id": "10ed5b2c-518c-442e-a845-0834cb647db2",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:11:25Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c10.jpg",
+    "fallback_used": false
+   },
+   "comfy_c11": {
+    "path": "assets/comfy/c11.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "New blank manual/notebook on dark table, side light, dust",
+    "shots": [
+     "o4"
+    ],
+    "seed": 202611130111,
+    "job_id": "3e92aa27-c427-40fc-ba61-76c4ec5921d0",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:11:59Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c11.jpg",
+    "fallback_used": false
+   },
+   "comfy_c12": {
+    "path": "assets/comfy/c12.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Old ledger close-up with column rules and pen",
+    "shots": [
+     "a1e",
+     "a3d"
+    ],
+    "seed": 202611130112,
+    "job_id": "71fc2407-2010-4aac-b475-9bdeaad00265",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:12:33Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c12.jpg",
+    "fallback_used": false
+   },
+   "comfy_c13": {
+    "path": "assets/comfy/c13.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Empty conference room at dusk, city window, cold light",
+    "shots": [
+     "a1a",
+     "a2a",
+     "a4a",
+     "o0"
+    ],
+    "seed": 202611130113,
+    "job_id": "fc16535d-c485-4946-b8e3-faa29b5722f5",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:13:07Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c13.jpg",
+    "fallback_used": false
+   },
+   "comfy_c14": {
+    "path": "assets/comfy/c14.mp4",
+    "available": true,
+    "delivered": true,
+    "source": "ComfyUI H3（MiniMax H3 int8 + 8-step turbo LoRA，RTX5090 租用实例，864x480 生成 → 1080p 放大）",
+    "resolution": "1920x1080",
+    "duration_s": 5.18,
+    "fps": 24.0,
+    "label": "Man's back view closing manual, leaning back, backlit",
+    "shots": [
+     "a3f",
+     "a4g",
+     "o3"
+    ],
+    "seed": 202611130114,
+    "job_id": "0f0f7510-29d1-4c42-be0c-b2ed7ba90d04",
+    "req_res": [
+     864,
+     480
+    ],
+    "downloaded_utc": "2026-11-13T05:13:42Z",
+    "upscale": {
+     "upscaled": true,
+     "method": "local-ffmpeg-lanczos 1920x1080",
+     "upscale_job_id": null,
+     "upscale_done_utc": null,
+     "upscale_output_mb": null
+    },
+    "still_fallback": "c14.jpg",
+    "fallback_used": false
+   }
+  },
+  "used_shots": 28
+ },
+ "programmatic_scenes": {
+  "engine": "scenes_pil.py（PIL/numpy/cv2）+ ep06viz.py",
+  "kind": "pil（全画幅程序化场景）",
+  "scenes_used": [
+   "bar_compare",
+   "blank_manual",
+   "cold_title",
+   "data_curve",
+   "end_card",
+   "outro_black",
+   "quote_feng",
+   "quote_li"
+  ],
+  "math_basis": "柱状条高度严格 ∝ 销量（13438/12445，差值 993）；份额/销量曲线与同比数据按乘联会口径；引述卡打字机逐字 + 时间出处小字；片尾双声明卡"
+ },
+ "overlays_used": [
+  "flat_verdict",
+  "num_993",
+  "verdict_stamp",
+  "verdict_tally"
+ ],
+ "fonts": [
+  {
+   "name": "Noto Serif CJK SC Bold",
+   "path": "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
+   "license": "OFL"
+  },
+  {
+   "name": "Noto Sans CJK SC",
+   "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+   "license": "OFL"
+  },
+  {
+   "name": "DejaVu Sans Mono Bold",
+   "path": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+   "license": "DejaVu Fonts License"
+  }
+ ],
+ "audio": {
+  "narration": "edge-tts 三声部逐句表演（narration/performance.json：N/M/L 音色 + 逐句 rate/pitch/pause）",
+  "music": "本期原创合成配乐（music.py，numpy；单一主题变奏：低音提琴→脉冲→大调→单音钢琴→再现）",
+  "sfx": "本期原创合成音效（sfx.py，numpy；翻页/盖章/笔尖/点击 ≤6 处）",
+  "mix": "build_audio.py 两遍 loudnorm，成片目标 I=-14 LUFS / TP≤-1.0 dBTP"
+ }
+}

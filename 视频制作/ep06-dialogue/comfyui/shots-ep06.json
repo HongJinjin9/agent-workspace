@@ -1,0 +1,170 @@
+{
+ "series": "ep06-dialogue",
+ "created_utc": "2026-11-13T04:36:00Z",
+ "workflow": "workflows/t2v_api.json",
+ "defaults": {
+  "width": 864,
+  "height": 480,
+  "duration": 5.0,
+  "steps": 8,
+  "fps": 24,
+  "enable_lightning_lora": true
+ },
+ "style": "cinematic live-action feel, 35/50/85/100mm, shallow DOF, teal-orange / cold grey + warm gold grade, film grain; fictional characters only; side profile / over-shoulder / hands / back view; no clear frontal faces, no recognizable features, no public-figure resemblance, no logos, no readable text, no watermark",
+ "shots": [
+  {
+   "id": "c1",
+   "seg": "COLD",
+   "title": "Wide symmetric two silhouettes at long conference table",
+   "md": "cold open",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130101,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide symmetric shot down the length of a long dark-wood conference table in a modern office at dusk, 35mm lens, shallow depth of field: two seated figures in plain dark clothing face each other at opposite ends, seen only as backlit silhouettes against the cold grey window; on the table between them lie one thick worn manual and one old ledger. Cold blue-grey window light rims their shoulders while a warm gold desk lamp pools on the wood; slow subtle push-in. Generic, no recognizable facial features, no public figure resemblance.\noverall_soundscape: a deep room tone, a faint chair creak, the soft rustle of paper, distant city hum through glass.\nnon_diegetic_music: low sustained cello drone, sparse and uneasy.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c2",
+   "seg": "ACT1",
+   "title": "Middle-aged man side silhouette flipping old manual",
+   "md": "M / act1/act3",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130102,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium side-profile shot, 85mm lens, shallow depth of field: a middle-aged man in a plain dark-grey suit with no tie and rolled sleeves sits at one side of the long table, facing left in soft silhouette, and slowly flips through a thick worn manual; his face is turned away and softly out of focus, only the jawline and shoulder read. A warm desk lamp lights the manual pages and the wood; behind him cold grey window light. His fingers turn one heavy page at a time. Generic fictional character, no recognizable facial features, no public figure resemblance.\noverall_soundscape: paper pages turning slowly, a soft sleeve rustle, a low lamp hum, quiet room tone.\nnon_diegetic_music: low sparse piano notes over a muted bass drone.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c3",
+   "seg": "ACT1",
+   "title": "Man's hands stamping a document, red mark lands",
+   "md": "act1 verdict",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130103,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a man's hands in dark grey suit sleeves grip a heavy wooden rubber stamp and press it firmly onto a typed document on the dark wood table, hold for a beat, then lift; a crisp round red ink mark is left on the paper, no readable characters. Warm desk-lamp light from the left, cool shadow falloff, dust motes in the beam, matte paper fibres. One action only.\noverall_soundscape: a firm muffled thud as the stamp meets paper, the small wooden click of it lifting, paper settling.\nnon_diegetic_music: a single low struck piano note, then silence.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c4",
+   "seg": "ACT2",
+   "title": "Young woman looking down at tablet/ledger, screen glow",
+   "md": "L / act2",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130104,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium shot across the conference table, 85mm lens, shallow depth of field: a young woman in light casual clothing with hair loosely tied sits at the far side, head lowered toward a tablet and an old ledger lying side by side; her face is lit only by the cool screen glow from below and is soft, mostly out of frame margin, hair falling across it — never a clear frontal face. Warm table lamp on the ledger, cold grey window behind. She taps the tablet once and writes a line in the ledger. Generic fictional character, no recognizable facial features, no public figure resemblance.\noverall_soundscape: a soft electronic tick, a pencil scratching paper, quiet room tone.\nnon_diegetic_music: gentle muted electronic pulse, warm pad entering.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c5",
+   "seg": "ACT2",
+   "title": "Woman's hands pushing ledger across the table",
+   "md": "act2",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130105,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a young woman's hands with light casual sleeves slide an old ledger across the dark-wood conference table toward the opposite side of frame, then withdraw; the ledger moves smoothly over the wood, its worn cover and ruled pages catching the warm desk lamp. Cool grey light from the window on the far edge of the table, dust motes, subtle motion blur at the frame edges. One action only.\noverall_soundscape: the soft drag of a bound ledger over wood, a faint paper flutter, a quiet room.\nnon_diegetic_music: a low tick-tock synth pulse, patient.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c6",
+   "seg": "MOTIF",
+   "title": "Macro thick manual pages flipping and bending",
+   "md": "book motif",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130106,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: the thick, worn pages of an old manual flip and bend in slow sequence, each page lifting and falling with a soft curve; the paper is yellowed, its edges soft and fibrous, warm desk-lamp light raking across the surface and catching floating dust motes. A hand enters at the edge and releases one page. No readable text, only blurred lines on the paper.\noverall_soundscape: the dry rustle and snap of thick paper pages turning one after another.\nnon_diegetic_music: a lone sustained violin note, held.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c7",
+   "seg": "ACT3",
+   "title": "Over-shoulder two-shot at table, distance closer",
+   "md": "act3",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130107,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic over-the-shoulder two-shot, 50mm lens, shallow depth of field: from behind the seated man's shoulder we see across the conference table to the young woman's side-back as she leans slightly toward him; both are in side or back view only, faces not visible; between them the old manual and the ledger lie close. Warm desk lamp between them, cold grey window light behind her, shallow focus shifting slowly from his shoulder to her hands. Still and tense, only small movements.\noverall_soundscape: a deep quiet room tone, a soft breath, the tiny clink of a pen set down.\nnon_diegetic_music: a sparse two-note cello motif repeating, unresolved.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c8",
+   "seg": "ACT2/DATA",
+   "title": "Woman's finger tapping tablet, abstract numbers glow",
+   "md": "act2/act4 data",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130108,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a young woman's index finger taps a tablet lying on the dark-wood table; the screen glow lights her fingertip and the wood around it with cool blue light, and abstract luminous figures drift and blur behind the glass — completely unreadable, no actual numbers legible. Warm desk-lamp rim from the right, window cold light behind, shallow focus on the fingertip, subtle glitch-free motion.\noverall_soundscape: a soft glassy tap, a faint electronic hum from the screen, low room tone.\nnon_diegetic_music: minimal pulsing synth, one note per tap.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c9",
+   "seg": "ACT1/ACT3",
+   "title": "Man's hand underlining a line in manual with pen",
+   "md": "act1/act3",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130109,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a man's hand in a dark grey suit sleeve holds a plain metal pen and draws a slow straight underline beneath a line on a page of a thick worn manual; the pen nib leaves a thin dark ink line, the paper texture and faint blurred type visible but unreadable. Warm desk-lamp light from the left, cool shadow on the right, dust in the beam. One smooth motion.\noverall_soundscape: the soft scratch of a pen on paper, a quiet breath, a faint page whisper.\nnon_diegetic_music: a single low piano chord, sustained.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c10",
+   "seg": "VERDICT",
+   "title": "Red round stamp mark on paper, macro",
+   "md": "verdict landing",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130110,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: a page of a typed document on a dark-wood table, seen from just above; in the centre of the frame a freshly pressed round red ink mark sits on the paper, its edges slightly feathered into the fibres, completely without readable characters or numbers; warm desk-lamp light rakes across the paper, casting a faint shadow of a hand at the frame edge, dust motes floating. Very slow drifting camera.\noverall_soundscape: near silence, a faint room hum and one soft paper settle.\nnon_diegetic_music: a low held cello note, quiet resolution.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c11",
+   "seg": "ACT3/CLOSE",
+   "title": "New blank manual/notebook on dark table, side light, dust",
+   "md": "act3 close",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130111,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close shot, 85mm lens, shallow depth of field: a new, clean, blank manual with a plain dark cover lies closed at the centre of the dark-wood conference table, lit from the side by a low warm lamp; cold grey window light falls across the far edge. Fine dust drifts slowly through the light above it, and the camera drifts almost imperceptibly. No title, no text, no logo on the cover. Calm, empty, slightly hopeful.\noverall_soundscape: a very quiet room, a faint lamp buzz, one soft distant chair creak.\nnon_diegetic_music: a single warm piano note and a soft pad swell.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c12",
+   "seg": "ACT2/ACT4",
+   "title": "Old ledger close-up with column rules and pen",
+   "md": "act2/act4",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130112,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close shot, 85mm lens, shallow depth of field: an old ledger lies open on the dark-wood table, its yellowed pages ruled with faint columns and rows, handwritten entries blurred and unreadable; a dark fountain pen rests across the page, its nib catching a thin warm highlight. Warm desk-lamp light from upper left, cool shadow falloff, paper fibres and a faint edge wear visible, dust motes. Camera very slowly drifts along the page. No readable text or numbers.\noverall_soundscape: the faint creak of a ledger binding, a soft pen touch, quiet room tone.\nnon_diegetic_music: a muted upright bass line, walking slowly.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c13",
+   "seg": "TRANSITION",
+   "title": "Empty conference room at dusk, city window, cold light",
+   "md": "transition",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130113,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide static shot of an empty modern conference room at dusk, 35mm lens: a long dark-wood table with empty chairs around it, cold blue-grey light from floor-to-ceiling windows revealing a blurred city skyline beyond; a single warm desk lamp left on at one end of the table, its glow small against the cold room. No people. Very slow push-in, subtle dust in the air, film grain. Quiet and emptied out.\noverall_soundscape: a broad airy room tone, distant city murmur through glass, a faint lamp hum.\nnon_diegetic_music: sparse ambient pad, cold and open, a low piano note.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  },
+  {
+   "id": "c14",
+   "seg": "ACT3/END",
+   "title": "Man's back view closing manual, leaning back, backlit",
+   "md": "act3 end",
+   "width": 864,
+   "height": 480,
+   "duration": 5.0,
+   "seed": 202611130114,
+   "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium shot from behind, 50mm lens, shallow depth of field: the back view of a middle-aged man in a plain dark-grey suit with rolled sleeves, seated at the long conference table; he slowly closes the thick worn manual with one hand, then leans back into the chair, shoulders settling. Backlit by cold grey window light so he reads as a dark silhouette with rim light on his shoulders and hair; the warm desk lamp lights the closed manual on the table. No face visible from behind. One continuous action.\noverall_soundscape: the soft thump of a heavy manual closing, fabric shifting as he leans back, a long quiet room tone.\nnon_diegetic_music: a final low cello note, letting the silence settle.\ngeneric fictional characters only, no recognizable facial features, does not resemble any public figure, no logos, no readable text, no watermark. Characters appear only as side profile, over-the-shoulder, hands or back view; never a clear frontal face."
+  }
+ ]
+}

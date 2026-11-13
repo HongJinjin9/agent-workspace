@@ -1,0 +1,533 @@
+[
+  {
+    "id": "c0",
+    "seg": "COLD",
+    "kind": "pil",
+    "scene": "cold_title",
+    "at": {
+      "abs": 0.0
+    },
+    "note": "冷开场标题卡（静默 intro 0 → COLD 段开始）"
+  },
+  {
+    "id": "cold1",
+    "seg": "COLD",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 0.0,
+    "look": "cool",
+    "at": {
+      "seg": "cold",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "长桌两端对坐剪影：一场判决从会议桌开始（C1）",
+    "still_mode": "in"
+  },
+  {
+    "id": "cold2",
+    "seg": "COLD",
+    "kind": "broll",
+    "asset": "comfy_c1",
+    "in": 2.4,
+    "look": "cool",
+    "at": {
+      "seg": "cold",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "一个带手册、一个带账本：桌上道具建立母题（C1 后段）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a1a",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c13",
+    "in": 0.6,
+    "look": "cool",
+    "at": {
+      "seg": "a1",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "2020-09-08 成都媒体沟通会：黄昏会议室空镜（C13），冷灰",
+    "still_mode": "pan_l"
+  },
+  {
+    "id": "a1b",
+    "seg": "ACT1",
+    "kind": "pil",
+    "scene": "quote_feng",
+    "at": {
+      "seg": "a1",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "冯思翰引述卡（打字机逐字 + 发言人/时间/出处小字）"
+  },
+  {
+    "id": "a1c",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c2",
+    "in": 0.6,
+    "look": "cool",
+    "at": {
+      "seg": "a1",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "老规矩侧影翻旧手册：内燃机发电/多一道转换（C2）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a1d",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c3",
+    "in": 0.4,
+    "look": "warm",
+    "at": {
+      "seg": "a1",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "「这不是观点，这是热力学」——老规矩双手盖章、红印落下（C3）",
+    "still_mode": "in"
+  },
+  {
+    "id": "a1d2",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c10",
+    "in": 0.6,
+    "look": "warm",
+    "overlay": "verdict_stamp",
+    "at": {
+      "seg": "a1",
+      "sent": 5,
+      "off": 1.6
+    },
+    "note": "印章落纸后的红印特写（C10）+ 红色盖章式「判决 · 2020.09.08」压字",
+    "still_mode": "close"
+  },
+  {
+    "id": "a1e",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c12",
+    "in": 1.0,
+    "look": "neutral",
+    "at": {
+      "seg": "a1",
+      "sent": 6,
+      "off": 0.0
+    },
+    "note": "小账本：「账不是这么算的」——旧账本与钢笔特写（C12）",
+    "still_mode": "pan_r"
+  },
+  {
+    "id": "a1f",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c5",
+    "in": 0.6,
+    "look": "warm",
+    "at": {
+      "seg": "a1",
+      "sent": 8,
+      "off": 0.0
+    },
+    "note": "小账本把账本推向对面：用户看一箱油能跑多远（C5）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a1g",
+    "seg": "ACT1",
+    "kind": "broll",
+    "asset": "comfy_c4",
+    "in": 0.6,
+    "look": "neutral",
+    "overlays": [
+      "verdict_tally"
+    ],
+    "stage": 1,
+    "at": {
+      "seg": "a1",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "「这不是算账/这是算别的账」——小账本低头看平板（C4）+ 计分板 2:1:1 第 1 格",
+    "still_mode": "in"
+  },
+  {
+    "id": "a2a",
+    "seg": "ACT2",
+    "kind": "broll",
+    "asset": "comfy_c13",
+    "in": 2.2,
+    "look": "cool",
+    "at": {
+      "seg": "a2",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "一年后·2021 年 11 月：黄昏会议室空镜（C13 变奏）",
+    "still_mode": "pan_l"
+  },
+  {
+    "id": "a2b",
+    "seg": "ACT2",
+    "kind": "broll",
+    "asset": "comfy_c5",
+    "in": 2.6,
+    "look": "warm",
+    "at": {
+      "seg": "a2",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "小账本把账本推到桌子中间：「理想 ONE，单月上险——」（C5）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a2c",
+    "seg": "ACT2",
+    "kind": "pil",
+    "scene": "bar_compare",
+    "at": {
+      "seg": "a2",
+      "sent": 3,
+      "off": 0.0
+    },
+    "note": "柱状条 13,438 vs 12,445 从零生长（柱高∝数值），差值 993 单独落下"
+  },
+  {
+    "id": "a2d",
+    "seg": "ACT2",
+    "kind": "broll",
+    "asset": "comfy_c8",
+    "in": 0.8,
+    "look": "neutral",
+    "overlays": [
+      "num_993",
+      "verdict_tally"
+    ],
+    "stage": 2,
+    "at": {
+      "seg": "a2",
+      "sent": 9,
+      "off": 0.0
+    },
+    "note": "「还差九百九十三台」——平板抽象数字（C8）+ 993 callout + 计分板第 2 格",
+    "still_mode": "close"
+  },
+  {
+    "id": "a2e",
+    "seg": "ACT2",
+    "kind": "pil",
+    "scene": "quote_li",
+    "at": {
+      "seg": "a2",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "李想八字引述卡（打字机 + 李想/2021-12-22 微博）；老规矩「这一页我记下来了」压在卡上"
+  },
+  {
+    "id": "a3a",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c6",
+    "in": 0.6,
+    "look": "neutral",
+    "at": {
+      "seg": "a3",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "「又过了四年」——旧手册厚纸页翻动、灰尘（C6，全书母题）",
+    "still_mode": "in"
+  },
+  {
+    "id": "a3b",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c9",
+    "in": 0.6,
+    "look": "cool",
+    "at": {
+      "seg": "a3",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "2025 上海车展发布三款概念车——老规矩笔尖在手册上划线（C9）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a3c",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c2",
+    "in": 2.4,
+    "look": "warm",
+    "at": {
+      "seg": "a3",
+      "sent": 4,
+      "off": 0.0
+    },
+    "note": "「你在看什么？」「当年我划的这条线」——老规矩侧影翻手册（C2 后段，色温转暖）",
+    "still_mode": "pan_r"
+  },
+  {
+    "id": "a3d",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c12",
+    "in": 2.0,
+    "look": "warm",
+    "at": {
+      "seg": "a3",
+      "sent": 6,
+      "off": 0.0
+    },
+    "note": "上汽大众 ID.ERA 9X 上市 /「增程新王」——旧账本与钢笔（C12 后段）",
+    "still_mode": "in"
+  },
+  {
+    "id": "a3e",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c7",
+    "in": 0.6,
+    "look": "warm",
+    "overlays": [
+      "verdict_tally"
+    ],
+    "stage": 3,
+    "at": {
+      "seg": "a3",
+      "sent": 8,
+      "off": 0.0
+    },
+    "note": "「规则没有变/变的是谁在按规则算账/那现在谁赢？」——两人过肩距离拉近（C7）+ 计分板第 3 格",
+    "still_mode": "pan_l"
+  },
+  {
+    "id": "a3f",
+    "seg": "ACT3",
+    "kind": "broll",
+    "asset": "comfy_c14",
+    "in": 0.6,
+    "look": "warm",
+    "overlay": "flat_verdict",
+    "at": {
+      "seg": "a3",
+      "sent": 11,
+      "off": 0.0
+    },
+    "note": "「这局，平。」——老规矩合上手册靠回椅背的背影（C14）+ 压字",
+    "still_mode": "out"
+  },
+  {
+    "id": "a4a",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c13",
+    "in": 3.4,
+    "look": "cool2",
+    "at": {
+      "seg": "a4",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "「但故事还没完」——会议室空镜（C13 黄昏），色温回冷",
+    "still_mode": "pan_r"
+  },
+  {
+    "id": "a4b",
+    "seg": "ACT4",
+    "kind": "pil",
+    "scene": "data_curve",
+    "at": {
+      "seg": "a4",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "123 万→41 万 / -9.7% / 份额 10.3%→7.0% / 单月 -24.9% 双面板数据曲线"
+  },
+  {
+    "id": "a4c",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c8",
+    "in": 2.8,
+    "look": "cool2",
+    "at": {
+      "seg": "a4",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "「……跌了」「跌了多少」——女性手指点平板、抽象数字流动（C8 后段）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a4d",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c4",
+    "in": 2.6,
+    "look": "cool2",
+    "at": {
+      "seg": "a4",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "「百分之二十四点九」——小账本低头看平板，屏幕微光（C4 后段）",
+    "still_mode": "in"
+  },
+  {
+    "id": "a4e",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c2",
+    "in": 1.2,
+    "look": "cool2",
+    "at": {
+      "seg": "a4",
+      "sent": 8,
+      "off": 0.0
+    },
+    "note": "纯电在涨 / 当年逼人增程的理由被拿走——老规矩侧影（C2 第三段 in 点）",
+    "still_mode": "pan_l"
+  },
+  {
+    "id": "a4f",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c7",
+    "in": 2.4,
+    "look": "warm",
+    "at": {
+      "seg": "a4",
+      "sent": 10,
+      "off": 0.0
+    },
+    "note": "「那我这本账，是不是也算错了？」——两人过肩（C7 后段）",
+    "still_mode": "close"
+  },
+  {
+    "id": "a4g",
+    "seg": "ACT4",
+    "kind": "broll",
+    "asset": "comfy_c14",
+    "in": 2.4,
+    "look": "cool2",
+    "overlays": [
+      "verdict_tally"
+    ],
+    "stage": 4,
+    "at": {
+      "seg": "a4",
+      "sent": 11,
+      "off": 0.0
+    },
+    "note": "「账没错。是账本背后的东西，变了。」——老规矩背影（C14 后段）+ 计分板第 4 格（2:1:1 收账）",
+    "still_mode": "out"
+  },
+  {
+    "id": "o0",
+    "seg": "CLOSE",
+    "kind": "broll",
+    "asset": "comfy_c13",
+    "in": 1.4,
+    "look": "neutral",
+    "at": {
+      "seg": "outro",
+      "sent": 1,
+      "off": 0.0
+    },
+    "note": "「两个人都不说话了」——安静的会议室空镜（C13 第四段 in 点）",
+    "still_mode": "in"
+  },
+  {
+    "id": "o1",
+    "seg": "CLOSE",
+    "kind": "pil",
+    "scene": "blank_manual",
+    "at": {
+      "seg": "outro",
+      "sent": 2,
+      "off": 0.0
+    },
+    "note": "桌上多了一本新的空白手册（「这本还没写」「那就先空着」）"
+  },
+  {
+    "id": "o2",
+    "seg": "CLOSE",
+    "kind": "broll",
+    "asset": "comfy_c6",
+    "in": 2.4,
+    "look": "cool",
+    "at": {
+      "seg": "outro",
+      "sent": 5,
+      "off": 0.0
+    },
+    "note": "2020 年增程被判死刑 / 2021 翻案——手册翻页母题（C6 后段）",
+    "still_mode": "pan_r"
+  },
+  {
+    "id": "o3",
+    "seg": "CLOSE",
+    "kind": "broll",
+    "asset": "comfy_c14",
+    "in": 1.6,
+    "look": "warm",
+    "at": {
+      "seg": "outro",
+      "sent": 7,
+      "off": 0.0
+    },
+    "note": "2025 年判它的人自己开始造它 / 2026 退潮——老规矩背影（C14 第三段）",
+    "still_mode": "out"
+  },
+  {
+    "id": "o4",
+    "seg": "CLOSE",
+    "kind": "broll",
+    "asset": "comfy_c11",
+    "in": 0.6,
+    "look": "warm",
+    "at": {
+      "seg": "outro",
+      "sent": 9,
+      "off": 0.0
+    },
+    "note": "「没有永远的裁判 / 只有不断被重新判决的技术」——桌上新的空白手册（C11）",
+    "still_mode": "in"
+  },
+  {
+    "id": "o5",
+    "seg": "CLOSE",
+    "kind": "pil",
+    "scene": "end_card",
+    "at": {
+      "seg": "outro",
+      "sent": 10,
+      "off": 2.2
+    },
+    "note": "片尾双声明卡：虚构人物声明 + AI 辅助制作声明 + 参考资料（覆盖 outro_voice 口播）"
+  },
+  {
+    "id": "o6",
+    "seg": "CLOSE",
+    "kind": "pil",
+    "scene": "outro_black",
+    "at": {
+      "from_end": 1.0
+    },
+    "note": "尾部黑场 1.0s（与 finalize 片尾淡出对齐）"
+  }
+]
