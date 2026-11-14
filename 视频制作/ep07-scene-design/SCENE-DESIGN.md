@@ -286,7 +286,7 @@
       overlays.tsx              # 印章/批注/榜单高亮
       grade.tsx                 # 颗粒/暗角/遮幅/统一 look
     data/
-      shots.json                # 37 镜 + 3D 转场（时间/空间/相机/H3 素材/参数）
+      shots.json                # 50 分镜 + 3D 转场（时间/空间/相机/H3 素材/参数）
       timeline.json             # 逐句时间轴（TTS 实测回填）
       srt.json                  # 字幕
       facts.ts                  # 数据常量（唯一数字源）
