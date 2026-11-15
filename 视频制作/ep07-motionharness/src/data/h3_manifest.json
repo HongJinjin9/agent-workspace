@@ -1,0 +1,448 @@
+{
+ "note": "Plan-B H3-primary cut: 46 shots use full-bleed H3 (20 clips reused with spread in-points); 3D-only for S01 title, S37/S38 ranking, S50 end card.",
+ "version": "2026-11-14T07:50Z",
+ "mapping": [
+  {
+   "shot": "S02",
+   "from": 5.587,
+   "to": 9.691,
+   "clip": "H02",
+   "mode": "fill",
+   "in": 0.7,
+   "headline": "报告刚发布"
+  },
+  {
+   "shot": "S03",
+   "from": 9.691,
+   "to": 13.916,
+   "clip": "H03",
+   "mode": "fill",
+   "in": 0.44,
+   "headline": "纯电三年保值率"
+  },
+  {
+   "shot": "S04",
+   "from": 13.916,
+   "to": 17.054,
+   "clip": "H04",
+   "mode": "fill",
+   "in": 0.05,
+   "headline": "插混更狠"
+  },
+  {
+   "shot": "S05",
+   "from": 17.054,
+   "to": 21.279,
+   "clip": "H05",
+   "mode": "fill",
+   "in": 0.88,
+   "headline": "一台车，三年蒸发一半"
+  },
+  {
+   "shot": "S06",
+   "from": 21.279,
+   "to": 26.116,
+   "clip": "H02",
+   "mode": "fill",
+   "in": 0.03,
+   "headline": "谁在给它重新定价？"
+  },
+  {
+   "shot": "S07",
+   "from": 26.116,
+   "to": 30.587,
+   "clip": "H07",
+   "mode": "fill",
+   "in": 0.63,
+   "headline": "先把账摊开"
+  },
+  {
+   "shot": "S08",
+   "from": 30.587,
+   "to": 33.744,
+   "clip": "H08",
+   "mode": "fill",
+   "in": 0.85,
+   "headline": "中大型 SUV"
+  },
+  {
+   "shot": "S09",
+   "from": 33.744,
+   "to": 36.374,
+   "clip": "H09",
+   "mode": "fill",
+   "in": 0.49,
+   "headline": "MPV 48.7% / 小型车 48.3%"
+  },
+  {
+   "shot": "S10",
+   "from": 36.374,
+   "to": 39.004,
+   "clip": "H10",
+   "mode": "fill",
+   "in": 1.19,
+   "headline": "燃油车：普遍 50% 以上"
+  },
+  {
+   "shot": "S11",
+   "from": 39.004,
+   "to": 40.977,
+   "clip": "H11",
+   "mode": "fill",
+   "in": 0.58,
+   "headline": "日系合资 54% 以上"
+  },
+  {
+   "shot": "S12",
+   "from": 40.977,
+   "to": 43.081,
+   "clip": "H12",
+   "mode": "fill",
+   "in": 1.54,
+   "headline": "保时捷 66.2%"
+  },
+  {
+   "shot": "S13",
+   "from": 43.081,
+   "to": 45.317,
+   "clip": "H13",
+   "mode": "fill",
+   "in": 2.5,
+   "headline": "一边一半多，一边四成半"
+  },
+  {
+   "shot": "S14",
+   "from": 45.317,
+   "to": 47.684,
+   "clip": "H14",
+   "mode": "fill",
+   "in": 0.65,
+   "headline": "20 万 → 9 万"
+  },
+  {
+   "shot": "S15",
+   "from": 47.684,
+   "to": 49.657,
+   "clip": "H15",
+   "mode": "fill",
+   "in": 0.17,
+   "headline": "11 ÷ 3 = 3.7 万/年"
+  },
+  {
+   "shot": "S16",
+   "from": 49.657,
+   "to": 52.287,
+   "clip": "H09",
+   "mode": "fill",
+   "in": 0.28,
+   "headline": "这不是一台车的事故"
+  },
+  {
+   "shot": "S17",
+   "from": 52.287,
+   "to": 55.169,
+   "clip": "H02",
+   "mode": "fill",
+   "in": 1.99,
+   "headline": "是一个品类，被重新估值"
+  },
+  {
+   "shot": "S18",
+   "from": 55.169,
+   "to": 60.147,
+   "clip": "H18",
+   "mode": "fill",
+   "in": 0.16,
+   "headline": "三本账"
+  },
+  {
+   "shot": "S19",
+   "from": 60.147,
+   "to": 63.528,
+   "clip": "H19",
+   "mode": "fill",
+   "in": 1.78,
+   "headline": "账① 技术"
+  },
+  {
+   "shot": "S20",
+   "from": 63.528,
+   "to": 67.942,
+   "clip": "H20",
+   "mode": "fill",
+   "in": 0.21,
+   "headline": "800V · 5C 超充 · 城区智驾"
+  },
+  {
+   "shot": "S21",
+   "from": 67.942,
+   "to": 71.793,
+   "clip": "H08",
+   "mode": "fill",
+   "in": 0.67,
+   "headline": "参数表上的领先，一年就旧"
+  },
+  {
+   "shot": "S22",
+   "from": 71.793,
+   "to": 75.644,
+   "clip": "H09",
+   "mode": "fill",
+   "in": 0.04,
+   "headline": "新款续航能耗，直接压残值"
+  },
+  {
+   "shot": "S23",
+   "from": 75.644,
+   "to": 79.119,
+   "clip": "H03",
+   "mode": "fill",
+   "in": 0.02,
+   "headline": "账② 价格"
+  },
+  {
+   "shot": "S24",
+   "from": 79.119,
+   "to": 82.97,
+   "clip": "H04",
+   "mode": "fill",
+   "in": 0.1,
+   "headline": "新车优惠 ↔ 二手挂牌价"
+  },
+  {
+   "shot": "S25",
+   "from": 82.97,
+   "to": 86.821,
+   "clip": "H06",
+   "mode": "fill",
+   "in": 0.8,
+   "headline": "今天降两万，昨天收的车就亏两万"
+  },
+  {
+   "shot": "S26",
+   "from": 86.821,
+   "to": 90.202,
+   "clip": "H11",
+   "mode": "fill",
+   "in": 1.27,
+   "headline": "降价透支旧车价"
+  },
+  {
+   "shot": "S27",
+   "from": 90.202,
+   "to": 93.583,
+   "clip": "H03",
+   "mode": "fill",
+   "in": 0.17,
+   "headline": "账③ 电池"
+  },
+  {
+   "shot": "S28",
+   "from": 93.583,
+   "to": 97.997,
+   "clip": "H04",
+   "mode": "fill",
+   "in": 0.42,
+   "headline": "电池最贵，也最不敢接"
+  },
+  {
+   "shot": "S29",
+   "from": 97.997,
+   "to": 102.317,
+   "clip": "H05",
+   "mode": "fill",
+   "in": 0.59,
+   "headline": "衰减看不见"
+  },
+  {
+   "shot": "S30",
+   "from": 102.317,
+   "to": 106.416,
+   "clip": "H07",
+   "mode": "fill",
+   "in": 0.77,
+   "headline": "收车意愿一降，全折进报价"
+  },
+  {
+   "shot": "S31",
+   "from": 106.416,
+   "to": 111.738,
+   "clip": "H11",
+   "mode": "fill",
+   "in": 0.1,
+   "headline": "但报告还有另一半：分化"
+  },
+  {
+   "shot": "S32",
+   "from": 111.738,
+   "to": 116.267,
+   "clip": "H11",
+   "mode": "fill",
+   "in": 0.08,
+   "headline": "中大型 SUV 50.6% / MPV 48.7%"
+  },
+  {
+   "shot": "S33",
+   "from": 116.267,
+   "to": 121.929,
+   "clip": "H16",
+   "mode": "fill",
+   "in": 0.1,
+   "headline": "豪华品牌：还硬的与掉队的"
+  },
+  {
+   "shot": "S34",
+   "from": 121.929,
+   "to": 126.911,
+   "clip": "H14",
+   "mode": "fill",
+   "in": 0.07,
+   "headline": "合资：近五成 vs 不到 43%"
+  },
+  {
+   "shot": "S35",
+   "from": 126.911,
+   "to": 132.007,
+   "clip": "H15",
+   "mode": "fill",
+   "in": 0.1,
+   "headline": "自主：领跑与上涨"
+  },
+  {
+   "shot": "S36",
+   "from": 132.007,
+   "to": 136.536,
+   "clip": "H16",
+   "mode": "fill",
+   "in": 0.26,
+   "headline": "保值率高的三个特征"
+  },
+  {
+   "shot": "S39",
+   "from": 145.481,
+   "to": 150.01,
+   "clip": "H02",
+   "mode": "fill",
+   "in": 0.4,
+   "headline": "不是给「电车」判刑"
+  },
+  {
+   "shot": "S40",
+   "from": 150.01,
+   "to": 154.791,
+   "clip": "H20",
+   "mode": "fill",
+   "in": 0.3,
+   "headline": "给哪台车、哪个品牌、哪套技术打分"
+  },
+  {
+   "shot": "S41",
+   "from": 154.791,
+   "to": 158.462,
+   "clip": "H20",
+   "mode": "fill",
+   "in": 0.77,
+   "headline": "三件事，都在这张评估单上"
+  },
+  {
+   "shot": "S42",
+   "from": 158.462,
+   "to": 162.557,
+   "clip": "H13",
+   "mode": "fill",
+   "in": 0.39,
+   "headline": "落地价 − 残值 + 使用成本"
+  },
+  {
+   "shot": "S43",
+   "from": 162.557,
+   "to": 166.299,
+   "clip": "H12",
+   "mode": "fill",
+   "in": 0.56,
+   "headline": "20 − 9 + 使用成本"
+  },
+  {
+   "shot": "S44",
+   "from": 166.299,
+   "to": 170.394,
+   "clip": "H04",
+   "mode": "fill",
+   "in": 0.7,
+   "headline": "价格战 → 残值 → 品牌 / 金融"
+  },
+  {
+   "shot": "S45",
+   "from": 170.394,
+   "to": 174.065,
+   "clip": "H05",
+   "mode": "fill",
+   "in": 0.54,
+   "headline": "参数厂商写，保值率市场写"
+  },
+  {
+   "shot": "S46",
+   "from": 174.065,
+   "to": 177.313,
+   "clip": "H17",
+   "mode": "fill",
+   "in": 0.52,
+   "headline": "残值变成显性成本，价格战不再免费"
+  },
+  {
+   "shot": "S47",
+   "from": 177.313,
+   "to": 181.126,
+   "clip": "H10",
+   "mode": "fill",
+   "in": 0.67,
+   "headline": "发布会定卖价"
+  },
+  {
+   "shot": "S48",
+   "from": 181.126,
+   "to": 184.835,
+   "clip": "H15",
+   "mode": "fill",
+   "in": 0.45,
+   "headline": "市场定残值"
+  },
+  {
+   "shot": "S49",
+   "from": 184.835,
+   "to": 197.923,
+   "clip": "H09",
+   "mode": "fill",
+   "in": 0.1,
+   "headline": "三年后，它值多少？"
+  }
+ ],
+ "unused_alternates": [
+  "H18",
+  "H19"
+ ],
+ "clipIndex": {
+  "H01": "评估单纸面微距（S01 冷开场证据影像）",
+  "H02": "盖章/红印（S06/S17/S39）",
+  "H03": "举升机升起/车底（S27 账③电池入口）",
+  "H04": "电池包特写（S28）",
+  "H05": "检测仪读数（S29）",
+  "H06": "收车单红笔划价（S25）",
+  "H07": "车商摇头递回（S30）",
+  "H08": "车漆微距反光（S21）",
+  "H09": "停车场车队横移（S16/S22）",
+  "H10": "二手车场黄昏（S47）",
+  "H11": "价签轻摆（S26/S32）",
+  "H12": "计算器按键（S43）",
+  "H13": "纸页与笔/手写（S42）",
+  "H14": "空评估室一束光（S50 声明段）",
+  "H15": "黄昏车场低角度（S48）",
+  "H16": "价签逆光（S33）",
+  "H17": "车库全景（S46）",
+  "H18": "电池包变体（备选）",
+  "H19": "车商桌面变体（备选）",
+  "H20": "办公室纸张俯拍（S41）"
+ },
+ "fallback": "H3 clips are enhancement only: every shot renders a coherent procedural 3D world (src/three/World.tsx). Missing/failed H3 files hide their DOM evidence layer (FootageLayer BROKEN set) and the 3D scene remains visible — no black frames, no build change. shot.fallback=\"3d\" is set for all 50 shots. Late binding: files are loaded at render time from assets/h3/<clip>.mp4, so H3 can arrive after build freeze without source change.",
+ "lateBinding": true
+}

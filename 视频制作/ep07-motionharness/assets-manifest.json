@@ -1,0 +1,1013 @@
+{
+ "episode": "第07期《三年之后，你的车还值多少钱》",
+ "generated_by": "MotionHarness Pro (3D + DOM 合成) + ComfyUI H3 证据影像",
+ "generated_at_utc": "2026-11-15T03:47:01+00:00",
+ "spec": {
+  "film": {
+   "path": "out/ep07-mh.mp4",
+   "duration_s": 208.966,
+   "frames": 5015,
+   "width": 1920,
+   "height": 1080,
+   "fps": 24.0,
+   "size_mb": 27.68,
+   "sha256": "19cf871c1f90587d5d5f1acdb3da03642b8855641fc68d2885df7dfdf6af5571"
+  },
+  "expected_duration_s": 208.9664,
+  "expected_duration_source": "cli",
+  "loudness": {
+   "I": -14.43,
+   "TP": -1.62,
+   "LRA": 2.4,
+   "thresh": -24.53
+  },
+  "checks": {
+   "resolution": true,
+   "fps": true,
+   "duration": true,
+   "frames": true,
+   "has_audio": true,
+   "decode_clean": true,
+   "loudness_I": true,
+   "true_peak": true,
+   "lra": true,
+   "letterbox_2.35": true,
+   "content_present": true,
+   "subtitles_present": true,
+   "subtitles_band_black": true,
+   "srt_cues": true,
+   "srt_monotonic": true,
+   "srt_no_overlap": true,
+   "srt_in_range": true,
+   "srt_line_len": false,
+   "srt_tail": true,
+   "h3_assets_present": true,
+   "endcard_text_density": true,
+   "fade_out_black": false
+  },
+  "problems": [
+   "srt_line_len",
+   "fade_out_black"
+  ]
+ },
+ "program": {
+  "project_dir": "/app/vedio/ep07-mh",
+  "project_type": "motionharness-pro",
+  "entry": "src/project.ts",
+  "shots": 50,
+  "files": [
+   "src/Stage.tsx",
+   "src/assets.d.ts",
+   "src/data/facts.ts",
+   "src/data/graphics_cues.json",
+   "src/data/h3_manifest.json",
+   "src/data/shots.json",
+   "src/data/srt.json",
+   "src/data/theme.ts",
+   "src/data/timeline.json",
+   "src/data/types.ts",
+   "src/graphics/big_number.tsx",
+   "src/graphics/brand_matrix.tsx",
+   "src/graphics/category_bars.tsx",
+   "src/graphics/end_card.tsx",
+   "src/graphics/graphics.css",
+   "src/graphics/index.tsx",
+   "src/graphics/number_stack.tsx",
+   "src/graphics/paper_sheet.tsx",
+   "src/graphics/price_tag.tsx",
+   "src/graphics/prims.tsx",
+   "src/graphics/ranking_board.tsx",
+   "src/graphics/red_annotation.tsx",
+   "src/graphics/report_cover.tsx",
+   "src/graphics/section_label.tsx",
+   "src/graphics/stamp.tsx",
+   "src/graphics/statement.tsx",
+   "src/graphics/title_hook.tsx",
+   "src/layers/Chrome.tsx",
+   "src/layers/FootageLayer.tsx",
+   "src/layers/LowerThird.tsx",
+   "src/layers/Subtitles.tsx",
+   "src/project.tsx",
+   "src/style.css",
+   "src/three/World.tsx",
+   "src/three/camera-rig.ts",
+   "src/three/materials.ts",
+   "src/three/math.ts",
+   "src/three/pose.ts",
+   "src/three/text-texture.ts"
+  ]
+ },
+ "h3": {
+  "manifest": "assets/h3/manifest.json",
+  "count": 20,
+  "clips": [
+   {
+    "path": "H01",
+    "id": "H01",
+    "label": "Macro appraisal sheet under cool top light, dust, slow push",
+    "scene": "S01-S03",
+    "spec": "S01-S03",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: a single sheet of appraisal paper lies on a dark desk under a cool white overhead light; the paper fibres and faint printed grid lines are visible but completely unreadable, dust motes drift slowly through the beam, and the camera pushes in very slowly. Cold white top light, soft falloff, film grain, realistic paper texture.\noverall_soundscape: a quiet room tone, a faint fluorescent hum, one soft paper settle.\nnon_diegetic_music: a single low sustained synth tone, sparse and cold.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140101,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "71378316-476f-413e-9932-c3884551d07a",
+    "elapsed_s": 87.5,
+    "downloaded_utc": "2026-11-15T00:42:57Z",
+    "source_filename": "ep07__00001_.mp4",
+    "raw": "assets/h3/raw/H01_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H01.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H02",
+    "id": "H02",
+    "label": "Hand pressing rubber stamp, red ink blooms, macro",
+    "scene": "S03/S09",
+    "spec": "S03/S09 stamp",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, shallow depth of field: a hand in a dark sleeve grips a heavy wooden rubber stamp and presses it down onto a paper sheet on a dark desk, holds, lifts; a round red ink mark blooms and spreads slightly into the paper fibres, no readable characters. Warm desk-lamp light from the upper left, cool shadows, dust in the air, realistic ink bleed.\noverall_soundscape: a firm muffled thud of stamp on paper, the small wooden click of lifting, paper settling.\nnon_diegetic_music: one low struck piano note, then silence.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140102,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "7a668b00-1f9f-41ca-94d1-94770a907496",
+    "elapsed_s": 37.5,
+    "downloaded_utc": "2026-11-15T00:43:30Z",
+    "source_filename": "ep07__00002_.mp4",
+    "raw": "assets/h3/raw/H02_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H02.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H03",
+    "id": "H03",
+    "label": "Car on lift rising, underbody, garage cool light",
+    "scene": "S20",
+    "spec": "S20 lift",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic medium-wide shot in a clean car service garage, 35mm lens: a generic modern sedan sits on a two-post lift and rises slowly, revealing its flat underbody and wheels; cool white workshop light from above, concrete floor with faint reflections, dust in the beams, slow steady mechanical motion. Generic car with no visible badges.\noverall_soundscape: a hydraulic lift motor whirring, metallic groans of the lift arms, echoing garage room tone.\nnon_diegetic_music: low industrial pulse, restrained.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140103,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "fe48720e-767a-4601-a8c9-b5bc868cf87e",
+    "elapsed_s": 33.6,
+    "downloaded_utc": "2026-11-15T00:44:05Z",
+    "source_filename": "ep07__00003_.mp4",
+    "raw": "assets/h3/raw/H03_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H03.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H04",
+    "id": "H04",
+    "label": "EV battery pack close-up, cables, cold light, dust",
+    "scene": "S20",
+    "spec": "S20 battery",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close-up from under a raised generic electric car, 50mm lens, shallow depth of field: a large flat battery pack with a bolted aluminium frame and thick orange-safe high-voltage cables runs the length of the underbody; cold workshop light rakes across the metal, fine dust and faint scratches visible, camera drifts very slowly along the pack. No text or logos on the pack.\noverall_soundscape: a quiet garage room tone, a faint electrical hum, a distant tool clink.\nnon_diegetic_music: cold sustained synth pad, slowly evolving.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140104,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "fd3b2892-a9df-40a7-9968-e188ad5a32d2",
+    "elapsed_s": 33.7,
+    "downloaded_utc": "2026-11-15T00:44:39Z",
+    "source_filename": "ep07__00004_.mp4",
+    "raw": "assets/h3/raw/H04_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H04.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H05",
+    "id": "H05",
+    "label": "Gloved hand on diagnostic tablet, readout glow",
+    "scene": "S20",
+    "spec": "S20 diag",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close-up over the shoulder of an unseen technician, 85mm lens, shallow depth of field: a gloved hand holds a diagnostic tablet and slides a finger across its screen; green and red graph readouts glow on the glass, their digits completely unreadable, reflecting softly on the glove and the car body below. Cool daylight from a garage door behind, shallow focus on the finger.\noverall_soundscape: a soft screen tap, a faint electronic hum, garage room tone.\nnon_diegetic_music: minimal pulsing synth, quiet.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140105,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "962fa524-22bb-4466-bdfa-62a72aed4af6",
+    "elapsed_s": 33.5,
+    "downloaded_utc": "2026-11-15T00:45:12Z",
+    "source_filename": "ep07__00005_.mp4",
+    "raw": "assets/h3/raw/H05_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H05.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H06",
+    "id": "H06",
+    "label": "Hand with red pen crossing out price on appraisal form",
+    "scene": "S17",
+    "spec": "S17",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a hand holds a red pen and draws a slow firm line through a price figure on an appraisal form lying on a dark desk; the page has blurred unreadable printed rows, the pen leaves a red stroke, the paper dimples slightly. Warm desk-lamp light from the left, cool shadow on the right, dust in the beam.\noverall_soundscape: the dry scratch of a pen on paper, a soft breath, a faint paper rustle.\nnon_diegetic_music: a single low piano chord, held.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140106,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "8d0f196a-1a62-4a2a-a438-fd484e6f261a",
+    "elapsed_s": 35.0,
+    "downloaded_utc": "2026-11-15T00:46:02Z",
+    "source_filename": "ep07__00006_.mp4",
+    "raw": "assets/h3/raw/H06_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H06.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H07",
+    "id": "H07",
+    "label": "Used-car dealer over-shoulder handing back paper",
+    "scene": "S21",
+    "spec": "S21",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic over-the-shoulder shot from behind a seated person, 50mm lens, shallow depth of field: across a desk a used-car salesperson in a plain shirt, seen from the side/back only with no face visible, shakes their head slightly and slides a paper form back across the desk toward camera; the desk has a lamp, keys and a folder. Warm office lamp, cool window light behind, shallow focus on the paper.\noverall_soundscape: paper sliding over a desk, a faint chair creak, muffled office room tone.\nnon_diegetic_music: sparse muted piano, patient and slightly heavy.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140107,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "7b8fe600-1eb7-4575-a486-b0d7c4c12ca8",
+    "elapsed_s": 42.0,
+    "downloaded_utc": "2026-11-15T00:46:44Z",
+    "source_filename": "ep07__00007_.mp4",
+    "raw": "assets/h3/raw/H07_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H07.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H08",
+    "id": "H08",
+    "label": "Car paint macro, reflections sliding",
+    "scene": "S06/S07",
+    "spec": "S06/S07",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro shot along the body panel of a generic modern car, 100mm lens, very shallow depth of field: the glossy paint surface catches and slides long soft reflections of a grey overcast sky and garage strip lights as the camera drifts slowly along the panel; fine metallic flake in the paint is visible, water beads on the surface, no badges or logos. Cool desaturated light, film grain.\noverall_soundscape: a very quiet outdoor room tone, a faint wind hush, one distant car passing.\nnon_diegetic_music: a low warm pad, slow and reflective.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140108,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "14c640f8-4fd3-4105-b616-9b4f6414d485",
+    "elapsed_s": 35.6,
+    "downloaded_utc": "2026-11-15T00:47:20Z",
+    "source_filename": "ep07__00008_.mp4",
+    "raw": "assets/h3/raw/H08_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H08.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H09",
+    "id": "H09",
+    "label": "Long row of cars, slow lateral camera, overcast",
+    "scene": "S06",
+    "spec": "S06",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide lateral tracking shot along a long row of parked generic passenger cars in an outdoor lot under an overcast sky, 85mm lens compression: the camera dollies sideways at a slow constant speed, cars passing in soft grey light, their paint reflecting the white sky, wet asphalt with faint puddles. No people, no badges, no readable plates.\noverall_soundscape: a soft wind over an open lot, distant traffic hum, occasional water drip.\nnon_diegetic_music: a sparse ambient pad with a slow pulse.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140109,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "3d328cfc-6c47-4711-9c81-3436580cee2e",
+    "elapsed_s": 33.4,
+    "downloaded_utc": "2026-11-15T00:47:54Z",
+    "source_filename": "ep07__00009_.mp4",
+    "raw": "assets/h3/raw/H09_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H09.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H10",
+    "id": "H10",
+    "label": "Used-car lot at dusk, warm low sun, long lens",
+    "scene": "S35",
+    "spec": "S35",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic long-lens shot across a used-car lot at dusk, 100mm compression: rows of generic parked cars overlap into layers as the low warm sun rakes across them, long shadows on the tarmac, soft orange highlights on windscreens and chrome, a faint haze in the air; the camera drifts slowly. No people, no badges, no readable text.\noverall_soundscape: a distant evening traffic hum, a soft wind, one car door closing far away.\nnon_diegetic_music: warm sustained strings, quiet and elegiac.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140110,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "3bb6ba3b-b698-4ec8-9a12-1efae73d9113",
+    "elapsed_s": 43.4,
+    "downloaded_utc": "2026-11-15T00:48:52Z",
+    "source_filename": "ep07__00010_.mp4",
+    "raw": "assets/h3/raw/H10_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H10.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H11",
+    "id": "H11",
+    "label": "Paper price tags hanging, swaying, shallow DOF",
+    "scene": "S24-S26",
+    "spec": "S24-S26",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic close-up, 85mm lens, very shallow depth of field: several small blank paper price tags hang on thin strings in front of a car windscreen in a used-car lot, swaying gently in the wind; the tags are plain white/cream with no writing, the car behind is a soft dark shape, daylight backlight makes the paper glow at the edges, slow drifting camera.\noverall_soundscape: paper tags fluttering and tapping softly in the wind, a distant street hum.\nnon_diegetic_music: a light minimal pulse, soft and airy.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140111,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "raw": "assets/h3/raw/H11_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H11.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H12",
+    "id": "H12",
+    "label": "Finger pressing calculator keys, macro, screen glow",
+    "scene": "S08/S32",
+    "spec": "S08/S32",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic macro close-up, 100mm lens, very shallow depth of field: a finger presses the keys of a desk calculator on a warm wooden desk, its small screen glowing pale green with completely unreadable digits; dust on the keys, a warm desk lamp from the upper left, cool shadow behind, shallow focus on the fingertip, one slow press after another.\noverall_soundscape: soft plastic key clicks, a faint calculator beep, a quiet room.\nnon_diegetic_music: minimal ticking synth, one note per key press.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140112,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "f192621d-85c9-4702-a2c6-ea9027a94a1b",
+    "elapsed_s": 48.6,
+    "downloaded_utc": "2026-11-15T00:51:45Z",
+    "source_filename": "ep07__00012_.mp4",
+    "raw": "assets/h3/raw/H12_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H12.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H13",
+    "id": "H13",
+    "label": "Three papers on desk, pen, hand writing, top-down",
+    "scene": "S30-S34",
+    "spec": "S30-S34",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic top-down shot, 50mm lens, shallow depth of field: three sheets of paper lie neatly side by side on a dark wooden desk in a cool office, a hand enters frame and writes a slow line with a pen on the first sheet, the writing blurred and unreadable; a warm desk lamp at the frame edge and cool window light beyond, dust motes, very slow lateral camera drift.\noverall_soundscape: a pen scratching on paper, the soft rustle of sheets, a quiet office room tone.\nnon_diegetic_music: sparse muted piano notes, thoughtful.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140113,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "7d8fe8fd-a794-4017-a2b4-5afb014ae7b6",
+    "elapsed_s": 37.3,
+    "downloaded_utc": "2026-11-15T00:52:24Z",
+    "source_filename": "ep07__00013_.mp4",
+    "raw": "assets/h3/raw/H13_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H13.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H14",
+    "id": "H14",
+    "label": "Empty appraisal room, single light beam, dust, slow push",
+    "scene": "S37",
+    "spec": "S37",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide shot of an empty appraisal office at the end of the day, 35mm lens: a dark desk with a single closed paper form on it, empty chair, and a single beam of cool light falling through half-closed blinds, cutting the dusty air; the camera pushes in very slowly. Cold light, deep shadows, film grain, quiet and emptied out. No people.\noverall_soundscape: a quiet empty room tone, a faint blind creak, distant city murmur through glass.\nnon_diegetic_music: a single low sustained drone, fading.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140114,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "raw": "assets/h3/raw/H14_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H14.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H15",
+    "id": "H15",
+    "label": "Used-car lot low-angle lateral, dusk (variant)",
+    "scene": "EXTRA",
+    "spec": "extra H10",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic low-angle lateral tracking shot at a used-car lot at dusk, 35mm lens: the camera moves sideways low to the ground so generic parked cars tower slightly above frame, warm low sun behind them creating rim light and long shadows on the tarmac, soft haze; wheel arches and paint highlights pass in sequence. No people, no badges, no readable plates.\noverall_soundscape: a soft evening wind, distant traffic, gravel crunching under a slow rolling wheel.\nnon_diegetic_music: warm low strings, slow pulse.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140115,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "df83136d-b472-4552-962b-1a3922f52bfe",
+    "elapsed_s": 33.8,
+    "downloaded_utc": "2026-11-15T00:53:38Z",
+    "source_filename": "ep07__00015_.mp4",
+    "raw": "assets/h3/raw/H15_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H15.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H16",
+    "id": "H16",
+    "label": "Price tags in wind macro variant, backlit",
+    "scene": "EXTRA",
+    "spec": "extra H11",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: two blank paper price tags hang close to camera on thin strings, backlit by low sun so the paper glows translucent at the edges and the strings catch light; they sway and one tag turns slightly, showing its blank face. The car behind is a soft dark bokeh; dust motes drift. No writing on tags.\noverall_soundscape: paper tags tapping softly, a gentle wind, one distant car door.\nnon_diegetic_music: a delicate sustained tone, airy.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140116,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "e15d5d7c-2938-4ef8-9b23-18e9a44bd53d",
+    "elapsed_s": 51.2,
+    "downloaded_utc": "2026-11-15T00:54:29Z",
+    "source_filename": "ep07__00016_.mp4",
+    "raw": "assets/h3/raw/H16_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H16.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H17",
+    "id": "H17",
+    "label": "Lift and garage wide shot (variant)",
+    "scene": "EXTRA",
+    "spec": "extra H03",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic wide shot of a clean car service garage, 24mm lens: a generic modern sedan sits raised on a two-post lift in the centre of the frame, tool benches and tyre racks along the walls, cool white ceiling lights with visible beams through the air, polished concrete floor reflecting the car; the camera slowly pushes forward. No people, no logos, no readable text.\noverall_soundscape: a deep garage room tone, a faint lift motor hum, a distant tool rattle.\nnon_diegetic_music: low industrial drone, steady.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140117,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "188173e4-51a1-42a7-8616-c4b0906966b9",
+    "elapsed_s": 33.7,
+    "downloaded_utc": "2026-11-15T00:55:03Z",
+    "source_filename": "ep07__00017_.mp4",
+    "raw": "assets/h3/raw/H17_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H17.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H18",
+    "id": "H18",
+    "label": "Battery pack macro variant, cables and bolts",
+    "scene": "EXTRA",
+    "spec": "extra H04",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic extreme macro shot, 100mm lens, very shallow depth of field: the edge of a large flat EV battery pack under a raised generic electric car, thick dark orange high-voltage cable connectors, subtle bead of sealant, bolts and aluminium cooling plate, all lit by a cool handheld light that rakes across the metal and fades to shadow; the camera drifts slowly along the edge. No logos or text.\noverall_soundscape: a quiet garage hum, a faint creak of the raised car, one soft metallic tick.\nnon_diegetic_music: a cold shimmering pad, minimal.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140118,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "15fdab5a-3cc6-4358-925a-176425ab3fa7",
+    "elapsed_s": 33.5,
+    "downloaded_utc": "2026-11-15T00:55:37Z",
+    "source_filename": "ep07__00018_.mp4",
+    "raw": "assets/h3/raw/H18_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H18.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H19",
+    "id": "H19",
+    "label": "Dealer desk handing back paper, over-shoulder (variant)",
+    "scene": "EXTRA",
+    "spec": "extra H07",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic over-the-shoulder close shot, 85mm lens, shallow depth of field: from behind a customer's shoulder, a used-car dealer's hands slide a paper form back across a desk and let go of it; the dealer's torso and lower face are out of frame/soft, no clear face; on the desk a lamp, a keys tray and a worn folder. Warm desk lamp on the paper, cool office light behind, shallow focus.\noverall_soundscape: paper sliding on wood, a soft chair creak, an office room tone.\nnon_diegetic_music: muted piano with a slow descending line.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140119,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "81131133-2e5a-4e1a-bdf4-3806df25ed45",
+    "elapsed_s": 33.2,
+    "downloaded_utc": "2026-11-15T00:56:11Z",
+    "source_filename": "ep07__00019_.mp4",
+    "raw": "assets/h3/raw/H19_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H19.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   },
+   {
+    "path": "H20",
+    "id": "H20",
+    "label": "Office papers and pen top-down (variant)",
+    "scene": "EXTRA",
+    "spec": "extra H13",
+    "prompt": "integrated_multimodal_description:\n[Shot 1] Cinematic strict top-down shot, 35mm lens, moderate shallow depth of field: three sheets of paper and a fountain pen arranged diagonally on a dark wooden office desk, cool daylight from a window at frame left and warm lamplight at frame right splitting the desk in two; a hand enters and straightens one sheet, then withdraws. Paper edges and faint grain visible, all text unreadable. Very slow drift.\noverall_soundscape: papers rustling softly, a pen rolling on wood, a quiet office room tone.\nnon_diegetic_music: a sparse piano melody, contemplative.\ngeneric passenger cars only, no brand badges or logos, no readable text or numbers, no watermark. No people faces: only hands, side profile, back view or over-the-shoulder; generic fictional people, no recognizable facial features, not resembling any public figure.",
+    "seed": 202611140120,
+    "req_res": [
+     864,
+     480
+    ],
+    "req_duration_s": 5.0,
+    "job_id": "16748581-28bb-48d3-8238-84c3024da723",
+    "elapsed_s": 33.3,
+    "downloaded_utc": "2026-11-15T00:56:44Z",
+    "source_filename": "ep07__00020_.mp4",
+    "raw": "assets/h3/raw/H20_raw.mp4",
+    "raw_res": [
+     864,
+     480
+    ],
+    "raw_duration_s": 5.17,
+    "raw_audio": true,
+    "final": "assets/h3/H20.mp4",
+    "final_res": [
+     1920,
+     1080
+    ],
+    "final_duration_s": 5.18,
+    "final_fps": 24.0,
+    "upscaled": true,
+    "upscale_method": "local-ffmpeg-lanczos 1920x1080",
+    "upscale_engine": "local-ffmpeg",
+    "status": "ok",
+    "verified_raw": {
+     "pass": true,
+     "problems": []
+    },
+    "verified_final": {
+     "pass": true,
+     "problems": []
+    }
+   }
+  ],
+  "note": "H3 素材为大文件，不入库；仓库只保留 provenance 清单。"
+ },
+ "audio": {
+  "timeline_audio": "audio/work/timeline_audio.json",
+  "master": "audio/ep07-master.m4a",
+  "report": "audio/work/audio-report.md",
+  "segments_or_lines": 6,
+  "loudness": {
+   "I": -14.43,
+   "TP": -1.62,
+   "LRA": 2.4,
+   "thresh": -24.53
+  }
+ },
+ "delivery": {
+  "manifest": "delivery/delivery-manifest.json",
+  "stills": [
+   "still-01-cover",
+   "still-02-appraisal-sheet",
+   "still-03-stamp",
+   "still-04-data-wall",
+   "still-05-calculator",
+   "still-06-three-ledgers",
+   "still-07-battery-check",
+   "still-08-price-tag-forest",
+   "still-09-lists",
+   "still-10-end-card"
+  ],
+  "contact_sheet": "delivery/contact-sheet.jpg",
+  "covers": [
+   "cover-16x9.jpg",
+   "cover-1x1.jpg",
+   "cover-3x4.jpg"
+  ]
+ },
+ "notes": null
+}

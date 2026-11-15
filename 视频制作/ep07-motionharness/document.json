@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "compositionId": "ep07",
+  "revision": 0,
+  "rootInstanceId": "49c1af0b-9e54-43b3-be9b-2eb357a0dd1d",
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "duration": 208.9664
+  },
+  "instances": {
+    "49c1af0b-9e54-43b3-be9b-2eb357a0dd1d": {
+      "componentId": "ep07",
+      "values": {
+        "background": "#0b0e11",
+        "h3Opacity": 1,
+        "grainStrength": 1,
+        "subtitles": true
+      },
+      "tracks": {},
+      "timing": {
+        "start": 0
+      }
+    }
+  }
+}

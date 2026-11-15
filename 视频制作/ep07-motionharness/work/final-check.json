@@ -1,0 +1,336 @@
+{
+  "film": "/app/vedio/ep07-mh/out/ep07-mh.mp4",
+  "expected": {
+    "w": 1920,
+    "h": 1080,
+    "fps": 24.0,
+    "bar": 132,
+    "i_target": -14.31,
+    "i_tol": 0.5,
+    "tp_max": -1.0,
+    "duration": 208.9664
+  },
+  "expected_duration_source": "cli",
+  "size_mb": 27.68,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24.0,
+  "duration": 208.966,
+  "frames": 5015,
+  "expected_duration": 208.9664,
+  "expected_frames": 5015,
+  "video_codec": "h264",
+  "pix_fmt": "yuv420p",
+  "audio": [
+    {
+      "codec": "aac",
+      "ch": 2,
+      "sr": "48000"
+    }
+  ],
+  "decode_errors": "",
+  "loudness": {
+    "I": -14.43,
+    "TP": -1.62,
+    "LRA": 2.4,
+    "thresh": -24.53
+  },
+  "srt_cues": 98,
+  "subtitle_frames": [
+    {
+      "t": 1.0,
+      "bright": 0,
+      "mean": 7.8064012490242e-05
+    },
+    {
+      "t": 2.482,
+      "bright": 5043,
+      "mean": 7.448921740827479
+    },
+    {
+      "t": 4.77,
+      "bright": 2697,
+      "mean": 4.056162177985948
+    },
+    {
+      "t": 6.284,
+      "bright": 2977,
+      "mean": 4.48665593286495
+    },
+    {
+      "t": 8.216,
+      "bright": 3867,
+      "mean": 5.497428766588603
+    },
+    {
+      "t": 10.415,
+      "bright": 6235,
+      "mean": 9.122984972677596
+    },
+    {
+      "t": 10.448,
+      "bright": 6235,
+      "mean": 9.122984972677596
+    },
+    {
+      "t": 12.504,
+      "bright": 3992,
+      "mean": 5.9940037080405935
+    },
+    {
+      "t": 14.711,
+      "bright": 4235,
+      "mean": 6.175029274004684
+    },
+    {
+      "t": 17.5,
+      "bright": 3207,
+      "mean": 4.746994535519126
+    },
+    {
+      "t": 25.076,
+      "bright": 3864,
+      "mean": 5.644486729117877
+    },
+    {
+      "t": 41.793,
+      "bright": 4668,
+      "mean": 6.8204918032786885
+    },
+    {
+      "t": 62.69,
+      "bright": 3666,
+      "mean": 5.334314012490242
+    },
+    {
+      "t": 87.766,
+      "bright": 5186,
+      "mean": 7.571960382513661
+    },
+    {
+      "t": 114.931,
+      "bright": 0,
+      "mean": 3.4875292740046837
+    },
+    {
+      "t": 137.918,
+      "bright": 3,
+      "mean": 1.855708430913349
+    },
+    {
+      "t": 162.993,
+      "bright": 4417,
+      "mean": 6.486265612802498
+    },
+    {
+      "t": 183.89,
+      "bright": 3908,
+      "mean": 5.702019906323185
+    },
+    {
+      "t": 202.966,
+      "bright": 0,
+      "mean": 0.0
+    },
+    {
+      "t": 206.966,
+      "bright": 0,
+      "mean": 0.0
+    }
+  ],
+  "srt": {
+    "cues": 98,
+    "monotonic": true,
+    "overlaps": 0,
+    "out_of_range": 0,
+    "max_line_chars": 24,
+    "last_end": 208.166
+  },
+  "h3": {
+    "expected": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20"
+    ],
+    "present": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20"
+    ],
+    "missing": []
+  },
+  "endcard": {
+    "t": 202.966,
+    "center_bright": 18974
+  },
+  "fade_mean": 12.332998649691358,
+  "contact_sheet": "work/qa/verify-contact-sheet.jpg",
+  "contact_sheet_times": [
+    6.5301875,
+    19.5905625,
+    32.6509375,
+    45.711312500000005,
+    58.7716875,
+    71.8320625,
+    84.8924375,
+    97.95281250000001,
+    111.0131875,
+    124.07356250000001,
+    137.1339375,
+    150.1943125,
+    163.25468750000002,
+    176.3150625,
+    189.3754375,
+    202.4358125
+  ],
+  "checks": [
+    {
+      "name": "resolution",
+      "pass": true,
+      "detail": "1920x1080"
+    },
+    {
+      "name": "fps",
+      "pass": true,
+      "detail": "24.000"
+    },
+    {
+      "name": "duration",
+      "pass": true,
+      "detail": "208.966 vs 208.966 (cli)"
+    },
+    {
+      "name": "frames",
+      "pass": true,
+      "detail": "5015 vs 5015"
+    },
+    {
+      "name": "has_audio",
+      "pass": true,
+      "detail": "[{\"codec\": \"aac\", \"ch\": 2, \"sr\": \"48000\"}]"
+    },
+    {
+      "name": "decode_clean",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "loudness_I",
+      "pass": true,
+      "detail": "-14.43 (-14.81..-13.81)"
+    },
+    {
+      "name": "true_peak",
+      "pass": true,
+      "detail": "-1.62"
+    },
+    {
+      "name": "lra",
+      "pass": true,
+      "detail": "2.40"
+    },
+    {
+      "name": "letterbox_2.35",
+      "pass": true,
+      "detail": "上下 132px 黑边"
+    },
+    {
+      "name": "content_present",
+      "pass": true,
+      "detail": "中部画面均值 > 4"
+    },
+    {
+      "name": "subtitles_present",
+      "pass": true,
+      "detail": "15/20 帧字幕带 bright>=1200（需 6）"
+    },
+    {
+      "name": "subtitles_band_black",
+      "pass": true,
+      "detail": "字幕带最低均值 0.0"
+    },
+    {
+      "name": "srt_cues",
+      "pass": true,
+      "detail": "98 条（期望约 98）"
+    },
+    {
+      "name": "srt_monotonic",
+      "pass": true,
+      "detail": "start 单调"
+    },
+    {
+      "name": "srt_no_overlap",
+      "pass": true,
+      "detail": "重叠对 0"
+    },
+    {
+      "name": "srt_in_range",
+      "pass": true,
+      "detail": "0 条越界"
+    },
+    {
+      "name": "srt_line_len",
+      "pass": false,
+      "detail": ">20 字行 3（最长 24）"
+    },
+    {
+      "name": "srt_tail",
+      "pass": true,
+      "detail": "末条结束 208.17s vs 成片 208.97s"
+    },
+    {
+      "name": "h3_assets_present",
+      "pass": true,
+      "detail": "20/20 clip 到位"
+    },
+    {
+      "name": "endcard_text_density",
+      "pass": true,
+      "detail": "t=203.0s center_bright=18974 (帧存 work/qa/endcard-check.png，供人工目检)"
+    },
+    {
+      "name": "fade_out_black",
+      "pass": false,
+      "detail": "末帧均值 12.33（若项目非黑场收束可在报告中注明）"
+    }
+  ],
+  "problems": [
+    "srt_line_len",
+    "fade_out_black"
+  ]
+}

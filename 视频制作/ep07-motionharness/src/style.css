@@ -1,0 +1,86 @@
+/* ep07 合成层样式（3D canvas / H3 / 图形 / chrome / 字幕） */
+.ep07-root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b0e11;
+}
+.ep07-3d {
+  position: absolute;
+  inset: 0;
+}
+.ep07-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.ep07-h3-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ep07-h3bg { position: absolute; inset: 0; overflow: hidden; }
+/* Plan-B H3 主画面：132px 遮幅内 1920×816 cover，一镜一素材 */
+.ep07-h3fill { position: absolute; left: 0; right: 0; top: 132px; bottom: 132px; overflow: hidden; background: #000; }
+.ep07-graphics { position: absolute; inset: 0; pointer-events: none; }
+/* 3D/证据影像 → 排版层之间的压暗层：暗场纸面，一屏一焦点 */
+.ep07-scrim {
+  position: absolute; left: 0; right: 0; top: 132px; bottom: 132px; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7,9,12,.80) 0%, rgba(7,9,12,.54) 44%, rgba(7,9,12,.68) 100%),
+    linear-gradient(180deg, rgba(7,9,12,.30) 0%, rgba(7,9,12,.10) 30%, rgba(7,9,12,.46) 100%);
+}
+/* H3 全幅：只压底部（字幕/lower-third）与左侧，画面主体保留 */
+.ep07-scrim-h3 {
+  background:
+    linear-gradient(180deg, rgba(5,7,10,0) 0%, rgba(5,7,10,0) 46%, rgba(5,7,10,.30) 70%, rgba(5,7,10,.78) 100%),
+    linear-gradient(90deg, rgba(5,7,10,.52) 0%, rgba(5,7,10,.14) 38%, rgba(5,7,10,0) 62%);
+}
+
+/* chrome */
+.ep07-chrome-content { position: absolute; left: 0; right: 0; top: 132px; bottom: 132px; overflow: hidden; }
+.ep07-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 76% 70% at 50% 50%, rgba(0,0,0,0) 38%, rgba(0,0,0,.3) 76%, rgba(0,0,0,.58) 100%);
+}
+.ep07-grain { position: absolute; inset: 0; background-size: 240px 240px; mix-blend-mode: overlay; pointer-events: none; }
+.ep07-edge { position: absolute; left: 0; right: 0; height: 48px; }
+.ep07-edge-top { top: 0; background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,0)); }
+.ep07-edge-bottom { bottom: 0; background: linear-gradient(0deg, rgba(0,0,0,.4), rgba(0,0,0,0)); }
+.ep07-bar { position: absolute; left: 0; right: 0; background: #000; }
+.ep07-brand {
+  position: absolute; left: 64px; top: 46px; color: rgba(233,228,216,.3);
+  font: 500 19px/1 "DejaVu Sans Mono", monospace; letter-spacing: .3em; white-space: nowrap;
+}
+.ep07-act {
+  position: absolute; right: 64px; top: 46px; color: rgba(233,228,216,.42);
+  font: 500 19px/1 "DejaVu Sans Mono", monospace; letter-spacing: .22em; white-space: nowrap;
+}
+
+/* 字幕 */
+.ep07-sub-box {
+  position: absolute; left: 0; right: 0; bottom: 34px;
+  display: flex; justify-content: center; align-items: center; pointer-events: none;
+}
+.ep07-sub-text {
+  max-width: 1440px; color: rgba(233,228,216,.92); font-size: 46px; font-weight: 500;
+  line-height: 1.2; letter-spacing: .01em; text-align: center; white-space: pre;
+  text-shadow: 0 2px 14px rgba(0,0,0,.6), 0 0 4px rgba(0,0,0,.6);
+}
+
+/* H3 画中画证据窗：右下、贴遮幅上沿，带边框/阴影/标签 */
+.ep07-pip {
+  position: absolute; right: 120px; bottom: 182px; width: 620px; height: 349px;
+  box-shadow: 0 22px 54px rgba(0,0,0,.62), 0 0 0 1px rgba(233,228,216,.22), 0 0 0 7px rgba(7,9,12,.55);
+  overflow: hidden; background: #05070a;
+}
+.ep07-pip-label {
+  position: absolute; left: 2px; top: -28px; color: rgba(233,228,216,.55);
+  font-size: 16px; letter-spacing: .22em;
+}
+.ep07-tick { position: absolute; width: 14px; height: 14px; border: 0 solid rgba(217,164,65,.85); }
+.ep07-tick-tl { left: -1px; top: -1px; border-left-width: 2px; border-top-width: 2px; }
+.ep07-tick-tr { right: -1px; top: -1px; border-right-width: 2px; border-top-width: 2px; }
+.ep07-tick-bl { left: -1px; bottom: -1px; border-left-width: 2px; border-bottom-width: 2px; }
+.ep07-tick-br { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }

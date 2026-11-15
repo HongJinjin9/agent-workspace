@@ -1,0 +1,60 @@
+/* 第 07 期图形层样式（mh-graphics 所有）—— 冷灰评估系统 + 纸白 + 琥珀价签 + 批注红 */
+.gfx-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 评估单纸纤维 */
+.gfx-fibre {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(226, 218, 200, 0.035) 0px,
+      rgba(226, 218, 200, 0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 104, 78, 0.03) 0px,
+      rgba(120, 104, 78, 0.03) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    radial-gradient(90% 60% at 40% 30%, rgba(217, 164, 65, 0.04) 0%, transparent 70%);
+}
+
+/* 冷灰评估室底（仅用于图形块自带的小面积背景，不覆盖 3D 世界） */
+.gfx-charcoal {
+  background: radial-gradient(120% 95% at 50% 26%, #141a20 0%, #0c1014 44%, #0b0e11 100%);
+}
+
+/* 细网格（价签森林/数据墙风格辅助线） */
+.gfx-grid {
+  background-image:
+    linear-gradient(rgba(233, 228, 216, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 228, 216, 0.06) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+.gfx-mono {
+  font-family: 'DejaVu Sans Mono', 'Noto Sans Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 价签吊牌：顶部圆孔 + 细线 */
+.gfx-tag-hole {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(11, 14, 17, 0.55);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(233, 228, 216, 0.35);
+}
+
+/* 印章墨迹颗粒 */
+.gfx-ink {
+  filter: contrast(1.05) saturate(0.95);
+}

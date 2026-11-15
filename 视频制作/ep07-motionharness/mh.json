@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "projectType": "pro",
+  "runtimeVersion": 1,
+  "entry": "src/project.tsx"
+}

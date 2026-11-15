@@ -1,0 +1,9 @@
+# 素材/成片/中间产物不入库（只保留源码/数据/清单/交付小图）
+assets/
+audio/
+out/
+.tmp/
+.mh/
+node_modules/
+work/qa/
+work/srt/*.wav
