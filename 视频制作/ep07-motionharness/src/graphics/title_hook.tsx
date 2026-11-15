@@ -1,28 +1,6 @@
-// 片头 3 秒钩子：落地 20 万 → 三年后 9 万（红笔划掉 + 数字砸下）→ 片名
-// 文案 props 由 data 传入；数字来自 FACTS；无硬编码数据。
+// 片头 3-5s 钩子 v2：20 万 → 翻转 → 9 万（红笔划掉）+ 片名 kinetic + 纸卡入画
 import { FACTS } from '../data/facts';
-import {
-  C,
-  F,
-  W,
-  H,
-  GFXLayer,
-  Txt,
-  Box,
-  Rule,
-  CornerTicks,
-  Speckles,
-  Kicker,
-  useLocal,
-  inRamp,
-  prog,
-  easeOutCubic,
-  easeOutQuint,
-  lerp,
-  clamp,
-  fmtInt,
-  RedStroke,
-} from './prims';
+import { C, F, W, GFXLayer, Txt, Box, Paper, Rule, CornerTicks, Speckles, Camera, Odometer, FlipPanel, Kinetic, ScanBeam, Dust, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba } from './prims';
 
 export interface TitleHookProps {
   time?: number;
@@ -37,154 +15,92 @@ export interface TitleHookProps {
 export function TitleHook({
   time,
   from = 0,
+  to = 5.6,
   kicker = 'VIBE 知识共赏 · 第 07 期',
   title = '三年之后，你的车还值多少钱',
   sub = '一份刚发布的保值率报告，正在给电动车重新定价',
   source = '数据：中国汽车流通协会《2026 年 10 月中国汽车保值率报告》',
 }: TitleHookProps) {
   const t = useLocal(time, from);
+  const dur = Math.max(1, (to ?? from + 5.6) - from);
   const h = FACTS.hook;
-  const kp = inRamp(t, 0.02, 0.3);
-  const priceIn = inRamp(t, 0.12, 0.34);
-  const strike = easeOutCubic(prog(t, 0.42, 0.72));
-  const usedIn = inRamp(t, 0.62, 0.34);
-  const usedScale = lerp(1.14, 1, easeOutQuint(prog(t, 0.62, 0.92)));
-  const capIn = inRamp(t, 0.98, 0.3);
-  const ruleIn = easeOutCubic(prog(t, 1.22, 1.56));
-  const titleIn = easeOutCubic(prog(t, 1.42, 1.78));
-  const subIn = inRamp(t, 1.86, 0.3);
-  const metaIn = inRamp(t, 2.2, 0.3);
+  const cardIn = inRamp(t, 0.08, 0.34);
+  const kick = inRamp(t, 0.0, 0.24);
+  const strike = easeOutCubic(prog(t, 0.34, 0.6));
+  const flip = 0.62;
+  const usedIn = inRamp(t, 0.82, 0.34);
+  const diffIn = inRamp(t, 1.08, 0.3);
+  const titleIn = easeOutCubic(prog(t, 1.5, 1.9));
+  const subIn = inRamp(t, 2.0, 0.3);
+  const metaIn = inRamp(t, 2.4, 0.3);
 
   return (
     <GFXLayer>
-      {/* faint appraisal-sheet fragment on the right, as if the report is already on the table */}
-      <Box
-        x={1272}
-        y={236}
-        w={486}
-        h={560}
-        rot={-2.4}
-        alpha={0.92 * inRamp(t, 0.18, 0.42)}
-        style={{
-          background: `linear-gradient(180deg, rgba(233,228,216,0.97) 0%, ${C.paperShade} 100%)`,
-          boxShadow: '0 30px 70px rgba(0,0,0,.6)',
-          overflow: 'hidden',
-        }}
-      >
-        <div className="gfx-fibre" style={{ position: 'absolute', inset: 0, opacity: 0.8 }} />
-        <Speckles x={0} y={0} w={486} h={560} seed={71} count={22} maxAlpha={0.09} />
-        <Txt text="二手车鉴定评估单" x={38} y={34} size={26} font="serif" color={C.ink} track={3} weight={600} />
-        <Txt text="RESIDUAL VALUE APPRAISAL" x={38} y={74} size={13} font="mono" color={C.inkSoft} track={2} alpha={0.7} />
-        <Rule x={38} y={108} w={410} h={2} color={C.ink} alpha={0.5} progress={inRamp(t, 0.3, 0.5)} />
-        {[
-          ['项目', '数值'],
-          ['新车落地价', '20.0 万'],
-          ['使用年限', '3 年'],
-          ['残值报价', '9.0 万'],
-          ['年均折旧', '3.7 万'],
-        ].map((row, i) => (
-          <Box key={i} x={0} y={0} w={0} h={0}>
-            <Txt
-              text={row[0]}
-              x={38}
-              y={140 + i * 62}
-              size={20}
-              font="sans"
-              color={i === 0 ? C.inkSoft : C.ink}
-              alpha={(i === 0 ? 0.55 : 0.92) * inRamp(t, 0.4 + i * 0.06, 0.3)}
-              track={2}
-            />
-            <Txt
-              text={row[1]}
-              x={448}
-              y={130 + i * 62}
-              size={30}
-              font="mono"
-              color={i === 3 ? C.red : C.ink}
-              alpha={(i === 0 ? 0 : 0.95) * inRamp(t, 0.4 + i * 0.06, 0.3)}
-              align="right"
-            />
-          </Box>
-        ))}
-        <Rule x={38} y={140 + 62} w={410} h={1} color={C.ink} alpha={0.22} progress={inRamp(t, 0.42, 0.3)} />
-        <Txt text="EXHIBIT 01 / 评估单" x={38} y={500} size={14} font="mono" color={C.inkSoft} alpha={0.55} track={2} />
-      </Box>
+      <Camera local={t} dur={dur} strength={1.1}>
+        {/* 评估单纸卡：从右侧滑入，行文 type-in */}
+        <Box x={1240} y={240} w={520} h={560} rot={-2} alpha={cardIn} style={{ transform: `translateY(${lerp(40, 0, cardIn)}px) translateX(${lerp(60, 0, cardIn)}px)` }}>
+          <Paper x={0} y={0} w={520} h={560} rot={0} opacity={1}>
+            <Txt text="二手车鉴定评估单" x={40} y={36} size={28} font="serif" color={C.ink} track={3} weight={700} />
+            <Txt text="RESIDUAL VALUE APPRAISAL" x={42} y={80} size={13} font="mono" color={C.inkSoft} track={2} alpha={0.7} />
+            <Rule x={40} y={114} w={440} h={2} color={C.ink} alpha={0.5} progress={easeOutCubic(prog(t, 0.2, 0.6))} />
+            {[
+              ['新车落地价', '20.0 万'],
+              ['使用年限', '3 年'],
+              ['残值报价', '9.0 万'],
+              ['年均折旧', '3.7 万'],
+            ].map((row, i) => {
+              const p = inRamp(t, 0.3 + i * 0.1, 0.3);
+              return (
+                <Box key={row[0]} x={0} y={0} w={0} h={0} alpha={p}>
+                  <Txt text={row[0]} x={40} y={156 + i * 62} size={21} font="sans" color={C.inkSoft} alpha={0.85} track={2} />
+                  <Txt text={row[1]} x={480} y={148 + i * 62} size={32} font="mono" color={i === 2 ? C.red : C.ink} alpha={0.95} track={-1} weight={700} align="right" />
+                </Box>
+              );
+            })}
+            <Rule x={40} y={430} w={440} h={1} color={C.ink} alpha={0.2} progress={inRamp(t, 0.6, 0.4)} />
+            <Txt text="EXHIBIT 01 / 评估单" x={40} y={500} size={14} font="mono" color={C.inkSoft} alpha={0.55} track={2} />
+          </Paper>
+        </Box>
 
-      {/* main hook typography */}
-      <Kicker text={kicker} x={168} y={318} alpha={0.72 * kp} track={6} />
-      <Txt
-        text={`落地 ${fmtInt(h.newPrice)} 万`}
-        x={168}
-        y={388}
-        size={132}
-        font="mono"
-        color={C.paper}
-        alpha={0.96 * priceIn}
-        track={-2}
-        style={{ transform: `translateY(${lerp(16, 0, priceIn)}px)` }}
-      />
-      {/* red pen strike through the original price */}
-      <RedStroke
-        d="M 176 452 C 340 436, 560 470, 742 444"
-        progress={strike}
-        width={7}
-        alpha={0.92}
-        x={0}
-        y={0}
-      />
-      <Txt
-        text={`三年后 ${fmtInt(h.usedPrice)} 万`}
-        x={168}
-        y={548}
-        size={168}
-        font="mono"
-        color={C.amber}
-        alpha={clamp(usedIn * 1.4)}
-        track={-3}
-        style={{
-          transform: `translateY(${lerp(18, 0, usedIn)}px) scale(${usedScale})`,
-          transformOrigin: '0% 50%',
-          textShadow: '0 0 36px rgba(217,164,65,.35)',
-        }}
-      />
-      <Txt
-        text={`一台车，三年蒸发 ${fmtInt(h.diff)} 万`}
-        x={172}
-        y={752}
-        size={34}
-        font="sans"
-        color={C.paper}
-        alpha={0.75 * capIn}
-        track={2}
-      />
-      <Rule x={172} y={812} w={520} h={1} color={C.amber} alpha={0.55} progress={ruleIn} />
+        {/* hook numbers: 20 万 → 翻转 → 9 万 */}
+        <Kinetic text={kicker} x={168} y={300} size={24} color={C.paper} local={t} delay={0.02} track={6} font="mono" weight={400} rise={10} />
+        <Txt text="落地价" x={170} y={368} size={22} font="mono" color={C.paper} alpha={0.5 * kick} track={2} />
+        <FlipPanel
+          local={t}
+          at={flip}
+          dur={0.34}
+          x={168}
+          y={404}
+          w={700}
+          h={220}
+          front={
+            <Box x={0} y={0} w={700} h={220} alpha={1}>
+              <Odometer value={h.newPrice} x={0} y={0} size={176} color={C.paper} local={t} delay={0.08} dur={0.42} digitsAfter={0} suffix=" 万" align="left" glow={0.2} />
+              <div style={{ position: 'absolute', left: 0, top: 0, width: 560 * strike, height: 8, background: C.red, opacity: 0.9, transform: 'rotate(-4deg)', transformOrigin: '0% 50%', boxShadow: `0 0 18px ${rgba(C.red, 0.4)}` }} />
+            </Box>
+          }
+          back={
+            <Box x={0} y={0} w={700} h={220} alpha={1}>
+              <Odometer value={h.usedPrice} x={0} y={0} size={208} color={C.amber} local={t} delay={flip + 0.1} dur={0.34} digitsAfter={0} suffix=" 万" align="left" glow={0.4} />
+              <Txt text="三年后残值" x={4} y={206} size={22} font="mono" color={C.amber} alpha={0.7 * usedIn} track={2} />
+            </Box>
+          }
+        />
+        <Kinetic text={`一台车，三年蒸发 ${h.diff} 万`} x={172} y={650} size={38} color={C.paper} local={t} delay={1.08} font="sans" weight={600} track={2} />
+        <Rule x={172} y={716} w={520} h={1} color={C.amber} alpha={0.6} progress={easeOutCubic(prog(t, 1.4, 1.8))} />
 
-      {/* film title — second beat of the hook */}
-      <Txt
-        text={title}
-        x={168}
-        y={832}
-        size={58}
-        font="serif"
-        color={C.paper}
-        alpha={0.97 * titleIn}
-        track={3}
-        weight={600}
-        style={{
-          clipPath: `inset(0% ${(1 - titleIn) * 100}% 0% 0%)`,
-          transform: `translateY(${lerp(10, 0, titleIn)}px)`,
-        }}
-      />
-      <Txt text={sub} x={170} y={900} size={24} font="sans" color={C.paper} alpha={0.55 * subIn} track={2} />
-      <Txt text={source} x={W - 168} y={902} size={16} font="mono" color={C.paper} alpha={0.34 * metaIn} track={1} align="right" />
+        {/* film title — kinetic */}
+        <Kinetic text={title} x={168} y={760} size={58} color={C.paper} local={t} delay={1.5} step={0.022} track={3} weight={600} />
+        <Kinetic text={sub} x={170} y={838} size={24} color={C.paper} local={t} delay={2.05} step={0.01} track={2} font="sans" weight={400} rise={10} />
+        <Txt text={source} x={W - 168} y={880} size={16} font="mono" color={C.paper} alpha={0.34 * metaIn} track={1} align="right" />
 
-      {/* evidence frame + EXHIBIT */}
-      <CornerTicks x={132} y={176} w={W - 264} h={690} color={C.paper} alpha={0.16} size={16} />
-      <Txt text="CASE FILE · EP07" x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4 * kp} track={4} />
-      <Txt text="2026.11.10 · 保值率报告" x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.36 * kp} track={2} align="right" />
-      {/* vertical red case rule */}
-      <Box x={150} y={236} w={2} h={598} alpha={0.32 * kp} style={{ background: C.red }} />
-      <Speckles x={0} y={132} w={W} h={816} seed={703} count={20} maxAlpha={0.06} />
+        <CornerTicks x={132} y={176} w={1656} h={690} color={C.paper} alpha={0.14} size={16} />
+        <Txt text="CASE FILE · EP07" x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4 * kick} track={4} />
+        <Txt text="2026.11.10 · 保值率报告" x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.34 * kick} track={2} align="right" />
+        <Box x={150} y={236} w={2} h={598} alpha={0.32 * kick} style={{ background: C.red }} />
+        <ScanBeam local={t} y0={260} y1={860} speed={0.1} alpha={0.07} />
+        <Dust local={t} count={12} seed={703} alpha={0.3} />
+      </Camera>
     </GFXLayer>
   );
 }

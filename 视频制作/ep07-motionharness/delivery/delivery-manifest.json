@@ -1,52 +1,37 @@
 {
  "film": "out/ep07-mh.mp4",
  "film_duration": 208.97,
- "film_size_mb": 27.68,
- "film_sha256": "19cf871c1f90587d5d5f1acdb3da03642b8855641fc68d2885df7dfdf6af5571",
+ "film_size_mb": 72.46,
+ "film_sha256": "d9f3591d18da1ac114e97491fc7bc8d84c332c8b2dc5fb86d775c1ae0fec1ff8",
  "beats": [
   {
    "name": "still-01-cover",
-   "time": 3.293,
+   "time": 2.485,
    "file": "stills/still-01-cover.jpg"
   },
   {
    "name": "still-02-appraisal-sheet",
-   "time": 7.639,
+   "time": 4.675,
    "file": "stills/still-02-appraisal-sheet.jpg"
   },
   {
-   "name": "still-03-stamp",
-   "time": 23.697,
-   "file": "stills/still-03-stamp.jpg"
-  },
-  {
    "name": "still-04-data-wall",
-   "time": 32.166,
+   "time": 30.21,
    "file": "stills/still-04-data-wall.jpg"
   },
   {
-   "name": "still-05-calculator",
-   "time": 42.029,
-   "file": "stills/still-05-calculator.jpg"
-  },
-  {
    "name": "still-06-three-ledgers",
-   "time": 57.658,
+   "time": 56.185,
    "file": "stills/still-06-three-ledgers.jpg"
   },
   {
-   "name": "still-07-battery-check",
-   "time": 11.803,
-   "file": "stills/still-07-battery-check.jpg"
-  },
-  {
    "name": "still-08-price-tag-forest",
-   "time": 114.002,
+   "time": 118.605,
    "file": "stills/still-08-price-tag-forest.jpg"
   },
   {
    "name": "still-09-lists",
-   "time": 139.027,
+   "time": 138.175,
    "file": "stills/still-09-lists.jpg"
   },
   {

@@ -28,14 +28,14 @@
 .ep07-scrim {
   position: absolute; left: 0; right: 0; top: 132px; bottom: 132px; pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(7,9,12,.80) 0%, rgba(7,9,12,.54) 44%, rgba(7,9,12,.68) 100%),
-    linear-gradient(180deg, rgba(7,9,12,.30) 0%, rgba(7,9,12,.10) 30%, rgba(7,9,12,.46) 100%);
+    linear-gradient(90deg, rgba(7,9,12,.58) 0%, rgba(7,9,12,.32) 44%, rgba(7,9,12,.48) 100%),
+    linear-gradient(180deg, rgba(7,9,12,.16) 0%, rgba(7,9,12,.02) 32%, rgba(7,9,12,.30) 100%);
 }
 /* H3 全幅：只压底部（字幕/lower-third）与左侧，画面主体保留 */
 .ep07-scrim-h3 {
   background:
-    linear-gradient(180deg, rgba(5,7,10,0) 0%, rgba(5,7,10,0) 46%, rgba(5,7,10,.30) 70%, rgba(5,7,10,.78) 100%),
-    linear-gradient(90deg, rgba(5,7,10,.52) 0%, rgba(5,7,10,.14) 38%, rgba(5,7,10,0) 62%);
+    linear-gradient(180deg, rgba(5,7,10,0) 0%, rgba(5,7,10,0) 50%, rgba(5,7,10,.26) 74%, rgba(5,7,10,.70) 100%),
+    linear-gradient(90deg, rgba(5,7,10,.44) 0%, rgba(5,7,10,.10) 38%, rgba(5,7,10,0) 62%);
 }
 
 /* chrome */
@@ -84,3 +84,6 @@
 .ep07-tick-tr { right: -1px; top: -1px; border-right-width: 2px; border-top-width: 2px; }
 .ep07-tick-bl { left: -1px; bottom: -1px; border-left-width: 2px; border-bottom-width: 2px; }
 .ep07-tick-br { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }
+
+/* v2：H3 panel 模式（画幅内嵌证据窗） */
+.ep07-h3panel { box-shadow: 0 26px 70px rgba(0,0,0,.7); overflow: hidden; background: #000; }

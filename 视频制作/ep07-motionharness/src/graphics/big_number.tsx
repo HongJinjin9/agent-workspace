@@ -1,33 +1,8 @@
-// 大数字：三年保值率（45.1 纯电 / 42.2 插混 / 50.6 中大型 SUV …）
-// 快节奏：≈0.35–0.45s 计数 + 砸下；等宽字体；刻度尺 0–100%。
+// count_up / big_number v2：滚动数字 + 环形仪表 + 对照刻度（快节奏，主体 1.2s 内完成）
 import { FACTS } from '../data/facts';
-import {
-  C,
-  F,
-  W,
-  GFXLayer,
-  Txt,
-  Box,
-  Rule,
-  CornerTicks,
-  Speckles,
-  useLocal,
-  inRamp,
-  prog,
-  easeOutCubic,
-  easeOutQuint,
-  lerp,
-  clamp,
-  countUp,
-  fmtInt,
-  rgba,
-} from './prims';
+import { C, W, H, GFXLayer, Txt, Box, Rule, CornerTicks, Speckles, Camera, Odometer, GaugeArc, Kinetic, ScanBeam, Dust, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba } from './prims';
 
-export interface CompareTick {
-  value: number;
-  label: string;
-  color?: string;
-}
+export interface CompareTick { value: number; label: string; color?: string }
 
 export interface BigNumberProps {
   time?: number;
@@ -37,211 +12,101 @@ export interface BigNumberProps {
   label?: string;
   sub?: string;
   note?: string;
+  suffix?: string;
+  decimals?: number;
   accent?: 'amber' | 'paper' | 'red';
-  /** optional reference tick(s) on the 0–100% gauge */
-  compare?: CompareTick[];
-  /** where the number sits: center (default) or left */
+  colorChoice?: 'amber' | 'paper' | 'red';
+  compare?: CompareTick[] | boolean;
+  gauge?: boolean;
+  question?: boolean;
   align?: 'center' | 'left';
-  unit?: string;
   exhibit?: string;
 }
 
 export function BigNumber({
   time,
   from = 0,
+  to = 5,
   value = FACTS.overall.bev,
   label = '纯电 · 三年保值率',
   sub,
   note,
-  accent = 'amber',
+  suffix = '%',
+  decimals = 1,
+  accent,
+  colorChoice,
   compare,
+  gauge = true,
+  question = false,
   align = 'center',
-  unit = '%',
-  exhibit = 'EXHIBIT 03 / 保值率',
+  exhibit = 'EXHIBIT 03',
 }: BigNumberProps) {
   const t = useLocal(time, from);
-  const color = accent === 'red' ? C.red : accent === 'paper' ? C.paper : C.amber;
-  const refTicks =
-    compare ??
-    (/插混/.test(label)
-      ? [{ value: FACTS.overall.bev, label: `纯电 ${FACTS.overall.bev}%`, color: C.paper }]
-      : undefined);
-  const numIn = inRamp(t, 0.03, 0.34);
-  const slam = lerp(1.18, 1, easeOutQuint(prog(t, 0.03, 0.3)));
-  const labelIn = inRamp(t, 0.16, 0.3);
-  const ruleIn = easeOutCubic(prog(t, 0.22, 0.56));
-  const subIn = inRamp(t, 0.4, 0.32);
-  const gaugeIn = easeOutCubic(prog(t, 0.5, 0.95));
-  const numP = easeOutQuint(prog(t, 0.03, 0.43));
-  const shownNum = lerp(0, value, numP);
-  const digits = Number.isInteger(value) ? 0 : 1;
-  const shownText = digits ? shownNum.toFixed(1) : fmtInt(Math.round(shownNum));
-  const X = align === 'center' ? W / 2 : 300;
-  const alignCenter = align === 'center';
+  const dur = Math.max(0.5, (to ?? from + 4) - from);
+  const pick = colorChoice ?? accent;
+  const color = pick === 'red' ? C.red : pick === 'paper' ? C.paper : C.amber;
+  const refs = Array.isArray(compare) ? compare : undefined;
+  const X = align === 'center' ? W / 2 : 320;
+  const center = align === 'center';
+  const gaugeCx = W / 2;
+  const gaugeCy = 548;
+  const labelIn = inRamp(t, 0.0, 0.26);
+  const subIn = inRamp(t, 0.42, 0.3);
+  const metaIn = inRamp(t, 0.2, 0.3);
   const gaugeW = 1040;
-  const gaugeX = W / 2 - gaugeW / 2;
-  const gaugeY = 792;
-  const numY = 430;
-  const numSize = 300;
+  const gx = gaugeCx - gaugeW / 2;
+  const gy = 790;
 
   return (
     <GFXLayer>
-      {/* kicker + label */}
-      <Txt
-        text={label}
-        x={alignCenter ? W / 2 : X}
-        y={288}
-        size={34}
-        font="sans"
-        color={C.paper}
-        alpha={0.82 * labelIn}
-        track={6}
-        align={alignCenter ? 'center' : 'left'}
-      />
-      {/* 0–100 gauge */}
-      <Box x={0} y={0} w={0} h={0} alpha={1}>
-        <Rule x={gaugeX} y={gaugeY} w={gaugeW} h={2} color={C.paper} alpha={0.32} progress={gaugeIn} />
-        {Array.from({ length: 11 }).map((_, i) => {
-          const v = i * 10;
-          const gx = gaugeX + (v / 100) * gaugeW;
-          const big = i % 5 === 0;
-          return (
-            <Box key={i} x={0} y={0} w={0} h={0} alpha={gaugeIn}>
-              <div
-                style={{
-                  position: 'absolute',
-                  left: gx,
-                  top: gaugeY - (big ? 14 : 8),
-                  width: 2,
-                  height: big ? 14 : 8,
-                  background: C.paper,
-                  opacity: big ? 0.5 : 0.26,
-                }}
-              />
-              {big ? (
-                <Txt text={`${v}`} x={gx} y={gaugeY + 22} size={17} font="mono" color={C.paper} alpha={0.4} track={1} align="center" />
-              ) : null}
-            </Box>
-          );
-        })}
-        {/* reference ticks (e.g. 50% 五成线 / 54% / 66.2%) */}
-        {(refTicks ?? []).map((c, i) => {
-          const cx = gaugeX + (clamp(c.value, 0, 100) / 100) * gaugeW;
-          const ci = easeOutCubic(prog(t, 0.62 + i * 0.16, 0.92 + i * 0.16));
-          return (
-            <Box key={`ref${i}`} x={0} y={0} w={0} h={0} alpha={ci}>
-              <div
-                style={{
-                  position: 'absolute',
-                  left: cx - 1,
-                  top: gaugeY - 46,
-                  width: 2,
-                  height: 46,
-                  background: c.color ?? C.paper,
-                  opacity: 0.65,
-                }}
-              />
-              <Txt
-                text={c.label}
-                x={cx}
-                y={gaugeY - 86}
-                size={20}
-                font="mono"
-                color={c.color ?? C.paper}
-                alpha={0.8}
-                track={1}
-                align="center"
-              />
-            </Box>
-          );
-        })}
-        {/* value marker on the gauge */}
-        <Box x={0} y={0} w={0} h={0} alpha={gaugeIn}>
-          <div
-            style={{
-              position: 'absolute',
-              left: gaugeX + (clamp(value, 0, 100) / 100) * gaugeW - 2,
-              top: gaugeY - 26,
-              width: 4,
-              height: 52,
-              background: color,
-              boxShadow: `0 0 18px ${rgba(color, 0.55)}`,
-            }}
-          />
-          <Txt
-            text={`${value}${unit}`}
-            x={gaugeX + (clamp(value, 0, 100) / 100) * gaugeW}
-            y={gaugeY + 54}
-            size={26}
-            font="mono"
-            color={color}
-            alpha={0.95}
-            track={1}
-            align="center"
-          />
+      <Camera local={t} dur={dur} strength={0.8}>
+        {gauge ? <GaugeArc value={value} x={gaugeCx} y={gaugeCy} r={332} color={rgba(color, 0.5)} local={t} delay={0.12} dur={0.8} width={8} alpha={0.55} /> : null}
+        <Box x={0} y={0} w={0} h={0} alpha={metaIn}>
+          <Rule x={168} y={252} w={W - 336} h={1} color={C.paper} alpha={0.18} progress={easeOutCubic(prog(t, 0.05, 0.5))} />
+          <Txt text={exhibit} x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4} track={3} />
+          <Txt text="三年保值率 · 2026-10 报告" x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.3} track={2} align="right" />
         </Box>
-      </Box>
-
-      {/* big number */}
-      <Txt
-        text={shownText}
-        x={alignCenter ? W / 2 : X}
-        y={numY}
-        size={numSize}
-        font="mono"
-        color={color}
-        alpha={clamp(numIn * 1.5)}
-        track={-8}
-        align={alignCenter ? 'center' : 'left'}
-        style={{
-          transform: `translateY(${lerp(20, 0, numIn)}px) scale(${slam})`,
-          textShadow: `0 0 60px ${rgba(color, 0.28)}`,
-          lineHeight: 1,
-        }}
-      />
-      <Txt
-        text={unit}
-        x={alignCenter ? W / 2 + 330 : X + 322}
-        y={numY + 152}
-        size={104}
-        font="mono"
-        color={color}
-        alpha={0.9 * numIn}
-        weight={400}
-        style={{ transform: `translateY(${lerp(20, 0, numIn)}px)` }}
-      />
-      <Rule x={alignCenter ? W / 2 - 300 : X} y={numY + 300} w={600} h={2} color={color} alpha={0.55} progress={ruleIn} />
-      {sub ? (
-        <Txt
-          text={sub}
-          x={alignCenter ? W / 2 : X}
-          y={numY + 342}
-          size={30}
-          font="sans"
-          color={C.paper}
-          alpha={0.7 * subIn}
-          track={2}
-          align={alignCenter ? 'center' : 'left'}
-        />
-      ) : null}
-      {note ? (
-        <Txt
-          text={note}
-          x={alignCenter ? W / 2 : X}
-          y={numY + 396}
-          size={20}
-          font="mono"
-          color={C.paper}
-          alpha={0.44 * subIn}
-          track={1}
-          align={alignCenter ? 'center' : 'left'}
-        />
-      ) : null}
-
-      <Txt text={exhibit} x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4} track={3} />
-      <Txt text="三年保值率 · 2026 年 10 月报告" x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.3} track={2} align="right" />
-      <CornerTicks x={132} y={176} w={1656} h={690} color={C.paper} alpha={0.12} size={16} />
-      <Speckles x={0} y={132} w={1920} h={816} seed={907} count={18} maxAlpha={0.05} />
+        <Txt text={label} x={center ? W / 2 : X} y={300} size={32} font="sans" color={C.paper} alpha={0.8 * labelIn} track={5} align={center ? 'center' : 'left'} />
+        {/* rolling number (or a big question mark) */}
+        {question ? (
+          <Txt text="?" x={center ? W / 2 : X} y={330} size={340} font="serif" color={C.amber} alpha={easeOutCubic(prog(t, 0.1, 0.5))} align={center ? 'center' : 'left'} weight={700} style={{ transform: `translateY(${lerp(26, 0, easeOutCubic(prog(t, 0.1, 0.5)))}px)` }} />
+        ) : (
+          <Odometer value={value} x={center ? W / 2 : X} y={372} size={282} color={color} local={t} delay={0.06} dur={0.58} digitsAfter={decimals} suffix={suffix} align={center ? 'center' : 'left'} glow={0.35} />
+        )}
+        {/* gauge 0–100 markers */}
+        <Box x={0} y={0} w={0} h={0} alpha={!gauge || question ? 0 : easeOutCubic(prog(t, 0.22, 0.7))}>
+          <Rule x={gx} y={gy} w={gaugeW} h={2} color={C.paper} alpha={0.3} progress={1} />
+          {Array.from({ length: 11 }).map((_, i) => {
+            const v = i * 10;
+            const x = gx + (v / 100) * gaugeW;
+            const big = i % 5 === 0;
+            return (
+              <Box key={i} x={0} y={0} w={0} h={0} alpha={1}>
+                <div style={{ position: 'absolute', left: x, top: gy - (big ? 13 : 7), width: 2, height: big ? 13 : 7, background: C.paper, opacity: big ? 0.5 : 0.24 }} />
+                {big ? <Txt text={`${v}`} x={x} y={gy + 22} size={16} font="mono" color={C.paper} alpha={0.38} track={1} align="center" /> : null}
+              </Box>
+            );
+          })}
+          <div style={{ position: 'absolute', left: gx + (clamp(value, 0, 100) / 100) * gaugeW - 2, top: gy - 24, width: 4, height: 48, background: color, boxShadow: `0 0 20px ${rgba(color, 0.6)}` }} />
+          <Txt text={`${value}${suffix}`} x={gx + (clamp(value, 0, 100) / 100) * gaugeW} y={gy + 52} size={24} font="mono" color={color} alpha={0.95} track={1} align="center" />
+          {(refs ?? []).map((c, i) => {
+            const cx2 = gx + (clamp(c.value, 0, 100) / 100) * gaugeW;
+            const ci = easeOutCubic(prog(t, 0.52 + i * 0.14, 0.82 + i * 0.14));
+            return (
+              <Box key={i} x={0} y={0} w={0} h={0} alpha={ci}>
+                <div style={{ position: 'absolute', left: cx2 - 1, top: gy - 44, width: 2, height: 44, background: c.color ?? C.paper, opacity: 0.6 }} />
+                <Txt text={c.label} x={cx2} y={gy - 76} size={19} font="mono" color={c.color ?? C.paper} alpha={0.8} track={1} align="center" />
+              </Box>
+            );
+          })}
+        </Box>
+        {sub ? <Txt text={sub} x={center ? W / 2 : X} y={700} size={30} font="sans" color={C.paper} alpha={0.68 * subIn} track={2} align={center ? 'center' : 'left'} /> : null}
+        {note ? <Txt text={note} x={center ? W / 2 : X} y={752} size={20} font="mono" color={C.paper} alpha={0.4 * subIn} track={1} align={center ? 'center' : 'left'} /> : null}
+        <CornerTicks x={132} y={176} w={1656} h={690} color={C.paper} alpha={0.1} size={16} />
+        <ScanBeam local={t} y0={280} y1={860} speed={0.09} alpha={0.08} />
+        <Dust local={t} count={10} seed={907} alpha={0.3} />
+        <Speckles x={0} y={132} w={1920} h={816} seed={907} count={12} maxAlpha={0.04} />
+      </Camera>
     </GFXLayer>
   );
 }

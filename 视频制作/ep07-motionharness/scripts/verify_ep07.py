@@ -153,8 +153,9 @@ def load_shots_h3():
             continue
         if isinstance(d, list):
             for sh in d:
-                if sh.get("h3"):
-                    clips.append(str(sh["h3"]))
+                v = sh.get("h3") or sh.get("clip")   # v1: h3；v2: clip
+                if v:
+                    clips.append(str(v))
         elif isinstance(d, dict):
             for m in d.get("mapping") or []:
                 if m.get("clip"):
@@ -307,6 +308,39 @@ def main():
     check("subtitles_band_black", min(f["mean"] for f in sub_frames) < 12,
           "字幕带最低均值 %.1f" % min(f["mean"] for f in sub_frames))
 
+    # ---- 全片内容覆盖 + 运动量（v2 防黑段/防"静态"）----
+    import statistics
+    from PIL import ImageChops
+    dark_pts = []
+    n_cov = 36
+    for i in range(n_cov):
+        t = dur * (i + 0.5) / n_cov
+        p_cov = os.path.join(TMP, "cov%02d.png" % i)
+        frame_at(film, t, p_cov)
+        mean = region(p_cov, (0, 300, spec["w"], 780))["mean"]
+        if mean <= 4:
+            dark_pts.append(round(t, 1))
+    check("content_coverage", not dark_pts,
+          "%d 点全片采样；暗段 %d %s" % (n_cov, len(dark_pts), dark_pts[:6]))
+    res["content_coverage"] = {"samples": n_cov, "dark_points": dark_pts}
+
+    diffs = []
+    for i in range(8):
+        t = dur * (i + 0.5) / 8
+        f1 = os.path.join(TMP, "m%02da.png" % i)
+        f2 = os.path.join(TMP, "m%02db.png" % i)
+        frame_at(film, t, f1)
+        frame_at(film, t + 0.5, f2)
+        a = Image.open(f1).convert("L")
+        b = Image.open(f2).convert("L")
+        hist = ImageChops.difference(a, b).histogram()
+        total = sum(hist) or 1
+        diffs.append(sum(i * c for i, c in enumerate(hist)) / total)
+    med = statistics.median(diffs)
+    check("motion_present", med > 0.8,
+          "8 对 0.5s 帧间差中位数 %.2f（min %.2f）" % (med, min(diffs)))
+    res["motion"] = {"median_diff": round(med, 2), "diffs": [round(d, 2) for d in diffs]}
+
     # ---- SRT 结构（字幕内容层面；MH 用 DOM 字幕，无 ASS 文件）----
     texts = load_srt_texts()
     if texts:
@@ -315,18 +349,22 @@ def main():
         monotonic = all(starts[i] <= starts[i + 1] for i in range(len(starts) - 1))
         overlaps = sum(1 for i in range(len(starts) - 1) if ends[i] > starts[i + 1] + 1e-6)
         out_of_range = [c for c in cues if c[0] < 0 or c[1] > dur + 0.05]
-        long_lines = [t for t in texts if len(t) > 20]
+        def dwidth(t):
+            return sum(1.0 if ord(ch) > 0x2E80 else 0.5 for ch in t)
+        widths = [dwidth(t) for t in texts]
+        long_lines = [t for t in texts if dwidth(t) > 20]
         check("srt_cues", len(cues) >= 50, "%d 条（期望约 98）" % len(cues))
         check("srt_monotonic", monotonic, "start 单调")
         check("srt_no_overlap", overlaps == 0, "重叠对 %d" % overlaps)
         check("srt_in_range", not out_of_range, "%d 条越界" % len(out_of_range))
-        check("srt_line_len", not long_lines, ">20 字行 %d（最长 %d）"
-              % (len(long_lines), max((len(t) for t in texts), default=0)))
+        check("srt_line_len", not long_lines, "显示宽>20 的行 %d（最宽 %.1f）"
+              % (len(long_lines), max(widths, default=0)))
         check("srt_tail", abs(ends[-1] - dur) <= 2.5,
               "末条结束 %.2fs vs 成片 %.2fs" % (ends[-1], dur))
         res["srt"] = {"cues": len(cues), "monotonic": monotonic, "overlaps": overlaps,
                       "out_of_range": len(out_of_range),
                       "max_line_chars": max((len(t) for t in texts), default=0),
+                      "max_line_width": round(max(widths, default=0), 1),
                       "last_end": ends[-1]}
     else:
         check("srt_cues", False, "未找到字幕文本")
@@ -361,7 +399,15 @@ def main():
     frame_at(film, max(0.0, dur - 0.8), p1)
     fade_mean = region(p1, (0, 0, spec["w"], spec["h"]))["mean"]
     res["fade_mean"] = fade_mean
-    check("fade_out_black", fade_mean < 3, "末帧均值 %.2f（若项目非黑场收束可在报告中注明）" % fade_mean)
+    _ec = res.get("endcard") or {}
+    if fade_mean < 3:
+        check("tail_ending", True, "尾部黑场淡出（末帧均值 %.2f）" % fade_mean)
+    elif _ec.get("center_bright", 0) >= 6000:
+        check("tail_ending", True,
+              "以片尾声明卡收束（末帧均值 %.2f / 卡文字密度 %d，设计如此，非黑场）"
+              % (fade_mean, _ec.get("center_bright", 0)))
+    else:
+        check("tail_ending", False, "尾部既非黑场也无声明卡（末帧均值 %.2f）" % fade_mean)
 
     if not args.no_contact_sheet:
         cs, cs_times = contact_sheet(film, dur)

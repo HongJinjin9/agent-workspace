@@ -11,7 +11,7 @@
     "duration": 208.9664
   },
   "expected_duration_source": "cli",
-  "size_mb": 27.68,
+  "size_mb": 72.46,
   "width": 1920,
   "height": 1080,
   "fps": 24.0,
@@ -40,92 +40,92 @@
     {
       "t": 1.0,
       "bright": 0,
-      "mean": 7.8064012490242e-05
+      "mean": 0.0
     },
     {
       "t": 2.482,
-      "bright": 5043,
-      "mean": 7.448921740827479
+      "bright": 5041,
+      "mean": 3.2724614845938373
     },
     {
       "t": 4.77,
-      "bright": 2697,
-      "mean": 4.056162177985948
+      "bright": 0,
+      "mean": 0.00012685402029664325
     },
     {
       "t": 6.284,
-      "bright": 2977,
-      "mean": 4.48665593286495
+      "bright": 0,
+      "mean": 0.00019028103044496487
     },
     {
       "t": 8.216,
-      "bright": 3867,
-      "mean": 5.497428766588603
+      "bright": 3871,
+      "mean": 5.492637587822014
     },
     {
       "t": 10.415,
-      "bright": 6235,
-      "mean": 9.122984972677596
+      "bright": 6236,
+      "mean": 2.293207282913165
     },
     {
       "t": 10.448,
-      "bright": 6235,
-      "mean": 9.122984972677596
+      "bright": 6236,
+      "mean": 2.3144257703081235
     },
     {
       "t": 12.504,
-      "bright": 3992,
-      "mean": 5.9940037080405935
+      "bright": 0,
+      "mean": 0.0
     },
     {
       "t": 14.711,
-      "bright": 4235,
-      "mean": 6.175029274004684
+      "bright": 0,
+      "mean": 5.85480093676815e-05
     },
     {
       "t": 17.5,
-      "bright": 3207,
-      "mean": 4.746994535519126
+      "bright": 3214,
+      "mean": 4.74588212334114
     },
     {
       "t": 25.076,
-      "bright": 3864,
-      "mean": 5.644486729117877
+      "bright": 0,
+      "mean": 3.9032006245121e-05
     },
     {
       "t": 41.793,
-      "bright": 4668,
-      "mean": 6.8204918032786885
+      "bright": 4679,
+      "mean": 3.3511292016806724
     },
     {
       "t": 62.69,
-      "bright": 3666,
-      "mean": 5.334314012490242
+      "bright": 3657,
+      "mean": 2.3730129551820727
     },
     {
       "t": 87.766,
-      "bright": 5186,
-      "mean": 7.571960382513661
+      "bright": 0,
+      "mean": 0.0
     },
     {
       "t": 114.931,
       "bright": 0,
-      "mean": 3.4875292740046837
+      "mean": 0.0
     },
     {
       "t": 137.918,
-      "bright": 3,
-      "mean": 1.855708430913349
+      "bright": 0,
+      "mean": 0.000117096018735363
     },
     {
       "t": 162.993,
-      "bright": 4417,
-      "mean": 6.486265612802498
+      "bright": 0,
+      "mean": 0.0
     },
     {
       "t": 183.89,
-      "bright": 3908,
-      "mean": 5.702019906323185
+      "bright": 3911,
+      "mean": 5.698931498829039
     },
     {
       "t": 202.966,
@@ -138,12 +138,30 @@
       "mean": 0.0
     }
   ],
+  "content_coverage": {
+    "samples": 36,
+    "dark_points": []
+  },
+  "motion": {
+    "median_diff": 2.61,
+    "diffs": [
+      7.94,
+      2.96,
+      2.27,
+      43.38,
+      2.14,
+      1.87,
+      0.65,
+      13.46
+    ]
+  },
   "srt": {
     "cues": 98,
     "monotonic": true,
     "overlaps": 0,
     "out_of_range": 0,
     "max_line_chars": 24,
+    "max_line_width": 18.0,
     "last_end": 208.166
   },
   "h3": {
@@ -195,9 +213,9 @@
   },
   "endcard": {
     "t": 202.966,
-    "center_bright": 18974
+    "center_bright": 19275
   },
-  "fade_mean": 12.332998649691358,
+  "fade_mean": 13.806002604166666,
   "contact_sheet": "work/qa/verify-contact-sheet.jpg",
   "contact_sheet_times": [
     6.5301875,
@@ -276,12 +294,22 @@
     {
       "name": "subtitles_present",
       "pass": true,
-      "detail": "15/20 帧字幕带 bright>=1200（需 6）"
+      "detail": "8/20 帧字幕带 bright>=1200（需 6）"
     },
     {
       "name": "subtitles_band_black",
       "pass": true,
       "detail": "字幕带最低均值 0.0"
+    },
+    {
+      "name": "content_coverage",
+      "pass": true,
+      "detail": "36 点全片采样；暗段 0 []"
+    },
+    {
+      "name": "motion_present",
+      "pass": true,
+      "detail": "8 对 0.5s 帧间差中位数 2.61（min 0.65）"
     },
     {
       "name": "srt_cues",
@@ -305,8 +333,8 @@
     },
     {
       "name": "srt_line_len",
-      "pass": false,
-      "detail": ">20 字行 3（最长 24）"
+      "pass": true,
+      "detail": "显示宽>20 的行 0（最宽 18.0）"
     },
     {
       "name": "srt_tail",
@@ -321,16 +349,13 @@
     {
       "name": "endcard_text_density",
       "pass": true,
-      "detail": "t=203.0s center_bright=18974 (帧存 work/qa/endcard-check.png，供人工目检)"
+      "detail": "t=203.0s center_bright=19275 (帧存 work/qa/endcard-check.png，供人工目检)"
     },
     {
-      "name": "fade_out_black",
-      "pass": false,
-      "detail": "末帧均值 12.33（若项目非黑场收束可在报告中注明）"
+      "name": "tail_ending",
+      "pass": true,
+      "detail": "以片尾声明卡收束（末帧均值 13.81 / 卡文字密度 19275，设计如此，非黑场）"
     }
   ],
-  "problems": [
-    "srt_line_len",
-    "fade_out_black"
-  ]
+  "problems": []
 }

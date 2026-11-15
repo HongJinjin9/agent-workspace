@@ -1,5 +1,5 @@
 // 红笔批注：划价 / 下压箭头 / 三个特征 / 传导链（评估系统的「判断」动作）
-import { C, W, GFXLayer, Txt, Box, Rule, CornerTicks, Speckles, RedStroke, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba } from './prims';
+import { C, W, GFXLayer, Txt, Box, Rule, CornerTicks, Speckles, RedStroke, Camera, ScanBeam, Dust, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba } from './prims';
 
 export interface RedAnnotationProps {
   time?: number;
@@ -10,8 +10,9 @@ export interface RedAnnotationProps {
   exhibit?: string;
 }
 
-export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'EXHIBIT 22 / 批注' }: RedAnnotationProps) {
+export function RedAnnotation({ time, from = 0, to, headline = '', sub, exhibit = 'EXHIBIT 22 / 批注' }: RedAnnotationProps) {
   const t = useLocal(time, from);
+  const dur = Math.max(0.8, (to ?? from + 4) - from);
   const headIn = inRamp(t, 0.02, 0.28);
   const chain = /→/.test(headline);
   const three = /三个特征/.test(headline) && !!sub;
@@ -29,6 +30,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
     const parts = headline.split('→').map((s) => s.trim()).filter(Boolean);
     return (
       <GFXLayer>
+      <Camera local={t} dur={dur} strength={0.9}>
         {header}
         <Txt text="传导链" x={168} y={282} size={24} font="mono" color={C.paper} alpha={0.45 * headIn} track={4} />
         {parts.map((p, i) => {
@@ -61,6 +63,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
         })}
         <Txt text="价格战打的不是新车，是三年后的残值" x={W / 2} y={802} size={28} font="sans" color={C.paper} alpha={0.55 * inRamp(t, 1.4, 0.4)} track={2} align="center" />
         <Speckles x={0} y={132} w={1920} h={816} seed={1701} count={16} maxAlpha={0.05} />
+      </Camera>
       </GFXLayer>
     );
   }
@@ -69,6 +72,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
     const items = sub.split('·').map((s) => s.trim()).filter(Boolean);
     return (
       <GFXLayer>
+      <Camera local={t} dur={dur} strength={0.9}>
         {header}
         <Txt text={headline} x={168} y={286} size={56} font="serif" color={C.paper} alpha={0.96 * headIn} track={2} weight={600} style={{ clipPath: `inset(0% ${(1 - headIn) * 100}% 0% 0%)` }} />
         {items.map((it, i) => {
@@ -87,6 +91,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
         })}
         <Txt text="保值率高的车，往往不新" x={W / 2} y={802} size={24} font="mono" color={C.paper} alpha={0.42 * inRamp(t, 1.3, 0.4)} track={2} align="center" />
         <Speckles x={0} y={132} w={1920} h={816} seed={1709} count={16} maxAlpha={0.05} />
+      </Camera>
       </GFXLayer>
     );
   }
@@ -97,6 +102,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
     const toIn = inRamp(t, 0.6, 0.34);
     return (
       <GFXLayer>
+      <Camera local={t} dur={dur} strength={0.9}>
         {header}
         <Txt text="收车单 · 昨天 vs 今天" x={168} y={276} size={24} font="mono" color={C.paper} alpha={0.5 * headIn} track={3} />
         <Box x={0} y={0} w={0} h={0} alpha={inRamp(t, 0.04, 0.3)}>
@@ -117,6 +123,7 @@ export function RedAnnotation({ time, from = 0, headline = '', sub, exhibit = 'E
         <Txt text={headline} x={W / 2} y={710} size={34} font="sans" color={C.paper} alpha={0.88 * inRamp(t, 0.8, 0.36)} track={2} align="center" />
         <Txt text="收车的人，比买车的人更懂价" x={W / 2} y={770} size={24} font="mono" color={C.paper} alpha={0.42 * inRamp(t, 1.0, 0.4)} track={2} align="center" />
         <Speckles x={0} y={132} w={1920} h={816} seed={1717} count={16} maxAlpha={0.05} />
+      </Camera>
       </GFXLayer>
     );
   }

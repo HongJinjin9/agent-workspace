@@ -1,6 +1,6 @@
 // 品类柱：中大型 SUV 50.6 / MPV 48.7 / 小型车 48.3（对照「五成线」）；分屏变体：一半多 vs 四成半
 import { FACTS } from '../data/facts';
-import { C, W, GFXLayer, Txt, Box, Rule, CornerTicks, Speckles, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, countUp, rgba } from './prims';
+import { C, W, GFXLayer, Txt, Box, Rule, CornerTicks, Speckles, Camera, ScanBeam, Dust, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, countUp, rgba } from './prims';
 
 export interface CategoryBarsProps {
   time?: number;
@@ -20,8 +20,9 @@ const ROW_H = 108;
 const BAR_H = 46;
 const VALUE_MAX = 70;
 
-export function CategoryBars({ time, from = 0, headline = '', sub, rows, exhibit = 'EXHIBIT 08 / 品类柱' }: CategoryBarsProps) {
+export function CategoryBars({ time, from = 0, to, headline = '', sub, rows, exhibit = 'EXHIBIT 08 / 品类柱' }: CategoryBarsProps) {
   const t = useLocal(time, from);
+  const dur = Math.max(0.8, (to ?? from + 4) - from);
   const split = /一半|四成半/.test(headline);
   const headIn = inRamp(t, 0.02, 0.28);
   const ruleIn = easeOutCubic(prog(t, 0.1, 0.46));
@@ -34,6 +35,7 @@ export function CategoryBars({ time, from = 0, headline = '', sub, rows, exhibit
     const rp = inRamp(t, 0.2, 0.34);
     return (
       <GFXLayer>
+        <Camera local={t} dur={dur} strength={0.9}>
         <Txt text="CATEGORY SPLIT · 同三年，不同命" x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4} track={3} />
         <Txt text={exhibit} x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.36} track={2} align="right" />
         <CornerTicks x={132} y={176} w={1656} h={690} color={C.paper} alpha={0.12} size={16} />
@@ -47,7 +49,10 @@ export function CategoryBars({ time, from = 0, headline = '', sub, rows, exhibit
         <Txt text={`${rightVal}%`} x={(W * 3) / 4} y={440} size={190} font="mono" color={C.paper} alpha={clamp(rp * 1.4)} track={-4} align="center" style={{ lineHeight: 1 }} />
         <Txt text="纯电" x={(W * 3) / 4} y={674} size={30} font="sans" color={C.paper} alpha={0.6 * rp} track={3} align="center" />
         <Txt text="同样三年，差别这么大" x={W / 2} y={788} size={24} font="mono" color={C.paper} alpha={0.42 * inRamp(t, 1.1, 0.4)} track={2} align="center" />
+        <ScanBeam local={t} y0={260} y1={860} speed={0.12} alpha={0.08} />
+        <Dust local={t} count={10} seed={1301} alpha={0.28} />
         <Speckles x={0} y={132} w={1920} h={816} seed={1301} count={16} maxAlpha={0.05} />
+        </Camera>
       </GFXLayer>
     );
   }
@@ -62,6 +67,7 @@ export function CategoryBars({ time, from = 0, headline = '', sub, rows, exhibit
 
   return (
     <GFXLayer>
+      <Camera local={t} dur={dur} strength={0.9}>
       <Txt text="DATA WALL · 品类保值率" x={168} y={200} size={18} font="mono" color={C.paper} alpha={0.4} track={3} />
       <Txt text={exhibit} x={W - 168} y={200} size={18} font="mono" color={C.paper} alpha={0.36} track={2} align="right" />
       <CornerTicks x={132} y={176} w={1656} h={690} color={C.paper} alpha={0.12} size={16} />
@@ -106,7 +112,10 @@ export function CategoryBars({ time, from = 0, headline = '', sub, rows, exhibit
         );
       })}
       <Txt text="三年保值率 · 中国汽车流通协会 2026-10" x={W - 168} y={802} size={16} font="mono" color={C.paper} alpha={0.3} track={1} align="right" />
+      <ScanBeam local={t} y0={260} y1={860} speed={0.12} alpha={0.08} />
+      <Dust local={t} count={10} seed={1307} alpha={0.28} />
       <Speckles x={0} y={132} w={1920} h={816} seed={1307} count={16} maxAlpha={0.05} />
+      </Camera>
     </GFXLayer>
   );
 }

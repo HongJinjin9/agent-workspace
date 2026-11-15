@@ -1,0 +1,711 @@
+{
+ "note": "v2 cues: explicit block names; data/split/end shots",
+ "cues": [
+  {
+   "id": "S01",
+   "block": "title_hook",
+   "from": 0,
+   "to": 3.97,
+   "seg": "COLD",
+   "props": {
+    "headline": "落地 20 万 → 三年后 9 万",
+    "sub": "2026.11.10 · 保值率报告",
+    "compare": false
+   }
+  },
+  {
+   "id": "S02",
+   "block": "statement",
+   "from": 3.97,
+   "to": 5.38,
+   "seg": "COLD",
+   "props": {
+    "headline": "价格战，打了三年",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S03",
+   "block": "price_tag",
+   "from": 5.38,
+   "to": 7.06,
+   "seg": "COLD",
+   "props": {
+    "headline": "先崩的，是二手价",
+    "sub": "价签掉一半",
+    "compare": false
+   }
+  },
+  {
+   "id": "S05",
+   "block": "report_cover",
+   "from": 9.6,
+   "to": 11.58,
+   "seg": "COLD",
+   "props": {
+    "headline": "2026.11.10 · 刚发布",
+    "sub": "中国汽车流通协会",
+    "compare": false
+   }
+  },
+  {
+   "id": "S06",
+   "block": "section_label",
+   "from": 11.58,
+   "to": 13.35,
+   "seg": "COLD",
+   "props": {
+    "headline": "报告不厚，数字很硬",
+    "sub": "数字不会说谎",
+    "compare": false
+   }
+  },
+  {
+   "id": "S07",
+   "block": "big_number",
+   "from": 13.35,
+   "to": 16.1,
+   "seg": "COLD",
+   "props": {
+    "headline": "纯电 · 三年保值率",
+    "sub": "45.1%",
+    "compare": true
+   }
+  },
+  {
+   "id": "S08",
+   "block": "category_bars",
+   "from": 16.1,
+   "to": 18.7,
+   "seg": "COLD",
+   "props": {
+    "headline": "插混三年保值率",
+    "sub": "42.2%",
+    "compare": false
+   }
+  },
+  {
+   "id": "S09",
+   "block": "depreciation_curve",
+   "from": 18.7,
+   "to": 20.9,
+   "seg": "COLD",
+   "props": {
+    "headline": "三年，蒸发一半",
+    "sub": "20 万 → 9 万",
+    "compare": false,
+    "start": 20,
+    "end": 9
+   }
+  },
+  {
+   "id": "S10",
+   "block": "statement",
+   "from": 20.9,
+   "to": 23.8,
+   "seg": "COLD",
+   "props": {
+    "headline": "报告只讲一件事：三年后，还值多少",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S12",
+   "block": "section_label",
+   "from": 26.12,
+   "to": 28.92,
+   "seg": "ACT1",
+   "props": {
+    "headline": "先把账摊开",
+    "sub": "三本账",
+    "compare": false
+   }
+  },
+  {
+   "id": "S13",
+   "block": "big_number",
+   "from": 28.92,
+   "to": 31.5,
+   "seg": "ACT1",
+   "props": {
+    "headline": "中大型 SUV",
+    "sub": "50.6%",
+    "compare": false
+   }
+  },
+  {
+   "id": "S14",
+   "block": "compare_bars",
+   "from": 31.5,
+   "to": 33.77,
+   "seg": "ACT1",
+   "props": {
+    "headline": "MPV 48.7% · 小型车 48.3%",
+    "sub": null,
+    "compare": false,
+    "items": [
+     {
+      "label": "MPV",
+      "value": 48.7,
+      "highlight": true
+     },
+     {
+      "label": "小型车",
+      "value": 48.3
+     }
+    ],
+    "max": 60,
+    "unit": "%"
+   }
+  },
+  {
+   "id": "S15",
+   "block": "category_bars",
+   "from": 33.77,
+   "to": 36.2,
+   "seg": "ACT1",
+   "props": {
+    "headline": "对照燃油车：普遍 50% 以上",
+    "sub": null,
+    "compare": false,
+    "items": [
+     {
+      "label": "燃油车",
+      "value": 50,
+      "display": "50%+",
+      "note": "普遍"
+     },
+     {
+      "label": "日系合资",
+      "value": 54,
+      "display": "54%+",
+      "note": "以上"
+     },
+     {
+      "label": "保时捷",
+      "value": 66.2,
+      "display": "66.2%"
+     }
+    ],
+    "max": 70,
+    "unit": "%"
+   }
+  },
+  {
+   "id": "S16",
+   "block": "big_number",
+   "from": 36.2,
+   "to": 38.44,
+   "seg": "ACT1",
+   "props": {
+    "headline": "日系合资",
+    "sub": "54%+",
+    "compare": false
+   }
+  },
+  {
+   "id": "S17",
+   "block": "price_tag",
+   "from": 38.44,
+   "to": 40.46,
+   "seg": "ACT1",
+   "props": {
+    "headline": "保时捷 66.2%",
+    "sub": "豪华品牌价签 · 最高",
+    "compare": false
+   }
+  },
+  {
+   "id": "S18",
+   "block": "compare_bars",
+   "from": 40.46,
+   "to": 42.73,
+   "seg": "ACT1",
+   "props": {
+    "headline": "一台剩一半多，一台剩四成半",
+    "sub": "50.6% vs 45.1%",
+    "compare": false,
+    "items": [
+     {
+      "label": "一半多",
+      "value": 50.6,
+      "highlight": true
+     },
+     {
+      "label": "四成半",
+      "value": 45.1
+     }
+    ],
+    "max": 60,
+    "unit": "%"
+   }
+  },
+  {
+   "id": "S20",
+   "block": "number_stack",
+   "from": 44.62,
+   "to": 46.95,
+   "seg": "ACT1",
+   "props": {
+    "headline": "20 万到 9 万，差额 11 万",
+    "sub": "11 万",
+    "compare": false
+   }
+  },
+  {
+   "id": "S21",
+   "block": "big_number",
+   "from": 46.95,
+   "to": 48.87,
+   "seg": "ACT1",
+   "props": {
+    "headline": "摊到每年",
+    "sub": "3.7 万",
+    "compare": false
+   }
+  },
+  {
+   "id": "S22",
+   "block": "number_stack",
+   "from": 48.87,
+   "to": 51.23,
+   "seg": "ACT1",
+   "props": {
+    "headline": "一个月 3000 多",
+    "sub": "3000+",
+    "compare": false
+   }
+  },
+  {
+   "id": "S24",
+   "block": "ledger_books",
+   "from": 55.17,
+   "to": 57.2,
+   "seg": "ACT2",
+   "props": {
+    "headline": "为什么？三本账",
+    "sub": "账① 技术",
+    "compare": false,
+    "index": 1,
+    "label": "技术"
+   }
+  },
+  {
+   "id": "S25",
+   "block": "section_label",
+   "from": 57.2,
+   "to": 59.6,
+   "seg": "ACT2",
+   "props": {
+    "headline": "第一本，技术",
+    "sub": "一年一迭代",
+    "compare": false
+   }
+  },
+  {
+   "id": "S26",
+   "block": "tech_params",
+   "from": 59.6,
+   "to": 63.1,
+   "seg": "ACT2",
+   "props": {
+    "headline": "800V · 5C 超充 · 城区智驾",
+    "sub": "一年一迭代",
+    "compare": false,
+    "items": [
+     "800V",
+     "5C 超充",
+     "城区智驾"
+    ],
+    "mode": "flash"
+   }
+  },
+  {
+   "id": "S27",
+   "block": "tech_params",
+   "from": 63.1,
+   "to": 66.47,
+   "seg": "ACT2",
+   "props": {
+    "headline": "三年前的车：参数落后两代",
+    "sub": "老车 vs 新车",
+    "compare": false,
+    "items": [
+     "800V",
+     "5C 超充",
+     "城区智驾"
+    ],
+    "mode": "compare"
+   }
+  },
+  {
+   "id": "S30",
+   "block": "ledger_books",
+   "from": 72.34,
+   "to": 76,
+   "seg": "ACT2",
+   "props": {
+    "headline": "账② 价格",
+    "sub": "买家落地价 / 车商出手价",
+    "compare": false,
+    "index": 2,
+    "label": "价格"
+   }
+  },
+  {
+   "id": "S31",
+   "block": "price_tag",
+   "from": 76,
+   "to": 78.34,
+   "seg": "ACT2",
+   "props": {
+    "headline": "优惠一改，二手标尺就变",
+    "sub": "20 万 ↔ 18 万",
+    "compare": false
+   }
+  },
+  {
+   "id": "S36",
+   "block": "ledger_books",
+   "from": 88.15,
+   "to": 91.53,
+   "seg": "ACT2",
+   "props": {
+    "headline": "账③ 电池",
+    "sub": "电池最贵，也最不敢接",
+    "compare": false,
+    "index": 3,
+    "label": "电池"
+   }
+  },
+  {
+   "id": "S41",
+   "block": "statement",
+   "from": 106.42,
+   "to": 110.05,
+   "seg": "ACT3",
+   "props": {
+    "headline": "但报告还有另一半：分化",
+    "sub": "分化，才是重点",
+    "compare": false
+   }
+  },
+  {
+   "id": "S42",
+   "block": "big_number",
+   "from": 110.05,
+   "to": 111.21,
+   "seg": "ACT3",
+   "props": {
+    "headline": "分化有多大？",
+    "sub": "?",
+    "compare": false
+   }
+  },
+  {
+   "id": "S43",
+   "block": "compare_bars",
+   "from": 111.21,
+   "to": 115.14,
+   "seg": "ACT3",
+   "props": {
+    "headline": "中大型 SUV 50.6% / MPV 48.7%",
+    "sub": "一边五成，一边三成",
+    "compare": false,
+    "items": [
+     {
+      "label": "中大型 SUV",
+      "value": 50.6,
+      "display": "50.6%",
+      "highlight": true
+     },
+     {
+      "label": "MPV",
+      "value": 48.7,
+      "display": "48.7%"
+     }
+    ],
+    "max": 60,
+    "unit": "%"
+   }
+  },
+  {
+   "id": "S44",
+   "block": "big_number",
+   "from": 115.14,
+   "to": 116.81,
+   "seg": "ACT3",
+   "props": {
+    "headline": "一边五成，一边三成",
+    "sub": "50% vs 30%",
+    "compare": false
+   }
+  },
+  {
+   "id": "S45",
+   "block": "brand_matrix",
+   "from": 116.81,
+   "to": 120.4,
+   "seg": "ACT3",
+   "props": {
+    "headline": "豪华品牌：还硬的",
+    "sub": "保时捷 66.2 · 雷克萨斯 强",
+    "compare": false,
+    "groups": [
+     {
+      "name": "保时捷",
+      "value": 66.2,
+      "tone": "high"
+     },
+     {
+      "name": "雷克萨斯",
+      "note": "强",
+      "tone": "high"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S46",
+   "block": "brand_matrix",
+   "from": 120.4,
+   "to": 124.37,
+   "seg": "ACT3",
+   "props": {
+    "headline": "掉队的：沃尔沃 / 捷豹 / 英菲尼迪",
+    "sub": "35.7 · 32.8 · 29.1",
+    "compare": false,
+    "groups": [
+     {
+      "name": "沃尔沃",
+      "value": 35.7,
+      "tone": "low"
+     },
+     {
+      "name": "捷豹",
+      "value": 32.8,
+      "tone": "low"
+     },
+     {
+      "name": "英菲尼迪",
+      "value": 29.1,
+      "tone": "low"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S47",
+   "block": "brand_matrix",
+   "from": 124.37,
+   "to": 127.2,
+   "seg": "ACT3",
+   "props": {
+    "headline": "合资：本田 / 丰田 / 马自达 近五成",
+    "sub": null,
+    "compare": false,
+    "groups": [
+     {
+      "name": "本田",
+      "tone": "high",
+      "note": "近五成"
+     },
+     {
+      "name": "丰田",
+      "tone": "high",
+      "note": "近五成"
+     },
+     {
+      "name": "马自达",
+      "tone": "high",
+      "note": "近五成"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S48",
+   "block": "brand_matrix",
+   "from": 127.2,
+   "to": 130.25,
+   "seg": "ACT3",
+   "props": {
+    "headline": "标致 / 斯柯达 / 福特 <43%",
+    "sub": "标致 · 斯柯达 · 福特",
+    "compare": false,
+    "groups": [
+     {
+      "name": "标致",
+      "tone": "low",
+      "note": "<43%"
+     },
+     {
+      "name": "斯柯达",
+      "tone": "low",
+      "note": "<43%"
+     },
+     {
+      "name": "福特",
+      "tone": "low",
+      "note": "<43%"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S49",
+   "block": "brand_matrix",
+   "from": 130.25,
+   "to": 134.62,
+   "seg": "ACT3",
+   "props": {
+    "headline": "自主：领跑与上涨",
+    "sub": "传祺 / 坦克 · 领克 / 长安欧尚 / 极氪",
+    "compare": false,
+    "groups": [
+     {
+      "name": "传祺",
+      "tone": "high",
+      "note": "领跑"
+     },
+     {
+      "name": "坦克",
+      "tone": "high",
+      "note": "领跑"
+     },
+     {
+      "name": "领克",
+      "tone": "up",
+      "note": "上涨"
+     },
+     {
+      "name": "长安欧尚",
+      "tone": "up",
+      "note": "上涨"
+     },
+     {
+      "name": "极氪",
+      "tone": "up",
+      "note": "上涨"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S53",
+   "block": "ranking_board",
+   "from": 141.62,
+   "to": 144.33,
+   "seg": "ACT3",
+   "props": {
+    "headline": "一年期榜单",
+    "sub": "新势力前十占八席",
+    "compare": false
+   }
+  },
+  {
+   "id": "S54",
+   "block": "statement",
+   "from": 144.33,
+   "to": 148,
+   "seg": "ACT3",
+   "props": {
+    "headline": "一年期看热度，三年期看接盘",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S56",
+   "block": "statement",
+   "from": 151.48,
+   "to": 154.79,
+   "seg": "ACT3",
+   "props": {
+    "headline": "给哪台车、哪个品牌、哪套技术打分",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S57",
+   "block": "paper_sheet",
+   "from": 154.79,
+   "to": 158.13,
+   "seg": "ACT4",
+   "props": {
+    "headline": "三件事，都在这张评估单上",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S58",
+   "block": "number_stack",
+   "from": 158.13,
+   "to": 162.29,
+   "seg": "ACT4",
+   "props": {
+    "headline": "落地价 − 残值 + 使用成本",
+    "sub": "总拥有成本",
+    "compare": false,
+    "variant": "tco",
+    "a": 20,
+    "b": 9,
+    "c": 3.7
+   }
+  },
+  {
+   "id": "S59",
+   "block": "statement",
+   "from": 162.29,
+   "to": 166.43,
+   "seg": "ACT4",
+   "props": {
+    "headline": "三年一换，残值就是月供",
+    "sub": "月供 + 折旧",
+    "compare": false
+   }
+  },
+  {
+   "id": "S61",
+   "block": "red_annotation",
+   "from": 169.57,
+   "to": 173.82,
+   "seg": "ACT4",
+   "props": {
+    "headline": "价格战 → 残值 → 品牌 / 金融",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S66",
+   "block": "split_screen",
+   "from": 184.84,
+   "to": 187.3,
+   "seg": "CLOSE",
+   "props": {
+    "headline": "发布会定卖价 / 市场定残值",
+    "sub": null,
+    "compare": false,
+    "leftTitle": "新车发布会 · 定卖价",
+    "rightTitle": "二手车市场 · 定残值"
+   }
+  },
+  {
+   "id": "S72",
+   "block": "end_card",
+   "from": 197.92,
+   "to": 208.966,
+   "seg": "CLOSE",
+   "props": {
+    "headline": "数据来源 / AI 辅助制作声明",
+    "sub": null,
+    "compare": false
+   }
+  }
+ ]
+}

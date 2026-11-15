@@ -1,654 +1,710 @@
 {
- "note": "\u56fe\u5f62/\u6392\u7248\u5c42 cues\uff1afrom/to=\u5168\u5c40\u79d2\uff1bprops \u4e3a\u9ed8\u8ba4\u6587\u6848\uff0c\u53ef\u5728\u5757\u5185\u8986\u76d6",
+ "note": "v2 cues: explicit block names; data/split/end shots",
  "cues": [
   {
    "id": "S01",
    "block": "title_hook",
-   "from": 0.0,
-   "to": 5.587,
+   "from": 0,
+   "to": 3.97,
    "seg": "COLD",
    "props": {
-    "headline": "\u843d\u5730 20 \u4e07 \u2192 \u4e09\u5e74\u540e 9 \u4e07",
-    "sub": "2026.11.10 \u4fdd\u503c\u7387\u62a5\u544a",
-    "h3": "H01",
-    "space": "A"
+    "headline": "落地 20 万 → 三年后 9 万",
+    "sub": "2026.11.10 · 保值率报告",
+    "compare": false
    }
   },
   {
    "id": "S02",
-   "block": "report_cover",
-   "from": 5.587,
-   "to": 9.691,
+   "block": "statement",
+   "from": 3.97,
+   "to": 5.38,
    "seg": "COLD",
    "props": {
-    "headline": "\u62a5\u544a\u521a\u53d1\u5e03",
-    "sub": "\u4e2d\u56fd\u6c7d\u8f66\u6d41\u901a\u534f\u4f1a",
-    "h3": null,
-    "space": "A"
+    "headline": "价格战，打了三年",
+    "sub": null,
+    "compare": false
    }
   },
   {
    "id": "S03",
-   "block": "big_number",
-   "from": 9.691,
-   "to": 13.916,
+   "block": "price_tag",
+   "from": 5.38,
+   "to": 7.06,
    "seg": "COLD",
    "props": {
-    "headline": "\u7eaf\u7535\u4e09\u5e74\u4fdd\u503c\u7387",
-    "sub": "45.1%",
-    "h3": null,
-    "space": "A"
-   }
-  },
-  {
-   "id": "S04",
-   "block": "big_number",
-   "from": 13.916,
-   "to": 17.054,
-   "seg": "COLD",
-   "props": {
-    "headline": "\u63d2\u6df7\u66f4\u72e0",
-    "sub": "42.2%",
-    "h3": null,
-    "space": "A"
+    "headline": "先崩的，是二手价",
+    "sub": "价签掉一半",
+    "compare": false
    }
   },
   {
    "id": "S05",
-   "block": "number_stack",
-   "from": 17.054,
-   "to": 21.279,
+   "block": "report_cover",
+   "from": 9.6,
+   "to": 11.58,
    "seg": "COLD",
    "props": {
-    "headline": "\u4e00\u53f0\u8f66\uff0c\u4e09\u5e74\u84b8\u53d1\u4e00\u534a",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "2026.11.10 · 刚发布",
+    "sub": "中国汽车流通协会",
+    "compare": false
    }
   },
   {
    "id": "S06",
    "block": "section_label",
-   "from": 21.279,
-   "to": 26.116,
+   "from": 11.58,
+   "to": 13.35,
    "seg": "COLD",
    "props": {
-    "headline": "\u8c01\u5728\u7ed9\u5b83\u91cd\u65b0\u5b9a\u4ef7\uff1f",
-    "sub": null,
-    "h3": "H02",
-    "space": "A"
+    "headline": "报告不厚，数字很硬",
+    "sub": "数字不会说谎",
+    "compare": false
    }
   },
   {
    "id": "S07",
-   "block": "section_label",
-   "from": 26.116,
-   "to": 30.587,
-   "seg": "ACT1",
+   "block": "big_number",
+   "from": 13.35,
+   "to": 16.1,
+   "seg": "COLD",
    "props": {
-    "headline": "\u5148\u628a\u8d26\u644a\u5f00",
-    "sub": "\u4e09\u672c\u8d26",
-    "h3": null,
-    "space": "A"
+    "headline": "纯电 · 三年保值率",
+    "sub": "45.1%",
+    "compare": true
    }
   },
   {
    "id": "S08",
    "block": "category_bars",
-   "from": 30.587,
-   "to": 33.744,
-   "seg": "ACT1",
+   "from": 16.1,
+   "to": 18.7,
+   "seg": "COLD",
    "props": {
-    "headline": "\u4e2d\u5927\u578b SUV",
-    "sub": "50.6%",
-    "h3": null,
-    "space": "B"
+    "headline": "插混三年保值率",
+    "sub": "42.2%",
+    "compare": false
    }
   },
   {
    "id": "S09",
-   "block": "category_bars",
-   "from": 33.744,
-   "to": 36.374,
-   "seg": "ACT1",
+   "block": "depreciation_curve",
+   "from": 18.7,
+   "to": 20.9,
+   "seg": "COLD",
    "props": {
-    "headline": "MPV 48.7% / \u5c0f\u578b\u8f66 48.3%",
-    "sub": null,
-    "h3": null,
-    "space": "B"
+    "headline": "三年，蒸发一半",
+    "sub": "20 万 → 9 万",
+    "compare": false,
+    "start": 20,
+    "end": 9
    }
   },
   {
    "id": "S10",
-   "block": "brand_matrix",
-   "from": 36.374,
-   "to": 39.004,
-   "seg": "ACT1",
+   "block": "statement",
+   "from": 20.9,
+   "to": 23.8,
+   "seg": "COLD",
    "props": {
-    "headline": "\u71c3\u6cb9\u8f66\uff1a\u666e\u904d 50% \u4ee5\u4e0a",
+    "headline": "报告只讲一件事：三年后，还值多少",
     "sub": null,
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S11",
-   "block": "brand_matrix",
-   "from": 39.004,
-   "to": 40.977,
-   "seg": "ACT1",
-   "props": {
-    "headline": "\u65e5\u7cfb\u5408\u8d44 54% \u4ee5\u4e0a",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "compare": false
    }
   },
   {
    "id": "S12",
-   "block": "brand_matrix",
-   "from": 40.977,
-   "to": 43.081,
+   "block": "section_label",
+   "from": 26.12,
+   "to": 28.92,
    "seg": "ACT1",
    "props": {
-    "headline": "\u4fdd\u65f6\u6377 66.2%",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "headline": "先把账摊开",
+    "sub": "三本账",
+    "compare": false
    }
   },
   {
    "id": "S13",
-   "block": "category_bars",
-   "from": 43.081,
-   "to": 45.317,
+   "block": "big_number",
+   "from": 28.92,
+   "to": 31.5,
    "seg": "ACT1",
    "props": {
-    "headline": "\u4e00\u8fb9\u4e00\u534a\u591a\uff0c\u4e00\u8fb9\u56db\u6210\u534a",
-    "sub": null,
-    "h3": null,
-    "space": "B"
+    "headline": "中大型 SUV",
+    "sub": "50.6%",
+    "compare": false
    }
   },
   {
    "id": "S14",
-   "block": "number_stack",
-   "from": 45.317,
-   "to": 47.684,
+   "block": "compare_bars",
+   "from": 31.5,
+   "to": 33.77,
    "seg": "ACT1",
    "props": {
-    "headline": "20 \u4e07 \u2192 9 \u4e07",
-    "sub": "\u5dee\u989d 11 \u4e07",
-    "h3": null,
-    "space": "A"
+    "headline": "MPV 48.7% · 小型车 48.3%",
+    "sub": null,
+    "compare": false,
+    "items": [
+     {
+      "label": "MPV",
+      "value": 48.7,
+      "highlight": true
+     },
+     {
+      "label": "小型车",
+      "value": 48.3
+     }
+    ],
+    "max": 60,
+    "unit": "%"
    }
   },
   {
    "id": "S15",
-   "block": "number_stack",
-   "from": 47.684,
-   "to": 49.657,
+   "block": "category_bars",
+   "from": 33.77,
+   "to": 36.2,
    "seg": "ACT1",
    "props": {
-    "headline": "11 \u00f7 3 = 3.7 \u4e07/\u5e74",
+    "headline": "对照燃油车：普遍 50% 以上",
     "sub": null,
-    "h3": null,
-    "space": "A"
+    "compare": false,
+    "items": [
+     {
+      "label": "燃油车",
+      "value": 50,
+      "display": "50%+",
+      "note": "普遍"
+     },
+     {
+      "label": "日系合资",
+      "value": 54,
+      "display": "54%+",
+      "note": "以上"
+     },
+     {
+      "label": "保时捷",
+      "value": 66.2,
+      "display": "66.2%"
+     }
+    ],
+    "max": 70,
+    "unit": "%"
    }
   },
   {
    "id": "S16",
-   "block": "section_label",
-   "from": 49.657,
-   "to": 52.287,
+   "block": "big_number",
+   "from": 36.2,
+   "to": 38.44,
    "seg": "ACT1",
    "props": {
-    "headline": "\u8fd9\u4e0d\u662f\u4e00\u53f0\u8f66\u7684\u4e8b\u6545",
-    "sub": null,
-    "h3": "H09",
-    "space": "C"
+    "headline": "日系合资",
+    "sub": "54%+",
+    "compare": false
    }
   },
   {
    "id": "S17",
-   "block": "stamp",
-   "from": 52.287,
-   "to": 55.169,
+   "block": "price_tag",
+   "from": 38.44,
+   "to": 40.46,
    "seg": "ACT1",
    "props": {
-    "headline": "\u662f\u4e00\u4e2a\u54c1\u7c7b\uff0c\u88ab\u91cd\u65b0\u4f30\u503c",
-    "sub": null,
-    "h3": "H02",
-    "space": "A"
+    "headline": "保时捷 66.2%",
+    "sub": "豪华品牌价签 · 最高",
+    "compare": false
    }
   },
   {
    "id": "S18",
-   "block": "section_label",
-   "from": 55.169,
-   "to": 60.147,
-   "seg": "ACT2",
+   "block": "compare_bars",
+   "from": 40.46,
+   "to": 42.73,
+   "seg": "ACT1",
    "props": {
-    "headline": "\u4e09\u672c\u8d26",
-    "sub": "\u4e3a\u4ec0\u4e48\uff1f",
-    "h3": null,
-    "space": "A"
-   }
-  },
-  {
-   "id": "S19",
-   "block": "section_label",
-   "from": 60.147,
-   "to": 63.528,
-   "seg": "ACT2",
-   "props": {
-    "headline": "\u8d26\u2460 \u6280\u672f",
-    "sub": "\u4e00\u5e74\u4e00\u8fed\u4ee3",
-    "h3": null,
-    "space": "A"
+    "headline": "一台剩一半多，一台剩四成半",
+    "sub": "50.6% vs 45.1%",
+    "compare": false,
+    "items": [
+     {
+      "label": "一半多",
+      "value": 50.6,
+      "highlight": true
+     },
+     {
+      "label": "四成半",
+      "value": 45.1
+     }
+    ],
+    "max": 60,
+    "unit": "%"
    }
   },
   {
    "id": "S20",
-   "block": "statement",
-   "from": 63.528,
-   "to": 67.942,
-   "seg": "ACT2",
+   "block": "number_stack",
+   "from": 44.62,
+   "to": 46.95,
+   "seg": "ACT1",
    "props": {
-    "headline": "800V \u00b7 5C \u8d85\u5145 \u00b7 \u57ce\u533a\u667a\u9a7e",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "20 万到 9 万，差额 11 万",
+    "sub": "11 万",
+    "compare": false
    }
   },
   {
    "id": "S21",
-   "block": "brand_matrix",
-   "from": 67.942,
-   "to": 71.793,
-   "seg": "ACT2",
+   "block": "big_number",
+   "from": 46.95,
+   "to": 48.87,
+   "seg": "ACT1",
    "props": {
-    "headline": "\u53c2\u6570\u8868\u4e0a\u7684\u9886\u5148\uff0c\u4e00\u5e74\u5c31\u65e7",
-    "sub": null,
-    "h3": "H08",
-    "space": "A"
+    "headline": "摊到每年",
+    "sub": "3.7 万",
+    "compare": false
    }
   },
   {
    "id": "S22",
-   "block": "red_annotation",
-   "from": 71.793,
-   "to": 75.644,
-   "seg": "ACT2",
+   "block": "number_stack",
+   "from": 48.87,
+   "to": 51.23,
+   "seg": "ACT1",
    "props": {
-    "headline": "\u65b0\u6b3e\u7eed\u822a\u80fd\u8017\uff0c\u76f4\u63a5\u538b\u6b8b\u503c",
-    "sub": null,
-    "h3": "H09",
-    "space": "D"
-   }
-  },
-  {
-   "id": "S23",
-   "block": "section_label",
-   "from": 75.644,
-   "to": 79.119,
-   "seg": "ACT2",
-   "props": {
-    "headline": "\u8d26\u2461 \u4ef7\u683c",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "一个月 3000 多",
+    "sub": "3000+",
+    "compare": false
    }
   },
   {
    "id": "S24",
-   "block": "price_tag",
-   "from": 79.119,
-   "to": 82.97,
+   "block": "ledger_books",
+   "from": 55.17,
+   "to": 57.2,
    "seg": "ACT2",
    "props": {
-    "headline": "\u65b0\u8f66\u4f18\u60e0 \u2194 \u4e8c\u624b\u6302\u724c\u4ef7",
-    "sub": null,
-    "h3": null,
-    "space": "B"
+    "headline": "为什么？三本账",
+    "sub": "账① 技术",
+    "compare": false,
+    "index": 1,
+    "label": "技术"
    }
   },
   {
    "id": "S25",
-   "block": "red_annotation",
-   "from": 82.97,
-   "to": 86.821,
+   "block": "section_label",
+   "from": 57.2,
+   "to": 59.6,
    "seg": "ACT2",
    "props": {
-    "headline": "\u4eca\u5929\u964d\u4e24\u4e07\uff0c\u6628\u5929\u6536\u7684\u8f66\u5c31\u4e8f\u4e24\u4e07",
-    "sub": null,
-    "h3": "H06",
-    "space": "A"
+    "headline": "第一本，技术",
+    "sub": "一年一迭代",
+    "compare": false
    }
   },
   {
    "id": "S26",
-   "block": "price_tag",
-   "from": 86.821,
-   "to": 90.202,
+   "block": "tech_params",
+   "from": 59.6,
+   "to": 63.1,
    "seg": "ACT2",
    "props": {
-    "headline": "\u964d\u4ef7\u900f\u652f\u65e7\u8f66\u4ef7",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "headline": "800V · 5C 超充 · 城区智驾",
+    "sub": "一年一迭代",
+    "compare": false,
+    "items": [
+     "800V",
+     "5C 超充",
+     "城区智驾"
+    ],
+    "mode": "flash"
    }
   },
   {
    "id": "S27",
-   "block": "section_label",
-   "from": 90.202,
-   "to": 93.583,
+   "block": "tech_params",
+   "from": 63.1,
+   "to": 66.47,
    "seg": "ACT2",
    "props": {
-    "headline": "\u8d26\u2462 \u7535\u6c60",
-    "sub": null,
-    "h3": null,
-    "space": "A"
-   }
-  },
-  {
-   "id": "S28",
-   "block": "statement",
-   "from": 93.583,
-   "to": 97.997,
-   "seg": "ACT2",
-   "props": {
-    "headline": "\u7535\u6c60\u6700\u8d35\uff0c\u4e5f\u6700\u4e0d\u6562\u63a5",
-    "sub": null,
-    "h3": "H04",
-    "space": "A"
-   }
-  },
-  {
-   "id": "S29",
-   "block": "paper_sheet",
-   "from": 97.997,
-   "to": 102.317,
-   "seg": "ACT2",
-   "props": {
-    "headline": "\u8870\u51cf\u770b\u4e0d\u89c1",
-    "sub": "\u591a\u6570\u54c1\u724c 8 \u5e74\u6216 12 \u4e07\u516c\u91cc",
-    "h3": "H05",
-    "space": "A"
+    "headline": "三年前的车：参数落后两代",
+    "sub": "老车 vs 新车",
+    "compare": false,
+    "items": [
+     "800V",
+     "5C 超充",
+     "城区智驾"
+    ],
+    "mode": "compare"
    }
   },
   {
    "id": "S30",
-   "block": "red_annotation",
-   "from": 102.317,
-   "to": 106.416,
+   "block": "ledger_books",
+   "from": 72.34,
+   "to": 76,
    "seg": "ACT2",
    "props": {
-    "headline": "\u6536\u8f66\u610f\u613f\u4e00\u964d\uff0c\u5168\u6298\u8fdb\u62a5\u4ef7",
-    "sub": null,
-    "h3": "H07",
-    "space": "A"
+    "headline": "账② 价格",
+    "sub": "买家落地价 / 车商出手价",
+    "compare": false,
+    "index": 2,
+    "label": "价格"
    }
   },
   {
    "id": "S31",
-   "block": "section_label",
-   "from": 106.416,
-   "to": 111.738,
-   "seg": "ACT3",
+   "block": "price_tag",
+   "from": 76,
+   "to": 78.34,
+   "seg": "ACT2",
    "props": {
-    "headline": "\u4f46\u62a5\u544a\u8fd8\u6709\u53e6\u4e00\u534a\uff1a\u5206\u5316",
-    "sub": null,
-    "h3": null,
-    "space": "A"
-   }
-  },
-  {
-   "id": "S32",
-   "block": "category_bars",
-   "from": 111.738,
-   "to": 116.267,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u4e2d\u5927\u578b SUV 50.6% / MPV 48.7%",
-    "sub": null,
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S33",
-   "block": "brand_matrix",
-   "from": 116.267,
-   "to": 121.929,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u8c6a\u534e\u54c1\u724c\uff1a\u8fd8\u786c\u7684\u4e0e\u6389\u961f\u7684",
-    "sub": null,
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S34",
-   "block": "brand_matrix",
-   "from": 121.929,
-   "to": 126.911,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u5408\u8d44\uff1a\u8fd1\u4e94\u6210 vs \u4e0d\u5230 43%",
-    "sub": null,
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S35",
-   "block": "brand_matrix",
-   "from": 126.911,
-   "to": 132.007,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u81ea\u4e3b\uff1a\u9886\u8dd1\u4e0e\u4e0a\u6da8",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "headline": "优惠一改，二手标尺就变",
+    "sub": "20 万 ↔ 18 万",
+    "compare": false
    }
   },
   {
    "id": "S36",
-   "block": "red_annotation",
-   "from": 132.007,
-   "to": 136.536,
-   "seg": "ACT3",
+   "block": "ledger_books",
+   "from": 88.15,
+   "to": 91.53,
+   "seg": "ACT2",
    "props": {
-    "headline": "\u4fdd\u503c\u7387\u9ad8\u7684\u4e09\u4e2a\u7279\u5f81",
-    "sub": "\u4e70\u7684\u4eba\u591a \u00b7 \u6362\u4ee3\u6162 \u00b7 \u4ef7\u683c\u7a33",
-    "h3": null,
-    "space": "A"
-   }
-  },
-  {
-   "id": "S37",
-   "block": "ranking_board",
-   "from": 136.536,
-   "to": 141.518,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u4e00\u5e74\u671f\u699c\u5355",
-    "sub": "\u65b0\u52bf\u529b\u524d\u5341\u5360\u516b\u5e2d",
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S38",
-   "block": "ranking_board",
-   "from": 141.518,
-   "to": 145.481,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u4e00\u5e74\u671f\u770b\u70ed\u5ea6\uff0c\u4e09\u5e74\u671f\u770b\u63a5\u76d8",
-    "sub": null,
-    "h3": null,
-    "space": "C"
-   }
-  },
-  {
-   "id": "S39",
-   "block": "stamp",
-   "from": 145.481,
-   "to": 150.01,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u4e0d\u662f\u7ed9\u300c\u7535\u8f66\u300d\u5224\u5211",
-    "sub": null,
-    "h3": "H11",
-    "space": "C"
-   }
-  },
-  {
-   "id": "S40",
-   "block": "statement",
-   "from": 150.01,
-   "to": 154.791,
-   "seg": "ACT3",
-   "props": {
-    "headline": "\u7ed9\u54ea\u53f0\u8f66\u3001\u54ea\u4e2a\u54c1\u724c\u3001\u54ea\u5957\u6280\u672f\u6253\u5206",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "headline": "账③ 电池",
+    "sub": "电池最贵，也最不敢接",
+    "compare": false,
+    "index": 3,
+    "label": "电池"
    }
   },
   {
    "id": "S41",
-   "block": "paper_sheet",
-   "from": 154.791,
-   "to": 158.462,
-   "seg": "ACT4",
+   "block": "statement",
+   "from": 106.42,
+   "to": 110.05,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u4e09\u4ef6\u4e8b\uff0c\u90fd\u5728\u8fd9\u5f20\u8bc4\u4f30\u5355\u4e0a",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "但报告还有另一半：分化",
+    "sub": "分化，才是重点",
+    "compare": false
    }
   },
   {
    "id": "S42",
-   "block": "paper_sheet",
-   "from": 158.462,
-   "to": 162.557,
-   "seg": "ACT4",
+   "block": "big_number",
+   "from": 110.05,
+   "to": 111.21,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u843d\u5730\u4ef7 \u2212 \u6b8b\u503c + \u4f7f\u7528\u6210\u672c",
-    "sub": "\u603b\u62e5\u6709\u6210\u672c",
-    "h3": null,
-    "space": "A"
+    "headline": "分化有多大？",
+    "sub": "?",
+    "compare": false
    }
   },
   {
    "id": "S43",
-   "block": "number_stack",
-   "from": 162.557,
-   "to": 166.299,
-   "seg": "ACT4",
+   "block": "compare_bars",
+   "from": 111.21,
+   "to": 115.14,
+   "seg": "ACT3",
    "props": {
-    "headline": "20 \u2212 9 + \u4f7f\u7528\u6210\u672c",
-    "sub": "\u6298\u65e7\u7ea6 11 \u4e07",
-    "h3": "H12",
-    "space": "A"
+    "headline": "中大型 SUV 50.6% / MPV 48.7%",
+    "sub": "一边五成，一边三成",
+    "compare": false,
+    "items": [
+     {
+      "label": "中大型 SUV",
+      "value": 50.6,
+      "display": "50.6%",
+      "highlight": true
+     },
+     {
+      "label": "MPV",
+      "value": 48.7,
+      "display": "48.7%"
+     }
+    ],
+    "max": 60,
+    "unit": "%"
    }
   },
   {
    "id": "S44",
-   "block": "red_annotation",
-   "from": 166.299,
-   "to": 170.394,
-   "seg": "ACT4",
+   "block": "big_number",
+   "from": 115.14,
+   "to": 116.81,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u4ef7\u683c\u6218 \u2192 \u6b8b\u503c \u2192 \u54c1\u724c / \u91d1\u878d",
-    "sub": null,
-    "h3": null,
-    "space": "C"
+    "headline": "一边五成，一边三成",
+    "sub": "50% vs 30%",
+    "compare": false
    }
   },
   {
    "id": "S45",
-   "block": "statement",
-   "from": 170.394,
-   "to": 174.065,
-   "seg": "ACT4",
+   "block": "brand_matrix",
+   "from": 116.81,
+   "to": 120.4,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u53c2\u6570\u5382\u5546\u5199\uff0c\u4fdd\u503c\u7387\u5e02\u573a\u5199",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "豪华品牌：还硬的",
+    "sub": "保时捷 66.2 · 雷克萨斯 强",
+    "compare": false,
+    "groups": [
+     {
+      "name": "保时捷",
+      "value": 66.2,
+      "tone": "high"
+     },
+     {
+      "name": "雷克萨斯",
+      "note": "强",
+      "tone": "high"
+     }
+    ]
    }
   },
   {
    "id": "S46",
-   "block": "statement",
-   "from": 174.065,
-   "to": 177.313,
-   "seg": "ACT4",
+   "block": "brand_matrix",
+   "from": 120.4,
+   "to": 124.37,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u6b8b\u503c\u53d8\u6210\u663e\u6027\u6210\u672c\uff0c\u4ef7\u683c\u6218\u4e0d\u518d\u514d\u8d39",
-    "sub": null,
-    "h3": null,
-    "space": "A"
+    "headline": "掉队的：沃尔沃 / 捷豹 / 英菲尼迪",
+    "sub": "35.7 · 32.8 · 29.1",
+    "compare": false,
+    "groups": [
+     {
+      "name": "沃尔沃",
+      "value": 35.7,
+      "tone": "low"
+     },
+     {
+      "name": "捷豹",
+      "value": 32.8,
+      "tone": "low"
+     },
+     {
+      "name": "英菲尼迪",
+      "value": 29.1,
+      "tone": "low"
+     }
+    ]
    }
   },
   {
    "id": "S47",
-   "block": "section_label",
-   "from": 177.313,
-   "to": 181.126,
-   "seg": "ACT4",
+   "block": "brand_matrix",
+   "from": 124.37,
+   "to": 127.2,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u53d1\u5e03\u4f1a\u5b9a\u5356\u4ef7",
+    "headline": "合资：本田 / 丰田 / 马自达 近五成",
     "sub": null,
-    "h3": "H10",
-    "space": "D"
+    "compare": false,
+    "groups": [
+     {
+      "name": "本田",
+      "tone": "high",
+      "note": "近五成"
+     },
+     {
+      "name": "丰田",
+      "tone": "high",
+      "note": "近五成"
+     },
+     {
+      "name": "马自达",
+      "tone": "high",
+      "note": "近五成"
+     }
+    ]
    }
   },
   {
    "id": "S48",
-   "block": "price_tag",
-   "from": 181.126,
-   "to": 184.835,
-   "seg": "ACT4",
+   "block": "brand_matrix",
+   "from": 127.2,
+   "to": 130.25,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u5e02\u573a\u5b9a\u6b8b\u503c",
-    "sub": null,
-    "h3": "H11",
-    "space": "D"
+    "headline": "标致 / 斯柯达 / 福特 <43%",
+    "sub": "标致 · 斯柯达 · 福特",
+    "compare": false,
+    "groups": [
+     {
+      "name": "标致",
+      "tone": "low",
+      "note": "<43%"
+     },
+     {
+      "name": "斯柯达",
+      "tone": "low",
+      "note": "<43%"
+     },
+     {
+      "name": "福特",
+      "tone": "low",
+      "note": "<43%"
+     }
+    ]
    }
   },
   {
    "id": "S49",
-   "block": "statement",
-   "from": 184.835,
-   "to": 197.923,
-   "seg": "CLOSE",
+   "block": "brand_matrix",
+   "from": 130.25,
+   "to": 134.62,
+   "seg": "ACT3",
    "props": {
-    "headline": "\u4e09\u5e74\u540e\uff0c\u5b83\u503c\u591a\u5c11\uff1f",
-    "sub": null,
-    "h3": null,
-    "space": "E"
+    "headline": "自主：领跑与上涨",
+    "sub": "传祺 / 坦克 · 领克 / 长安欧尚 / 极氪",
+    "compare": false,
+    "groups": [
+     {
+      "name": "传祺",
+      "tone": "high",
+      "note": "领跑"
+     },
+     {
+      "name": "坦克",
+      "tone": "high",
+      "note": "领跑"
+     },
+     {
+      "name": "领克",
+      "tone": "up",
+      "note": "上涨"
+     },
+     {
+      "name": "长安欧尚",
+      "tone": "up",
+      "note": "上涨"
+     },
+     {
+      "name": "极氪",
+      "tone": "up",
+      "note": "上涨"
+     }
+    ]
    }
   },
   {
-   "id": "S50",
+   "id": "S53",
+   "block": "ranking_board",
+   "from": 141.62,
+   "to": 144.33,
+   "seg": "ACT3",
+   "props": {
+    "headline": "一年期榜单",
+    "sub": "新势力前十占八席",
+    "compare": false
+   }
+  },
+  {
+   "id": "S54",
+   "block": "statement",
+   "from": 144.33,
+   "to": 148,
+   "seg": "ACT3",
+   "props": {
+    "headline": "一年期看热度，三年期看接盘",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S56",
+   "block": "statement",
+   "from": 151.48,
+   "to": 154.79,
+   "seg": "ACT3",
+   "props": {
+    "headline": "给哪台车、哪个品牌、哪套技术打分",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S57",
+   "block": "paper_sheet",
+   "from": 154.79,
+   "to": 158.13,
+   "seg": "ACT4",
+   "props": {
+    "headline": "三件事，都在这张评估单上",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S58",
+   "block": "number_stack",
+   "from": 158.13,
+   "to": 162.29,
+   "seg": "ACT4",
+   "props": {
+    "headline": "落地价 − 残值 + 使用成本",
+    "sub": "总拥有成本",
+    "compare": false,
+    "variant": "tco",
+    "a": 20,
+    "b": 9,
+    "c": 3.7
+   }
+  },
+  {
+   "id": "S59",
+   "block": "statement",
+   "from": 162.29,
+   "to": 166.43,
+   "seg": "ACT4",
+   "props": {
+    "headline": "三年一换，残值就是月供",
+    "sub": "月供 + 折旧",
+    "compare": false
+   }
+  },
+  {
+   "id": "S61",
+   "block": "red_annotation",
+   "from": 169.57,
+   "to": 173.82,
+   "seg": "ACT4",
+   "props": {
+    "headline": "价格战 → 残值 → 品牌 / 金融",
+    "sub": null,
+    "compare": false
+   }
+  },
+  {
+   "id": "S66",
+   "block": "split_screen",
+   "from": 184.84,
+   "to": 187.3,
+   "seg": "CLOSE",
+   "props": {
+    "headline": "发布会定卖价 / 市场定残值",
+    "sub": null,
+    "compare": false,
+    "leftTitle": "新车发布会 · 定卖价",
+    "rightTitle": "二手车市场 · 定残值"
+   }
+  },
+  {
+   "id": "S72",
    "block": "end_card",
-   "from": 197.923,
+   "from": 197.92,
    "to": 208.966,
    "seg": "CLOSE",
    "props": {
-    "headline": "\u6570\u636e\u6765\u6e90 / AI \u8f85\u52a9\u5236\u4f5c\u58f0\u660e",
+    "headline": "数据来源 / AI 辅助制作声明",
     "sub": null,
-    "h3": "H14",
-    "space": "E"
+    "compare": false
    }
   }
  ]

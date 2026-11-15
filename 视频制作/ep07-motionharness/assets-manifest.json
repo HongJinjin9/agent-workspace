@@ -1,7 +1,7 @@
 {
  "episode": "第07期《三年之后，你的车还值多少钱》",
  "generated_by": "MotionHarness Pro (3D + DOM 合成) + ComfyUI H3 证据影像",
- "generated_at_utc": "2026-11-15T03:47:01+00:00",
+ "generated_at_utc": "2026-11-15T07:27:55+00:00",
  "spec": {
   "film": {
    "path": "out/ep07-mh.mp4",
@@ -10,8 +10,8 @@
    "width": 1920,
    "height": 1080,
    "fps": 24.0,
-   "size_mb": 27.68,
-   "sha256": "19cf871c1f90587d5d5f1acdb3da03642b8855641fc68d2885df7dfdf6af5571"
+   "size_mb": 72.46,
+   "sha256": "d9f3591d18da1ac114e97491fc7bc8d84c332c8b2dc5fb86d775c1ae0fec1ff8"
   },
   "expected_duration_s": 208.9664,
   "expected_duration_source": "cli",
@@ -35,33 +35,34 @@
    "content_present": true,
    "subtitles_present": true,
    "subtitles_band_black": true,
+   "content_coverage": true,
+   "motion_present": true,
    "srt_cues": true,
    "srt_monotonic": true,
    "srt_no_overlap": true,
    "srt_in_range": true,
-   "srt_line_len": false,
+   "srt_line_len": true,
    "srt_tail": true,
    "h3_assets_present": true,
    "endcard_text_density": true,
-   "fade_out_black": false
+   "tail_ending": true
   },
-  "problems": [
-   "srt_line_len",
-   "fade_out_black"
-  ]
+  "problems": []
  },
  "program": {
   "project_dir": "/app/vedio/ep07-mh",
   "project_type": "motionharness-pro",
   "entry": "src/project.ts",
-  "shots": 50,
+  "shots": 72,
   "files": [
    "src/Stage.tsx",
    "src/assets.d.ts",
    "src/data/facts.ts",
    "src/data/graphics_cues.json",
+   "src/data/graphics_cues_v2.json",
    "src/data/h3_manifest.json",
    "src/data/shots.json",
+   "src/data/shots_v2.json",
    "src/data/srt.json",
    "src/data/theme.ts",
    "src/data/timeline.json",
@@ -69,9 +70,12 @@
    "src/graphics/big_number.tsx",
    "src/graphics/brand_matrix.tsx",
    "src/graphics/category_bars.tsx",
+   "src/graphics/compare_bars.tsx",
+   "src/graphics/depreciation_curve.tsx",
    "src/graphics/end_card.tsx",
    "src/graphics/graphics.css",
    "src/graphics/index.tsx",
+   "src/graphics/ledger_books.tsx",
    "src/graphics/number_stack.tsx",
    "src/graphics/paper_sheet.tsx",
    "src/graphics/price_tag.tsx",
@@ -80,8 +84,10 @@
    "src/graphics/red_annotation.tsx",
    "src/graphics/report_cover.tsx",
    "src/graphics/section_label.tsx",
+   "src/graphics/split_screen.tsx",
    "src/graphics/stamp.tsx",
    "src/graphics/statement.tsx",
+   "src/graphics/tech_params.tsx",
    "src/graphics/title_hook.tsx",
    "src/layers/Chrome.tsx",
    "src/layers/FootageLayer.tsx",
@@ -993,11 +999,8 @@
   "stills": [
    "still-01-cover",
    "still-02-appraisal-sheet",
-   "still-03-stamp",
    "still-04-data-wall",
-   "still-05-calculator",
    "still-06-three-ledgers",
-   "still-07-battery-check",
    "still-08-price-tag-forest",
    "still-09-lists",
    "still-10-end-card"

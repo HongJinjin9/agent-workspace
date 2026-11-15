@@ -92,7 +92,7 @@ export function PaperSheet({
 
 // 评估单整页：衰减条款 / 三件事 / 总拥有成本公式 —— 纸页 + 页眉页脚
 import { FACTS } from '../data/facts';
-import { C, H, W, Paper, CornerTicks, Txt, Box, Rule, Speckles, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba, RedStroke } from './prims';
+import { C, H, W, Paper, CornerTicks, Txt, Box, Rule, Speckles, Camera, ScanBeam, Dust, useLocal, inRamp, prog, easeOutCubic, easeOutQuint, lerp, clamp, rgba, RedStroke } from './prims';
 
 export interface PaperSheetBlockProps {
   time?: number;
@@ -107,14 +107,17 @@ export interface PaperSheetBlockProps {
 
 const PAGE = { x: 180, y: 170, w: 1560, h: 740 };
 
-export function PaperSheetBlock({ time, from = 0, headline = '', sub, exhibit = 'EXHIBIT 29', source }: PaperSheetBlockProps) {
+export function PaperSheetBlock({ time, from = 0, to, headline = '', sub, exhibit = 'EXHIBIT 29', source }: PaperSheetBlockProps) {
   const t = useLocal(time, from);
+  const dur = Math.max(0.8, (to ?? from + 4) - from);
+  const peel = easeOutQuint(prog(t, 0.02, 0.42));
   const formula = /−|-/.test(headline) && /残值/.test(headline);
   const warranty = /8 年|12 万/.test(sub ?? '') || /看不见/.test(headline);
   const headIn = easeOutCubic(prog(t, 0.12, 0.5));
 
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
+      <Camera local={t} dur={dur} strength={0.8}>
       <PaperSheet time={time} from={from} x={PAGE.x} y={PAGE.y} w={PAGE.w} h={PAGE.h} exhibit={exhibit} source={source} pageNo="P.01 / 06">
         {formula ? (
           <Box x={0} y={0} w={PAGE.w} h={PAGE.h} alpha={1}>
@@ -197,6 +200,13 @@ export function PaperSheetBlock({ time, from = 0, headline = '', sub, exhibit = 
       </PaperSheet>
       <Txt text="评估单 · APPRAISAL SHEET" x={168} y={936} size={14} font="mono" color={C.paper} alpha={0.3} track={2} />
       <Txt text={FACTS.warranty} x={W - 168} y={936} size={14} font="mono" color={C.paper} alpha={0.3} track={1} align="right" />
+      {/* page-peel: a cream leaf swings away to reveal the sheet (open-the-dossier motion) */}
+      <div style={{ position: 'absolute', left: PAGE.x, top: PAGE.y, width: PAGE.w, height: PAGE.h, perspective: 1400, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(100deg, #f3eee2 0%, ${C.paperShade} 100%)`, transform: `rotateY(${-118 * peel}deg)`, transformOrigin: '0% 50%', opacity: 1 - peel * 0.9, boxShadow: '0 26px 60px rgba(0,0,0,.45)' }} />
+      </div>
+      <ScanBeam local={t} y0={240} y1={860} speed={0.1} alpha={0.06} />
+      <Dust local={t} count={10} seed={2001} alpha={0.28} />
+      </Camera>
     </div>
   );
 }

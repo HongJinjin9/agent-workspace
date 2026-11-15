@@ -14,7 +14,7 @@ const v = {
 
 /** 镜头相机：起始/结束机位由预设 + 运动类型决定；镜头内 easeInOutCubic 插值。 */
 export function poseForShot(shot: Shot, localT: number, indexSeed = 0): Pose {
-  const base = CAM_PRESETS[shot.cam] as unknown as Pose;
+  const base = (CAM_PRESETS[(shot.cam ?? 'sheet') as keyof typeof CAM_PRESETS] ?? CAM_PRESETS.sheet) as unknown as Pose;
   const dir = v.norm(v.sub(base.look, base.pos));           // 视线方向
   const side = v.norm(v.cross(dir, [0, 1, 0]));              // 水平侧向
   const p = clamp(shot.dur > 0 ? localT / shot.dur : 0);
@@ -36,6 +36,25 @@ export function poseForShot(shot: Shot, localT: number, indexSeed = 0): Pose {
       const s = (shot.n % 2 === 0 ? 1 : -1) * 0.34;
       fromPos = v.add(base.pos, side, -s);
       toPos = v.add(base.pos, side, s);
+      break;
+    }
+    case 'dolly': {
+      fromPos = v.add(base.pos, dir, -0.10);
+      toPos = v.add(base.pos, dir, 0.30);
+      fromLook = base.look;
+      toLook = base.look;
+      break;
+    }
+    case 'slow': {
+      const drift = Math.sin((localT + indexSeed) * 0.7) * 0.02;
+      fromPos = v.add(base.pos, side, drift);
+      toPos = v.add(base.pos, side, -drift);
+      toLook = v.add(base.look, side, drift * 1.6);
+      break;
+    }
+    case 'pan': {
+      fromPos = v.add(base.pos, side, -0.26);
+      toPos = v.add(base.pos, side, 0.26);
       break;
     }
     case 'rise':

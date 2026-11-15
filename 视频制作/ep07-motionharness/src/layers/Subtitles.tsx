@@ -1,6 +1,7 @@
 // DOM 字幕层：单条活动 cue，切口处直接显示，空隙处 0.12s 淡入淡出，绝不重叠。
 import srt from '../data/srt.json';
 import { THEME } from '../data/theme';
+import type { Shot } from '../data/types';
 
 interface Cue { start: number; end: number; text: string; }
 const cues = srt as Cue[];
@@ -13,7 +14,33 @@ function activeIndex(t: number) {
   return found >= 0 && t < cues[found].end ? found : -1;
 }
 
-export function Subtitles({ time }: { time: number }) {
+function normText(v: string): string {
+  return String(v ?? '').replace(/[\s，。、；：！？…—·,.!?;:()（）「」“”"'’‘・\-]/g, '');
+}
+
+/** 标题/花字与字幕重复时只保留一个文字焦点（Lead v3 要求） */
+function duplicatesHeadline(shot: Shot | undefined, text: string): boolean {
+  if (!shot) return false;
+  const h = normText(shot.headline || '');
+  const s = normText(text || '');
+  if (!h || !s) return false;
+  if (h === s) return true;
+  const shorter = h.length <= s.length ? h : s;
+  const longer = h.length <= s.length ? s : h;
+  if (longer.includes(shorter)) return true;
+  if (shorter.length < 6) return false;
+  // 近似重复：短句字集合 85% 以上被长句包含（容忍“新车/车”等一字之差）
+  const pool = new Map<string, number>();
+  for (const ch of Array.from(longer)) pool.set(ch, (pool.get(ch) ?? 0) + 1);
+  let hit = 0;
+  for (const ch of Array.from(shorter)) {
+    const n = pool.get(ch) ?? 0;
+    if (n > 0) { hit++; pool.set(ch, n - 1); }
+  }
+  return hit / shorter.length >= 0.85;
+}
+
+export function Subtitles({ time, shot }: { time: number; shot?: Shot }) {
   // 片尾声明段（198.4s 起）由 end_card 排版承载，字幕层静默，避免双重文字
   if (time >= 198.35) return null;
   const i = activeIndex(time);
@@ -29,6 +56,7 @@ export function Subtitles({ time }: { time: number }) {
     if (gapIn > CONTIGUOUS) o = Math.min(o, Math.max(0, Math.min(1, (time - cue.start) / FADE)));
     if (gapOut > CONTIGUOUS) o = Math.min(o, Math.max(0, Math.min(1, (cue.end - time) / FADE)));
     text = cue.text; opacity = o;
+    if (duplicatesHeadline(shot, text)) return null;
   } else {
     // 刚结束的 cue 淡出
     let j = -1;
@@ -36,7 +64,7 @@ export function Subtitles({ time }: { time: number }) {
     if (j >= 0) {
       const cue = cues[j];
       const after = time - cue.end;
-      if (after >= 0 && after < FADE) { text = cue.text; opacity = 1 - after / FADE; }
+      if (after >= 0 && after < FADE) { text = cue.text; opacity = 1 - after / FADE; if (duplicatesHeadline(shot, text)) return null; }
     }
   }
   if (!text || opacity <= 0.001) return null;

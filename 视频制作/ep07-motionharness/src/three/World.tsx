@@ -29,7 +29,7 @@ function CameraRig({ shot, localT }: { shot: Shot; localT: number }) {
 }
 
 // ---------------------------------------------------------------- room A / E
-function Room({ time, shot, dim }: { time: number; shot: Shot; dim: number }) {
+function Room({ time, shot, dim, bare }: { time: number; shot: Shot; dim: number; bare: boolean }) {
   const room = AREAS.A.room;
   return (
     <group>
@@ -61,14 +61,14 @@ function Room({ time, shot, dim }: { time: number; shot: Shot; dim: number }) {
         <meshBasicMaterial color="#c9d6e4" transparent opacity={0.85 - dim * 0.7} toneMapped={false} />
       </mesh>
       {/* 评估台 */}
-      <Desk time={time} shot={shot} />
+      <Desk time={time} shot={shot} bare={bare} />
       {/* 举升机 + 低多边形车（A 区右侧） */}
-      <Lift time={time} shot={shot} />
+      {!bare && <Lift time={time} shot={shot} />}
     </group>
   );
 }
 
-function Desk({ time, shot }: { time: number; shot: Shot }) {
+function Desk({ time, shot, bare = false }: { time: number; shot: Shot; bare?: boolean }) {
   const deskY = AREAS.A.deskY;
   const inPaperShot = shot.space === 'A';
   const sheetLift = shot.space === 'A' ? 0.002 + Math.sin(Math.min(time, 197) * 0.7) * 0.0008 : 0.002;
@@ -95,6 +95,8 @@ function Desk({ time, shot }: { time: number; shot: Shot }) {
           <meshStandardMaterial color={C.amber} emissive={new THREE.Color(C.amber)} emissiveIntensity={0.9} side={THREE.DoubleSide} roughness={0.4} />
         </mesh>
       </group>
+      {!bare && (
+        <>
       {/* 评估单 */}
       <group position={[0, deskY + 0.04 + sheetLift, 0.02]} rotation={[-Math.PI / 2, 0, 0]}>
         <mesh>
@@ -106,8 +108,10 @@ function Desk({ time, shot }: { time: number; shot: Shot }) {
       <Stamp time={time} />
       {/* 计算器（台面右前） */}
       <Calculator time={time} />
+        </>
+      )}
       {/* 三张纸 / 三本账（左右摊开的额外纸页） */}
-      {inPaperShot && <Papers time={time} shot={shot} />}
+      {inPaperShot && !bare && <Papers time={time} shot={shot} />}
     </group>
   );
 }
@@ -261,8 +265,25 @@ function Lift({ time, shot }: { time: number; shot: Shot }) {
 }
 
 // ---------------------------------------------------------------- B data wall
-function DataWall({ time, shot }: { time: number; shot: Shot }) {
+function DataWall({ time, shot, bare = false }: { time: number; shot: Shot; bare?: boolean }) {
   const active = shot.space === 'B';
+  if (bare) {
+    return (
+      <group>
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[9.4, -0.005, 0]}>
+          <planeGeometry args={[7, 8]} /><primitive object={MAT.floor} attach="material" />
+        </mesh>
+        <mesh position={[9.45, 2.1, 0]} rotation={[0, -Math.PI / 2, 0]}>
+          <planeGeometry args={[7.2, 4.4]} /><primitive object={MAT.wall} attach="material" />
+        </mesh>
+        {Array.from({ length: 9 }).map((_, i) => (
+          <mesh key={`bg${i}`} position={[9.42, 0.35 + i * 0.5, 0]} rotation={[0, -Math.PI / 2, 0]}>
+            <planeGeometry args={[6.6, 0.006]} /><meshBasicMaterial color={C.metalLight} transparent opacity={0.16} />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
   const p = active ? progress(time, shot.start, shot.start + Math.min(2.2, shot.dur)) : 1;
   const grow = easeOutCubic(p);
   // 折旧曲线：从 50.6% 掉到 42.2% 再探底的三段管
@@ -381,8 +402,30 @@ function Tag({ spec, time, active }: { spec: TagSpec; time: number; active: numb
   );
 }
 
-function TagForest({ time, shot }: { time: number; shot: Shot }) {
+function TagForest({ time, shot, bare = false }: { time: number; shot: Shot; bare?: boolean }) {
   const active = shot.space === 'C' ? Math.min(1, progress(time, shot.start, shot.start + 1.6)) : 0.6;
+  if (bare) {
+    return (
+      <group>
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[16, 0, 0]}>
+          <planeGeometry args={[10, 9]} /><primitive object={MAT.floor} attach="material" />
+        </mesh>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <mesh key={`bb${i}`} position={[12.5 + i * 1.55, 4.3, 0]}>
+            <boxGeometry args={[0.08, 0.08, 8]} /><primitive object={MAT.metalDark} attach="material" />
+          </mesh>
+        ))}
+        <mesh position={[21.6, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]}>
+          <planeGeometry args={[11, 5.6]} /><meshBasicMaterial color="#0b0e12" />
+        </mesh>
+        {[1.2, 2.4, 3.6].map((y) => (
+          <mesh key={`bs${y}`} position={[21.55, y, 0]} rotation={[0, -Math.PI / 2, 0]}>
+            <planeGeometry args={[10.4, 0.02]} /><meshBasicMaterial color="#9fb0c4" transparent opacity={0.14} toneMapped={false} />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
   const rise = shot.space === 'C' && shot.motion === 'rise';
   const panels = useMemo(() => ({
     one: panelTexture('2025-10 一年期榜单', ['1  小米 SU7', '2  问界 M9', '3  理想 L6', '4  比亚迪 汉', '5  特斯拉 Model Y', '6  小鹏 G6', '7  零跑 C11', '8  蔚来 ES6'], 0),
@@ -432,7 +475,7 @@ function TagForest({ time, shot }: { time: number; shot: Shot }) {
 }
 
 // ---------------------------------------------------------------- D car lot
-function CarLot({ time, shot }: { time: number; shot: Shot }) {
+function CarLot({ time, shot, bare = false }: { time: number; shot: Shot; bare?: boolean }) {
   const active = shot.space === 'D';
   const p = active ? progress(time, shot.start, shot.start + 2.2) : 1;
   const sky = useMemo(() => skyTexture(), []);
@@ -470,7 +513,7 @@ function CarLot({ time, shot }: { time: number; shot: Shot }) {
       {/* 黄昏主光 */}
       <directionalLight position={[-26, 4.5, 8]} color="#ffb877" intensity={2.2 * (active ? p : 0.8)} />
       {/* 地面价签（两张，S35/S48） */}
-      {active && (
+      {active && !bare && (
         <group position={[-12.6, 1.1, 2.9]} rotation={[0, 0.5, 0]}>
           <mesh><planeGeometry args={[0.5, 0.74]} /><meshStandardMaterial map={tagTexture('三年残值', '45.1%', 'amber', '市场定价')} side={THREE.DoubleSide} roughness={0.85} /></mesh>
           <mesh position={[0.62, -0.12, 0]}><planeGeometry args={[0.42, 0.62]} /><meshStandardMaterial map={tagTexture('落地价', '20 万', 'paper', '厂商定价')} side={THREE.DoubleSide} roughness={0.9} /></mesh>
@@ -517,7 +560,7 @@ function Dust({ time }: { time: number }) {
 }
 
 // ---------------------------------------------------------------- world
-export function World({ time, shot }: { time: number; shot: Shot }) {
+export function World({ time, shot, bare = false }: { time: number; shot: Shot; bare?: boolean }) {
   const localT = time - shot.start;
   const space = shot.space;
   const dim = space === 'E' ? clamp(progress(time, shot.start, shot.start + 3)) : 0;
@@ -527,14 +570,13 @@ export function World({ time, shot }: { time: number; shot: Shot }) {
       <CameraRig shot={shot} localT={localT} />
       <fog attach="fog" args={[space === 'D' ? '#5a4530' : '#080a0d', space === 'D' ? 16 : 7, space === 'D' ? 48 : 20]} />
       {/* 灯光：冷白顶光 + 琥珀台灯 + 黄昏（车场） */}
-      <ambientLight intensity={space === 'D' ? 0.18 : 0.22} color={space === 'D' ? '#c9a07a' : '#9fb0c4'} />
-      <directionalLight position={[2.5, 4.6, 2.2]} intensity={space === 'D' ? 0.4 : 1.05 - dim * 0.5} color="#cfd8e6" />
-      <pointLight position={[-0.92, 1.62, -0.32]} intensity={inRoom ? 1.0 - dim * 0.55 : 0.3} color="#ffb968" distance={4.2} decay={2} />
-      {inRoom && <Room time={time} shot={shot} dim={dim} />}
-      {space === 'B' && <DataWall time={time} shot={shot} />}
-      {space === 'C' && <TagForest time={time} shot={shot} />}
-      {space === 'D' && <CarLot time={time} shot={shot} />}
-      {space === 'B' && <ItemHint label="数据墙" />}
+      <ambientLight intensity={space === 'D' ? 0.2 : 0.3} color={space === 'D' ? '#c9a07a' : '#9fb0c4'} />
+      <directionalLight position={[2.5, 4.6, 2.2]} intensity={space === 'D' ? 0.45 : 1.28 - dim * 0.5} color="#cfd8e6" />
+      <pointLight position={[-0.92, 1.62, -0.32]} intensity={inRoom ? 1.2 - dim * 0.6 : 0.35} color="#ffb968" distance={4.2} decay={2} />
+      {inRoom && <Room time={time} shot={shot} dim={dim} bare={bare} />}
+      {space === 'B' && <DataWall time={time} shot={shot} bare={bare} />}
+      {space === 'C' && <TagForest time={time} shot={shot} bare={bare} />}
+      {space === 'D' && <CarLot time={time} shot={shot} bare={bare} />}
       {(space === 'A' || space === 'E') && <Dust time={time} />}
       <Beam time={time} shot={shot} />
     </>
