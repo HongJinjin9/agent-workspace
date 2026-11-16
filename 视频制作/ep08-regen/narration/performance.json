@@ -1,0 +1,577 @@
+{
+ "voice": "zh-CN-YunjianNeural",
+ "fps": 24,
+ "cold_open": 0.6,
+ "outro": 1.0,
+ "segment_gap": 0.2,
+ "notes": "第 08 期《电动车松开油门为什么能充电》逐句表演谱。文字逐字取自锁定发言稿 §4.7 逐字稿（Lead 审核 v1.0），仅做句单位切分、不改字。表演层次：S1 钩子快而干脆；S2 立判笃定；S3 拆解平推（术语放稳）；S4 能量账数字句放慢 5%；S5 四条限制压低；S6 再判回到轻快；S7 收束放慢，「它回收的是能量，也是判断」金句前留气口，声明句平稳。逐句 rate/pitch 与 pause_after 见下。",
+ "segments": [
+  {
+   "id": "S1",
+   "name": "冷开场",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "松油门，车在充电。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "仪表上，能量在往回走。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "下坡时，电量数字往上爬。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "这不是永动机。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "车只是把已经有的动能，捡回来一部分。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 6,
+     "text": "这条能量通道，今天拆开看。",
+     "rate": "+6%",
+     "pitch": "0Hz",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "立判：不是永动机",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "先立个规矩：能量守恒。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "你踩油门，电池放电，电机把电变成转动。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "你松油门，轮子反过来推着电机转。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "同一台电机，通电能转，被推着转就发电。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "这不是魔法，是电机的可逆。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 6,
+     "text": "回收的，是本来要变成刹车热的那部分。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 7,
+     "text": "所以准确说法不是充电，是回收。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.34
+    },
+    {
+     "i": 8,
+     "text": "回收有上限，因为没有白来的能量。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 9,
+     "text": "也别指望越开越多：回收最多把这一脚本来要扔的，捡回大半。",
+     "rate": "+3%",
+     "pitch": "0Hz",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "拆解：三件套",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "干活的是三件套。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "电机、逆变器、电池。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "电机这一头，负责电和转动的互换。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "逆变器，是中间那道双向门。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "驱动时，它把电池的直流，变成电机要的交流。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 6,
+     "text": "回收时，它把电机的交流，整回直流。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 7,
+     "text": "同一套功率器件，方向反过来。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 8,
+     "text": "电池这一头，决定收不收、收多快。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 9,
+     "text": "三站串起来：轮端、电机、逆变器、电池。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 10,
+     "text": "驱动和回收，走的是同一条路。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 11,
+     "text": "差别只有一个：功率往哪边流。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 12,
+     "text": "刹车时，顺序反过来：轮端推电机，电机发电，逆变器整流，电池收电。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 13,
+     "text": "记住这张图，后面都用它。",
+     "rate": "+1%",
+     "pitch": "0Hz",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "S4",
+   "name": "能量账",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "一脚刹车，能捡回多少？",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "先看扔了多少：动能等于二分之一乘质量乘速度平方。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "一点五吨的车，从一百刹到零，约零点一六度电。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "速度是平方项，一百二就多出四成多。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "不回收，这些电全变成刹车盘上的热。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.3
+    },
+    {
+     "i": 6,
+     "text": "回收要过三站，每站都掉一点。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 7,
+     "text": "台架实测，轮端到电池，效率约七成到八成七。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 8,
+     "text": "同一条路反着走，驱动方向约八成七到八成九。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 9,
+     "text": "所以回收总是比驱动更亏一点。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.34
+    },
+    {
+     "i": 10,
+     "text": "另一组实车试验，报的是七成八。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 11,
+     "text": "剩下的去了哪？热、风阻、滚阻。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 12,
+     "text": "车速越高，风阻越狠，这部分收不回来。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 13,
+     "text": "高速巡航，回收能量常不到驱动能量的百分之五。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 14,
+     "text": "最划算的，是走走停停，和长下坡。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 15,
+     "text": "长下坡一公里、落差五十米，一点五吨车的势能约零点二度。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 16,
+     "text": "按七成回收，回到电池约零点一四度，够跑不到一公里。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.72
+    }
+   ]
+  },
+  {
+   "id": "S5",
+   "name": "四条限制",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "但不是随时都能回收。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "第一条，电池满了。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "电池满了，没有空间再收，回收立刻退成机械刹车。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "第二条，天冷。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "低温下电池充电能力下降，回收会被限制得更紧。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 6,
+     "text": "太冷还硬充，可能析出锂，伤电池寿命。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 7,
+     "text": "第三条，车速太高。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 8,
+     "text": "车速越高，电机反电动势越高，回收力矩越受限。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 9,
+     "text": "加上风阻吃掉大头，高速本来就收不到多少。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 10,
+     "text": "第四条，抓地力不够。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 11,
+     "text": "ABS 一介入，回收必须让路，先保方向。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.28
+    },
+    {
+     "i": 12,
+     "text": "还有电池的充电功率，电量、温度、倍率都在卡上限。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 13,
+     "text": "所以回收是看条件的账，条件不对就不收。",
+     "rate": "+1%",
+     "pitch": "-1Hz",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "S6",
+   "name": "再判：单踏板/续航/刹车片",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "这解释了单踏板。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "松油门那一下，先让电机回收，不够再上刹车。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "回收和刹车怎么分，叫混合制动。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 4,
+     "text": "分得好平顺，分不好脚下会点头。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 5,
+     "text": "对续航，城市里实打实地省。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 6,
+     "text": "高速上，别指望回收补续航。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 7,
+     "text": "对刹车片，日常减速大多由电机干，磨损更慢。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 8,
+     "text": "但刹车盘该用还得用，不然会锈。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 9,
+     "text": "回收改变的不是物理，是驾驶习惯。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 10,
+     "text": "提前松油门，比到跟前一脚重刹，回收得更多。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 11,
+     "text": "开得越急，回收越少；提前松，收得多。",
+     "rate": "+2%",
+     "pitch": "-1Hz",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "S7",
+   "name": "收束",
+   "emotion": "",
+   "pause_before": 0.0,
+   "sentences": [
+    {
+     "i": 1,
+     "text": "松油门能充电，靠的不是魔法。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 2,
+     "text": "是把本来要浪费的动能，换个方向存回去。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.16
+    },
+    {
+     "i": 3,
+     "text": "它回收的是能量，也是判断。",
+     "rate": "-8%",
+     "pitch": "-2Hz",
+     "pause_after": 0.4
+    },
+    {
+     "i": 4,
+     "text": "知道什么时候能收、什么时候收不到，才算真懂。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.72
+    },
+    {
+     "i": 5,
+     "text": "本片画面与配音含 AI 辅助制作，选题、核实与判断由人完成。",
+     "rate": "-3%",
+     "pitch": "-1Hz",
+     "pause_after": 0.0
+    }
+   ]
+  }
+ ]
+}

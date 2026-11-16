@@ -1,0 +1,8 @@
+{
+ "_meta": {
+  "purpose": "首帧黑名单（内容/红线不符才登记）：sha256 命中则 build_run_orders 自动降 T2V；engine 换图后自动解除",
+  "updated_utc": "2026-11-16T10:58:00Z",
+  "note": "v3：engine 6 张代码渲染清洁底（S01/S02/S48/S50/S55/S57）已确认无人/无字/无 logo 且构图对，按 FL2VA 挂载；窗口内若输出像「会动的静图」则就地 --mode t2v 重跑该镜。"
+ },
+ "blocked": {}
+}

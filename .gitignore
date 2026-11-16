@@ -61,6 +61,21 @@ ehthumbs.db
 # Pexels B-roll、音乐、字体纹理等按 manifest 用脚本拉取，不随仓库分发。
 视频制作/*/assets/
 
+# ---------- 视频工程：ComfyUI 交接包生成物 ----------
+# H3 首帧由 gen_h3_pack.py 从 stock/程序化构图重建；Pexels 抽帧不随仓库分发。
+视频制作/*/comfyui/keyframes/
+视频制作/*/comfyui/out/
+视频制作/*/comfyui/.dryrun/
+视频制作/*/comfyui/run.log
+
+# ---------- 视频工程：逐镜渲染与预览 ----------
+# 可由 scene_body.py 重建；成片与剪辑素材不入库。
+视频制作/*/work/clips/
+视频制作/*/work/previews/
+视频制作/*/work/audio/
+视频制作/*/work/qa/
+视频制作/*/work/tts/
+
 # ---------- 临时文件 ----------
 *.tmp
 *.bak

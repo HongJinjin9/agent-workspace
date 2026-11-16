@@ -1,0 +1,336 @@
+{
+ "H01": {
+  "shot": "S01",
+  "source": "keyframe_art/art_s01",
+  "license": "procedural (code-layer)",
+  "size": [
+   1280,
+   736
+  ],
+  "source_mean": null,
+  "final_mean": 0.0594,
+  "grade": {
+   "note": "code-rendered composition, no readable text"
+  }
+ },
+ "H02": {
+  "shot": "S02",
+  "source": "/app/vedio/ep04-body/assets/stock/steering_night.mp4",
+  "source_t": 2.2,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.0355,
+  "final_mean": 0.2442,
+  "grade": {
+   "brightness": 0.185,
+   "gamma": 1.32,
+   "saturation": 0.5
+  }
+ },
+ "H03": {
+  "shot": "S05",
+  "source": "/app/vedio/ep04-body/assets/stock/winding_road_03.mp4",
+  "source_t": 2.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.3378,
+  "final_mean": 0.1206,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H04": {
+  "shot": "S07",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S07.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.5853,
+  "final_mean": 0.2982,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H05": {
+  "shot": "S10",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S10.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.2478,
+  "final_mean": 0.1069,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H06": {
+  "shot": "S20",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S20.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.1465,
+  "final_mean": 0.1136,
+  "grade": {
+   "brightness": 0.03,
+   "gamma": 1.0,
+   "saturation": 0.42
+  }
+ },
+ "H09": {
+  "shot": "S35",
+  "source": "/app/vedio/ep04-body/assets/stock/wet_road_night_01.mp4",
+  "source_t": 2.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.1183,
+  "final_mean": 0.0989,
+  "grade": {
+   "brightness": 0.03,
+   "gamma": 1.0,
+   "saturation": 0.42
+  }
+ },
+ "H10": {
+  "shot": "S39",
+  "source": "/app/vedio/ep04-body/assets/stock/wet_road_night_01.mp4",
+  "source_t": 6.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.1265,
+  "final_mean": 0.1063,
+  "grade": {
+   "brightness": 0.03,
+   "gamma": 1.0,
+   "saturation": 0.42
+  }
+ },
+ "H11": {
+  "shot": "S40",
+  "source": "/app/vedio/ep04-body/assets/stock/winding_road_01.mp4",
+  "source_t": 4.5,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.2722,
+  "final_mean": 0.0684,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H12": {
+  "shot": "S44",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S44.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.5994,
+  "final_mean": 0.2902,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H13": {
+  "shot": "S48",
+  "source": "/app/vedio/ep04-body/assets/stock/night_driving_02.mp4",
+  "source_t": 2.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.201,
+  "final_mean": 0.0553,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H14": {
+  "shot": "S49",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S49.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.2405,
+  "final_mean": 0.117,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H15": {
+  "shot": "S50",
+  "source": "/app/vedio/ep04-body/assets/stock/wet_road_night_02.mp4",
+  "source_t": 4.2,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.1919,
+  "final_mean": 0.1561,
+  "grade": {
+   "brightness": 0.03,
+   "gamma": 1.0,
+   "saturation": 0.42
+  }
+ },
+ "H17": {
+  "shot": "S55",
+  "source": "keyframe_art/art_s55",
+  "license": "procedural (code-layer)",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": null,
+  "final_mean": 0.075,
+  "grade": {
+   "note": "code-rendered composition, no readable text"
+  }
+ },
+ "H18": {
+  "shot": "S56",
+  "source": "/app/vedio/ep04-body/assets/stock/city_night_aerial.mp4",
+  "source_t": 1.8,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.0724,
+  "final_mean": 0.1767,
+  "grade": {
+   "brightness": 0.12,
+   "gamma": 1.15,
+   "saturation": 0.48
+  }
+ },
+ "H19": {
+  "shot": "S57",
+  "source": "/app/vedio/ep04-body/assets/stock/steering_night.mp4",
+  "source_t": 5.2,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.0312,
+  "final_mean": 0.2407,
+  "grade": {
+   "brightness": 0.185,
+   "gamma": 1.32,
+   "saturation": 0.5
+  }
+ },
+ "H21": {
+  "shot": "S59",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/S59.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.4227,
+  "final_mean": 0.2084,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ },
+ "H22": {
+  "shot": "S60",
+  "source": "/app/vedio/ep04-body/assets/stock/wet_road_night_01.mp4",
+  "source_t": 9.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.0943,
+  "final_mean": 0.1948,
+  "grade": {
+   "brightness": 0.12,
+   "gamma": 1.15,
+   "saturation": 0.48
+  }
+ },
+ "H23": {
+  "shot": "S66",
+  "source": "/app/vedio/ep04-body/assets/stock/city_night_aerial.mp4",
+  "source_t": 3.2,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.0706,
+  "final_mean": 0.1751,
+  "grade": {
+   "brightness": 0.12,
+   "gamma": 1.15,
+   "saturation": 0.48
+  }
+ },
+ "H24": {
+  "shot": "SPARE",
+  "source": "/app/vedio/ep08-regen/assets/pexels/keyframes/H24.jpg",
+  "source_t": 0.0,
+  "license": "Pexels License",
+  "size": [
+   864,
+   480
+  ],
+  "source_mean": 0.4816,
+  "final_mean": 0.2348,
+  "grade": {
+   "brightness": -0.115,
+   "gamma": 0.85,
+   "saturation": 0.34
+  }
+ }
+}

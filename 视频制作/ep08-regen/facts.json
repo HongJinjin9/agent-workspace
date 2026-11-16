@@ -1,0 +1,187 @@
+{
+  "series": "ep08-regen",
+  "title": "电动车松开油门为什么能充电",
+  "version": "1.0-locked",
+  "source": "唯一权威：自媒体稿/第08期-电动车松开油门为什么能充电.md §7.1/§7.2（F01–F18）",
+  "locked_md5": "c0eec12cd71c6a4b2327a3557f651b9a",
+  "video": {
+    "design_duration_s": 252.11,
+    "fps": 24,
+    "shots": 67,
+    "narration_sentences": 73,
+    "narration_chars": 1038
+  },
+  "F01": {
+    "id": "F01",
+    "claim": "1.5 t 车 100→0 km/h 动能 ≈ 0.16 kWh；120 km/h 动能为 100 km/h 的 1.44 倍",
+    "scope": "基于 1.5 t 示例车的物理估算（E=½mv²），非实测",
+    "mass_kg": 1500,
+    "kinetic_kwh": {
+      "100": 0.161,
+      "120": 0.232,
+      "ratio_120_100": 1.44
+    },
+    "formula": "E = 1/2 * m * v^2",
+    "calc": "0.5 × 1500 × (100/3.6)² ≈ 5.79e5 J ≈ 0.161 kWh",
+    "source": "动能定理（普通物理教材）；计算见 §7.2",
+    "boundary": "不含旋转件惯量与传动损耗；只作数量级"
+  },
+  "F02": {
+    "id": "F02",
+    "claim": "1.5 t 车长下坡 1 km、落差 50 m 势能 ≈ 0.20 kWh；按七成回收 ≈ 0.14 kWh；按 15 kWh/100 km 折合约 0.9 km",
+    "scope": "基于 1.5 t 示例车的物理估算（E=mgh）+「七成回收」示例假设，非实测、非厂商数据",
+    "mass_kg": 1500,
+    "grade_pct": 5.0,
+    "length_m": 1000,
+    "drop_m": 50,
+    "pe_kwh": 0.204,
+    "recover_ratio_example": 0.70,
+    "recovered_kwh": 0.143,
+    "consumption_kwh_per_100km": 15.0,
+    "extra_range_km": 0.95,
+    "formula": "E = m * g * h",
+    "source": "重力势能公式；回收比例取 F03 区间中值作示例",
+    "boundary": "不含风阻/滚阻随坡变化；只作数量级"
+  },
+  "F03": {
+    "id": "F03",
+    "claim": "回收效率（轮端制动功率→电池充电功率）70%–87%",
+    "scope": "UDDS 台架，两代车型对比（2012 款 70–80%，2013 款 72–87%）",
+    "low": 0.70,
+    "high": 0.87,
+    "source": "Boretti, A. (2016). Comparison of Regenerative Braking Efficiencies of MY2012 and MY2013 Nissan Leaf. International Journal of Engineering and Technology Innovation, 6(3), 214.",
+    "url": "https://researchrepository.wvu.edu/faculty_publications/2509",
+    "boundary": "台架工况，不代表所有车型/温度"
+  },
+  "F04": {
+    "id": "F04",
+    "claim": "驱动效率（电池放电功率→轮端输出功率）87%–89%",
+    "scope": "同 F03 研究",
+    "low": 0.87,
+    "high": 0.89,
+    "source": "同 F03",
+    "url": "https://researchrepository.wvu.edu/faculty_publications/2509",
+    "boundary": "与回收效率分开写，不得混用"
+  },
+  "F05": {
+    "id": "F05",
+    "claim": "实车试验单次制动回收率 78%",
+    "scope": "实车不同路况试验报告",
+    "value": 0.78,
+    "source": "Valladolid, Calle, Guiracocha (2023). Analysis of regenerative braking efficiency in an electric vehicle through experimental tests. Ingenius (29):24–31.",
+    "url": "https://doi.org/10.17163/ings.n29.2023.02",
+    "boundary": "单次/特定路况结果，不可当普遍值"
+  },
+  "F06": {
+    "id": "F06",
+    "claim": "高速巡航回收能量常不到驱动能量的 5%",
+    "scope": "高速工况，回收能量÷推进能量（总量占比，不是效率）",
+    "share_lt": 0.05,
+    "source": "Regenerative Braking Systems in Electric Vehicles: A Comprehensive Review. Energies 2025, 18(10), 2422（转引其文献 [82]）",
+    "url": "https://doi.org/10.3390/en18102422",
+    "boundary": "综述转引；不是单次效率"
+  },
+  "F07": {
+    "id": "F07",
+    "claim": "车速 >80 km/h 急减速时多余动能转热、回收效率下降；最有效初始制动车速 20–50 km/h",
+    "scope": "综述归纳",
+    "threshold_kmh": 80,
+    "best_range_kmh": [20, 50],
+    "source": "同 F06",
+    "boundary": "不做绝对阈值，只作趋势"
+  },
+  "F08": {
+    "id": "F08",
+    "claim": "5–10% 坡度路况回收比平路高 40–60%",
+    "scope": "综述转引（文献 [80]）",
+    "low": 0.40,
+    "high": 0.60,
+    "source": "同 F06",
+    "boundary": "转引数据，不写成精确值"
+  },
+  "F09": {
+    "id": "F09",
+    "claim": "低速时电机反电动势不足，回收能力下降，机械刹车补上",
+    "scope": "控制策略综述的定性归纳（不写绝对车速阈值）",
+    "source": "同 F06",
+    "boundary": "不同车型策略不同：多数车可单踏板回收至接近 0，故不写「<10 km/h 只有机械刹车」"
+  },
+  "F10": {
+    "id": "F10",
+    "claim": "满电→回收不可用、机械刹车可正常用；电池温度过低/过高→回收限制更久；ABS/巡航激活→回收受限",
+    "scope": "厂商用户手册对功能的说明",
+    "source": "Hyundai Owner's Manual (HEV) Regenerative braking system limitations",
+    "url": "https://ownersmanual.hyundai.com/full_webhelp/DN8HEV/2026/en_US/topic_zg4_xft_t5b.html",
+    "boundary": "厂商手册说明，不针对具体车型评价"
+  },
+  "F11": {
+    "id": "F11",
+    "claim": "低温充电受限、存在析锂风险",
+    "scope": "低温电池综述",
+    "source": "Challenges and development of lithium-ion batteries for low temperature environments. eTransportation 2021.",
+    "url": "https://doi.org/10.1016/j.etran.2021.100145",
+    "boundary": "机理说明，不写具体温度阈值"
+  },
+  "F12": {
+    "id": "F12",
+    "claim": "电池充电功率受温度/SOC/倍率限制，BMS 调节回收功率",
+    "scope": "综述 + 快充综述",
+    "source": "Energies 2025 综述（同 F06）；Lithium-ion battery fast charging: A review. eTransportation 2019.",
+    "url": "https://doi.org/10.1016/j.etran.2019.100011",
+    "boundary": "不写具体 C 率"
+  },
+  "F13": {
+    "id": "F13",
+    "claim": "ABS 与回收需协同控制；ABS 介入时回收让路",
+    "scope": "论文 + 厂商手册",
+    "source": "Dynamic Coordinated Control for Regenerative Braking System and Anti-Lock Braking System. IEEE Access 2020；同 F10",
+    "url": "https://doi.org/10.1109/access.2020.3024918",
+    "boundary": "安全优先，回收可被完全抑制"
+  },
+  "F14": {
+    "id": "F14",
+    "claim": "单踏板与机械刹车混合（blending）的串行/并行架构",
+    "scope": "综述 + 单踏板论文",
+    "source": "Energies 2025 综述（同 F06）；He et al. An intelligent braking system composed single-pedal and multi-objective optimization neural network. Applied Energy 259:114172 (2019).",
+    "url": "https://doi.org/10.1016/j.apenergy.2019.114172",
+    "boundary": "不点名具体车型的踏板手感"
+  },
+  "F15": {
+    "id": "F15",
+    "claim": "电机基速以上反电动势升高，超过直流母线电压后回收/出力受电压限制",
+    "scope": "教材推导",
+    "source": "Ehsani, Gao, Gay, Emadi. Modern Electric, Hybrid Electric, and Fuel Cell Vehicles: Fundamentals, Theory, and Design. CRC Press（课程讲义 PDF，见 p.167/223/226）",
+    "url": "https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SEEA3028.pdf",
+    "boundary": "讲机理，不写具体转速"
+  },
+  "F16": {
+    "id": "F16",
+    "claim": "日常减速多由电机承担，刹车片/盘磨损减少；机械制动介入约少两成",
+    "scope": "厂商服务与零部件企业说明，定性",
+    "mechanical_intervention_reduction": 0.20,
+    "source": "Bosch Auto Service (EV maintenance)；HELLA/FORVIA: Brakes in electric vehicles",
+    "url": "https://www.boschautoservice.com/blog/ev-maintenance-basics-every-electric-vehicle-owner-should-know",
+    "boundary": "「约少两成」来自零部件企业口径，稿中不写死数字"
+  },
+  "F17": {
+    "id": "F17",
+    "claim": "驱动电机可逆（电动/发电）；逆变器同一套功率器件双向 AC/DC",
+    "scope": "教材 + 综述",
+    "source": "同 F15；同 F06",
+    "boundary": "原理性事实"
+  },
+  "F18": {
+    "id": "F18",
+    "claim": "能量路径：轮端→电机→逆变器→电池；制动时反向",
+    "scope": "教材 + 综述",
+    "source": "同 F15；同 F06",
+    "boundary": "全片母题，逐镜目检方向"
+  },
+  "derived": {
+    "chain_short": ["wheel", "motor", "inverter", "battery"],
+    "chain_labels": {"wheel": "轮端", "motor": "电机", "inverter": "逆变器", "battery": "电池"},
+    "chain_cn": "轮端 → 电机 → 逆变器 → 电池",
+    "drive_cn": "电池 → 逆变器 → 电机 → 轮端",
+    "note": "回收方向四站 = 轮端→电机→逆变器→电池；驱动方向为其反向。画面箭头方向以此为准。"
+  }
+}
