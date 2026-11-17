@@ -13,14 +13,14 @@
 
 | 项 | 契约 | 实测 |
 | --- | --- | --- |
-| 成片 | `out/ep08-regen.mp4`（交付 master，不入库） | <!-- FILL: film-path --> |
-| 画幅 | 1920×1080 / 24fps / 2.35:1（上下各 132px 黑边） | <!-- FILL: spec --> |
-| 时长 | 锁定稿设计 **252.24s（4:12.24，约 6054 帧）**，按 TTS 实测回填；交付窗口 3:40–4:20 | <!-- FILL: duration --> |
-| 编码 | H.264 High + AAC 48kHz；`-movflags +faststart` | <!-- FILL: codec --> |
-| 声音 | 母带 I=-14±0.5 LUFS / TP≤-1.0 dBTP | <!-- FILL: loudness --> |
+| 成片 | `out/ep08-regen.mp4`（交付 master，不入库） | `out/ep08-regen.mp4`：1920×1080/24fps/2.35:1，252.380s，178.28MB（不入库，Release 交付） |
+| 画幅 | 1920×1080 / 24fps / 2.35:1（上下各 132px 黑边） | 1920×1080 / 24fps / 2.35:1（上下各 132px 黑边） |
+| 时长 | 交付窗口 3:40–4:20；以 TTS 实测回填 | **252.380s（4:12.38）/ 6057 帧**（逐镜解码合计 6057，0 偏差） |
+| 编码 | H.264 High + AAC 48kHz；`-movflags +faststart` | H.264 High / yuv420p + AAC 192k 48kHz stereo / faststart |
+| 声音 | 母带 I=-14±0.5 LUFS / TP≤-1.0 dBTP | **I=-14.24 LUFS / TP=-1.24 dBTP / LRA 2.20** |
 | 影调 | 冷灰 `#0e1216` / 纸白 `#e9e4d8` / 能量青 `#2fd3c5`（回收/电）/ 动力琥珀 `#d9a441`（输出/损耗）/ 批注红 `#b3392e`（危险/限制）；统一调色 + 胶片颗粒 + 暗角 | — |
-| 字幕 | 句级 SRT（TTS 实测时间轴），单行 ≤18 汉字，白字 + 60% 黑描边，落在下黑边内 | <!-- FILL: srt --> |
-| 片尾 | 画面卡 + 旁白口播双声明（「本片画面与配音含 AI 辅助制作」「选题、核实与判断，由人完成」） | <!-- FILL: endcard --> |
+| 字幕 | 句级 SRT（TTS 实测时间轴），单行 ≤18 汉字，白字 + 60% 黑描边，落在下黑边内 | 99 条句级 SRT（单行 ≤18 字，句覆盖 73/73，下方黑边内） |
+| 片尾 | 画面卡 + 旁白口播双声明（「本片画面与配音含 AI 辅助制作」「选题、核实与判断，由人完成」） | 双声明画面卡 + 旁白口播（实测通过） |
 | 交付 | master + web 版（1280×720）+ 联系表 + 10 静帧 + 16:9/1:1/3:4 封面 + 工程包 | — |
 
 ### 段落结构（设计值，实测以 `work/timeline.json` 为准）
@@ -138,19 +138,19 @@ python3 scripts/finalize.py --input work/film-raw.mp4 --baked
 
 | 项 | 实测 | 目标 |
 | --- | --- | --- |
-| 时长 / 帧数 | <!-- FILL: dur-frames --> | 252.24s（±0.5s）/ 6054（±2） |
-| 分辨率 / 帧率 | <!-- FILL: res --> | 1920×1080 / 24fps |
-| 体积（master / web） | <!-- FILL: size --> | web 体积更小 |
-| 全片解码 | <!-- FILL: decode --> | 0 错误 |
-| 整体响度 I | <!-- FILL: I --> | -14 ±0.5 LUFS |
-| 真峰值 TP | <!-- FILL: TP --> | ≤ -1.0 dBTP |
-| LRA | <!-- FILL: LRA --> | 0–20 LU |
-| 旁白完整性 corr | <!-- FILL: corr --> | ≥0.9 |
-| 2.35:1 遮幅 | <!-- FILL: bars --> | 上下 132px |
-| 字幕 | <!-- FILL: subs --> | 句覆盖 100% / 无重叠 / 单行≤18 汉字 / 下黑边内 |
-| 内容覆盖 / 运动量 | <!-- FILL: coverage --> | 36 点无黑段 / 8 对帧间差中位数 >0.8 |
-| H3 时长占比 | <!-- FILL: h3 --> | 20–35% |
-| 片尾双声明 | <!-- FILL: endcard --> | 画面卡 + 旁白口播 |
+| 时长 / 帧数 | 252.380s / 6057 | 252.24s（±0.5s）/ 6054（±2） |
+| 分辨率 / 帧率 | 1920×1080 / 24fps | 1920×1080 / 24fps |
+| 体积（master / web） | 178.28MB / 24.45MB | web 体积更小 |
+| 全片解码 | 0 错误 | 0 错误 |
+| 整体响度 I | -14.24 LUFS | -14 ±0.5 LUFS |
+| 真峰值 TP | -1.24 dBTP | ≤ -1.0 dBTP |
+| LRA | 2.20 LU | 0–20 LU |
+| 旁白完整性 corr | sent011=0.955 / sent036=0.977 / sent060=0.939 | ≥0.9 |
+| 2.35:1 遮幅 | 上下各 132px 黑边 | 上下 132px |
+| 字幕 | 99 条 / 73/73 句覆盖 / 无重叠 / 单行 ≤18 汉字 / 下黑边内 | 句覆盖 100% / 无重叠 / 单行≤18 汉字 / 下黑边内 |
+| 内容覆盖 / 运动量 | 36 点无黑段 / 8 对帧间差中位数 1.43（min 0.88） | 36 点无黑段 / 8 对帧间差中位数 >0.8 |
+| H3 时长占比 | **19 镜 / 27.2%**（原计划 22 镜；3 镜品牌标/车牌红线 → 合规降级代码） | 20–35% |
+| 片尾双声明 | 双声明画面卡 + 旁白口播（实测通过） | 画面卡 + 旁白口播 |
 
 **硬校验**：`python3 scripts/verify_ep08.py`（35 项，含 QA 静帧与 16 帧联系表），结果见 `work/final-check.json`，结论见 `work/final-report.md`。
 
@@ -201,4 +201,4 @@ python3 scripts/finalize.py --input work/film-raw.mp4 --baked
   - `out/ep08-regen-engine-pack-*.tar.gz`（工程包：脚本/文档/时间轴/SRT/清单/静帧封面）
   - `delivery/delivery-manifest.json`（含 sha256 与素材授权）
 - 仓库入库范围：本 README、`scripts/`、`work/`（时间轴/SRT/报告/清单）、`delivery/`（静帧/封面/联系表/manifest）、`comfyui/`（工单/提示词/工作流/RUNBOOK）、`assets-manifest.json`。
-- 发布状态：<!-- FILL: release -->（Lead 在 PR/Release 环节回填：B 站 / 微信视频号链接、日期、AI 声明勾选情况）。
+- 发布状态：已上传 Release `ep08-regen-video`（2026-11-17，master/web/联系表/10 静帧/三版封面/工程包）；**待发布** B 站 / 微信视频号（发布前确认 MiniMax H3 商用许可）（Lead 在 PR/Release 环节回填：B 站 / 微信视频号链接、日期、AI 声明勾选情况）。
