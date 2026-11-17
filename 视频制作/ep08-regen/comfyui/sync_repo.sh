@@ -14,9 +14,9 @@ FILES=(
   conform_watch_ep08.py frame_sheet.py keyframe_adherence.py local_conform.py
   make_prompts_ep08.py make_report_ep08.py probe_util.py resolve_base.py selftest_local.py
   verify_clip.py window_run.sh
-  shots-ep08-run.json prompt-overrides-ep08.json prompts-ep08.md report.md
+  shots-ep08-run.json prompt-overrides-ep08.json prompts-ep08.md report.md report.json
   keyframe-audit.md keyframe-sanitize.json keyframe-blocklist.json run-policy.json
-  sync_repo.sh
+  sync_repo.sh window_run_resume.sh fix_redline.sh shots-ep08-fix.json
 )
 for f in "${FILES[@]}"; do
   [ -f "$SRC/$f" ] || continue

@@ -553,16 +553,16 @@
  },
  {
   "id": "S49",
-  "kind": "broll",
+  "kind": "pil",
   "title": "抓地力不够",
   "start": 180.636,
   "dur": 1.985,
   "end": 182.621,
   "seg": "S5",
-  "asset": "h3_S49",
-  "h3": true,
-  "overlay": "grip_ring",
-  "fallback": "fb_grip_ring"
+  "h3": false,
+  "fallback": "fb_grip_ring",
+  "scene": "fb_grip_ring",
+  "h3_status": "redline_fallback_code"
  },
  {
   "id": "S50",
@@ -638,16 +638,16 @@
  },
  {
   "id": "S56",
-  "kind": "broll",
+  "kind": "pil",
   "title": "城市续航占比",
   "start": 206.971,
   "dur": 2.671,
   "end": 209.642,
   "seg": "S6",
-  "asset": "h3_S56",
-  "h3": true,
-  "overlay": "ring_city",
-  "fallback": "fb_ring_city"
+  "h3": false,
+  "fallback": "fb_ring_city",
+  "scene": "fb_ring_city",
+  "h3_status": "redline_fallback_code"
  },
  {
   "id": "S57",
@@ -690,16 +690,16 @@
  },
  {
   "id": "S60",
-  "kind": "broll",
+  "kind": "pil",
   "title": "两种开法分叉",
   "start": 219.511,
   "dur": 2.891,
   "end": 222.402,
   "seg": "S6",
-  "asset": "h3_S60",
-  "h3": true,
-  "overlay": "style_traces",
-  "fallback": "fb_style_traces"
+  "h3": false,
+  "fallback": "fb_style_traces",
+  "scene": "fb_style_traces",
+  "h3_status": "redline_fallback_code"
  },
  {
   "id": "S61",

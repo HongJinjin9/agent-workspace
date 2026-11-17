@@ -140,6 +140,9 @@ def main():
         status = m.get("status", "pending")
         if status in ("downloaded", "ok") and raw_has:
             counts["ok"] += 1
+        elif status == "redline_fallback":
+            counts.setdefault("redline_fallback", 0)
+            counts["redline_fallback"] += 1
         elif status == "failed":
             counts["failed"] += 1
         elif status == "deferred":
@@ -164,6 +167,8 @@ def main():
             "verify_final": "PASS" if fv.get("pass") else ("FAIL" if fv else "—"),
             "raw_problems": rv.get("problems"),
             "final_problems": fv.get("problems"),
+            "redline_reason": (m.get("redline") or {}).get("reason"),
+            "regen_note": m.get("regen_note"),
         })
 
     man.update({
@@ -217,15 +222,24 @@ def main():
                   f"{r['elapsed_s'] if r['elapsed_s'] is not None else '—'} | "
                   f"{r['job_id'] or '—'} | {r['verify_raw']} | {r['verify_final']} | {r['status']} |")
     md.append("")
-    bad = [r for r in rows if r["status"] in ("failed", "deferred", "pending", "app_down")
+    bad = [r for r in rows if r["status"] in ("failed", "deferred", "pending", "app_down",
+                                             "redline_fallback")
            or r["verify_raw"] == "FAIL" or r["verify_final"] == "FAIL"]
     md.append("## 3. 失败 / 降级 / 待处理")
     md.append("")
     if bad:
         for r in bad:
+            extra = f"；红线：{r['redline_reason']}" if r.get("redline_reason") else ""
             md.append(f"- **{r['id']}** status={r['status']} "
                       f"raw={r['raw'] or 'missing'} final={r['final'] or 'missing'} "
-                      f"problems={r['raw_problems'] or r['final_problems']}")
+                      f"problems={r['raw_problems'] or r['final_problems']}{extra}")
+        reok = [r for r in rows if r.get("regen_note")]
+        if reok:
+            md.append("")
+            md.append("### 3.1 红线重生成后通过（已替换为新文件）")
+            md.append("")
+            for r in reok:
+                md.append(f"- **{r['id']}**：{r['regen_note']}（`{r['final']}`）")
     else:
         md.append("- 无：全部镜头生成成功、raw 与 1080p 均通过硬校验。")
     t2v_fb = [r for r in rows if r["mode"] == "t2v" and r["width"]]

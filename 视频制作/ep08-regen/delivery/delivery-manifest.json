@@ -1,0 +1,146 @@
+{
+ "episode": "第08期《电动车松开油门为什么能充电》",
+ "film": "out/ep08-regen.mp4",
+ "film_duration": 252.38,
+ "film_duration_hms": "4:12.38",
+ "film_size_mb": 178.28,
+ "film_sha256": "dd4e6684b19473134cc1a6e2c40930416d5478b28e4d447dbe49665b3224de66",
+ "web": {
+  "path": "out/ep08-regen-web.mp4",
+  "size_mb": 24.45,
+  "sha256": "8dafaf8b8267bf706ce09db9cbccdcb1155d0b5abd3bba5aceae17ca8cb1b977"
+ },
+ "stills_source": "shots",
+ "shots_source": "work/timeline.json",
+ "beats": [
+  {
+   "name": "still-01-cover",
+   "time": 2.372,
+   "file": "stills/still-01-cover.jpg"
+  },
+  {
+   "name": "still-02-energy-flow",
+   "time": 84.737,
+   "file": "stills/still-02-energy-flow.jpg"
+  },
+  {
+   "name": "still-03-motor-cutaway",
+   "time": 25.785,
+   "file": "stills/still-03-motor-cutaway.jpg"
+  },
+  {
+   "name": "still-04-inverter-battery",
+   "time": 68.211,
+   "file": "stills/still-04-inverter-battery.jpg"
+  },
+  {
+   "name": "still-05-energy-account",
+   "time": 128.875,
+   "file": "stills/still-05-energy-account.jpg"
+  },
+  {
+   "name": "still-06-limits",
+   "time": 155.313,
+   "file": "stills/still-06-limits.jpg"
+  },
+  {
+   "name": "still-07-one-pedal",
+   "time": 198.081,
+   "file": "stills/still-07-one-pedal.jpg"
+  },
+  {
+   "name": "still-08-range",
+   "time": 208.306,
+   "file": "stills/still-08-range.jpg"
+  },
+  {
+   "name": "still-09-data",
+   "time": 224.394,
+   "file": "stills/still-09-data.jpg"
+  },
+  {
+   "name": "still-10-end-card",
+   "time": 249.184,
+   "file": "stills/still-10-end-card.jpg"
+  }
+ ],
+ "contact_sheet": "contact-sheet.jpg",
+ "covers": [
+  "cover-16x9.jpg",
+  "cover-1x1.jpg",
+  "cover-3x4.jpg"
+ ],
+ "assets_provenance": {
+  "procedural": {
+   "desc": "原理图/能量流/剖面/数据曲线/字幕/片头片尾卡/最终合成：自研 Python(PIL/numpy) 程序化渲染",
+   "license": "本仓库原创（随项目许可）"
+  },
+  "audio": {
+   "desc": "旁白 zh-CN-YunjianNeural（edge-tts 逐句合成）；BGM/音效 numpy 原创合成（无外部曲库）",
+   "license": "原创合成 / edge-tts 生成；不涉及第三方曲库"
+  },
+  "fonts": {
+   "desc": "Noto Serif/Sans CJK（标题/字幕/数据数字）",
+   "license": "OFL 1.1"
+  },
+  "h3": {
+   "desc": "实拍质感镜头由 ComfyUI + MiniMax H3 生成（云端 RTX 5090），本机 lanczos 1080p；H3 不承载文字/数据/原理/字幕/配音/拼接",
+   "license": "MiniMax H3 生成内容；商用发布前按平台许可确认（见已知限制）",
+   "clips": [
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09",
+    "H10",
+    "H11",
+    "H12",
+    "H13",
+    "H14",
+    "H15",
+    "H16",
+    "H17",
+    "H18",
+    "H19",
+    "H20",
+    "H21",
+    "H22",
+    "H23",
+    "H24",
+    "S02",
+    "S05",
+    "S07",
+    "S10",
+    "S20",
+    "S25",
+    "S30",
+    "S35",
+    "S39",
+    "S40",
+    "S44",
+    "S48",
+    "S49",
+    "S50",
+    "S53",
+    "S55",
+    "S56",
+    "S57",
+    "S58",
+    "S59",
+    "S60",
+    "S66"
+   ],
+   "manifest": "assets/h3/manifest.json"
+  },
+  "stock": {
+   "desc": "Pexels 实拍 B-roll（如使用）",
+   "license": "Pexels License（免费商用，无需署名；不得转售原素材）",
+   "count": 14,
+   "manifest": null
+  }
+ },
+ "generated_by": "scripts/prepare_delivery.py"
+}

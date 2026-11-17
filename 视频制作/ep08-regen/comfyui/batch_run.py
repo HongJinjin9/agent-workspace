@@ -520,6 +520,8 @@ def deadline_epoch(hhmm):
     now = _dt.datetime.now(_dt.timezone.utc)
     h, mnt = map(int, hhmm.split(":"))
     dl = now.replace(hour=h, minute=mnt, second=0, microsecond=0)
+    if dl < now:  # window crosses midnight (e.g. 00:08 at 23:50 UTC)
+        dl += _dt.timedelta(days=1)
     return dl.timestamp()
 
 
@@ -551,7 +553,7 @@ def main():
     ap.add_argument("--list", action="store_true")
     args = ap.parse_args()
 
-    load_env(args.env)
+    loaded = load_env(args.env)
     doc = load_json(args.shots)
     if doc is None:
         raise SystemExit(f"missing shots file: {args.shots}")
@@ -686,7 +688,8 @@ def main():
         queued.append((s, up))
     upload_map = {}
     if any(up for _, up in queued):
-        remote = preupload_keyframes(client, [s for s, _ in queued if up])
+        to_upload = [s for s, up in queued if up]
+        remote = preupload_keyframes(client, to_upload)
         for (sid, which), remote_name in remote.items():
             upload_map.setdefault(sid, {})[which] = remote_name
     # sanity: fail the batch early if keyframes were required and none uploaded

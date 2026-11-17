@@ -170,17 +170,17 @@ def encode_broll(shot):
            "-i", path]
     if speed < 0.999:
         filt = ["[0:v]%s,setpts=PTS/%.4f,fps=24,trim=duration=%.3f,"
-                "setpts=PTS-STARTPTS,format=rgb24[b]" % (_look_filter(), speed, dur)]
+                "setpts=PTS-STARTPTS,format=rgb24[b]" % (_look_filter(), speed, dur + 0.30)]
     else:
         filt = ["[0:v]%s,trim=duration=%.3f,setpts=PTS-STARTPTS,format=rgb24[b]"
-                % (_look_filter(), dur)]
+                % (_look_filter(), dur + 0.30)]
     if ovl_dir:
         cmd += ["-framerate", "24", "-i", os.path.join(ovl_dir, "o%05d.png")]
         filt.append("[b][1:v]overlay=0:0:format=auto,format=yuv420p[v]")
     else:
         filt.append("[b]format=yuv420p[v]")
     cmd += ["-filter_complex", ";".join(filt), "-map", "[v]", "-frames:v", str(n),
-            "-t", "%.3f" % dur, "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast",
+            "-t", "%.3f" % (dur + 0.5), "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast",
             "-crf", "16", "-pix_fmt", "yuv420p",
             "-x264-params", "rc-lookahead=10:sync-lookahead=0", "-threads", "2", "-an", out]
     t0 = time.time()
@@ -203,6 +203,10 @@ def render_shot(sid, force=False):
         return out
     if shot["kind"] == "pil":
         return encode_pil(shot)
+    force_fb = set(x.strip() for x in os.environ.get("EP08_FORCE_FALLBACK", "").split(",") if x.strip())
+    if sid in force_fb:
+        log("fallback(forced) %-4s  %s" % (sid, shot.get("fallback")))
+        return encode_pil(dict(shot, scene=shot.get("fallback")))
     p, _ = A.resolve(shot["asset"])
     if p:
         return encode_broll(shot)

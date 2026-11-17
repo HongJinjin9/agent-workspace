@@ -1,0 +1,41 @@
+{
+ "started_utc": "2026-11-17T00:05:59Z",
+ "spec": {
+  "w": 1920,
+  "h": 1080,
+  "fps": 24,
+  "bar": 132,
+  "sub_size": 48,
+  "master_crf": 19,
+  "web_crf": 23
+ },
+ "mode": "clips",
+ "timeline": "work/timeline.json",
+ "total": 252.38,
+ "fps": 24.0,
+ "shots": 67,
+ "concat_duration": 252.375,
+ "audio": "/app/vedio/ep08-regen/audio/work/audio.m4a",
+ "srt": "/app/vedio/ep08-regen/work/srt/all.srt",
+ "audio_duration": 252.38,
+ "master_info": {
+  "cmd": "/home/admin/.local/bin/ffmpeg -hide_banner -loglevel error -y -i /app/vedio/ep08-regen/work/video-concat.mp4 -i /app/vedio/ep08-regen/audio/work/audio.m4a -filter_threads 4 -filter_complex [0:v]eq=contrast=1.045:brightness=0.012:saturation=1.06:gamma=1.003,colorbalance=rs=-0.012:gs=0.0:bs=0.022:rh=0.012:bh=-0.012,vignette=PI/5.2,noise=alls=5:allf=t+u,drawbox=x=0:y=0:w=iw:h=132:color=black:t=fill,drawbox=x=0:y=ih-132:w=iw:h=132:color=black:t=fill,ass=filename=/app/vedio/ep08-regen/work/srt/all.ass:fontsdir=/usr/share/fonts/opentype/noto,fade=t=in:st=0:d=0.6,fade=t=out:st=251.130:d=1.2,format=yuv420p[v] -map [v] -map 1:a -t 252.380 -threads 2 -c:v libx264 -preset fast -crf 19 -tune film -threads 4 -profile:v high -level 4.1 -x264-params rc-lookahead=12:sync-lookahead=0 -c:a aac -b:a 192k -ar 48000 -movflags +faststart /app/vedio/ep08-regen/out/ep08-regen.mp4",
+  "elapsed_s": 562.8,
+  "size_mb": 178.28
+ },
+ "master": "/app/vedio/ep08-regen/out/ep08-regen.mp4",
+ "duration": 252.38,
+ "size_mb": 178.28,
+ "sha256": "dd4e6684b19473134cc1a6e2c40930416d5478b28e4d447dbe49665b3224de66",
+ "web": "/app/vedio/ep08-regen/out/ep08-regen-web.mp4",
+ "web_info": {
+  "cmd": "/home/admin/.local/bin/ffmpeg -hide_banner -loglevel error -y -threads 2 -i /app/vedio/ep08-regen/out/ep08-regen.mp4 -filter_threads 4 -vf scale=1280:720:flags=lanczos -c:v libx264 -preset fast -crf 23 -profile:v high -level 4.1 -x264-params rc-lookahead=12:sync-lookahead=0 -threads 4 -c:a aac -b:a 128k -ar 48000 -movflags +faststart /app/vedio/ep08-regen/out/ep08-regen-web.mp4",
+  "elapsed_s": 106.7,
+  "size_mb": 24.45
+ },
+ "web_sha256": "8dafaf8b8267bf706ce09db9cbccdcb1155d0b5abd3bba5aceae17ca8cb1b977",
+ "web_duration": 252.393,
+ "elapsed_s": 675.0,
+ "finished_utc": "2026-11-17T00:17:14Z",
+ "draft": false
+}

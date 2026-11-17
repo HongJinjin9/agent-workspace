@@ -103,6 +103,9 @@ SPEC = {
 
 SEG_ORDER = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"]
 
+# 合规降级：H3 素材红线复检未通过（品牌 logo / 可读车牌店招 / 行人），改用代码降级场景，不进片
+H3_REDLINE_FALLBACK = {"S49", "S56", "S60"}
+
 
 def log(*a):
     print("[timeline] " + " ".join(str(x) for x in a), flush=True)
@@ -218,6 +221,14 @@ def build():
             item["fallback"] = sh["fallback"]
         else:
             item["h3"] = False
+        if item["id"] in H3_REDLINE_FALLBACK:
+            # 合规降级：不引用 H3，整镜改用代码 fallback 场景（h3=false）
+            item["kind"] = "pil"
+            item["scene"] = SPEC[item["id"]]["fallback"]
+            item["h3"] = False
+            item["h3_status"] = "redline_fallback_code"
+            item.pop("asset", None)
+            item.pop("overlay", None)
         out.append(item)
     # 段统计
     segs = {}
