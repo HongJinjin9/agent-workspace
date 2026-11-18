@@ -1,0 +1,659 @@
+{
+  "film": "/app/vedio/ep08-regen/out/ep08-regen.mp4",
+  "expected": {
+    "w": 1920,
+    "h": 1080,
+    "fps": 24.0,
+    "bar": 132,
+    "i_target": -14.0,
+    "i_tol": 0.5,
+    "tp_max": -1.0,
+    "duration_min": 220.0,
+    "duration_max": 260.0,
+    "sub_max_chars": 18,
+    "h3_share_min": 0.2,
+    "h3_share_max": 0.35,
+    "narration_corr_min": 0.9
+  },
+  "expected_duration": 252.38,
+  "expected_duration_source": "/app/vedio/ep08-regen/work/timeline.json",
+  "shots_source": "/app/vedio/ep08-regen/work/timeline.json",
+  "size_mb": 178.28,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24.0,
+  "duration": 252.38,
+  "frames": 6057,
+  "expected_frames": 6057,
+  "video_codec": "h264",
+  "profile": "High",
+  "pix_fmt": "yuv420p",
+  "bit_rate": 5651208,
+  "audio": [
+    {
+      "codec": "aac",
+      "ch": 2,
+      "sr": "48000",
+      "bit_rate": "192999"
+    }
+  ],
+  "decode_errors": "",
+  "loudness": {
+    "I": -14.24,
+    "TP": -1.24,
+    "LRA": 2.2,
+    "thresh": -24.48
+  },
+  "narration": {
+    "corr": {
+      "sent011": 0.9545,
+      "sent036": 0.9771,
+      "sent060": 0.9394
+    },
+    "narration": "/app/vedio/ep08-regen/audio/work/narration_processed.wav",
+    "timeline_audio": "/app/vedio/ep08-regen/audio/work/timeline_audio.json"
+  },
+  "srt_path": "/app/vedio/ep08-regen/work/srt/all.srt",
+  "srt_cues": 99,
+  "subtitle_frames": [
+    {
+      "t": 0.6,
+      "bright": 1724,
+      "mean": 2.4024248633879783,
+      "text_top": null
+    },
+    {
+      "t": 1.405,
+      "bright": 1723,
+      "mean": 2.4025809914129588,
+      "text_top": null
+    },
+    {
+      "t": 1.6,
+      "bright": 1723,
+      "mean": 2.4025809914129588,
+      "text_top": null
+    },
+    {
+      "t": 3.476,
+      "bright": 2335,
+      "mean": 3.294520882123341,
+      "text_top": null
+    },
+    {
+      "t": 5.999,
+      "bright": 2550,
+      "mean": 3.5729313036690087,
+      "text_top": null
+    },
+    {
+      "t": 8.004,
+      "bright": 1493,
+      "mean": 2.083269906323185,
+      "text_top": null
+    },
+    {
+      "t": 10.251,
+      "bright": 3955,
+      "mean": 5.54893149882904,
+      "text_top": null
+    },
+    {
+      "t": 12.619,
+      "bright": 2986,
+      "mean": 4.19923399687744,
+      "text_top": null
+    },
+    {
+      "t": 13.106,
+      "bright": 2986,
+      "mean": 4.199243754879001,
+      "text_top": null
+    },
+    {
+      "t": 16.312,
+      "bright": 2308,
+      "mean": 3.2581967213114753,
+      "text_top": null
+    },
+    {
+      "t": 18.478,
+      "bright": 2121,
+      "mean": 2.943437743950039,
+      "text_top": null
+    },
+    {
+      "t": 20.186,
+      "bright": 2204,
+      "mean": 3.065534738485558,
+      "text_top": null
+    },
+    {
+      "t": 22.449,
+      "bright": 3624,
+      "mean": 4.996423692427791,
+      "text_top": null
+    },
+    {
+      "t": 30.286,
+      "bright": 4349,
+      "mean": 6.041861826697892,
+      "text_top": null
+    },
+    {
+      "t": 50.476,
+      "bright": 3461,
+      "mean": 4.823833918813427,
+      "text_top": null
+    },
+    {
+      "t": 75.714,
+      "bright": 3072,
+      "mean": 4.390188329430133,
+      "text_top": null
+    },
+    {
+      "t": 106.0,
+      "bright": 3790,
+      "mean": 5.32743950039032,
+      "text_top": null
+    },
+    {
+      "t": 138.809,
+      "bright": 3393,
+      "mean": 4.911226580796253,
+      "text_top": null
+    },
+    {
+      "t": 166.571,
+      "bright": 2529,
+      "mean": 3.660001951600312,
+      "text_top": null
+    },
+    {
+      "t": 196.856,
+      "bright": 0,
+      "mean": 0.00016588602654176425,
+      "text_top": null
+    },
+    {
+      "t": 222.094,
+      "bright": 3849,
+      "mean": 5.332903981264637,
+      "text_top": null
+    },
+    {
+      "t": 246.38,
+      "bright": 3451,
+      "mean": 4.768266978922717,
+      "text_top": null
+    },
+    {
+      "t": 250.38,
+      "bright": 2797,
+      "mean": 3.992105776736924,
+      "text_top": null
+    }
+  ],
+  "qa": {
+    "subtitle_check": "work/qa/subtitle-check.png",
+    "endcard_check": "work/qa/endcard-check.png",
+    "fade_check": "work/qa/fade-check.png",
+    "principle_frames": [
+      {
+        "shot": "S04",
+        "time": 11.978,
+        "file": "work/qa/principle-01-S04-12.0s.png"
+      },
+      {
+        "shot": "S22",
+        "time": 75.674,
+        "file": "work/qa/principle-02-S22-75.7s.png"
+      },
+      {
+        "shot": "S31",
+        "time": 109.966,
+        "file": "work/qa/principle-03-S31-110.0s.png"
+      },
+      {
+        "shot": "S63",
+        "time": 232.294,
+        "file": "work/qa/principle-04-S63-232.3s.png"
+      }
+    ],
+    "h3_frames": [
+      "work/qa/h3-S02.png",
+      "work/qa/h3-S05.png",
+      "work/qa/h3-S07.png",
+      "work/qa/h3-S10.png",
+      "work/qa/h3-S20.png",
+      "work/qa/h3-S25.png",
+      "work/qa/h3-S30.png",
+      "work/qa/h3-S35.png",
+      "work/qa/h3-S39.png",
+      "work/qa/h3-S40.png",
+      "work/qa/h3-S44.png",
+      "work/qa/h3-S48.png",
+      "work/qa/h3-S50.png",
+      "work/qa/h3-S53.png",
+      "work/qa/h3-S55.png",
+      "work/qa/h3-S57.png",
+      "work/qa/h3-S58.png",
+      "work/qa/h3-S59.png",
+      "work/qa/h3-S66.png"
+    ],
+    "human_check": "work/qa/human-check.md"
+  },
+  "subtitle_text_top": null,
+  "content_coverage": {
+    "samples": 36,
+    "skipped_fade_points": 0,
+    "dark_points": []
+  },
+  "motion": {
+    "median_diff": 1.43,
+    "diffs": [
+      2.02,
+      1.49,
+      0.88,
+      1.37,
+      12.47,
+      1.0,
+      6.46,
+      0.98
+    ],
+    "content_frac_median": 0.008207,
+    "content_fracs": [
+      0.016922,
+      0.006314,
+      0.001253,
+      0.010101,
+      0.156895,
+      0.002337,
+      0.080995,
+      0.00577
+    ],
+    "skipped": 0,
+    "low_motion_probe": []
+  },
+  "fade_in_mean": 0.0,
+  "srt": {
+    "cues": 99,
+    "monotonic": true,
+    "overlaps": 0,
+    "out_of_range": 0,
+    "max_line_width": 16,
+    "last_end": 251.38,
+    "sentences": 73,
+    "sentences_covered": 73
+  },
+  "h3": {
+    "expected": [
+      "S02",
+      "S05",
+      "S07",
+      "S10",
+      "S20",
+      "S25",
+      "S30",
+      "S35",
+      "S39",
+      "S40",
+      "S44",
+      "S48",
+      "S50",
+      "S53",
+      "S55",
+      "S57",
+      "S58",
+      "S59",
+      "S66"
+    ],
+    "present": [
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20",
+      "H21",
+      "H22",
+      "H23",
+      "H24",
+      "S02",
+      "S05",
+      "S07",
+      "S10",
+      "S20",
+      "S25",
+      "S30",
+      "S35",
+      "S39",
+      "S40",
+      "S44",
+      "S48",
+      "S49",
+      "S50",
+      "S53",
+      "S55",
+      "S56",
+      "S57",
+      "S58",
+      "S59",
+      "S60",
+      "S66"
+    ],
+    "missing": []
+  },
+  "h3_share": 0.2719,
+  "h3_used_shots": [
+    "S02",
+    "S05",
+    "S07",
+    "S10",
+    "S20",
+    "S25",
+    "S30",
+    "S35",
+    "S39",
+    "S40",
+    "S44",
+    "S48",
+    "S50",
+    "S53",
+    "S55",
+    "S57",
+    "S58",
+    "S59",
+    "S66"
+  ],
+  "h3_fallback_shots": [],
+  "h3_redline": [
+    {
+      "h": "H14",
+      "shot": "S49",
+      "reason": "重生成 1 次后轮毂中心盖仍出现 Mercedes 三叉星品牌标（红线：logo）"
+    },
+    {
+      "h": "H18",
+      "shot": "S56",
+      "reason": "重生成 1 次后仍有可读车牌/店招文字/行人（红线：文字+人物）"
+    },
+    {
+      "h": "H22",
+      "shot": "S60",
+      "reason": "重生成 1 次后前车车牌可读（红线：文字）"
+    }
+  ],
+  "endcard": {
+    "t": 250.38,
+    "center_bright": 26845
+  },
+  "fade_mean": 2.6048948688271607,
+  "web": {
+    "path": "/app/vedio/ep08-regen/out/ep08-regen-web.mp4",
+    "width": 1280,
+    "height": 720,
+    "duration": 252.393,
+    "size_mb": 24.45,
+    "decode_errors": ""
+  },
+  "contact_sheet": "work/qa/verify-contact-sheet.jpg",
+  "contact_sheet_times": [
+    3.505,
+    17.526,
+    31.547,
+    45.569,
+    66.6,
+    80.621,
+    94.642,
+    108.664,
+    129.695,
+    143.716,
+    157.738,
+    171.759,
+    192.79,
+    206.811,
+    220.833,
+    234.854
+  ],
+  "checks": [
+    {
+      "name": "resolution",
+      "pass": true,
+      "blocking": true,
+      "detail": "1920x1080"
+    },
+    {
+      "name": "fps",
+      "pass": true,
+      "blocking": true,
+      "detail": "24.000"
+    },
+    {
+      "name": "duration",
+      "pass": true,
+      "blocking": true,
+      "detail": "252.380 vs 252.380 (/app/vedio/ep08-regen/work/timeline.json)"
+    },
+    {
+      "name": "duration_window",
+      "pass": true,
+      "blocking": true,
+      "detail": "252.38s（220.00–260.00）"
+    },
+    {
+      "name": "frames",
+      "pass": true,
+      "blocking": true,
+      "detail": "6057 vs 6057"
+    },
+    {
+      "name": "has_audio",
+      "pass": true,
+      "blocking": true,
+      "detail": "[{\"codec\": \"aac\", \"ch\": 2, \"sr\": \"48000\", \"bit_rate\": \"192999\"}]"
+    },
+    {
+      "name": "audio_format",
+      "pass": true,
+      "blocking": true,
+      "detail": "[{\"codec\": \"aac\", \"ch\": 2, \"sr\": \"48000\", \"bit_rate\": \"192999\"}]"
+    },
+    {
+      "name": "video_codec",
+      "pass": true,
+      "blocking": true,
+      "detail": "h264 / profile=High"
+    },
+    {
+      "name": "decode_clean",
+      "pass": true,
+      "blocking": true,
+      "detail": ""
+    },
+    {
+      "name": "loudness_I",
+      "pass": true,
+      "blocking": true,
+      "detail": "-14.24 (-14.50..-13.50)"
+    },
+    {
+      "name": "true_peak",
+      "pass": true,
+      "blocking": true,
+      "detail": "-1.24"
+    },
+    {
+      "name": "lra",
+      "pass": true,
+      "blocking": true,
+      "detail": "2.20"
+    },
+    {
+      "name": "narration_corr",
+      "pass": true,
+      "blocking": true,
+      "detail": "sent011=0.955, sent036=0.977, sent060=0.939（min 0.939，需 ≥0.90；干声 narration_processed.wav）"
+    },
+    {
+      "name": "letterbox_2.35",
+      "pass": true,
+      "blocking": true,
+      "detail": "上下 132px 黑边"
+    },
+    {
+      "name": "content_present",
+      "pass": true,
+      "blocking": true,
+      "detail": "中部画面均值 > 4（排除首尾淡入淡出与片尾声明卡 245.3s 后）"
+    },
+    {
+      "name": "subtitles_present",
+      "pass": true,
+      "blocking": true,
+      "detail": "22/23 帧字幕带 bright>=1200（需 6）"
+    },
+    {
+      "name": "subtitles_band_black",
+      "pass": true,
+      "blocking": true,
+      "detail": "字幕带最低均值 0.0"
+    },
+    {
+      "name": "srt_single_line",
+      "pass": true,
+      "blocking": true,
+      "detail": "多行字幕条数 0（单行≤18 字结构上保证不越出黑边）"
+    },
+    {
+      "name": "subtitles_inside_bar",
+      "pass": true,
+      "blocking": true,
+      "detail": "单行字幕结构保证（像素实测文字最高行 None，含画面内容干扰，仅记录）"
+    },
+    {
+      "name": "content_coverage",
+      "pass": true,
+      "blocking": true,
+      "detail": "36 点全片采样（排除首尾淡入淡出 0 点）；暗段 0 []"
+    },
+    {
+      "name": "motion_present",
+      "pass": true,
+      "blocking": true,
+      "detail": "8 对 0.5s 帧间差中位数 1.43（min 0.88；跳过 0 对）"
+    },
+    {
+      "name": "motion_content",
+      "pass": true,
+      "blocking": false,
+      "detail": "强变化像素占比中位数 0.8207%（剔除颗粒影响的补充指标，非阻塞）"
+    },
+    {
+      "name": "fade_in",
+      "pass": true,
+      "blocking": true,
+      "detail": "首帧全帧均值 0.00（应 <8）"
+    },
+    {
+      "name": "srt_cues",
+      "pass": true,
+      "blocking": true,
+      "detail": "99 条（应约等于旁白句数）"
+    },
+    {
+      "name": "srt_monotonic",
+      "pass": true,
+      "blocking": true,
+      "detail": "start 单调"
+    },
+    {
+      "name": "srt_no_overlap",
+      "pass": true,
+      "blocking": true,
+      "detail": "重叠对 0"
+    },
+    {
+      "name": "srt_in_range",
+      "pass": true,
+      "blocking": true,
+      "detail": "0 条越界"
+    },
+    {
+      "name": "srt_line_len",
+      "pass": true,
+      "blocking": true,
+      "detail": "超过 18 汉字的行 0（最宽 16）"
+    },
+    {
+      "name": "srt_tail",
+      "pass": true,
+      "blocking": true,
+      "detail": "末条结束 251.38s vs 成片 252.38s"
+    },
+    {
+      "name": "endcard_declaration_text",
+      "pass": true,
+      "blocking": true,
+      "detail": "片尾字幕含 AI 声明=True / 人完成声明=True：换个方向存回去。 它回收的是能量，也是判断。 知道什么时候能收、 什么时候收不到，才算真懂。 本片画面与配音含 AI 辅助制作， 选题、核实与判断由人完成。"
+    },
+    {
+      "name": "srt_sentence_coverage",
+      "pass": true,
+      "blocking": true,
+      "detail": "73/73 句有字幕"
+    },
+    {
+      "name": "h3_assets_present",
+      "pass": true,
+      "blocking": true,
+      "detail": "19/19 条到位（Sxx 命名）；assets/h3 共 45 个文件"
+    },
+    {
+      "name": "h3_ratio",
+      "pass": true,
+      "blocking": true,
+      "detail": "H3 成片时长占比 27.2%（目标 20–35%；可用 19 镜，红线降级 无）"
+    },
+    {
+      "name": "h3_redline_recorded",
+      "pass": true,
+      "blocking": false,
+      "detail": "红线降级记录：H14(S49) 重生成 1 次后轮毂中心盖仍出现 Mercedes 三叉星品牌标（红线：logo）；H18(S56) 重生成 1 次后仍有可读车牌/店招文字/行人（红线：文字+人物）；H22(S60) 重生成 1 次后前车车牌可读（红线：文字）"
+    },
+    {
+      "name": "endcard_text_density",
+      "pass": true,
+      "blocking": true,
+      "detail": "t=250.4s center_bright=26845（帧存 work/qa/endcard-check.png 供人工目检）"
+    },
+    {
+      "name": "tail_ending",
+      "pass": true,
+      "blocking": true,
+      "detail": "尾部黑场淡出（末帧均值 2.60）"
+    },
+    {
+      "name": "web_version",
+      "pass": true,
+      "blocking": true,
+      "detail": "1280x720? 1280x720 / 252.4s / 24.4MB / 解码OK"
+    }
+  ],
+  "problems": [],
+  "warnings": []
+}

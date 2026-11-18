@@ -1,0 +1,12 @@
+{
+ "_meta": {
+  "updated_utc": "2026-11-16T10:58:30Z",
+  "source": "Lead 裁决：S01 改纯代码（不生成 H3）；S55 改 T2V；S02/S48/S50/S57 恢复真实 stock 首帧"
+ },
+ "exclude": [
+  "S01"
+ ],
+ "force_t2v": [
+  "S55"
+ ]
+}

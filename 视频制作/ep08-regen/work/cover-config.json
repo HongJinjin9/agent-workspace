@@ -1,0 +1,10 @@
+{
+  "kicker": "VIBE 知识共赏 · 第 08 期",
+  "title1": "电动车松开油门",
+  "title2": "为什么能充电",
+  "subtitle": "松油门不是发电，是把动能收回来",
+  "foot": "动能回收 · 轮端 / 电机 / 逆变器 / 电池 的可逆通道",
+  "_note": "gen_cover.py 覆盖封面文案；prepare_delivery.py 用 cover_time（成片绝对秒，优先）或 cover_still（静帧名）指定封面底图。cover_time=10.35 取 S04 能量通道第 1.6s（四站清晰、无大标题字，适合压标题）。改完重跑 prepare_delivery.py。",
+  "cover_still": "still-01-cover",
+  "cover_time": 10.35
+}

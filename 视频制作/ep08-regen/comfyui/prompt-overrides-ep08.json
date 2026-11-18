@@ -1,0 +1,128 @@
+{
+ "_meta": {
+  "author": "h3-operator",
+  "version": "v2 (aligned to frozen SCENE-DESIGN.md §5: 23 H3 shots + 1 backup, keyed by Sxx)",
+  "keying": "按镜号 Sxx 作 key（engine 的 H 编号可重排，Sxx 为权威）；备用镜 H24/SPARE 单独 key。",
+  "rules": "PDF §4：分阶段时间轴 [0-2s]/[2-5s]、一次一种运镜、声音显式（仅环境音/音效，无音乐无人声）、末尾固定禁止事项（无文字/数字/UI/LOGO/真人正脸/不改首帧结构与配色）；生成统一 5s/24fps/864×480（hero 候选先 864 主跑，余量再升 1280×736）。",
+  "hard_constraints": "H3 永不做：数字/公式/原理箭头/字幕/章节/品牌。每镜显式写 no people / no human faces（仅允许手部）/ no readable text/UI/numbers/logos。原「乘员背影/司机判断」类镜头一律改无人镜头。"
+ },
+ "shots": {
+  "S01": {
+   "title": "车内中控/仪表屏：松油门瞬间，功率条从放电翻向回收（hero 候选）",
+   "width": 864,
+   "height": 480,
+   "hero": true,
+   "hero_target_res": [
+    1280,
+    736
+   ],
+   "prompt": "integrated_multimodal_description:\nCinematic live-action close-up of a modern EV dashboard and centre screen at night, cold grey grade with a soft teal ambient glow, shallow depth of field. Animate from the locked first frame; keep its composition, camera height, lighting and colour grade unchanged. [0-2s] a driver's hand lifts off the console above the pedal, the dashboard glow shifts from amber to cold cyan as the power bar retracts toward the charging side; [2-5s] the camera pushes in very slowly while the bar settles and a few soft UI lines pulse once.\nCamera: one slow push-in toward the dash with subtle micro-vibration.\noverall_soundscape: low cabin hum, a soft relay click, quiet electric motor whine easing, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no digits, no UI labels, no readable screen content, no logos, no brand badges, no people, no human faces (only a hand where stated), no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged; the screen and gauges stay soft, never becoming legible."
+  },
+  "S02": {
+   "title": "车内侧窗：长下坡，护栏后退，光斑流动",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action shot from inside a car through the side window on a long downhill road, cold grey grade with moving light pools and a stable guardrail line. Animate from the locked first frame; keep its composition, camera height, lighting and colour grade unchanged. [0-2s] the guardrail posts slide past at a constant speed, sunlight shifting across the glass, a dark sleeve only at the very edge of frame; [2-5s] the lateral drift continues smoothly as the valley opens beyond the rail.\nCamera: one slow lateral drift, shallow depth of field.\noverall_soundscape: wind buffeting at the glass, tyre hiss on asphalt, quiet motor whine, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces (only a hand or sleeve where stated), no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S05": {
+   "title": "长下坡全景：山路连续下坡，远处谷底",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action wide aerial shot of a long mountain road descending in repeated switchbacks toward a valley, cold grey grade with teal mist in the distance, road occupying the lower two thirds. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-3s] the camera tilts slowly downward following the road as it drops away; [3-5s] the tilt settles and holds on the valley floor.\nCamera: one slow downward tilt, no pan, no zoom.\noverall_soundscape: distant mountain wind, a faint far tyre roll, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S07": {
+   "title": "轮毂与底盘：车轮旋转、悬挂轻微起伏",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action low-angle close-up of a modern car wheel and suspension on a cold grey road, alloy rim centred, shallow depth of field. Animate from the locked first frame; keep its framing, camera height and colour grade unchanged. [0-2s] the wheel spins steadily, tread and spokes turning; [2-5s] the suspension compresses a few millimetres over road texture, dust motes drifting past.\nCamera: one low tracking drift alongside the wheel.\noverall_soundscape: tyre rumble on asphalt, faint motor whine, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos on the rim, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S10": {
+   "title": "刹车盘红热：盘面由暗转红，热浪微微扭曲",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of a brake disc seen at a slight angle behind an alloy wheel, cold grey grade with fine metal texture, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the dark metal surface slowly heats from the edges inward, turning a dull ember red; [2-5s] the red area spreads and a faint heat shimmer rises, the camera holding micro with a tiny vibration.\nCamera: one nearly static micro shot with a very slight drift.\noverall_soundscape: high-frequency friction hiss, the faint tick of cooling metal, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S20": {
+   "title": "电池包外观与 BMS 屏：冷光、线束、指示灯",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action close-up of a flat EV battery pack under the car on a workshop lift, cold grey grade with teal under-light and an amber practical lamp, a small BMS display glowing softly at the lower right but completely out of focus. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the camera pushes in slowly across the pack casing, bolts and cooling lines catching the light; [2-5s] a few status LEDs blink once and settle, fine dust drifting in the beam.\nCamera: one slow push-in across the pack, shallow depth of field.\noverall_soundscape: low electrical hum, workshop room tone, a distant compressor, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no digits, no labels, no UI content, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged; any screen stays soft bokeh and never legible."
+  },
+  "S25": {
+   "title": "刹车踏板：脚掌下压、踏板行程",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of a driver's foot on a dark rubber brake pedal inside a modern car footwell, cold grey grade with soft teal ambient light, only the foot and pedal in frame. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the foot presses the pedal down smoothly through its travel; [2-5s] it eases back up and the pedal returns a little, a faint spring motion.\nCamera: one micro static shot with a very slight drift.\noverall_soundscape: pedal spring motion, a soft mechanical click, quiet cabin room tone, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no labels, no logos, no brand badges, no people, no human faces (only the foot and hand), no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S30": {
+   "title": "刹车盘热浪：红热区域扩大、颗粒逸出",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action extreme macro close-up of a glowing brake disc surface, cold grey grade with a hot ember core, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the red-hot area expands slowly across the metal, heat shimmer distorting the background; [2-5s] tiny sparks of dust drift upward and fade as the glow settles.\nCamera: one micro static shot with a tiny drift.\noverall_soundscape: friction hiss fading, a faint metallic tick, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S35": {
+   "title": "城市道路底图：车流稀疏，路面反光",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action long-lens shot of a sparse city road in cold grey weather, wet asphalt reflecting a pale sky, road filling the lower half of frame. Animate from the locked first frame; keep its composition, lens and colour grade unchanged. [0-2s] a distant car moves away down the lane; [2-5s] the camera pans slowly to follow it while the reflections slide across the asphalt.\nCamera: one slow lateral pan.\noverall_soundscape: distant traffic, light tyre roll, a faint gust of wind, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no readable plates, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S39": {
+   "title": "城市车流横移：走走停停，刹车灯明灭",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action side shot of city traffic at a stop-and-go pace, cold grey grade with dull wet reflections, cars in the mid-ground. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the camera moves laterally with the traffic while brake lights pulse on and off; [2-5s] the flow eases forward and the red glows ripple down the line, a gentle handheld feel.\nCamera: one lateral tracking move with a slight vibration.\noverall_soundscape: city traffic wash, tyres on wet asphalt, a distant horn, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no readable plates, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S40": {
+   "title": "山路俯拍下坡：连续弯道，谷底可见（hero 候选，可选尾帧）",
+   "width": 864,
+   "height": 480,
+   "hero": true,
+   "hero_target_res": [
+    1280,
+    736
+   ],
+   "prompt": "integrated_multimodal_description:\nCinematic live-action elevated shot looking down on a winding mountain road descending toward a valley in cold grey dusk light, teal mist low in the gorge, the road forming an S shape. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the camera drifts slowly forward down the slope following the switchbacks; [2-5s] it tilts gently as the road opens toward the valley floor, no cuts.\nCamera: one slow forward aerial drift with a gentle tilt.\noverall_soundscape: mountain wind over the ridges, a faint tyre roll far below, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S44": {
+   "title": "低温霜冻路面/车窗：白霜、冷光",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of frost crystals on a car window on a freezing morning, cold grey-blue grade, fine white frost patterns catching a pale light. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the frost crystals glint as the light shifts across the glass and the camera drifts microscopically; [2-5s] a thin breath-like mist forms on the glass and fades, no person visible.\nCamera: one micro slow drift, extremely shallow depth of field.\noverall_soundscape: cold wind outside, a faint creak of metal, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and cold palette unchanged."
+  },
+  "S48": {
+   "title": "高速低机位跟拍：车头切风、路面高速流动（纯 H3）",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action low-angle tracking shot of a car at highway speed, cold grey grade, the road surface streaming toward camera and filling the lower two thirds of frame. Animate from the locked first frame; keep its composition, camera height and colour grade unchanged. [0-2s] the road streams toward the camera, lane markings rushing past; [2-5s] the frame vibrates slightly with speed and the car's nose holds steady against the wind.\nCamera: one low tracking shot, small vibration, no pan.\noverall_soundscape: strong wind roar, tyre noise, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S49": {
+   "title": "雨雪路面与轮胎：胎面碾过水膜，抓地环反光",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of a tyre rolling through a thin film of water on a cold asphalt road, cold grey grade with bright water highlights, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the tread rolls through the water film and a fine spray lifts behind it; [2-5s] the spray settles as the wheel continues, a wet sheen sliding along the rubber.\nCamera: one micro tracking drift with the wheel.\noverall_soundscape: wet tyre hiss, water spray, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S50": {
+   "title": "湿滑路面急刹：轮速抖动、车身微沉",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action low shot of a car braking hard on a wet road, seen from a rear three-quarter angle, cold grey grade with mirrored reflections on the asphalt. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the car nose dips and the body settles as the brakes bite; [2-5s] the wheel speed stutters in a rapid ABS rhythm and water sprays out from the tyres.\nCamera: one low lateral drift alongside the car.\noverall_soundscape: rapid ABS ticks, tyre scrub on wet asphalt, water spray, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S53": {
+   "title": "踏板机构：加速踏板回弹、刹车踏板待命（hero 候选，可选尾帧）",
+   "width": 864,
+   "height": 480,
+   "hero": true,
+   "hero_target_res": [
+    1280,
+    736
+   ],
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of the pedal box inside a modern EV footwell, cold grey grade with soft teal ambient light, both the accelerator and brake pedals in frame with only a foot visible. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the accelerator pedal returns slowly upward as the toe lifts away from it; [2-5s] the foot hovers between the pedals and the brake pedal stays untouched, the camera holding micro.\nCamera: one micro static shot with a tiny drift.\noverall_soundscape: pedal return spring, a soft mechanical settle, quiet cabin room tone, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no labels, no logos, no brand badges, no people, no human faces (only the foot and hand), no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S55": {
+   "title": "车内水杯水面：液面随减速轻晃",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action close-up looking down into a cup of water in a car cup holder, cold grey grade with a soft teal reflection on the surface, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the water surface tilts gently to one side as the car slows, the reflection sliding with it; [2-5s] it settles back level with a small slow ripple, no spill.\nCamera: one very slow push-in, nearly static.\noverall_soundscape: soft cabin hum, the faint tick of the cup in its holder, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces (only a hand where stated), no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S56": {
+   "title": "城市车流（续航段）：路口多车减速",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action mid-shot of cars slowing into a city junction in cold grey daylight, wet asphalt and muted surroundings. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the traffic ahead eases into the junction and brake lights ripple on; [2-5s] the camera holds while the line creeps forward and settles.\nCamera: one nearly static hold with a very slow drift.\noverall_soundscape: city ambience, tyre roll, a distant engine idle, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no readable plates, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S57": {
+   "title": "高速行驶（续航段）：匀速巡航，前景模糊",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action long-lens shot of a car cruising at steady highway speed, cold grey grade, body occupying the left third of frame, foreground streaked by motion blur. Animate from the locked first frame; keep its composition, lens and colour grade unchanged. [0-2s] the car holds a steady speed, the foreground blurring past; [2-5s] the camera drifts gently with the car, a faint vibration through the long lens.\nCamera: one gentle tracking hold with the car.\noverall_soundscape: steady wind, tyre hum, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no readable plates, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S58": {
+   "title": "刹车片/卡钳微距：摩擦片厚度、金属光泽",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action extreme macro shot of a brake pad and caliper inside an alloy wheel, cold grey grade, fine metal grain and a faint amber reflection, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the camera moves laterally across the friction material, metal highlights sliding over the surface; [2-5s] it settles on the caliper edge with a tiny drift.\nCamera: one slow lateral micro move, no zoom.\noverall_soundscape: a faint metallic tick, quiet workshop room tone, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S59": {
+   "title": "刹车盘锈蚀：盘面锈斑、边缘氧化物（纯 H3）",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of a brake disc surface with patches of surface rust and oxidized edges, cold grey grade with dull brown-orange corrosion tones, shallow depth of field. Animate from the locked first frame; keep its framing and colour grade unchanged. [0-2s] the camera pans slowly sideways across the rust patches; [2-5s] it drifts to the disc edge as fine dust motes float in the light.\nCamera: one slow lateral micro pan.\noverall_soundscape: a faint metallic scrape, quiet workshop room tone, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S60": {
+   "title": "车流跟拍（驾驶习惯段）：前车减速、距离变化（可选尾帧）",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action follow shot from inside a car at dusk, looking ahead through the windshield at a lead car in the distance, cold grey grade with faint red tail lights and wet asphalt reflections. Animate from the locked first frame; keep its composition and colour grade unchanged. [0-2s] the lead car slows and the gap opens slightly; [2-5s] the camera car eases forward and the gap closes again, the wipers still.\nCamera: one gentle forward hold with the traffic flow.\noverall_soundscape: traffic ambience, tyre roll, a faint wiper motor hum, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signs, no readable plates, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "S66": {
+   "title": "城市黄昏远景：长焦压缩车流，暖光（纯 H3）",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action long-lens shot of city traffic at dusk from a high vantage point, cold grey grade with a band of warm amber low on the horizon and car lights streaking gently. Animate from the locked first frame; keep its composition, lens and colour grade unchanged. [0-2s] the compressed traffic stream flows slowly, light streaks stretching across the frame; [2-5s] the amber band deepens as the last light fades, the camera holding still.\nCamera: one slow push-in with the long lens, no pan.\noverall_soundscape: distant city hum, low traffic wash, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no signage, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep the first frame's structure and colour palette unchanged."
+  },
+  "H24": {
+   "title": "备用：充电口/插枪，充电枪插入、指示灯亮（片尾空镜/顶替）",
+   "prompt": "integrated_multimodal_description:\nCinematic live-action macro close-up of an EV charging port on a dark car body at night, cold grey grade with a thin teal indicator ring glowing around the rim, water droplets on the paint, shallow depth of field. [0-2s] a charging gun slides smoothly into the port; [2-5s] the latch clicks home and the teal ring pulses once, settling to a steady glow, a soft reflection sliding over the surrounding metal.\nCamera: one slow push-in toward the port, micro drift.\noverall_soundscape: latch click, low electrical hum, quiet night ambience, no voice, no dialogue, no music.\nNo readable text, no letters, no numbers, no labels, no logos, no brand badges, no people, no human faces, no watermark, no flicker, no strobing, no scene cuts. Keep a consistent cold-grey palette throughout."
+  }
+ }
+}
