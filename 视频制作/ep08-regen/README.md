@@ -77,6 +77,7 @@ eq(contrast 1.045 / brightness +0.012 / sat 1.06) → colorbalance(冷暗部/暖
 | `audio/work/` | `timeline_audio.json`（唯一时间基准）、`audio.m4a` 母带、`audio-report.md`、句级 SRT | audio-engineer |
 | `comfyui/` | H3 工单/提示词/工作流/批处理/窗口 runbook/逐镜报告 | h3-operator |
 | `assets/h3/` | H3 成片素材 `H01..H24.mp4`（大文件不入库，provenance 见 manifest） | h3-operator |
+| `3d/` | 形态 D 3D 结构镜头工程：Remotion + `three` + `@react-three/fiber`/`drei` 的剖视/拆解场景、能量流粒子与相机运镜（只入库源码/`package.json`/lock/README/MANIFEST/方向断言脚本；`node_modules`、GLB、帧序列、样片不入库）。规范见 [`../3D-STRUCTURE-GUIDE.md`](../3D-STRUCTURE-GUIDE.md) | 3d-engineer（Lead 指派） |
 | `scripts/` | **交付/验收脚本**：`finalize.py`（成片收尾）、`verify_ep08.py`（硬校验）、`prepare_delivery.py`（静帧/联系表/封面/manifest）、`gen_cover.py`、`make_contact_sheet.py`、`write_report.py`（报告/清单）、`render_all.sh`（渲染编排）、`deliver_all.sh`（一键链）、`sync_repo.sh`、`make_engine_package.sh` | delivery-engineer |
 | `work/` | 时间轴/字幕/QA/`final-check.json`/`final-report.md`/`audio-report.md`/`RUNBOOK.md` | engine / audio / delivery |
 | `delivery/` | 10 静帧 + 联系表 + 三版封面 + `delivery-manifest.json` | delivery-engineer |

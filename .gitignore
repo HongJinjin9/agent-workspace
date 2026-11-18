@@ -76,6 +76,16 @@ ehthumbs.db
 视频制作/*/work/qa/
 视频制作/*/work/tts/
 
+# ---------- 视频工程：3D 结构镜头（形态 D）生成物 ----------
+# Three.js/Remotion 源码与 MANIFEST 入库；依赖、渲染帧序列、样片/成片不入库。
+视频制作/*/3d/node_modules/
+视频制作/*/3d/out/
+视频制作/*/3d/.remotion/
+视频制作/*/3d/public/models/
+视频制作/*/work/3d/
+视频制作/*/work/sample/
+视频制作/*/.tmp/
+
 # ---------- 临时文件 ----------
 *.tmp
 *.bak
