@@ -16,3 +16,9 @@ VCP 生态的组成与交付物归集目录（对应原工作 Issue #13）。
 | V视听（VStudio） | 人类与 AI Agent 协同视频工坊：VCPChat 前端窗口 + VCPToolBox 后端插件 | [`VSTUDIO-DELIVERY.md`](VSTUDIO-DELIVERY.md) |
 | V视听 · Before/After 视觉证据 | 真实应用截图、交互报告与复现工具 | [`evidence/`](evidence/README.md) |
 | V视听 · 可复现 patch | VCPChat / VCPToolBox 两仓库 patch 与基线 commit | [`patches/`](patches/) |
+
+## 分析文档
+
+| 分析 | 内容 | 位置 |
+| --- | --- | --- |
+| VCP 式网络检索 · 收益分析 | 对应 Issue [#41](https://github.com/HongJinjin9/agent-workspace/issues/41)，**仅分析不开发**：评估「请求前按需联网 + 证据归一化 + 记忆沉淀」的收益、成本、风险边界与兑现顺序 | [`VCP式网络检索-收益分析.md`](VCP式网络检索-收益分析.md) |
